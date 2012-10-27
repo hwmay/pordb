@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1096</width>
+    <width>1105</width>
     <height>516</height>
    </rect>
   </property>
@@ -304,7 +304,7 @@
      <item>
       <widget class="QLabel" name="label_16">
        <property name="text">
-        <string>No</string>
+        <string>None</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

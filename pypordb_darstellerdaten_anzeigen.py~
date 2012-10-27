@@ -11,6 +11,10 @@ from pypordb_dbupdate import DBUpdate
 class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	def __init__(self, app, url, darstellerseite, verzeichnis_thumbs):
 		QtGui.QDialog.__init__(self)
+		self.setupUi(self)
+		
+		self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onUebernehmen)
+		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.onClose)
 		
 		self.darstellerseite = darstellerseite
 		self.app = app
@@ -170,11 +174,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
-		
-		self.setupUi(self)
-		
-		self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onUebernehmen)
-		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.onClose)
 		
 		self.app.restoreOverrideCursor()
 		

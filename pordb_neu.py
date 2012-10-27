@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Mon Sep 24 00:24:42 2012
+# Created: Sun Oct 28 01:03:31 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(1096, 516)
+        Dialog.resize(1105, 516)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
@@ -338,7 +338,7 @@ class Ui_Dialog(object):
         self.label_13.setText(QtGui.QApplication.translate("Dialog", "Belly", None, QtGui.QApplication.UnicodeUTF8))
         self.label_14.setText(QtGui.QApplication.translate("Dialog", "Ass", None, QtGui.QApplication.UnicodeUTF8))
         self.label_15.setText(QtGui.QApplication.translate("Dialog", "Others", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_16.setText(QtGui.QApplication.translate("Dialog", "No", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_16.setText(QtGui.QApplication.translate("Dialog", "None", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDarstelleruebernehmen.setToolTip(QtGui.QApplication.translate("Dialog", "Adopt actor", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Copy the marked actors to the actors field", None, QtGui.QApplication.UnicodeUTF8))
         self.listWidgetW.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used female actors", None, QtGui.QApplication.UnicodeUTF8))
