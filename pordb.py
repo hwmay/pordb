@@ -1219,7 +1219,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			zu_lesen = "SELECT * FROM pordb_vid where darsteller like '%" +eingabe +"%'"
 		if self.actionVid.isChecked():
-			zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+			zu_lesen += " and vorhanden = 'x'"
 			self.actionVid.toggle()
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by cd, bild, darsteller"
@@ -1238,7 +1238,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		zu_lesen = "SELECT * FROM pordb_vid where cd = " +str(ein)
 		if self.actionVid.isChecked():
-			zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+			zu_lesen += " and vorhanden = 'x'"
 			self.actionVid.toggle()
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by bild, darsteller"
@@ -1255,7 +1255,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		zu_lesen = "SELECT * FROM pordb_vid where lower(titel) like '%" +ein.replace(" ", "%") +"%'"
 		if self.actionVid.isChecked():
-			zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+			zu_lesen += " and vorhanden = 'x'"
 			self.actionVid.toggle()
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by cd, bild, darsteller"
@@ -1296,7 +1296,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if original_erweiterung:
 			zu_lesen += original_erweiterung
 		if self.actionVid.isChecked():
-			zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+			zu_lesen += " and vorhanden = 'x'"
 			self.actionVid.toggle()
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by original, cd, bild, darsteller"

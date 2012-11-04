@@ -7,7 +7,7 @@ import time
 import datetime
 import platform
 import urllib2
-#import gobject # verhindert Absturz bei Anzeige von Webseiten mit Flash
+import gobject # verhindert Absturz bei Anzeige von Webseiten mit Flash
 import psycopg2
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtWebKit import QWebPage
@@ -1219,7 +1219,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			zu_lesen = "SELECT * FROM pordb_vid where darsteller like '%" +eingabe +"%'"
 		if self.actionVid.isChecked():
-			zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+			zu_lesen += " and (vorhanden = 'x')"
 			self.actionVid.toggle()
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by cd, bild, darsteller"

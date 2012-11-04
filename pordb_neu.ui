@@ -619,7 +619,7 @@ First click with the left mouse button in the left top corner, then click with t
      <item row="4" column="2">
       <widget class="QPushButton" name="pushButtonOriginalAlt">
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reuse last entered original title, Ctrl+Q&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reuse last entered original title, Ctrl+A&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="whatsThis">
         <string>Reuse last entered original title</string>
@@ -633,7 +633,7 @@ First click with the left mouse button in the left top corner, then click with t
         </iconset>
        </property>
        <property name="shortcut">
-        <string>Ctrl+Q</string>
+        <string>Ctrl+A</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>

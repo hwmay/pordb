@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sun Oct 28 01:03:31 2012
+# Created: Sun Nov  4 18:18:19 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -374,9 +374,9 @@ class Ui_Dialog(object):
         self.lineEditNeuBild.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter file name of image file", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("Dialog", "Original", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEditNeuOriginal.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter original title of the movie. For adding more titles, please press the button on the right side.", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginalAlt.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Reuse last entered original title, Ctrl+Q</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonOriginalAlt.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Reuse last entered original title, Ctrl+A</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOriginalAlt.setWhatsThis(QtGui.QApplication.translate("Dialog", "Reuse last entered original title", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginalAlt.setShortcut(QtGui.QApplication.translate("Dialog", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonOriginalAlt.setShortcut(QtGui.QApplication.translate("Dialog", "Ctrl+A", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOriginal.setToolTip(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOriginal.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
 
