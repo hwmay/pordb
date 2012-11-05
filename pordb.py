@@ -696,19 +696,21 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		selected = self.listWidgetStatistik.selectedItems()
 		if selected:
 			cs = str(selected[0].text()).strip()
+			cs_found = None
 			for i in self.cumshots.values():
 				if i in cs:
-					cs = self.cumshots_reverse.get(i)
-		ein = str(self.labelDarsteller.text()).strip().title()
-		self.start_bilder = 0
-		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		eingabe = ein.title().replace("'", "''")
-		zu_lesen = "SELECT * FROM pordb_vid where (darsteller = '" +eingabe +"' or darsteller like '" +eingabe +",%' or darsteller like '%, " +eingabe +",%' or darsteller like '%, " +eingabe +"')"
-		zu_lesen += " and cs" +cs +" <> 0" 
-		self.letzter_select = zu_lesen
-		zu_lesen += " order by cd, bild, darsteller"
-		self.ausgabe(ein, zu_lesen)
-		app.restoreOverrideCursor()
+					cs_found = self.cumshots_reverse.get(i)
+			if cs_found:
+				ein = str(self.labelDarsteller.text()).strip().title()
+				self.start_bilder = 0
+				app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+				eingabe = ein.title().replace("'", "''")
+				zu_lesen = "SELECT * FROM pordb_vid where (darsteller = '" +eingabe +"' or darsteller like '" +eingabe +",%' or darsteller like '%, " +eingabe +",%' or darsteller like '%, " +eingabe +"')"
+				zu_lesen += " and cs" +cs_found +" <> 0" 
+				self.letzter_select = zu_lesen
+				zu_lesen += " order by cd, bild, darsteller"
+				self.ausgabe(ein, zu_lesen)
+				app.restoreOverrideCursor()
 		
 	def onAnzeigenOriginal(self):
 		item = self.tableWidgetBilder.currentItem()
