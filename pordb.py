@@ -2183,9 +2183,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.onNeueingabe(dateien=dateien)
 			else:
 				cd = self.aktuelles_res[index][2]
+				bild = self.aktuelles_res[index][3]
+				zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild +"'"
+				lese_func = DBLesen(self, zu_lesen)
+				self.aktuelles_res = DBLesen.get_data(lese_func)
 				titel = self.aktuelles_res[index][0]
 				darsteller = self.aktuelles_res[index][1]
-				bild = self.aktuelles_res[index][3]
 				nurbild = self.aktuelles_res[index][4]
 				if self.aktuelles_res[index][5]:
 					original = self.aktuelles_res[index][5].decode("utf-8")
