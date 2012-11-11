@@ -3282,6 +3282,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		res_alle = []
 		zu_erfassen = []
+		
+		progressbar = QtGui.QProgressDialog(self)
+		progressbar.reset()
+		progressbar.minimum
+		progressbar.maximum
+		progressbar.setMinimum(0)
+		progressbar.setMaximum(len(dateien))
+		progress = 0
+		progressbar.show()
+		
 		for i in dateien:
 			zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
 			lese_func = DBLesen(self, zu_lesen)
@@ -3307,6 +3317,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					message.exec_()
 					app.restoreOverrideCursor()
 					return
+					
+			progress += 1
+			progressbar.setValue(progress)
 						
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
