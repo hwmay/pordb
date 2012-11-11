@@ -2186,36 +2186,39 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				bild = self.aktuelles_res[index][3]
 				zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild +"'"
 				lese_func = DBLesen(self, zu_lesen)
+				zw_aktuelles_res = self.aktuelles_res
 				self.aktuelles_res = DBLesen.get_data(lese_func)
-				titel = self.aktuelles_res[index][0]
-				darsteller = self.aktuelles_res[index][1]
-				nurbild = self.aktuelles_res[index][4]
-				if self.aktuelles_res[index][5]:
-					original = self.aktuelles_res[index][5].decode("utf-8")
+				cd = self.aktuelles_res[0][2]
+				bild = self.aktuelles_res[0][3]
+				titel = self.aktuelles_res[0][0]
+				darsteller = self.aktuelles_res[0][1]
+				nurbild = self.aktuelles_res[0][4]
+				if self.aktuelles_res[0][5]:
+					original = self.aktuelles_res[0][5].decode("utf-8")
 				else:
 					original = ""
 				cs = []
-				cs.append(str(self.aktuelles_res[index][9]) +'f')
-				cs.append(str(self.aktuelles_res[index][10]) +'h')
-				cs.append(str(self.aktuelles_res[index][11]) +'t')
-				cs.append(str(self.aktuelles_res[index][12]) +'c')
-				cs.append(str(self.aktuelles_res[index][13]) +'x')
-				cs.append(str(self.aktuelles_res[index][14]) +'o')
-				cs.append(str(self.aktuelles_res[index][15]) +'v')
-				cs.append(str(self.aktuelles_res[index][16]) +'b')
-				cs.append(str(self.aktuelles_res[index][17]) +'a')
-				cs.append(str(self.aktuelles_res[index][18]) +'s')
-				cs.append(str(self.aktuelles_res[index][19]) +'k')
-				if self.aktuelles_res[index][7]:
-					vorhanden = self.aktuelles_res[index][7]
+				cs.append(str(self.aktuelles_res[0][9]) +'f')
+				cs.append(str(self.aktuelles_res[0][10]) +'h')
+				cs.append(str(self.aktuelles_res[0][11]) +'t')
+				cs.append(str(self.aktuelles_res[0][12]) +'c')
+				cs.append(str(self.aktuelles_res[0][13]) +'x')
+				cs.append(str(self.aktuelles_res[0][14]) +'o')
+				cs.append(str(self.aktuelles_res[0][15]) +'v')
+				cs.append(str(self.aktuelles_res[0][16]) +'b')
+				cs.append(str(self.aktuelles_res[0][17]) +'a')
+				cs.append(str(self.aktuelles_res[0][18]) +'s')
+				cs.append(str(self.aktuelles_res[0][19]) +'k')
+				if self.aktuelles_res[0][7]:
+					vorhanden = self.aktuelles_res[0][7]
 				else:
 					vorhanden = ""
-				self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3]).strip()
+				self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[0][3]).strip()
 				cover = False
 				if not os.path.exists(self.file):
-					self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3]).strip()
+					self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[0][3]).strip()
 					cover = True
-				zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[index][8])
+				zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[0][8])
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
 				original_weitere = []
@@ -2223,7 +2226,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					original_weitere.append(i[1])
 				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere)
 				if eingabedialog.exec_():
-					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[index][2]) +" Title:" +self.aktuelles_res[index][0].strip() +" Act:" +self.aktuelles_res[index][1].strip())
+					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
+				self.aktuelles_res = zw_aktuelles_res
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		
