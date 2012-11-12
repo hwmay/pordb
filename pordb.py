@@ -903,7 +903,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			y = 0
 			seite = 1
 			if self.tabWidget.currentIndex() == 0:
-				lese_func = DBLesen(self, self.letzter_select_komplett)
+				lese_func = DBLesen(self, self.letzter_select)
 				res = DBLesen.get_data(lese_func)
 				if self.actionCheckBoxDVDCover.isChecked():
 					zw_res = []

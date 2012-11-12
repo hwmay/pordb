@@ -2186,6 +2186,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				bild = self.aktuelles_res[index][3]
 				zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild +"'"
 				lese_func = DBLesen(self, zu_lesen)
+				zw_aktuelles_res = self.aktuelles_res
 				self.aktuelles_res = DBLesen.get_data(lese_func)
 				cd = self.aktuelles_res[0][2]
 				bild = self.aktuelles_res[0][3]
@@ -2226,6 +2227,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere)
 				if eingabedialog.exec_():
 					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
+				self.aktuelles_res = zw_aktuelles_res
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		

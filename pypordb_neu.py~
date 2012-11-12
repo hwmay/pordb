@@ -208,7 +208,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.update()
 		elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
 			self.accept()
-			self.update()
 		elif event.key() == QtCore.Qt.Key_Escape:
 			self.close()
 			
