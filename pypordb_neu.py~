@@ -201,6 +201,17 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.pushButtonNeuDelete.setEnabled(False)
 			self.pushButtonneuCovertauschen.setEnabled(False)
 			
+	def keyPressEvent(self, event):
+		if event.modifiers() & QtCore.Qt.ControlModifier:
+			if event.key() == QtCore.Qt.Key_Y:
+				self.onOriginalAlt()
+				self.update()
+		elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
+			self.accept()
+			self.update()
+		elif event.key() == QtCore.Qt.Key_Escape:
+			self.close()
+			
 	def onOriginal(self):
 		originaldialog = OriginalErfassen(self.original_weitere)
 		originaldialog.exec_()
@@ -547,7 +558,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			res1.sort()
 			for zaehler in range(anzahl_loeschen):
 				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[zaehler][0]) +"'")
-		if not self.korrektur:
+		if not self.korrektur and original:
 			zu_erfassen.append("UPDATE pordb_vid_neu SET titel = '" +titel +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", original = '" +original +"'")
 		
 		for i in darsteller:
