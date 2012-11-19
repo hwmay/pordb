@@ -2046,6 +2046,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +aktiv_von +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.aktiv_bis_int <> 0:
 				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +aktiv_bis +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				
+			# Darsteller Tattoos
+			anfang = seite.find('Tattoos</b></td><td>')
+			ende = seite.find('</td>', anfang+20)
+			tattoos = seite[anfang+20:ende].decode("iso-8859-1")
+			if tattoos == "None" or tattoos == "none":
+				tats = "-"
+			elif tattoos == "No data" or tattoos == "No Data":
+				tats = " "
+			else:
+				tats = tattoos
+			zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
