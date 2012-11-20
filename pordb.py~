@@ -2057,7 +2057,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				tats = " "
 			else:
 				tats = tattoos
-			zu_erfassen.append("update pordb_darsteller set tattoos = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")

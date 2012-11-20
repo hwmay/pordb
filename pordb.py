@@ -2056,7 +2056,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			elif tattoos == "No data" or tattoos == "No Data":
 				tats = " "
 			else:
-				tats = tattoos
+				tats = tattoos.replace("'", "''")
 			zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
