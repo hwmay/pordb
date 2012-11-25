@@ -211,7 +211,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		elif event.key() == QtCore.Qt.Key_Escape:
 			self.close()
 		else:
-			self.keyPressEvent(self, event)
+			self.keyPressEvent(self)
 			
 	def onOriginal(self):
 		originaldialog = OriginalErfassen(self.original_weitere)
