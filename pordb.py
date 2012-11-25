@@ -2755,7 +2755,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.lineEditSuchen.setFocus()
 			return
 			
-		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		self.lineEditSuchen.setText(ein.decode("utf-8"))
 		if ein:
 			zu_lesen = "select * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%'" 
@@ -2771,12 +2770,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			groesse1 = (filesizefrom - 0.005) * faktor
 			if filesizeto:
 				groesse2 = (filesizeto + 0.005) * faktor
+				if groesse2 <= groesse1:
+					self.lineEditFilesizeTo.setFocus()
+					self.lineEditFilesizeTo.selectAll()
+					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Filesize to must be bigger than filesize from"))
+					return
+					
 			else:
 				groesse2 = (filesizefrom + 0.005) * faktor
 			if ein:
 				zu_lesen += " and "
 			zu_lesen += "groesse >= " +str(groesse1) +" and groesse < " +str(groesse2)
 		zu_lesen += " order by file"
+		if len(ein) < 3 and not filesizefrom:
+			self.lineEditSuchen.setFocus()
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter at least 2 characters in the searchfield"))
+			return
+			
+		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		lese_func = DBLesen(self, zu_lesen)
 		rows = DBLesen.get_data(lese_func)
 		self.tableWidget.setSortingEnabled(False)
