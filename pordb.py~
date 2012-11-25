@@ -323,6 +323,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			x = i[3]
 			self.fieldnames_mpg.append(x.title())
 		self.fieldnames_mpg.append("MB")
+		self.fieldnames_mpg.append("GB")
 		self.cumshots = {"f":"Facial", "h":"Handjob", "t":str(self.trUtf8("Tits")), "c":"Creampie", "x":"Analcreampie", "o":"Oralcreampie", "v":str(self.trUtf8("Cunt")), "b":str(self.trUtf8("Belly")), "a":str(self.trUtf8("Ass")), "s":str(self.trUtf8("Others"))}
 		self.cumshots_reverse = {"Facial":"f", "Handjob":"h", str(self.trUtf8("Tits")):"t", "Creampie":"c", "Analcreampie":"x", "Oralcreampie":"o", str(self.trUtf8("Cunt")):"v", str(self.trUtf8("Belly")):"b", str(self.trUtf8("Ass")):"a", str(self.trUtf8("Others")):"s"}
 		
@@ -2056,7 +2057,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			elif tattoos == "No data" or tattoos == "No Data":
 				tats = " "
 			else:
-				tats = tattoos
+				tats = tattoos.replace("'", "''")
 			zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
@@ -2480,7 +2481,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			neuer_name = umbenennen.lineEditNeuerName.text()
 			if neuer_name:
 				neuer_name = str(neuer_name).strip()
-				zu_lesen = "select * from pordb_pseudo where pseudo = '" +neuer_name.replace("'", "''") +"'"
+				zu_lesen = "select * from pordb_pseudo where darsteller = '" +eingabe + "' and pseudo = '" +neuer_name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				if res:
@@ -2730,12 +2731,52 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		import locale
 		locale.setlocale(locale.LC_ALL, '')
 		ein = unicode(self.lineEditSuchen.text()).strip().replace(".", " ").encode("utf-8")
-		if not ein:
+		
+		filesizefrom = 0
+		filesizeto = 0
+		if self.lineEditFilesizeFrom.text():
+			try:
+				filesizefrom = float(self.lineEditFilesizeFrom.text().replace(",", "."))
+			except:
+				self.lineEditFilesizeFrom.setFocus()
+				self.lineEditFilesizeFrom.selectAll()
+				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Only digits allowed as filesize"))
+				return
+		if self.lineEditFilesizeTo.text():
+			try:
+				filesizeto = float(self.lineEditFilesizeTo.text().replace(",", ".")))
+			except:
+				self.lineEditFilesizeTo.setFocus()
+				self.lineEditFilesizeTo.selectAll()
+				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Only digits allowed as filesize"))
+				return
+		
+		if not ein and not filesizefrom and not filesizeto:
 			self.lineEditSuchen.setFocus()
 			return
+			
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		self.lineEditSuchen.setText(ein.decode("utf-8"))
-		zu_lesen = "select * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%' order by file"
+		if ein:
+			zu_lesen = "select * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%'" 
+		else:
+			zu_lesen = "select * from pordb_mpg_katalog where "
+		if filesizefrom:
+			if self.comboBoxFilesizeUnit.currentText() == "MB":
+				faktor = 1048576
+			elif self.comboBoxFilesizeUnit.currentText() == "GB":
+				faktor = 1073741824	
+			else:
+				faktor = 1
+			groesse1 = (filesizefrom - 0.005) * faktor
+			if filesizeto:
+				groesse2 = (filesizeto + 0.005) * faktor
+			else:
+				groesse2 = (filesizefrom + 0.005) * faktor
+			if ein:
+				zu_lesen += " and "
+			zu_lesen += "groesse >= " +str(groesse1) +" and groesse < " +str(groesse2)
+		zu_lesen += " order by file"
 		lese_func = DBLesen(self, zu_lesen)
 		rows = DBLesen.get_data(lese_func)
 		self.tableWidget.setSortingEnabled(False)
@@ -2745,11 +2786,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if len(rows) == 0:
 			self.tableWidget.setColumnCount(0)
 		else:
-			self.tableWidget.setColumnCount(len(rows[0]) +1)
+			self.tableWidget.setColumnCount(len(rows[0]) + 2)
 			for i in xrange(len(rows)):
 				zeile = list(rows[i])
 				if rows[i][4]:
 					zeile.append(round(rows[i][4] / 1024.0 / 1024.0, 2))
+					zeile.append(round(rows[i][4] / 1024.0 / 1024.0 / 1024.0, 2))
 				zeilen.append(zeile)
 		self.tableWidget.setAlternatingRowColors(True)
 		self.tableWidget.setHorizontalHeaderLabels(self.fieldnames_mpg)
@@ -2782,52 +2824,57 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zeilen = len(rows)
 		self.labelMpgGefunden.setText(str(zeilen) +self.trUtf8(" found"))
 			
-		zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''") +"%'"
-		lese_func = DBLesen(self, zu_lesen)
-		res = DBLesen.get_data(lese_func)
-		original_erweiterung = ""
-		for i in res:
-			original_erweiterung += " or primkey = " +str(i[2])
-		zu_lesen = "SELECT * FROM pordb_vid where lower(original) like '%" +ein.lower().replace("'", "''") +"%'"
-		if original_erweiterung:
-			zu_lesen += original_erweiterung
-		lese_func = DBLesen(self, zu_lesen)
-		res = DBLesen.get_data(lese_func)
-		
-		self.tableWidget1.setSortingEnabled(False)
-		self.tableWidget1.clear()
-		self.tableWidget1.setRowCount(len(res))
-		if len(res) == 0:
-			self.tableWidget1.setColumnCount(0)
+		self.tableWidget1.clearContents()
+		if ein:
+			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''") +"%'"
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			original_erweiterung = ""
+			for i in res:
+				original_erweiterung += " or primkey = " +str(i[2])
+			zu_lesen = "SELECT * FROM pordb_vid where lower(original) like '%" +ein.lower().replace("'", "''") +"%'"
+			if original_erweiterung:
+				zu_lesen += original_erweiterung
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			
+			self.tableWidget1.setSortingEnabled(False)
+			self.tableWidget1.setRowCount(len(res))
+			if len(res) == 0:
+				self.tableWidget1.setColumnCount(0)
+			else:
+				self.tableWidget1.setColumnCount(len(res[0]))
+			self.tableWidget1.setAlternatingRowColors(True)
+			self.tableWidget1.setHorizontalHeaderLabels(self.fieldnames_vid)
+			for i in xrange(len(res)):
+				for j in xrange(len(res[0])):
+					try:	# fieldtype is char
+						newitem = QtGui.QTableWidgetItem(res[i][j].strip().decode("utf-8"))
+					except:
+						try:	# fieldtype is int
+							newitem = QtGui.QTableWidgetItem(str(res[i][j]))
+						except:	# fieldtype is None
+							newitem = QtGui.QTableWidgetItem(" ")
+					self.tableWidget1.setItem(i, j, newitem)
+			try:
+				self.tableWidget1.resizeColumnsToContents()
+				self.tableWidget1.resizeRowsToContents()
+				self.tableWidget1.setSortingEnabled(True)
+			except:
+				pass
+			self.tableWidget1.scrollToTop()
+			zeilen = len(res)
+			self.labelVidGefunden.setText(str(zeilen) +self.trUtf8(" found"))
 		else:
-			self.tableWidget1.setColumnCount(len(res[0]))
-		self.tableWidget1.setAlternatingRowColors(True)
-		self.tableWidget1.setHorizontalHeaderLabels(self.fieldnames_vid)
-		for i in xrange(len(res)):
-			for j in xrange(len(res[0])):
-				try:	# fieldtype is char
-					newitem = QtGui.QTableWidgetItem(res[i][j].strip().decode("utf-8"))
-				except:
-					try:	# fieldtype is int
-						newitem = QtGui.QTableWidgetItem(str(res[i][j]))
-					except:	# fieldtype is None
-						newitem = QtGui.QTableWidgetItem(" ")
-				self.tableWidget1.setItem(i, j, newitem)
-		try:
-			self.tableWidget1.resizeColumnsToContents()
-			self.tableWidget1.resizeRowsToContents()
-			self.tableWidget1.setSortingEnabled(True)
-		except:
-			pass
-		self.tableWidget1.scrollToTop()
-		zeilen = len(res)
-		self.labelVidGefunden.setText(str(zeilen) +self.trUtf8(" found"))
+			self.labelVidGefunden.setText("")
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 	# end of onSuchen
 	
 	def onClear(self):
 		self.lineEditSuchen.clear()
+		self.lineEditFilesizeFrom.clear()
+		self.lineEditFilesizeTo.clear()
 		self.lineEditSuchen.setFocus()
 		
 	def onDateinamenUebernehmen(self):
