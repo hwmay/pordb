@@ -112,6 +112,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonIAFDBackground, QtCore.SIGNAL("clicked()"), self.onIAFDBackground)
 		self.connect(self.pushButtonDarstellerLoeschen, QtCore.SIGNAL("clicked()"), self.onDarstellerloeschen)
 		self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextDarsteller)
+		self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onbildAnzeige)
 		self.connect(self.actionAnzeigenPaar, QtCore.SIGNAL("triggered()"), self.onAnzeigenPaar)
 		self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
 		self.connect(self.actionBildanzeigegross, QtCore.SIGNAL("triggered()"), self.onDarstellerGross)
@@ -1634,6 +1635,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onSuche
 				
 	def onbildAnzeige(self):
+		print "HIER"
 		ein = self.eingabe_auswerten()
 		if not ein:
 			return
@@ -2755,7 +2757,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.lineEditSuchen.setFocus()
 			return
 			
-		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		self.lineEditSuchen.setText(ein.decode("utf-8"))
 		if ein:
 			zu_lesen = "select * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%'" 
@@ -2785,8 +2786,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen += " order by file"
 		if len(ein) < 3 and not filesizefrom:
 			self.lineEditSuchen.setFocus()
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter at least 2 characters in the searchfield"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter at least 3 characters in the searchfield"))
 			return
+			
+		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		lese_func = DBLesen(self, zu_lesen)
 		rows = DBLesen.get_data(lese_func)
 		self.tableWidget.setSortingEnabled(False)
