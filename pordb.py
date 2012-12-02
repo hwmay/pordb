@@ -2158,7 +2158,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						j += 1
 						self.file = QtCore.QString(self.verzeichnis +os.sep +i)
 				if j != 1:
-					#self.verzeichnis = os.path.dirname(str(self.file))
 					self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 					if self.file:
 						self.verzeichnis = os.path.dirname(str(self.file))
@@ -2170,6 +2169,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.verzeichnis = os.path.dirname(str(self.file))
 		
 		eingabedialog.exec_()
+		self.bilderliste = []
+		self.bilder_aktuell()
 		zu_lesen = "select * from pordb_vid_neu"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
