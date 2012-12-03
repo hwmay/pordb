@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.2"
+__version__ = "5.4.3"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -77,7 +77,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionTitel, QtCore.SIGNAL("triggered()"), self.onTitel)
 		self.connect(self.actionOriginal, QtCore.SIGNAL("triggered()"), self.onOriginal)
 		self.connect(self.actionSuche, QtCore.SIGNAL("triggered()"), self.onSuche)
-		self.connect(self.actionCoverErstellen, QtCore.SIGNAL("triggered()"), self.onCover)
 		self.connect(self.actionDrucken, QtCore.SIGNAL("triggered()"), self.onDrucken)
 		self.connect(self.tableWidgetBilder, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onKorrektur)
 		self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onNeuDoubleClick)

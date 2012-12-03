@@ -1789,7 +1789,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="actionCheckBoxDVDCover"/>
    <addaction name="separator"/>
    <addaction name="actionSuche"/>
-   <addaction name="actionCoverErstellen"/>
    <addaction name="actionDrucken"/>
    <addaction name="actionSucheVideo"/>
    <addaction name="separator"/>
@@ -1910,21 +1909,6 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
-   </property>
-  </action>
-  <action name="actionCoverErstellen">
-   <property name="icon">
-    <iconset>
-     <normaloff>pypordb/dvd_unmount.svg</normaloff>pypordb/dvd_unmount.svg</iconset>
-   </property>
-   <property name="text">
-    <string>CreateCover</string>
-   </property>
-   <property name="toolTip">
-    <string>Create cover, Ctrl+E</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="actionDrucken">

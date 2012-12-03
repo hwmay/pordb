@@ -202,16 +202,19 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.pushButtonneuCovertauschen.setEnabled(False)
 			
 	def keyPressEvent(self, event):
-		if event.modifiers() & QtCore.Qt.ControlModifier:
-			if event.key() == QtCore.Qt.Key_Y:
-				self.onOriginalAlt()
-				self.update()
-		elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
-			self.accept()
-		elif event.key() == QtCore.Qt.Key_Escape:
-			self.close()
-		else:
-			self.keyPressEvent(self)
+		try:
+			if event.modifiers() & QtCore.Qt.ControlModifier:
+				if event.key() == QtCore.Qt.Key_Y:
+					self.onOriginalAlt()
+					self.update()
+			elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
+				self.accept()
+			elif event.key() == QtCore.Qt.Key_Escape:
+				self.close()
+			else:
+				self.keyPressEvent(self)
+		except:
+			pass
 			
 	def onOriginal(self):
 		originaldialog = OriginalErfassen(self.original_weitere)
