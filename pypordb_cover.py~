@@ -42,7 +42,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		
 	def accept(self):
 		if not self.radioButtonBild1.isChecked() and not self.radioButtonBild2.isChecked():
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Fehler "), self.trUtf8("Bitte Vorderseite markieren"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark front side"))
 			return
 		
 		if self.radioButtonBild2.isChecked():
@@ -66,13 +66,14 @@ class Cover(QtGui.QDialog, pordb_cover):
 		try:
 			dateiname = str(self.lineEditDateiname.text()).strip()
 		except:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Fehler "), self.trUtf8("Da stimmt etwas nicht mit dem Dateinamen"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with the file name"))
 			return
 		if not dateiname:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Fehler "), self.trUtf8("Bitte einen Dateinamen eingeben"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter a file name"))
 			return
 		if dateiname.find("/") > -1:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Fehler "), self.trUtf8(u"Fehler: Original enthält /"))
+			#message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Fehler: Original enthält /"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Error: Original has a character /"))
 			return
 		if not dateiname.endswith(".jpg"):
 			dateiname += ".jpg"
@@ -84,3 +85,6 @@ class Cover(QtGui.QDialog, pordb_cover):
 			os.remove(self.cover[1])
 		
 		self.close()
+		
+	def datei(self):
+		return original

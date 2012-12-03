@@ -452,22 +452,22 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.changeTab("F2")
 		elif event.key() == QtCore.Qt.Key_F3:
 			self.changeTab("F3")
-		elif event.key() == QtCore.Qt.Key_F5:
-			if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
-				items = self.tableWidgetBilderAktuell.selectedItems()
-				dateien = []
-				for i in items:
-					dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				self.onCover(dateien)
-			elif len(self.tableWidgetBilderAktuell.selectedItems()) == 1:
-				items = self.tableWidgetBilderAktuell.selectedItems()
-				dateien = []
-				for i in items:
-					dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				self.onNeueingabe(dateien=dateien)
-			else:
-				self.onNeueingabe()
-			self.bilder_aktuell()
+		#elif event.key() == QtCore.Qt.Key_F5:
+			#if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
+				#items = self.tableWidgetBilderAktuell.selectedItems()
+				#dateien = []
+				#for i in items:
+					#dateien.append(str(self.verzeichnis +os.sep +i.text()))
+				#self.onCover(dateien)
+			#elif len(self.tableWidgetBilderAktuell.selectedItems()) == 1:
+				#items = self.tableWidgetBilderAktuell.selectedItems()
+				#dateien = []
+				#for i in items:
+					#dateien.append(str(self.verzeichnis +os.sep +i.text()))
+				#self.onNeueingabe(dateien=dateien)
+			#else:
+				#self.onNeueingabe()
+			#self.bilder_aktuell()
 		elif event.key() == QtCore.Qt.Key_Escape:
 			self.suchfeld.setCurrentIndex(-1)
 			self.suchfeld.setFocus()
@@ -895,7 +895,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if cover:
 			dialog = Cover(cover, self.verzeichnis_original)
 			dialog.exec_()
-			self.onNeueingabe(cover_anlegen = 1)
+			datei = dialog.datei()
+			self.onNeueingabe(dateien = datei, cover_anlegen = 1)
 		self.suchfeld.setFocus()
 		
 	def onDrucken(self):
@@ -2142,8 +2143,22 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, 
 				vorhanden, "", undo, original_cover=trash_cover)
 		else:
+			if not cover_anlegen:
+				if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
+					items = self.tableWidgetBilderAktuell.selectedItems()
+					dateien = []
+					for i in items:
+						dateien.append(str(self.verzeichnis +os.sep +i.text()))
+				elif len(self.tableWidgetBilderAktuell.selectedItems()) == 1:
+					items = self.tableWidgetBilderAktuell.selectedItems()
+					dateien = []
+					for i in items:
+						dateien.append(str(self.verzeichnis +os.sep +i.text()))
 			if dateien:
-				self.file = dateien[0]
+				if type(dateien) == str:
+					self.file = dateien
+				else:
+					self.file = dateien[0]
 				if len(dateien) == 2:
 					self.onCover(datei = dateien)
 			else:
@@ -2161,21 +2176,25 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 					if self.file:
 						self.verzeichnis = os.path.dirname(str(self.file))
-			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen)
+			# In case we have just stored a cover, this part of program is already done
+			if os.path.exists(self.file):
+				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen)
 		if not self.file:
 			return
 		
 		if not undo:
 			self.verzeichnis = os.path.dirname(str(self.file))
 		
-		eingabedialog.exec_()
-		self.bilderliste = []
-		self.bilder_aktuell()
-		zu_lesen = "select * from pordb_vid_neu"
-		lese_func = DBLesen(self, zu_lesen)
-		res = DBLesen.get_data(lese_func)
-		self.spinBoxAktuell.setValue(res[0][2])
-		self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
+		# In case we have just stored a cover, this part of program is already done
+		if os.path.exists(self.file):
+			eingabedialog.exec_()
+			self.bilderliste = []
+			self.bilder_aktuell()
+			zu_lesen = "select * from pordb_vid_neu"
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			self.spinBoxAktuell.setValue(res[0][2])
+			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
 	# end onNeueingabe
 		
 	def onKorrektur(self, zeile, spalte):

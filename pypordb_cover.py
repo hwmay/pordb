@@ -12,6 +12,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		self.cover = cover
 		self.original = original
 		self.verzeichnis_original = verzeichnis_original
+		self.filename = ""
 		
 		self.connect(self.pushButtonCoverOriginalAlt, QtCore.SIGNAL("clicked()"), self.onCoverOriginalAlt)
 		self.connect(self.pushButtonCover, QtCore.SIGNAL("clicked()"), self.accept)
@@ -72,7 +73,6 @@ class Cover(QtGui.QDialog, pordb_cover):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter a file name"))
 			return
 		if dateiname.find("/") > -1:
-			#message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Fehler: Original enthält /"))
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Error: Original has a character /"))
 			return
 		if not dateiname.endswith(".jpg"):
@@ -83,5 +83,9 @@ class Cover(QtGui.QDialog, pordb_cover):
 			os.remove(self.cover[0])
 		if original <> self.cover[1]:
 			os.remove(self.cover[1])
+		self.filename = original
 		
 		self.close()
+		
+	def datei(self):
+		return self.filename
