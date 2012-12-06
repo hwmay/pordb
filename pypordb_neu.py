@@ -19,7 +19,7 @@ size_darsteller = QtCore.QSize(1280, 1024)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, nurbild=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None):
+	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, nurbild=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None):
 		
 		QtGui.QDialog.__init__(self)
 		self.setupUi(self)
@@ -43,6 +43,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.verzeichnis_trash = verzeichnis_trash 
 		self.verzeichnis_cover = verzeichnis_cover
 		self.original_cover = original_cover
+		self.high_definition = high_definition
 		
 		self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
 		self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
@@ -163,6 +164,22 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			else:
 				self.radioButtonCoverNein.setChecked(True)
 				self.radioButtonCoverJa.setChecked(False)
+			if self.high_definition == "1":
+				self.radioButton720p.setChecked(True)
+				self.radioButton1080p.setChecked(False)
+				self.radioButton_more_1080p.setChecked(False)
+			elif self.high_definition == "2":
+				self.radioButton720p.setChecked(False)
+				self.radioButton1080p.setChecked(True)
+				self.radioButton_more_1080p.setChecked(False)
+			elif self.high_definition == "3":
+				self.radioButton720p.setChecked(False)
+				self.radioButton1080p.setChecked(False)
+				self.radioButton_more_1080p.setChecked(True)
+			else:
+				self.radioButton720p.setChecked(False)
+				self.radioButton1080p.setChecked(False)
+				self.radioButton_more_1080p.setChecked(False)
 		else:
 			self.korrektur = False
 			if self.cover_anlegen:
@@ -437,6 +454,14 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += "', csk = '" +cs 
 			else:
 				zu_erfassen_zw += "', csk = '" +"0"
+			if self.radioButton720p.isChecked():
+				zu_erfassen_zw += "', hd = '1"
+			elif self.radioButton1080p.isChecked():
+				zu_erfassen_zw += "', hd = '2"
+			elif self.radioButton_more_1080p.isChecked():
+				zu_erfassen_zw += "', hd = '3"
+			else:
+				zu_erfassen_zw += "', hd = '0"
 			zu_erfassen_zw +="', vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild +"'"
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
 				if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):
@@ -538,6 +563,14 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += ", " +cs 
 			else:
 				zu_erfassen_zw += ", 0"
+			if self.radioButton720p.isChecked():
+				zu_erfassen_zw += ", '1'"
+			elif self.radioButton1080p.isChecked():
+				zu_erfassen_zw += ", '2'"
+			elif self.radioButton_more_1080p.isChecked():
+				zu_erfassen_zw += ", '3'"
+			else:
+				zu_erfassen_zw += ", '0'"
 			zu_erfassen_zw += ")"
 		zu_erfassen.append(zu_erfassen_zw)
 			

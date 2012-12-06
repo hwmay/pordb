@@ -2056,10 +2056,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if tattoos == "None" or tattoos == "none":
 				tats = "-"
 			elif tattoos == "No data" or tattoos == "No Data":
-				tats = " "
+				tats = ""
 			else:
 				tats = tattoos.replace("'", "''")
-			if not res[0][6]:
+			if tats:
 				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
@@ -2134,14 +2134,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			cs.append(text[18].strip() +'s')
 			cs.append(text[19].strip() +'k')
 			vorhanden = text[7].strip()
-			if len(text) > 20 and text[20].strip() == "COVER":
+			if len(text) > 21 and text[21].strip() == "COVER":
 				trash_cover = "x"
 			else:
 				trash_cover = None
+			definition = text[20].strip()
+			if not definition:
+				definition = "0"
 			if j != 1:
 				self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis_trash, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, 
-				vorhanden, "", undo, original_cover=trash_cover)
+			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, "", undo, original_cover=trash_cover, high_definition = definition)
 		else:
 			if not cover_anlegen:
 				if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
@@ -2247,6 +2249,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					vorhanden = self.aktuelles_res[0][7]
 				else:
 					vorhanden = ""
+				definition = self.aktuelles_res[0][20]
 				self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[0][3]).strip()
 				cover = False
 				if not os.path.exists(self.file):
@@ -2258,7 +2261,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				original_weitere = []
 				for i in res2:
 					original_weitere.append(i[1])
-				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere)
+				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 				if eingabedialog.exec_():
 					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
 				self.aktuelles_res = zw_aktuelles_res

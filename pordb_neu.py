@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Mon Nov  5 00:21:43 2012
+# Created: Thu Dec  6 18:06:08 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -83,6 +83,15 @@ class Ui_Dialog(object):
         self.checkBoxUninteressant = QtGui.QCheckBox(Dialog)
         self.checkBoxUninteressant.setObjectName(_fromUtf8("checkBoxUninteressant"))
         self.horizontalLayout_10.addWidget(self.checkBoxUninteressant)
+        self.radioButton720p = QtGui.QRadioButton(Dialog)
+        self.radioButton720p.setObjectName(_fromUtf8("radioButton720p"))
+        self.horizontalLayout_10.addWidget(self.radioButton720p)
+        self.radioButton1080p = QtGui.QRadioButton(Dialog)
+        self.radioButton1080p.setObjectName(_fromUtf8("radioButton1080p"))
+        self.horizontalLayout_10.addWidget(self.radioButton1080p)
+        self.radioButton_more_1080p = QtGui.QRadioButton(Dialog)
+        self.radioButton_more_1080p.setObjectName(_fromUtf8("radioButton_more_1080p"))
+        self.horizontalLayout_10.addWidget(self.radioButton_more_1080p)
         spacerItem = QtGui.QSpacerItem(578, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem)
         self.gridLayout_3.addLayout(self.horizontalLayout_10, 2, 3, 1, 1)
@@ -328,6 +337,12 @@ class Ui_Dialog(object):
         self.label_8.setText(QtGui.QApplication.translate("Dialog", "Title in clipboard:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUninteressant.setWhatsThis(QtGui.QApplication.translate("Dialog", "Check this box, if you did not like the movie", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUninteressant.setText(QtGui.QApplication.translate("Dialog", "Not interesting", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton720p.setWhatsThis(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>High definition with 720p</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton720p.setText(QtGui.QApplication.translate("Dialog", "720p", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton1080p.setWhatsThis(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>High definition with 1080p</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton1080p.setText(QtGui.QApplication.translate("Dialog", "1080p", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton_more_1080p.setWhatsThis(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>High definition with more than 1080p</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton_more_1080p.setText(QtGui.QApplication.translate("Dialog", ">1080p", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Dialog", "Facial", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("Dialog", "Handjob", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("Dialog", "Tits", None, QtGui.QApplication.UnicodeUTF8))
