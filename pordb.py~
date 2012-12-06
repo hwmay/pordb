@@ -77,7 +77,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionTitel, QtCore.SIGNAL("triggered()"), self.onTitel)
 		self.connect(self.actionOriginal, QtCore.SIGNAL("triggered()"), self.onOriginal)
 		self.connect(self.actionSuche, QtCore.SIGNAL("triggered()"), self.onSuche)
-		self.connect(self.actionCoverErstellen, QtCore.SIGNAL("triggered()"), self.onCover)
 		self.connect(self.actionDrucken, QtCore.SIGNAL("triggered()"), self.onDrucken)
 		self.connect(self.tableWidgetBilder, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onKorrektur)
 		self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onNeuDoubleClick)
@@ -2060,7 +2059,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				tats = " "
 			else:
 				tats = tattoos.replace("'", "''")
-			zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			if not res[0][6]:
+				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
