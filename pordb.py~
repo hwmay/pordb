@@ -3311,7 +3311,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			except:
 				self.suchfeld.setFocus()
 				message = QtGui.QMessageBox(self)
-				message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" failed. In most cases there is a file with an invalid creation/change date."))
+				message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. In most cases there is a file with an invalid creation/change date."))
 				message.exec_()
 				app.restoreOverrideCursor()
 				return
@@ -3320,10 +3320,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.suchfeld.setFocus()
 			app.restoreOverrideCursor()
 			message = QtGui.QMessageBox(self)
-			message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" failed. No backup files found."))
+			message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. No backup files found."))
 			message.exec_()
 			return
-		#os.remove(self.verzeichnis +os.sep +"thumbs")
 
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
