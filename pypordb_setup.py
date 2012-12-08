@@ -109,8 +109,8 @@ class Dialog(QtGui.QDialog, Dialog):
 		# Unzip and move all files to installation directory
 		file = zipfile.ZipFile(self.file, "r")
 		zipfile.ZipFile.extractall(file, self.verzeichnis)
-		os.rename(self.verzeichnis +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
-		self.listWidget.addItem(self.trUtf8("PorDB installed"))
+		os.rename(self.verzeichnis +os.sep +"pypordb" +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
+		self.listWidget.addItem(self.trUtf8("Congratulations, PorDB installation was successful!"))
 		self.listWidget.addItem("")
 		self.listWidget.addItem(self.trUtf8("How to start?"))
 		self.listWidget.addItem(self.trUtf8("Postgresql database server must be running!"))
@@ -121,7 +121,7 @@ class Dialog(QtGui.QDialog, Dialog):
 		try:
 			os.mkdir(directory)
 		except:
-			message = QtGui.QMessageBox.information(self, self.trUtf8("Warning "), self.trUtf8("Directory ") +directory +self.trUtf8(" already exists"))
+			message = QtGui.QMessageBox.information(self, self.trUtf8("Warning "), self.trUtf8("Directory ") +directory +self.trUtf8(" already exists, nothing changed"))
 			self.error = True
 			return
 		self.listWidget.addItem(self.trUtf8("Directory ") +directory +self.trUtf8(" created"))
@@ -323,7 +323,8 @@ class Dialog(QtGui.QDialog, Dialog):
     csb integer DEFAULT 0,
     csa integer DEFAULT 0,
     css integer DEFAULT 0,
-    csk integer DEFAULT 0
+    csk integer DEFAULT 0,
+    hd  character(1)
 );''')
 		cur.execute("ALTER TABLE public.pordb_vid OWNER TO postgres;")
 		
