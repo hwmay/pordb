@@ -20,15 +20,18 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 		self.res_alle = []
 		self.titel = titel
 		if self.titel:
+			self.pushButtonSuchen.setEnabled(False)
 			j = ""
 			for i in self.titel:
 				j += i + "\n"
 			self.textEditVideo.setPlainText(j)
 			self.onSuchen()
+		else:
+			self.pushButtonSuchen.setEnabled(True)
 		
 	def onSuchen(self):
 		self.listWidgetVideo.clear()
-		lines = unicode(self.textEditVideo.toPlainText()).split('\n')
+		lines = unicode(self.textEditVideo.toPlainText()).strip().split('\n')
 		j = ""
 		for i in lines:
 			j += i.split("\t")[0] +"\n"
@@ -47,7 +50,7 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 					self.res_alle.extend(res)
 				else:
 					vorhanden.append(" ")
-		self.label_insgesamt.setText(str(len(lines)-1))
+		self.label_insgesamt.setText(str(len(lines)))
 		self.label_vorhanden.setText(str(len(self.res_alle)))
 		self.listWidgetVideo.setMinimumHeight(len(k) * 20)
 		self.listWidgetVideo.addItems(vorhanden)
