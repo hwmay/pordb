@@ -559,15 +559,17 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += ", " +cs 
 			else:
 				zu_erfassen_zw += ", 0"
-			if self.radioButton720p.isChecked():
-				zu_erfassen_zw += ", '1'"
-			elif self.radioButton1080p.isChecked():
-				zu_erfassen_zw += ", '2'"
-			elif self.radioButton_more_1080p.isChecked():
-				zu_erfassen_zw += ", '3'"
-			else:
+				
+			if self.comboBoxDefinition.currentIndex() == 0:
+				zu_erfassen_zw += ", null"
+			elif self.comboBoxDefinition.currentIndex() == 1:
 				zu_erfassen_zw += ", '0'"
+			elif self.comboBoxDefinition.currentIndex() == 2:
+				zu_erfassen_zw += ", '1'"
+			elif self.comboBoxDefinition.currentIndex() == 3:
+				zu_erfassen_zw += ", '2'"
 			zu_erfassen_zw += ")"
+			
 		zu_erfassen.append(zu_erfassen_zw)
 			
 		for i in darsteller:
