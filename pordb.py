@@ -1508,7 +1508,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if i[4] != 'x':
 				text += self.trUtf8("\nwatched")
 			elif i[7] == 'x':
-				text += self.trUtf8("\npresent")
+				text += self.trUtf8("\nin stock")
 			zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(i[8])
 			lese_func = DBLesen(self, zu_lesen)
 			res2 = DBLesen.get_data(lese_func)

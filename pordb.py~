@@ -3003,6 +3003,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if neue_url:
 			self.lineEditURL.setText(neue_url)
 			self.lineEditURL.setFocus()
+			self.webView.load(QtCore.QUrl(self.lineEditURL.text()))
 		    
 	def onStatistikCS(self):
 		self.tableWidgetStatistik.setSortingEnabled(False)
