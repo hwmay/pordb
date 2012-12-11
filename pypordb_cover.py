@@ -73,7 +73,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter a file name"))
 			return
 		if dateiname.find("/") > -1:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Error: Original has a character /"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error: Original has a character /"))
 			return
 		if not dateiname.endswith(".jpg"):
 			dateiname += ".jpg"

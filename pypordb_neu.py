@@ -356,7 +356,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if not self.radioButtonCoverJa.isChecked() and not self.radioButtonCoverNein.isChecked():
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please check if image file is a cover"))
 			return
-		if self.radioButtonVorhandenJa.isChecked() and self.comboBoxDefinition.currentIndex() == 0:
+		if self.radioButtonVorhandenJa.isChecked() and self.comboBoxDefinition.currentIndex() == 0 and not self.cover_austauschen:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please select a resolution"))
 			return
 		if self.radioButtonVorhandenNein.isChecked() and self.comboBoxDefinition.currentIndex() <> 0:
