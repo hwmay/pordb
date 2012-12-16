@@ -170,6 +170,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.comboBoxDefinition.setCurrentIndex(2)
 			elif self.high_definition == "2":
 				self.comboBoxDefinition.setCurrentIndex(3)
+			elif self.high_definition == "9":
+				self.comboBoxDefinition.setCurrentIndex(4)
+			else:
+				self.comboBoxDefinition.setCurrentIndex(0)
 		else:
 			self.korrektur = False
 			if self.cover_anlegen:
@@ -458,6 +462,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += "', hd = '1'"
 			elif self.comboBoxDefinition.currentIndex() == 3:
 				zu_erfassen_zw += "', hd = '2'"
+			elif self.comboBoxDefinition.currentIndex() == 4:
+				zu_erfassen_zw += "', hd = '9'"
 			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild +"'"
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
 				if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):

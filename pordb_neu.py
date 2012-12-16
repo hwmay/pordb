@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Tue Dec 11 00:06:07 2012
+# Created: Sun Dec 16 14:29:22 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -155,6 +155,8 @@ class Ui_Dialog(object):
         self.labelOriginal.setText(_fromUtf8(""))
         self.labelOriginal.setObjectName(_fromUtf8("labelOriginal"))
         self.horizontalLayout_13.addWidget(self.labelOriginal)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_13.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout_13)
         self.horizontalLayout_10 = QtGui.QHBoxLayout()
         self.horizontalLayout_10.setObjectName(_fromUtf8("horizontalLayout_10"))
@@ -163,8 +165,8 @@ class Ui_Dialog(object):
         self.checkBoxUninteressant = QtGui.QCheckBox(Dialog)
         self.checkBoxUninteressant.setObjectName(_fromUtf8("checkBoxUninteressant"))
         self.horizontalLayout_7.addWidget(self.checkBoxUninteressant)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem)
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem1)
         self.label_17 = QtGui.QLabel(Dialog)
         self.label_17.setObjectName(_fromUtf8("label_17"))
         self.horizontalLayout_7.addWidget(self.label_17)
@@ -175,10 +177,11 @@ class Ui_Dialog(object):
         self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.comboBoxDefinition.addItem(_fromUtf8(""))
+        self.comboBoxDefinition.addItem(_fromUtf8(""))
         self.horizontalLayout_7.addWidget(self.comboBoxDefinition)
         self.horizontalLayout_10.addLayout(self.horizontalLayout_7)
-        spacerItem1 = QtGui.QSpacerItem(358, 22, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem1)
+        spacerItem2 = QtGui.QSpacerItem(358, 22, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem2)
         self.verticalLayout.addLayout(self.horizontalLayout_10)
         self.horizontalLayout_12.addLayout(self.verticalLayout)
         self.verticalLayout_2.addLayout(self.horizontalLayout_12)
@@ -375,6 +378,7 @@ class Ui_Dialog(object):
         self.comboBoxDefinition.setItemText(1, QtGui.QApplication.translate("Dialog", "SD", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxDefinition.setItemText(2, QtGui.QApplication.translate("Dialog", "HD 720p", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxDefinition.setItemText(3, QtGui.QApplication.translate("Dialog", "HD 1080p", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxDefinition.setItemText(4, QtGui.QApplication.translate("Dialog", "Unknown", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Dialog", "Facial", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("Dialog", "Handjob", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("Dialog", "Tits", None, QtGui.QApplication.UnicodeUTF8))
