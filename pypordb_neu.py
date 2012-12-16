@@ -166,7 +166,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.radioButtonCoverJa.setChecked(False)
 			if self.high_definition == "0":
 				self.comboBoxDefinition.setCurrentIndex(1)
-			if self.high_definition == "1":
+			elif self.high_definition == "1":
 				self.comboBoxDefinition.setCurrentIndex(2)
 			elif self.high_definition == "2":
 				self.comboBoxDefinition.setCurrentIndex(3)

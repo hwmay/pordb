@@ -164,6 +164,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			else:
 				self.radioButtonCoverNein.setChecked(True)
 				self.radioButtonCoverJa.setChecked(False)
+			print "Resol: ", self.high_definition
 			if self.high_definition == "0":
 				self.comboBoxDefinition.setCurrentIndex(1)
 			if self.high_definition == "1":
@@ -172,6 +173,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.comboBoxDefinition.setCurrentIndex(3)
 			elif self.high_definition == "9":
 				self.comboBoxDefinition.setCurrentIndex(4)
+			else:
+				self.comboBoxDefinition.setCurrentIndex(0)
 		else:
 			self.korrektur = False
 			if self.cover_anlegen:
