@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Dec  3 22:34:44 2012
+# Created: Mon Dec 17 22:03:36 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!

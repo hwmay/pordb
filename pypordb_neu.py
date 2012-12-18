@@ -51,6 +51,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.connect(self.pushButtonneuCovertauschen, QtCore.SIGNAL("clicked()"), self.onCover_austauschen)
 		self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
 		self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
+		self.connect(self.listWidgetW, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
+		self.connect(self.listWidgetM, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
 		self.connect(self.pushButtonNeuDarstelleruebernehmen, QtCore.SIGNAL("clicked()"), self.onDarstelleruebernehmen)
 		self.connect(self.pushButtonBildloeschen, QtCore.SIGNAL("clicked()"), self.onBildloeschen)
 		self.connect(self.pushButtonVerz, QtCore.SIGNAL("clicked()"), self.onVerzeichnisWechseln)

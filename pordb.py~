@@ -1272,28 +1272,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		# nach Originaltitel in pordb_vid suchen und anzeigen
 		self.start_bilder = 0
 		try:
-			ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().strip().encode("utf-8")
+			ein = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").lower().strip().encode("utf-8")
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
 			return
 		if not ein:
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+		if ein[0] == "=":
+			zu_lesen = "select * from pordb_original where lower(original) like '" +ein[1:] +"%'" 
+		else:
+			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.replace(" ", "%") +"%'"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
-		ein_gesplittet = ein.split()
-		if len(ein_gesplittet) > 1:
-			try:
-				nummer = int(ein_gesplittet[-1].replace("#",""))
-				zu_lesen = "select * from pordb_vid where lower(original) like '"
-				for i in xrange(len(ein_gesplittet) -1):
-					zu_lesen += "%" +ein_gesplittet[i]
-				zu_lesen  += " " +ein_gesplittet[-1] +"%'"
-			except:
-				zu_lesen = "select * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+		if ein[0] == "=":
+			zu_lesen = "select * from pordb_vid where lower(original) = '" +ein[1:] +"' or lower(original) like '" +ein[1:] +" (%)'"
 		else:
 			zu_lesen = "select * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+		print zu_lesen
 		original_erweiterung = ""
 		for i in res:
 			original_erweiterung += " or primkey = " +str(i[2])
@@ -1309,7 +1305,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.restoreOverrideCursor()
 		
 	def onHelp(self):
-		QtGui.QMessageBox.about(self, "About PorDB", """<b>PorDB</b> v %s <p>Copyright &copy; 2011 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+		QtGui.QMessageBox.about(self, "About PorDB", """<b>PorDB</b> v %s <p>Copyright &copy; 2012 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
 		
 	def ausgabe(self, ein, zu_lesen):
 		def vergleich(a, b):
@@ -1361,7 +1357,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		lese_func = DBLesen(self, zu_lesen)
 		self.aktuelles_res = DBLesen.get_data(lese_func)
 		zw_res = []
-		if "select * from pordb_vid where lower(original) like" in zu_lesen:
+		if "select * from pordb_vid where lower(original)" in zu_lesen:
 			ende = zu_lesen.find("primkey")
 			if ende < 0:
 				ende = zu_lesen.find("nurbild") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
@@ -1508,7 +1504,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if i[4] != 'x':
 				text += self.trUtf8("\nwatched")
 			elif i[7] == 'x':
-				text += self.trUtf8("\npresent")
+				text += self.trUtf8("\nin stock")
+			if i[20] == '0':
+				text += " SD"
+			elif i[20] == '1':
+				text += " HD 720p"
+			elif i[20] == '2':
+				text += " HD 1080p"
+			elif i[20] == '9':
+				text += self.trUtf8(" unknown")
 			zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(i[8])
 			lese_func = DBLesen(self, zu_lesen)
 			res2 = DBLesen.get_data(lese_func)
