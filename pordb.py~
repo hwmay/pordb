@@ -1289,7 +1289,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen = "select * from pordb_vid where lower(original) = '" +ein[1:] +"' or lower(original) like '" +ein[1:] +" (%)'"
 		else:
 			zu_lesen = "select * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
-		print zu_lesen
 		original_erweiterung = ""
 		for i in res:
 			original_erweiterung += " or primkey = " +str(i[2])
@@ -1812,7 +1811,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						if not vorhanden:
 							res.extend(res2)
 				res.sort()
-			self.comboBoxSex.setCurrentIndex(0)
 				
 		self.comboBoxSex.setCurrentIndex(0)
 		if len(res) > 1:
@@ -2292,7 +2290,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			#Name
 			if self.sucheD_darsteller:
 				argument = 1
-				zu_lesen += "darsteller like '%" +self.sucheD_darsteller +"%'"
+				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller +"%'"
+				lese_func = DBLesen(self, zu_lesen2)
+				res = DBLesen.get_data(lese_func)
+				if res:
+					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller +"%'"
+					for i in res:
+						zu_lesen += " or darsteller like '%" +i[0] +"%'"
+					zu_lesen += ")"
+				else:
+					zu_lesen += "darsteller like '%" +self.sucheD_darsteller +"%'"
 	
 			# Geschlecht
 			if self.sucheD_geschlecht:
