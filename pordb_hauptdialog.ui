@@ -91,10 +91,13 @@
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="dragEnabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="dragDropMode">
            <enum>QAbstractItemView::DragOnly</enum>
+          </property>
+          <property name="defaultDropAction">
+           <enum>Qt::CopyAction</enum>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -108,7 +111,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -136,6 +139,9 @@
            </property>
            <property name="dragDropMode">
             <enum>QAbstractItemView::DropOnly</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::CopyAction</enum>
            </property>
            <property name="iconSize">
             <size>

@@ -81,6 +81,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.tableWidgetBilder, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onKorrektur)
 		self.connect(self.tableWidgetBilderAktuell, QtCore.SIGNAL("cellDoubleClicked(int, int)"), self.onNeuDoubleClick)
 		self.connect(self.tableWidgetBilder, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContexttableWidgetBilder)
+		self.tableWidgetBilderAktuell.__class__.dragEnterEvent = self.tableWidgetBilderAktuelldragEnterEvent
+		self.tableWidgetBilder.__class__.dropEvent = self.tableWidgetBilderdropEvent
 		self.connect(self.actionDarstellerUebernehmen, QtCore.SIGNAL("triggered()"), self.onDarstellerUebernehmen)
 		self.connect(self.actionAnzeigenOriginal, QtCore.SIGNAL("triggered()"), self.onAnzeigenOriginal)
 		self.connect(self.actionSortieren_nach_Darsteller, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Darsteller)
@@ -248,6 +250,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.paarung = []
 		self.bilderliste = []
 		self.tableWidgetBilderAktuell.clear()
+		self.partner = 0
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -489,6 +492,58 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.tabWidget.setCurrentIndex(1)
 				self.onbildAnzeige()
 				
+	def tableWidgetBilderAktuelldragEnterEvent(self, event):
+		event.accept()
+	
+	def tableWidgetBilderdropEvent(self, event):
+		if self.aktuelle_ausgabe == "Darsteller":
+			return
+		items = self.tableWidgetBilderAktuell.selectedItems()
+		item = self.tableWidgetBilder.itemAt(event.pos())
+		if not item:
+			return
+		column = self.tableWidgetBilder.column(item)
+		row = self.tableWidgetBilder.row(item)
+		index = int(row * self.columns + column + self.start_bilder)
+		cd = self.aktuelles_res[index][2]
+		bild = self.aktuelles_res[index][3]
+		dateien = []
+		for i in items:
+			dateien.append(str(self.verzeichnis +os.sep +i.text()))
+		if len(dateien) > 2:
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You can only drag 1 or 2 pictures"))
+			return	
+		elif len(dateien) == 1:
+			bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
+			if os.path.exists(bilddatei_alt):
+				bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
+			else:
+				bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
+				if not os.path.exists(bilddatei_alt):
+					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
+					return
+				bilddatei = QtGui.QImage(dateien[0])
+		else:
+			original = self.aktuelles_res[index][5]
+			dialog = Cover(dateien, self.verzeichnis_original, original)
+			dialog.exec_()
+			datei = dialog.datei()
+			bilddatei = QtGui.QImage(dialog.datei())
+			bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
+			
+		if bilddatei.save(bilddatei_alt):
+			if len(dateien) == 1:
+				os.remove(dateien[0])
+			else:
+				os.remove(datei)
+		else:
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
+			return
+			
+		self.ausgabe_in_table()
+		self.bilder_aktuell()
+		self.suchfeld.setFocus()
+				
 	def onPageFirst(self):
 		self.start_bilder = 0
 		if self.aktuelle_ausgabe == "Darsteller":
@@ -710,6 +765,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_lesen += " and cs" +cs_found +" <> 0" 
 				self.letzter_select = zu_lesen
 				zu_lesen += " order by cd, bild, darsteller"
+				self.partner = 0
 				self.ausgabe(ein, zu_lesen)
 				app.restoreOverrideCursor()
 		
@@ -781,6 +837,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_lesen = "select * from pordb_vid where original = '" +unicode(neuer_name).title().encode("utf-8").replace("'", "''") +"' order by original, cd, bild, darsteller"
 				self.letzter_select_komplett = zu_lesen
 				self.start_bilder = 0
+				self.partner = 0
 				self.ausgabe(zu_lesen, zu_lesen)
 				app.restoreOverrideCursor()
 				
@@ -905,15 +962,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			y = 0
 			seite = 1
 			if self.tabWidget.currentIndex() == 0:
-				lese_func = DBLesen(self, self.letzter_select)
-				res = DBLesen.get_data(lese_func)
-				if self.actionCheckBoxDVDCover.isChecked():
-					zw_res = []
-					for i in res:
-						dateiname = self.verzeichnis_cover +"/" +i[3].strip()
-						if os.path.exists(dateiname):
-							zw_res.append(i)
-					res = zw_res
+				if self.partner:
+					return
+				else:
+					lese_func = DBLesen(self, self.letzter_select)
+					res = DBLesen.get_data(lese_func)
+					if self.actionCheckBoxDVDCover.isChecked():
+						zw_res = []
+						for i in res:
+							dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+							if os.path.exists(dateiname):
+								zw_res.append(i)
+						res = zw_res
 				painter.drawText(x + 300, y, "- " +str(seite) +" -")
 				y += 15
 				for i in res:
@@ -1201,6 +1261,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = suchendialog.zu_lesen
 		if zu_lesen:
 			self.start_bilder = 0
+			self.partner = 0
 			self.ausgabe(zu_lesen, zu_lesen)
 		app.restoreOverrideCursor()
 		
@@ -1228,6 +1289,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.partner = 0
 		self.ausgabe(ein, zu_lesen)
 		app.restoreOverrideCursor()
 
@@ -1247,6 +1309,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.partner = 0
 		self.ausgabe(str(ein), zu_lesen)
 		app.restoreOverrideCursor()
 			
@@ -1264,6 +1327,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.partner = 0
 		self.ausgabe(ein, zu_lesen)
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
@@ -1300,6 +1364,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.letzter_select = zu_lesen
 		zu_lesen += " order by original, cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
+		self.partner = 0
 		self.ausgabe(ein, zu_lesen)
 		app.restoreOverrideCursor()
 		
@@ -1632,6 +1697,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.letzter_select_komplett = zu_lesen
 			if argument != 0:
 				self.start_bilder = 0
+				self.partner = 0
 				self.ausgabe(zu_lesen, zu_lesen)
 			app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
@@ -2103,7 +2169,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 	# end of onDarstellerloeschen
 	
-	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None):
+	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None, tablenew = None):
 		self.suchfeld.setFocus()
 		if undo:
 			dateiliste = os.listdir(self.verzeichnis_trash)
@@ -2182,7 +2248,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						self.verzeichnis = os.path.dirname(str(self.file))
 			# In case we have just stored a cover, this part of program is already done
 			if os.path.exists(self.file):
-				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen)
+				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, tablenew = self.tableWidgetBilderAktuell)
 		if not self.file:
 			return
 		
@@ -2218,7 +2284,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				dateien = []
 				for i in items:
 					dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				self.onNeueingabe(dateien=dateien)
+				self.onNeueingabe(dateien = dateien, tablenew = self.tableWidgetBilderAktuell)
 			else:
 				cd = self.aktuelles_res[index][2]
 				bild = self.aktuelles_res[index][3]
@@ -2296,7 +2362,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if res:
 					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller +"%'"
 					for i in res:
-						zu_lesen += " or darsteller like '%" +i[0] +"%'"
+						zu_lesen += " or darsteller like '%" +i[0].strip() +"%'"
 					zu_lesen += ")"
 				else:
 					zu_lesen += "darsteller like '%" +self.sucheD_darsteller +"%'"
@@ -2748,6 +2814,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.ausgabedarsteller()
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
+		self.partner = 1
 	# end of onPartnerZeigen
 	
 	def onPseudo(self):

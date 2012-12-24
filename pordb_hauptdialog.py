@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Dec 17 22:03:36 2012
+# Created: Sun Dec 23 16:51:01 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -57,8 +57,9 @@ class Ui_MainWindow(object):
         self.tableWidgetBilderAktuell = QtGui.QTableWidget(self.layoutWidget)
         self.tableWidgetBilderAktuell.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.tableWidgetBilderAktuell.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
-        self.tableWidgetBilderAktuell.setDragEnabled(False)
+        self.tableWidgetBilderAktuell.setDragEnabled(True)
         self.tableWidgetBilderAktuell.setDragDropMode(QtGui.QAbstractItemView.DragOnly)
+        self.tableWidgetBilderAktuell.setDefaultDropAction(QtCore.Qt.CopyAction)
         self.tableWidgetBilderAktuell.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.tableWidgetBilderAktuell.setObjectName(_fromUtf8("tableWidgetBilderAktuell"))
         self.tableWidgetBilderAktuell.setColumnCount(0)
@@ -79,6 +80,7 @@ class Ui_MainWindow(object):
         self.tableWidgetBilder.setAcceptDrops(True)
         self.tableWidgetBilder.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
         self.tableWidgetBilder.setDragDropMode(QtGui.QAbstractItemView.DropOnly)
+        self.tableWidgetBilder.setDefaultDropAction(QtCore.Qt.CopyAction)
         self.tableWidgetBilder.setIconSize(QtCore.QSize(0, 0))
         self.tableWidgetBilder.setObjectName(_fromUtf8("tableWidgetBilder"))
         self.tableWidgetBilder.setColumnCount(0)
@@ -848,7 +850,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

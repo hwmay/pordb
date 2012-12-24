@@ -19,7 +19,7 @@ size_darsteller = QtCore.QSize(1280, 1024)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, nurbild=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None):
+	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, nurbild=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, tablenew = None):
 		
 		QtGui.QDialog.__init__(self)
 		self.setupUi(self)
@@ -44,6 +44,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.verzeichnis_cover = verzeichnis_cover
 		self.original_cover = original_cover
 		self.high_definition = high_definition
+		self.tableWidgetBilderAktuell = tablenew
 		
 		self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
 		self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
@@ -476,7 +477,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					os.rename(self.bilddatei, self.verzeichnis_cover +os.sep +self.bild.strip())
 		else:
 			if self.radioButtonCoverJa.isChecked() and not original:
-				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("By adding a cover you must also enter a movie title"))
+				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("When adding a cover you must also enter a movie title"))
 				return
 			if self.undo:
 				bilddatei = QtGui.QImage(self.verzeichnis_trash +os.sep +bild)
@@ -644,10 +645,13 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 	# end of accept
 
 	def onCover_austauschen(self):
-		dateiliste = os.listdir(self.verzeichnis)
+		items = self.tableWidgetBilderAktuell.selectedItems()
+		dateien = []
+		for i in items:
+			dateien.append(str(self.verzeichnis +os.sep +i.text()))
 		cover = []
 		j = 0
-		for i in dateiliste:
+		for i in dateien:
 			if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
 				cover.append(os.path.join(self.verzeichnis, i))
 				j += 1
