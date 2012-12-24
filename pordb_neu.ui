@@ -723,16 +723,6 @@ First click with the left mouse button in the left top corner, then click with t
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QPushButton" name="pushButtonneuCovertauschen">
-             <property name="whatsThis">
-              <string>Substitute the existing image file through the actual file in working directory</string>
-             </property>
-             <property name="text">
-              <string>Substitute image file</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
         </layout>

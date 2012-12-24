@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sun Dec 16 14:29:22 2012
+# Created: Mon Dec 24 23:56:20 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -334,9 +334,6 @@ class Ui_Dialog(object):
         self.pushButtonNeuDelete = QtGui.QPushButton(Dialog)
         self.pushButtonNeuDelete.setObjectName(_fromUtf8("pushButtonNeuDelete"))
         self.horizontalLayout_2.addWidget(self.pushButtonNeuDelete)
-        self.pushButtonneuCovertauschen = QtGui.QPushButton(Dialog)
-        self.pushButtonneuCovertauschen.setObjectName(_fromUtf8("pushButtonneuCovertauschen"))
-        self.horizontalLayout_2.addWidget(self.pushButtonneuCovertauschen)
         self.gridLayout_2.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
         self.horizontalLayout_9.addLayout(self.gridLayout_2)
         self.verticalLayout_2.addLayout(self.horizontalLayout_9)
@@ -413,6 +410,4 @@ class Ui_Dialog(object):
         self.pushButtonNeuCancel.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDelete.setWhatsThis(QtGui.QApplication.translate("Dialog", "Entry in database will be deleted, inclusive image file", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDelete.setText(QtGui.QApplication.translate("Dialog", "Delete", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonneuCovertauschen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Substitute the existing image file through the actual file in working directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonneuCovertauschen.setText(QtGui.QApplication.translate("Dialog", "Substitute image file", None, QtGui.QApplication.UnicodeUTF8))
 

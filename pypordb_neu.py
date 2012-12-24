@@ -49,7 +49,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
 		self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
 		self.connect(self.pushButtonNeuDelete, QtCore.SIGNAL("clicked()"), self.onDelete)
-		self.connect(self.pushButtonneuCovertauschen, QtCore.SIGNAL("clicked()"), self.onCover_austauschen)
 		self.connect(self.pushButtonOriginal, QtCore.SIGNAL("clicked()"), self.onOriginal)
 		self.connect(self.pushButtonOriginalAlt, QtCore.SIGNAL("clicked()"), self.onOriginalAlt)
 		self.connect(self.listWidgetW, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onDarstelleruebernehmen)
@@ -160,7 +159,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.pushButtonBildbeschneiden.setEnabled(False)
 			if self.undo:
 				self.pushButtonNeuDelete.setEnabled(False)
-				self.pushButtonneuCovertauschen.setEnabled(False)
 			if self.cover or self.original_cover:
 				self.radioButtonCoverJa.setChecked(True)
 				self.radioButtonCoverNein.setChecked(False)
@@ -213,7 +211,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.pushButtonBildloeschen.setEnabled(True)
 			self.pushButtonBildbeschneiden.setEnabled(True)
 			self.pushButtonNeuDelete.setEnabled(False)
-			self.pushButtonneuCovertauschen.setEnabled(False)
 			
 	def keyPressEvent(self, event):
 		try:
@@ -644,34 +641,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.close()
 	# end of accept
 
-	def onCover_austauschen(self):
-		items = self.tableWidgetBilderAktuell.selectedItems()
-		dateien = []
-		for i in items:
-			dateien.append(str(self.verzeichnis +os.sep +i.text()))
-		cover = []
-		j = 0
-		for i in dateien:
-			if os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
-				cover.append(os.path.join(self.verzeichnis, i))
-				j += 1
-				if j == 2:    # es werden nur maximal 2 Bilddateien akzeptiert
-					break
-		if len(cover) == 1: 
-			self.cover_austauschen = 1
-			self.bilddatei = cover[0]
-			self.bilddarstellen()
-		elif len(cover) == 2:
-			dialog = Cover(cover, self.verzeichnis_original, self.original)
-			dialog.exec_()
-			self.bilddatei = self.verzeichnis +os.sep +self.original +".jpg"
-			self.cover_austauschen = 1
-			self.bilddarstellen()
-		else:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error"), self.trUtf8("There must be 1 or 2 images available"))
-			return
-	# end of onCover_austauschen
-		
 	def darsteller_pruefen(self, darsteller_liste):
 		darsteller = darsteller_liste.split(", ")
 		fehler = 0
