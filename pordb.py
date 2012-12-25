@@ -1443,9 +1443,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							self.aktuelles_res.extend(res2)
 			if self.actionCheckBoxDVDCover.isChecked():
 				for i in self.aktuelles_res:
-					dateiname = self.verzeichnis_cover +"/" +i[3].strip()
-					if os.path.exists(dateiname):
-						zw_res.append(i)
+					dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()
+					if not os.path.exists(dateiname):
+						dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+						if os.path.exists(dateiname):
+							zw_res.append(i)
 				self.aktuelles_res = zw_res
 		if "order by original" in zu_lesen:
 			self.aktuelles_res.sort(vergleich)
