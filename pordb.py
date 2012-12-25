@@ -2334,7 +2334,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 				if eingabedialog.exec_():
 					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
-				self.aktuelles_res = zw_aktuelles_res
+				lese_func = DBLesen(self, self.letzter_select_komplett)
+				self.aktuelles_res = DBLesen.get_data(lese_func)
+				self.ausgabe_in_table()
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		

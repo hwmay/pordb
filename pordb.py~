@@ -1443,9 +1443,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							self.aktuelles_res.extend(res2)
 			if self.actionCheckBoxDVDCover.isChecked():
 				for i in self.aktuelles_res:
-					dateiname = self.verzeichnis_cover +"/" +i[3].strip()
-					if os.path.exists(dateiname):
-						zw_res.append(i)
+					dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()
+					if not os.path.exists(dateiname):
+						dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+						if os.path.exists(dateiname):
+							zw_res.append(i)
 				self.aktuelles_res = zw_res
 		if "order by original" in zu_lesen:
 			self.aktuelles_res.sort(vergleich)
@@ -2332,7 +2334,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 				if eingabedialog.exec_():
 					self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
-				self.aktuelles_res = zw_aktuelles_res
+				#self.aktuelles_res = zw_aktuelles_res
+				lese_func = DBLesen(self, self.letzter_select_komplett)
+				self.aktuelles_res = DBLesen.get_data(lese_func)
+				self.ausgabe_in_table()
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		
