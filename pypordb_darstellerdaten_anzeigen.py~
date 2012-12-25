@@ -179,7 +179,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		
 	def onUebernehmen(self):
 		if self.lineEditGeschlecht.text() != 'm' and self.lineEditGeschlecht.text() != 'w':
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Invalid gender"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
 			self.app.restoreOverrideCursor()
 		if self.checkBoxName.isChecked():
 			zu_lesen = "select * from pordb_darsteller where darsteller = '" +str(self.lineEditName.text()).replace("'", "''").title() +"'"
@@ -194,7 +194,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			messageBox = QtGui.QMessageBox()
 			messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 			messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-			messageBox.setWindowTitle(self.trUtf8("Actor ") +self.name.strip() +self.trUtf8(u" not yet in database"))
+			messageBox.setWindowTitle(self.trUtf8("Actor ") +self.name.strip() +self.trUtf8(" not yet in database"))
 			messageBox.setIcon(QtGui.QMessageBox.Question)
 			messageBox.setText(self.trUtf8("Should the actor be created?"))
 			message = messageBox.exec_()
@@ -204,7 +204,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				else:
 					geboren = str(self.labelGeboren.text())
 				datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-				zu_erfassen.append("INSERT into pordb_darsteller VALUES ('" +str(self.lineEditName.text()).title() +"', '" +str(self.lineEditGeschlecht.text()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.lineEditHaare.text()) +"', '" +str(self.lineEditLand.text())[0:2] +"', '" +str(self.lineEditTattos.text().replace("'", "''")) +"', '" +str(self.lineEditEthnic.text()) + "', '" +str(0) +"', '" +geboren +"', '" +str(self.filme) +"', '" +str(self.url) +"', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')")
+				zu_erfassen.append("INSERT into pordb_darsteller VALUES ('" +str(self.lineEditName.text()).title().replace("'", "''") +"', '" +str(self.lineEditGeschlecht.text()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.lineEditHaare.text()) +"', '" +str(self.lineEditLand.text())[0:2] +"', '" +str(self.lineEditTattos.text().replace("'", "''")) +"', '" +str(self.lineEditEthnic.text()) + "', '" +str(0) +"', '" +geboren +"', '" +str(self.filme) +"', '" +str(self.url).replace("'", "''") +"', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')")
 				if self.checkBoxPseudo.isChecked():
 					self.pseudo_uebernehmen(str(self.lineEditName.text()), zu_erfassen)
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()

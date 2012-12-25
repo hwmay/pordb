@@ -210,7 +210,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
 				if extension == '.jpeg':
 					extension = '.jpg'
-				newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "''").replace(" ", "_").lower() + extension
+				newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
 				os.rename(self.verz +os.sep +self.bild, newfilename)
 			else:
 				self.close()
@@ -221,9 +221,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				if extension == '.jpeg':
 					extension = '.jpg'
 				if self.checkBoxName.isChecked():
-					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "''").replace(" ", "_").lower() + extension
+					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
 				else:
-					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +self.name.strip().replace("'", "''").replace(" ", "_").lower() + extension
+					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +self.name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
 				os.rename(self.verz +os.sep +self.bild, newfilename)
 			else:
 				try:
