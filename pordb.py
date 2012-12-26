@@ -2258,7 +2258,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.verzeichnis = os.path.dirname(str(self.file))
 		
 		# In case we have just stored a cover, this part of program is already done
-		if os.path.exists(self.file):
+		if os.path.exists(self.file.replace("'", "")):
 			eingabedialog.exec_()
 			self.bilderliste = []
 			self.bilder_aktuell()
