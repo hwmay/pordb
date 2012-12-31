@@ -642,6 +642,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = historiedialog.zu_lesen
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
+			self.letzter_select_komplett = zu_lesen
 			self.ausgabe(zu_lesen, zu_lesen)
 		else:
 			self.suchfeld.setFocus()
@@ -765,6 +766,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_lesen += " and cs" +cs_found +" <> 0" 
 				self.letzter_select = zu_lesen
 				zu_lesen += " order by cd, bild, darsteller"
+				self.letzter_select_komplett = zu_lesen
 				self.partner = 0
 				self.ausgabe(ein, zu_lesen)
 				app.restoreOverrideCursor()
@@ -1946,10 +1948,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				aktiv += "-" +str(res[0][13])
 			if res[0][14] != None:
 				aktiv += " (" +str(res[0][14])[0:10] +")"
-				#print "MONAT", str(res[0][14])[5:7]
 			if aktiv:
 				self.labelAktiv.setText(self.trUtf8("active : ") +aktiv)
-				#self.labelText.setText("<font color=red>" +self.trUtf8("Actor not available") +"</font>")
 			else:
 				self.labelAktiv.clear()
 		else:
@@ -1969,7 +1969,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.labelDarsteller.clear()
 				self.labelAlter.clear()
 				self.pushButtonIAFDBackground.setEnabled(False)
-		self.letzter_select_komplett = zu_lesen
+		#self.letzter_select_komplett = zu_lesen
 		self.suchfeld.setFocus()
 		return res
 	# end of darsteller_lesen
@@ -2292,7 +2292,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				bild = self.aktuelles_res[index][3]
 				zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild +"'"
 				lese_func = DBLesen(self, zu_lesen)
-				zw_aktuelles_res = self.aktuelles_res
 				self.aktuelles_res = DBLesen.get_data(lese_func)
 				cd = self.aktuelles_res[0][2]
 				bild = self.aktuelles_res[0][3]
@@ -2360,16 +2359,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			#Name
 			if self.sucheD_darsteller:
 				argument = 1
-				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller +"%'"
+				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 				lese_func = DBLesen(self, zu_lesen2)
 				res = DBLesen.get_data(lese_func)
 				if res:
-					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller +"%'"
+					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 					for i in res:
-						zu_lesen += " or darsteller like '%" +i[0].strip() +"%'"
+						zu_lesen += " or darsteller like '%" +i[0].strip().replace("'", "''") +"%'"
 					zu_lesen += ")"
 				else:
-					zu_lesen += "darsteller like '%" +self.sucheD_darsteller +"%'"
+					zu_lesen += "darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 	
 			# Geschlecht
 			if self.sucheD_geschlecht:
@@ -2419,7 +2418,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "tattoo like '%" +self.sucheD_etattoo +"%'"
+				zu_lesen += "tattoo like '%" +self.sucheD_etattoo.replace("'", "''") +"%'"
 	
 			# Ethnic
 			if self.sucheD_ethnic:
