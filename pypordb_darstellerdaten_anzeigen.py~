@@ -24,7 +24,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		
 		monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
-		haarfarben = {"Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Auburn":"r"}
+		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
 		self.coding = "iso-8859-1"
 		
@@ -41,6 +41,10 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			
 		# Darsteller Bild
 		anfang = self.darstellerseite.find('/graphics/headshots/')
+		if anfang < 0:
+			self.app.restoreOverrideCursor()
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
+			return
 		ende = self.darstellerseite.find('"></div>', anfang)
 		self.bild = (self.darstellerseite[anfang+20:ende].decode(self.coding)) 
 		url =  'http://www.iafd.com/graphics/headshots/' + self.bild
@@ -80,7 +84,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		# Darsteller Land
 		anfang = self.darstellerseite.find('Nationality/Heritage</b></td><td>')
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.land = self.darstellerseite[anfang+33:ende].decode(self.coding)
+		self.land = self.darstellerseite[anfang+33:ende].decode(self.coding).upper()
 		if self.land == "No data":
 			self.lineEditLand.setText("")
 		else:
@@ -94,7 +98,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		# Darsteller Ethnic
 		anfang = self.darstellerseite.find('Ethnicity</b></td><td>')
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.ethnic = self.darstellerseite[anfang+22:ende].decode(self.coding)
+		self.ethnic = self.darstellerseite[anfang+22:ende].decode(self.coding).lower()
 		ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
 		if ethnic != self.trUtf8("nicht vorhanden"):
 			self.ethnic = ethnic
@@ -107,7 +111,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			anfang = self.darstellerseite.find('Hair Color</b></td><td>')
 			offset = 23
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.haare = self.darstellerseite[anfang+offset:ende].decode(self.coding)
+		self.haare = self.darstellerseite[anfang+offset:ende].decode(self.coding).lower()
 		haarfarbe = haarfarben.get(self.haare, self.trUtf8("nicht vorhanden"))
 		if haarfarbe != self.trUtf8("nicht vorhanden"):
 			self.haare = haarfarbe

@@ -2359,16 +2359,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			#Name
 			if self.sucheD_darsteller:
 				argument = 1
-				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller +"%'"
+				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 				lese_func = DBLesen(self, zu_lesen2)
 				res = DBLesen.get_data(lese_func)
 				if res:
-					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller +"%'"
+					zu_lesen += "(darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 					for i in res:
-						zu_lesen += " or darsteller like '%" +i[0].strip() +"%'"
+						zu_lesen += " or darsteller like '%" +i[0].strip().replace("'", "''") +"%'"
 					zu_lesen += ")"
 				else:
-					zu_lesen += "darsteller like '%" +self.sucheD_darsteller +"%'"
+					zu_lesen += "darsteller like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 	
 			# Geschlecht
 			if self.sucheD_geschlecht:
@@ -2408,7 +2408,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "tattoo is not null and tattoo != '-'"
+				zu_lesen += "tattoo is not null and tattoo != '-' and tattoo != ' '"
 			elif self.sucheD_tattoo == self.trUtf8("no"):
 				if argument == 1:
 					zu_lesen += " and "
@@ -2418,7 +2418,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "tattoo like '%" +self.sucheD_etattoo +"%'"
+				zu_lesen += "tattoo like '%" +self.sucheD_etattoo.replace("'", "''") +"%'"
 	
 			# Ethnic
 			if self.sucheD_ethnic:

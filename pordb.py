@@ -2408,7 +2408,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "tattoo is not null and tattoo != '-'"
+				zu_lesen += "tattoo is not null and tattoo != '-' and tattoo != ' ' and tattoo != ''"
 			elif self.sucheD_tattoo == self.trUtf8("no"):
 				if argument == 1:
 					zu_lesen += " and "

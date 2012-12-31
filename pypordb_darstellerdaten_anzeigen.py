@@ -24,7 +24,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		
 		monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
-		haarfarben = {"Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Auburn":"r"}
+		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
 		self.coding = "iso-8859-1"
 		
@@ -208,7 +208,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				else:
 					geboren = str(self.labelGeboren.text())
 				datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-				zu_erfassen.append("INSERT into pordb_darsteller VALUES ('" +str(self.lineEditName.text()).title().replace("'", "''") +"', '" +str(self.lineEditGeschlecht.text()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.lineEditHaare.text()) +"', '" +str(self.lineEditLand.text())[0:2] +"', '" +str(self.lineEditTattos.text().replace("'", "''")) +"', '" +str(self.lineEditEthnic.text()) + "', '" +str(0) +"', '" +geboren +"', '" +str(self.filme) +"', '" +str(self.url).replace("'", "''") +"', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')")
+				zu_erfassen.append("INSERT into pordb_darsteller VALUES ('" +str(self.lineEditName.text()).title().replace("'", "''") +"', '" +str(self.lineEditGeschlecht.text()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.lineEditHaare.text()).lower() +"', '" +str(self.lineEditLand.text()).upper()[0:2] +"', '" +str(self.lineEditTattos.text().replace("'", "''")) +"', '" +str(self.lineEditEthnic.text()).lower() + "', '" +str(0) +"', '" +geboren +"', '" +str(self.filme) +"', '" +str(self.url).replace("'", "''") +"', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')")
 				if self.checkBoxPseudo.isChecked():
 					self.pseudo_uebernehmen(str(self.lineEditName.text()), zu_erfassen)
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
@@ -243,11 +243,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				else:
 					zu_erfassen.append("update pordb_darsteller set geboren = '" +str(self.labelGeboren.text()) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxLand.isChecked() and str(self.lineEditLand.text()):
-				zu_erfassen.append("update pordb_darsteller set nation = '" +str(self.lineEditLand.text()) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set nation = '" +str(self.lineEditLand.text()).upper() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxEthnic.isChecked():
-				zu_erfassen.append("update pordb_darsteller set ethnic = '" +str(self.lineEditEthnic.text()) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set ethnic = '" +str(self.lineEditEthnic.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxHaare.isChecked():
-				zu_erfassen.append("update pordb_darsteller set haarfarbe = '" +str(self.lineEditHaare.text()) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set haarfarbe = '" +str(self.lineEditHaare.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):
 				if len((self.lineEditTattos.text())) > 500:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
