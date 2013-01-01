@@ -1,3 +1,0 @@
-SOURCES		+= pypordb_setup.py
-FORMS 		+= pordb_setup.ui
-TRANSLATIONS	+= pordb_setup_de.ts
