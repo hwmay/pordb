@@ -529,7 +529,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
 					return
 			else:
-				bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
+				if os.path.exists(bilddatei_alt):
+					bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
+				else:
+					bilddatei = QtGui.QImage(dateien[0])
+					bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
 			
 		if bilddatei.save(bilddatei_alt):
 			if len(dateien) == 1:
