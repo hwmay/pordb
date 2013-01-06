@@ -2040,6 +2040,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			clipboard = QtGui.QApplication.clipboard()
 			clipboard.setText(ein.lstrip("="), mode=QtGui.QClipboard.Clipboard)
 			self.tabWidget.setCurrentIndex(3)
+		
+		self.onbildAnzeige()
 			
 	def onIAFDBackground(self):
 		ein = self.eingabe_auswerten()
