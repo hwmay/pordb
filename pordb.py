@@ -3623,6 +3623,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 		
 app = QtGui.QApplication(sys.argv)
+app.setOrganizationName("pypordb")
+app.setOrganizationDomain("pypordb")
 locale = QtCore.QLocale.system().name()
 #locale = "en_EN"
 appTranslator = QtCore.QTranslator()
