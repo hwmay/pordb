@@ -33,9 +33,10 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 		row = 0
 		column = 0
 		for i in pseudos:
-			newitem = QtGui.QTableWidgetItem(i.strip())
-			self.tableWidgetPseudo.setItem(row, column, newitem)
-			row += 1
+			if len(i) > 0:
+				newitem = QtGui.QTableWidgetItem(i.strip())
+				self.tableWidgetPseudo.setItem(row, column, newitem)
+				row += 1
 	
 	def onSpeichern(self):
 		zu_erfassen = []
