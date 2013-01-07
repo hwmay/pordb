@@ -3366,6 +3366,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onRestore(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		import tarfile
+		nachricht = ""
 		
 		# Restore the database
 		db_host='localhost'
@@ -3391,13 +3392,21 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy from file " +i +" failed"))
 					return
 		self.conn.commit()
+		
+		if dateien_gefunden:
+			for i in dateiliste:
+				if i.startswith("pordb_") and i.endswith(".txt"):
+					os.remove(self.verzeichnis +os.sep +i)
+			nachricht = "Database restore was successful"
 
 		# Restore the picture directory
 		parts = os.listdir(self.verzeichnis)
 		parts.sort()
 		output = open(self.verzeichnis +os.sep +"archive.tar.gz", "wb")
+		bilddatei_gefunden = False
 		for filename in parts:
 			if filename.startswith("pordb_part"):
+				bilddatei_gefunden = True
 				filepath = os.path.join(self.verzeichnis, filename)
 				fileobj = open(filepath, "rb")
 				while True:
@@ -3409,32 +3418,35 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		output.close()
 		if os.path.isfile(self.verzeichnis +os.sep +"archive.tar.gz") and os.path.getsize(self.verzeichnis +os.sep +"archive.tar.gz") == 0:
 			os.remove(self.verzeichnis +os.sep +"archive.tar.gz")
-		if os.path.isfile(self.verzeichnis +os.sep +"archive.tar.gz"):
-			tar = tarfile.open(self.verzeichnis +os.sep +"archive.tar.gz")
-			try:
-				tar.extractall(path=self.verzeichnis)
-			except:
+		if bilddatei_gefunden:
+			if os.path.isfile(self.verzeichnis +os.sep +"archive.tar.gz"):
+				tar = tarfile.open(self.verzeichnis +os.sep +"archive.tar.gz")
+				try:
+					tar.extractall(path=self.verzeichnis)
+				except:
+					self.suchfeld.setFocus()
+					message = QtGui.QMessageBox(self)
+					message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. In most cases there is a file with an invalid creation/change date."))
+					message.exec_()
+					app.restoreOverrideCursor()
+					return
+				tar.close()
+			else:
 				self.suchfeld.setFocus()
-				message = QtGui.QMessageBox(self)
-				message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. In most cases there is a file with an invalid creation/change date."))
-				message.exec_()
 				app.restoreOverrideCursor()
+				message = QtGui.QMessageBox(self)
+				message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. No backup files found."))
+				message.exec_()
 				return
-			tar.close()
-		else:
-			self.suchfeld.setFocus()
-			app.restoreOverrideCursor()
-			message = QtGui.QMessageBox(self)
-			message.setText(self.trUtf8("Restore from directory ") +self.verzeichnis + self.trUtf8(" failed. No backup files found."))
-			message.exec_()
-			return
+			if dateien_gefunden:
+				nachricht += "; "
+			nachricht += self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" restored. You can now copy the complete directory to its origin place.")
 
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 		message = QtGui.QMessageBox(self)
-		message.setText(self.trUtf8("Backup in directory ") +self.verzeichnis + self.trUtf8(" restored. You can now copy the complete directory to its origin place."))
+		message.setText(nachricht)
 		message.exec_()
-		
 		
 	def onWartung(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
