@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.5"
+__version__ = "5.4.6"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -969,7 +969,34 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			seite = 1
 			if self.tabWidget.currentIndex() == 0:
 				if self.partner:
+					painter.drawText(x + 300, y, "- " +str(seite) +" -")
+					y += 15
+					darsteller = str(self.labelDarsteller.text()).strip()
+					zu_lesen = "select sex from pordb_darsteller where darsteller = '" + darsteller.replace("'", "''") + "'" 
+					lese_func = DBLesen(self, zu_lesen)
+					res = DBLesen.get_data(lese_func)
+					if res[0][0] == "w":
+						verzeichnis = self.verzeichnis_thumbs + os.sep + "darsteller_m"
+					else:
+						verzeichnis = self.verzeichnis_thumbs + os.sep + "darsteller_w"
+					randunten = 50
+					for i in self.paarung:
+						filename = verzeichnis + os.sep + i.strip().lower().replace(" ", "_").replace("'", "_apostroph_") + ".jpg"
+						bild = QtGui.QPixmap(filename).scaled(size, QtCore.Qt.KeepAspectRatio)
+						if y + bild.height() + randunten > self.printer.pageRect().height():
+							y = 0
+							self.printer.newPage()
+							seite += 1
+							painter.drawText(x + 300, y, "- " +str(seite) +" -")
+							y += 15
+						painter.drawPixmap(x, y, bild)
+						y += 12 + bild.height()
+						painter.drawText(x, y, i)
+						y += 15
+						
+						
 					return
+						
 				else:
 					lese_func = DBLesen(self, self.letzter_select)
 					res = DBLesen.get_data(lese_func)
