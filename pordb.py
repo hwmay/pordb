@@ -3015,6 +3015,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.lineEditFilesizeFrom.clear()
 		self.lineEditFilesizeTo.clear()
 		self.lineEditSuchen.setFocus()
+		self.comboBoxFilesizeUnit.setCurrentIndex(0)
 		
 	def onDateinamenUebernehmen(self):
 		self.suchfeld.insertItem(0, self.lineEditSuchen.text())
