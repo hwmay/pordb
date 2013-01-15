@@ -3508,7 +3508,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		progressbar.show()
 		
 		for i in dateien:
-			zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
+			try:
+				zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
+			except:
+				message = QtGui.QMessageBox(self)
+				message.setText(self.trUtf8("Error, filename '") +i.decode("utf-8") +self.trUtf8("' is wrong (special characters)"))
+				message.exec_()
+				app.restoreOverrideCursor()
+				return
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			in_datenbank = True
