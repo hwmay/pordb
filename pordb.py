@@ -1035,7 +1035,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					if self.aktuelle_ausgabe == "Darsteller":
 						painter.drawText(x, y, i[0])
 						y += 15
-						painter.drawText(x, y, self.trUtf8("Anzahl: ") +str(i[2]))
+						painter.drawText(x, y, self.trUtf8("Count: ") +str(i[2]))
 						y += 15
 						if i[5]:
 							painter.drawText(x, y, "Nation: " +i[5])

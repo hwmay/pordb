@@ -303,7 +303,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					neuer_darsteller = NeueingabeDarsteller(darsteller[fehler_index])
 					neuer_darsteller.exec_()
 					if message == 0:
-						self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor " +darsteller[fehler_index] +": please select one"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+						self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor " +darsteller[fehler_index] +": " +self.trUtf8("please select one")), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 						if self.file:
 							bild = QtGui.QImage(self.file)
 							if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
