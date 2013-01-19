@@ -108,6 +108,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		# Slots einrichten für Darsteller
 		self.connect(self.bildAnzeige, QtCore.SIGNAL("clicked()"), self.onbildAnzeige)
+		self.connect(self.comboBoxSex, QtCore.SIGNAL("currentIndexChanged(int)"), self.setFocus)
 		self.connect(self.pushButtonDarstellerspeichern, QtCore.SIGNAL("clicked()"), self.onDarstellerspeichern)
 		self.connect(self.pushButtonIAFDholen, QtCore.SIGNAL("clicked()"), self.onIAFD)
 		self.connect(self.pushButtonIAFDBackground, QtCore.SIGNAL("clicked()"), self.onIAFDBackground)
@@ -358,6 +359,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 		self.suchfeld.setCurrentIndex(-1)
 		
+	def setFocus(self, i):
+		self.suchfeld.setFocus()
+	
 	def closeEvent(self, event):
 		settings = QtCore.QSettings()
 		settings.setValue("MeinDialog/Size", QtCore.QVariant(self.size()))
