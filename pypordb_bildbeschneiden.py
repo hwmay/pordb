@@ -46,10 +46,13 @@ class Bildbeschneiden(QtGui.QDialog, pordb_bildschneiden):
 		elif event.button() == QtCore.Qt.RightButton:
 			self.x2 = int(event.x()) - self.labelBild.x() - self.sa.x()
 			self.y2 = int(event.y()) - self.labelBild.y() - self.sa.y()
-			self.point1 = QtCore.QPoint(self.x1, self.y1)
-			self.point2 = QtCore.QPoint(self.x2 - self.x1, self.y2 - self.y1)
-			self.bildQImage = QtGui.QImage.copy(self.bildQImage, self.point1.x(), self.point1.y(), self.point2.x(), self.point2.y())
-			self.showImage()
+			try:
+				self.point1 = QtCore.QPoint(self.x1, self.y1)
+				self.point2 = QtCore.QPoint(self.x2 - self.x1, self.y2 - self.y1)
+				self.bildQImage = QtGui.QImage.copy(self.bildQImage, self.point1.x(), self.point1.y(), self.point2.x(), self.point2.y())
+				self.showImage()
+			except:
+				pass
 			
 	def onSpeichern(self):
 		self.bildQImage = self.bildQImage.scaled(size, QtCore.Qt.KeepAspectRatio)
