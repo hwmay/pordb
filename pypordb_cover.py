@@ -32,6 +32,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		image = self.bildQImage.scaled(width, height, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 		self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei2.setText(cover[1])
+		self.radioButtonBild1.setChecked(True)
 		
 	def onCoverOriginalAlt(self):
 		zu_lesen = "SELECT * FROM pordb_vid_neu"

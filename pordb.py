@@ -527,7 +527,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				dialog = Cover(dateien, self.verzeichnis_original, original)
 				dialog.exec_()
 				datei = dialog.datei()
-				bilddatei = QtGui.QImage(dialog.datei())
+				bilddatei = QtGui.QImage(datei)
 				bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
 				if not os.path.exists(bilddatei_alt):
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
