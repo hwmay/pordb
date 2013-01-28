@@ -33,6 +33,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		self.labelBild2.setPixmap(QtGui.QPixmap.fromImage(image))
 		self.labelBilddatei2.setText(cover[1])
 		self.radioButtonBild1.setChecked(True)
+		self.lineEditDateiname.setFocus()
 		
 	def onCoverOriginalAlt(self):
 		zu_lesen = "SELECT * FROM pordb_vid_neu"
