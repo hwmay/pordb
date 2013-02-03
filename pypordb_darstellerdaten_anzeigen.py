@@ -24,7 +24,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		
 		monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
-		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Auburn":"r"}
+		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
 		self.coding = "iso-8859-1"
 		
