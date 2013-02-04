@@ -35,6 +35,21 @@ class Cover(QtGui.QDialog, pordb_cover):
 		self.radioButtonBild1.setChecked(True)
 		self.lineEditDateiname.setFocus()
 		
+	def keyPressEvent(self, event):
+		try:
+			if event.modifiers() & QtCore.Qt.ControlModifier:
+				if event.key() == QtCore.Qt.Key_Y:
+					self.onCoverOriginalAlt()
+					self.update()
+			elif event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
+				self.accept()
+			elif event.key() == QtCore.Qt.Key_Escape:
+				self.close()
+			else:
+				self.keyPressEvent(self)
+		except:
+			pass
+	
 	def onCoverOriginalAlt(self):
 		zu_lesen = "SELECT * FROM pordb_vid_neu"
 		lese_func = DBLesen(self, zu_lesen)

@@ -247,7 +247,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		selected_str = []
 		for i in selected:
 			selected_str.append(str(i.text()))
-		self.lineEditNeuDarsteller.setText(", ".join(selected_str))
+		text = ", ".join(selected_str)
+		self.lineEditNeuDarsteller.setText(text)
+		self.lineEditNeuDarsteller.setFocus()
+		self.lineEditNeuDarsteller.setCursorPosition(len(text))
 		
 	def onBildloeschen(self):
 		os.remove(self.bilddatei)

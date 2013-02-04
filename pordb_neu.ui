@@ -650,6 +650,9 @@ First click with the left mouse button in the left top corner, then click with t
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonBildloeschen">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete image file from working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Delete image file in working directory</string>
            </property>
@@ -660,6 +663,9 @@ First click with the left mouse button in the left top corner, then click with t
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonVerz">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change working directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Change the working directory</string>
            </property>
@@ -703,6 +709,9 @@ First click with the left mouse button in the left top corner, then click with t
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonNeuDelete">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete from database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>Entry in database will be deleted, inclusive image file</string>
            </property>

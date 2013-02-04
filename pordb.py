@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.6"
+__version__ = "5.4.7"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -900,6 +900,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
+			self.ausgabe("", self.letzter_select_komplett)
 						
 		self.suchfeld.setFocus()
 		
@@ -997,10 +998,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						y += 12 + bild.height()
 						painter.drawText(x, y, i)
 						y += 15
-						
-						
+					app.restoreOverrideCursor()
 					return
-						
 				else:
 					lese_func = DBLesen(self, self.letzter_select)
 					res = DBLesen.get_data(lese_func)
@@ -1080,6 +1079,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					y += 20
 					painter.drawLine(x, y, x + 600, y)
 					y += 20
+				app.restoreOverrideCursor()
 				painter.end()
 			elif self.tabWidget.currentIndex() == 1:
 				name = str(self.labelDarsteller.text()).strip().lstrip("=")
@@ -1251,9 +1251,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		self.preview = QtGui.QPrintPreviewDialog(self.printer)
 		self.connect(self.preview, QtCore.SIGNAL("paintRequested (QPrinter *)"), paint_action)
-		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
 		if not self.preview.exec_():
+			app.restoreOverrideCursor()
 			return
 		
 	def onDarstellerGross(self):
@@ -2367,6 +2367,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onKorrektur
 		
 	def onDarstellerSuchen(self):
+		self.partner = None
 		suche = DarstellerSuchen()
 		
 		if suche.exec_():
@@ -2457,6 +2458,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " order by darsteller"
 			
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select = zu_lesen
 	
 			if argument != 0:
 				lese_func = DBLesen(self, zu_lesen)

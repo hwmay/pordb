@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sat Dec 29 21:36:19 2012
+# Created: Mon Feb  4 21:15:10 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -396,8 +396,10 @@ class Ui_Dialog(object):
 "\n"
 "First click with the left mouse button in the left top corner, then click with the right mouse button at the bottom right.", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonBildbeschneiden.setText(QtGui.QApplication.translate("Dialog", "Crop image", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonBildloeschen.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Delete image file from working directory</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonBildloeschen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Delete image file in working directory", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonBildloeschen.setText(QtGui.QApplication.translate("Dialog", "Delete image file", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonVerz.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Change working directory</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonVerz.setWhatsThis(QtGui.QApplication.translate("Dialog", "Change the working directory", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonVerz.setText(QtGui.QApplication.translate("Dialog", "Change directory", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuOK.setWhatsThis(QtGui.QApplication.translate("Dialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
@@ -405,6 +407,7 @@ class Ui_Dialog(object):
         self.pushButtonNeuOK.setShortcut(QtGui.QApplication.translate("Dialog", "Enter, Return", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuCancel.setWhatsThis(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuCancel.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonNeuDelete.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Delete from database</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDelete.setWhatsThis(QtGui.QApplication.translate("Dialog", "Entry in database will be deleted, inclusive image file", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDelete.setText(QtGui.QApplication.translate("Dialog", "Delete", None, QtGui.QApplication.UnicodeUTF8))
 
