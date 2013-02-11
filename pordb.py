@@ -1046,7 +1046,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							painter.drawText(x, y, "Nation: n.a." )
 						y += 15
 						if i[6]:
-							painter.drawText(x, y, "Tattoo: " +i[6])
+							for j in range(len(i[6]) / 90 + 1):
+								if j == 0:
+									painter.drawText(x, y, "Tattoo: " + i[6][0 : 90])
+								else:
+									y += 15
+									painter.drawText(x, y, i[6][j * 90 : j * 90 + 90])
 						else:
 							painter.drawText(x, y, "Tattoo: -" )
 						y += 15
