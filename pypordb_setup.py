@@ -109,7 +109,7 @@ class Dialog(QtGui.QDialog, Dialog):
 		# Unzip and move all files to installation directory
 		file = zipfile.ZipFile(self.file, "r")
 		zipfile.ZipFile.extractall(file, self.verzeichnis)
-		os.rename(self.verzeichnis +os.sep +"pypordb" +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
+		#os.rename(self.verzeichnis +os.sep +"pypordb" +os.sep +"nicht_vorhanden.jpg", os.path.expanduser("~") +os.sep +"thumbs_sammlung" +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg")
 		self.listWidget.addItem(self.trUtf8("Congratulations, PorDB installation was successful!"))
 		self.listWidget.addItem("")
 		self.listWidget.addItem(self.trUtf8("How to start?"))

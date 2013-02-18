@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_korrigieren.ui'
 #
-# Created: Sat Sep 15 23:51:17 2012
+# Created: Mon Feb 18 12:44:05 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -81,13 +81,13 @@ class Ui_Darstellerkorrigieren(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonUebernehmen = QtGui.QPushButton(Darstellerkorrigieren)
-        self.pushButtonUebernehmen.setAutoDefault(False)
+        self.pushButtonUebernehmen.setAutoDefault(True)
         self.pushButtonUebernehmen.setDefault(True)
         self.pushButtonUebernehmen.setFlat(False)
         self.pushButtonUebernehmen.setObjectName(_fromUtf8("pushButtonUebernehmen"))
         self.horizontalLayout.addWidget(self.pushButtonUebernehmen)
         self.pushButtonAbbrechen = QtGui.QPushButton(Darstellerkorrigieren)
-        self.pushButtonAbbrechen.setAutoDefault(True)
+        self.pushButtonAbbrechen.setAutoDefault(False)
         self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
         self.horizontalLayout.addWidget(self.pushButtonAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout)
