@@ -791,6 +791,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if original and original != "Wmv":
 			if original[-1] == ")":
 				original = original[0:len(original)-7]
+			original = "=" + original
 			self.suchfeld.insertItem(0, original)
 			self.suchfeld.setCurrentIndex(0)
 			self.onOriginal()
