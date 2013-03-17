@@ -25,6 +25,9 @@ class DarstellerKorrigieren(QtGui.QDialog, pordb_darsteller_korrigieren):
 			j += 1
 		newitem = QtGui.QTableWidgetItem(" ")
 		self.tableWidgetDarsteller.setItem(j, 0, newitem)
+		self.tableWidgetDarsteller.setAlternatingRowColors(True)
+		self.tableWidgetDarsteller.resizeColumnsToContents()
+		self.tableWidgetDarsteller.resizeRowsToContents()
 		
 	def onSuchen(self):
 		suchbegriff = str(self.lineEditFilter.text())
@@ -45,6 +48,9 @@ class DarstellerKorrigieren(QtGui.QDialog, pordb_darsteller_korrigieren):
 			newitem = QtGui.QTableWidgetItem(i[0])
 			self.tableWidgetDarstellerGefunden.setItem(j, 0, newitem)
 			j += 1
+		self.tableWidgetDarstellerGefunden.setAlternatingRowColors(True)
+		self.tableWidgetDarstellerGefunden.resizeColumnsToContents()
+		self.tableWidgetDarstellerGefunden.resizeRowsToContents()
 		
 	def accept(self):
 		cell = []
@@ -53,5 +59,6 @@ class DarstellerKorrigieren(QtGui.QDialog, pordb_darsteller_korrigieren):
 			cellItem = str(QtGui.QTableWidgetItem(tableItem).text()).strip()
 			if cellItem:
 				cell.append(cellItem)
+				
 		self.darsteller = ", ".join(cell)
 		self.close()

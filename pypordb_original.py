@@ -16,6 +16,11 @@ class OriginalErfassen(QtGui.QDialog, pordb_original):
 				newitem = QtGui.QTableWidgetItem(i.strip().decode("utf-8"))
 				self.tableWidget.setItem(row, 0, newitem)
 				row += 1
+			newitem = QtGui.QTableWidgetItem("")
+			self.tableWidget.setItem(row, 0, newitem)
+			self.tableWidget.setCurrentItem(newitem)
+		self.tableWidget.setFocus()
+		self.tableWidget.editItem(self.tableWidget.currentItem())
 
 		self.connect(self.pushButtonSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
 		self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)

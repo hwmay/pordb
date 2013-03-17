@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_korrigieren.ui'
 #
-# Created: Mon Feb 18 12:44:05 2013
+# Created: Sun Mar 17 15:27:08 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
