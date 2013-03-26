@@ -2487,10 +2487,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		for i in res:
 			if len(i[0]) == 1:
 				bildname = i.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				zu_lesen = "select * from pordb_darsteller where darsteller = '" +i +"'"
+				zu_lesen = "select * from pordb_darsteller where darsteller = '" +i.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
-				text = i + "\n" + res2[0][5] + "\n" + str(res2[0][12]) + "-" + str(res2[0][13])
+				if res2[0][5]: 
+					nationality = res2[0][5]
+				else:
+					nationality = ""
+				if res2[0][12]: 
+					active_from = res2[0][12]
+					active_until = res2[0][13]
+				else:
+					active_from = ""
+					active_until = ""
+				text = i + "\n" + nationality + "\n" + str(active_from) + "-" + str(active_until)
 				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"
 				elif os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"):
