@@ -2495,12 +2495,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				else:
 					nationality = ""
 				if res2[0][12]: 
-					active_from = res2[0][12]
-					active_until = res2[0][13]
+					active = str(res2[0][12])
+					if res2[0][13] > 0:
+						active += "-" + str(res2[0][13])
 				else:
-					active_from = ""
-					active_until = ""
-				text = i + "\n" + nationality + "\n" + str(active_from) + "-" + str(active_until)
+					active = ""
+				text = i + "\n" + nationality + "\n" + active
 				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"
 				elif os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"):
@@ -2511,7 +2511,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".png"
 			else:
 				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				text = i[0]
+				if i[5]: 
+					nationality = i[5]
+				else:
+					nationality = ""
+				if i[12]: 
+					active = str(i[12])
+					if i[13] > 0:
+						active += "-" + str(i[13])
+				else:
+					active = ""
+				text = i[0] + "\n" + nationality + "\n" + active
 				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"
 				else:
