@@ -708,15 +708,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		res = DBLesen.get_data(self.lese_func)
 
 		# Dateien in Trash Verzeichnis löschen
-		try:
-			dateiliste = os.listdir(self.verzeichnis_trash)
-			for datei in dateiliste:
-				try:
-					os.remove(self.verzeichnis_trash + '/' + datei)
-				except:
-					pass
-		except:
-			pass
+		dateiliste = os.listdir(self.verzeichnis_trash)
+		for datei in dateiliste:
+			if datei.find("pypordb_bildalt") == -1:
+				os.remove(self.verzeichnis_trash + '/' + datei)
 
 		# Bild in Trash Verzeichnis verschieben
 		if not os.path.exists(self.verzeichnis_trash):

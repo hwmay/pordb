@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Dec 23 16:51:01 2012
+# Created: Sun Apr  7 16:59:36 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -123,6 +123,7 @@ class Ui_MainWindow(object):
         self.labelBildanzeige = QtGui.QLabel(self.frame)
         self.labelBildanzeige.setMinimumSize(QtCore.QSize(0, 0))
         self.labelBildanzeige.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.labelBildanzeige.setAcceptDrops(True)
         self.labelBildanzeige.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.labelBildanzeige.setText(_fromUtf8(""))
         self.labelBildanzeige.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
@@ -820,6 +821,8 @@ class Ui_MainWindow(object):
         self.actionOnHelp.setObjectName(_fromUtf8("actionOnHelp"))
         self.actionOriginalIntoClipboard = QtGui.QAction(MainWindow)
         self.actionOriginalIntoClipboard.setObjectName(_fromUtf8("actionOriginalIntoClipboard"))
+        self.actionRedoImageChange = QtGui.QAction(MainWindow)
+        self.actionRedoImageChange.setObjectName(_fromUtf8("actionRedoImageChange"))
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -850,7 +853,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1135,5 +1138,7 @@ class Ui_MainWindow(object):
         self.actionOnHelp.setShortcut(QtGui.QApplication.translate("MainWindow", "F1", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOriginalIntoClipboard.setText(QtGui.QApplication.translate("MainWindow", "Put original title into clipboard", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOriginalIntoClipboard.setToolTip(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p>Put original title into clipboard of the PorDB</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRedoImageChange.setText(QtGui.QApplication.translate("MainWindow", "Redo image change", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRedoImageChange.setToolTip(QtGui.QApplication.translate("MainWindow", "Redo image change", None, QtGui.QApplication.UnicodeUTF8))
 
 from PyQt4 import QtWebKit

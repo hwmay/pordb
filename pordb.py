@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.8"
+__version__ = "5.4.9"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -90,6 +90,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionSortieren_nach_Titel, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Titel)
 		self.connect(self.actionOriginal_umbenennen, QtCore.SIGNAL("triggered()"), self.onOriginal_umbenennen)
 		self.connect(self.actionOriginal_weitere, QtCore.SIGNAL("triggered()"), self.onOriginal_weitere)
+		self.connect(self.actionRedoImageChange, QtCore.SIGNAL("triggered()"), self.onRedoImageChange)
 		self.connect(self.actionSortieren_nach_Original, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Original)
 		self.connect(self.actionOriginalIntoClipboard, QtCore.SIGNAL("triggered()"), self.onOriginalIntoClipboard)
 		self.connect(self.actionCovergross, QtCore.SIGNAL("triggered()"), self.onCovergross)
@@ -532,8 +533,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if not os.path.exists(bilddatei_alt):
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
 					return
+				os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
 			else:
 				if os.path.exists(bilddatei_alt):
+					os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
 					bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
 				else:
 					bilddatei = QtGui.QImage(dateien[0])
@@ -703,6 +706,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			menu.addAction(self.actionSortieren_nach_Titel)
 			menu.addAction(self.actionOriginal_umbenennen)
 			menu.addAction(self.actionOriginal_weitere)
+			menu.addAction(self.actionRedoImageChange)
 			item = self.tableWidgetBilder.currentItem()
 			if item:
 				text = unicode(item.text()).encode("utf-8")
@@ -903,6 +907,33 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			DBUpdate.update_data(update_func)
 			self.ausgabe("", self.letzter_select_komplett)
 						
+		self.suchfeld.setFocus()
+	# end of onOriginal_weitere
+		
+	def onRedoImageChange(self):
+		item = self.tableWidgetBilder.currentItem()
+		column = self.tableWidgetBilder.column(item)
+		row = self.tableWidgetBilder.row(item)
+		index = int(row * self.columns + column + self.start_bilder)
+		cd = self.aktuelles_res[index][2]
+		bild = self.aktuelles_res[index][3]
+		dateiliste = os.listdir(self.verzeichnis_trash)
+		if not dateiliste:
+			return
+		j = 0
+		bilddatei_trash = None
+		for i in dateiliste:
+			if os.path.splitext(i)[0] == "pypordb_bildalt":
+				bilddatei_trash = self.verzeichnis_trash +os.sep +i
+				break
+		bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
+		if not os.path.exists(bilddatei_neu):
+			bilddatei_neu = self.verzeichnis_cover +os.sep +os.sep +bild.rstrip()
+		if bilddatei_trash and os.path.exists(bilddatei_neu):
+			os.rename(bilddatei_trash, bilddatei_neu)
+			
+		self.ausgabe_in_table()
+		self.bilder_aktuell()
 		self.suchfeld.setFocus()
 		
 	def onOriginalIntoClipboard(self):
@@ -2223,9 +2254,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			j = 0
 			for i in dateiliste:
 				if os.path.splitext(i)[-1] == ".txt":
-					datei = file(self.verzeichnis_trash +"/" +i, "r")
+					datei = file(self.verzeichnis_trash +os.sep +i, "r")
 					text = datei.readlines()
-				elif os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png":
+				elif (os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png") and os.path.splitext(i)[0] <> "pypordb_bildalt":
 					j += 1
 					self.file = QtCore.QString(self.verzeichnis_trash +os.sep +i)
 			titel = text[0].strip()
@@ -2472,7 +2503,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.start_bilder = 0
 				self.ausgabedarsteller()
 			app.restoreOverrideCursor()
-	# enf of onDarstellerSuchen
+	# end of onDarstellerSuchen
 
 	def ausgabedarsteller(self):
 		self.tableWidgetBilder.clear()

@@ -111,7 +111,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -227,6 +227,9 @@
                   </property>
                   <property name="contextMenuPolicy">
                    <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="acceptDrops">
+                   <bool>true</bool>
                   </property>
                   <property name="whatsThis">
                    <string>Image of the actor</string>
@@ -2204,6 +2207,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Put original title into clipboard of the PorDB&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionRedoImageChange">
+   <property name="text">
+    <string>Redo image change</string>
+   </property>
+   <property name="toolTip">
+    <string>Redo image change</string>
    </property>
   </action>
  </widget>
