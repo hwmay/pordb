@@ -930,7 +930,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if not os.path.exists(bilddatei_neu):
 			bilddatei_neu = self.verzeichnis_cover +os.sep +os.sep +bild.rstrip()
 		if bilddatei_trash and os.path.exists(bilddatei_neu):
-			os.rename(bilddatei_trash, bilddatei_neu)
+			messageBox = QtGui.QMessageBox()
+			messageBox.addButton(self.trUtf8("Image restore"), QtGui.QMessageBox.AcceptRole)
+			messageBox.addButton(self.trUtf8("Cancel"), QtGui.QMessageBox.RejectRole)
+			messageBox.setWindowTitle(self.trUtf8("Image restore ") +os.path.basename(bilddatei_neu))
+			messageBox.setIcon(QtGui.QMessageBox.Question)
+			messageBox.setText(self.trUtf8("Do you want to restore the image?"))
+			message = messageBox.exec_()
+			if message == 0:
+				os.rename(bilddatei_trash, bilddatei_neu)
 			
 		self.ausgabe_in_table()
 		self.bilder_aktuell()
