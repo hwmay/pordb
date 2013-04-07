@@ -706,7 +706,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			menu.addAction(self.actionSortieren_nach_Titel)
 			menu.addAction(self.actionOriginal_umbenennen)
 			menu.addAction(self.actionOriginal_weitere)
-			menu.addAction(self.actionRedoImageChange)
+			dateiliste = os.listdir(self.verzeichnis_trash)
+			for i in dateiliste:
+				if os.path.splitext(i)[0] == "pypordb_bildalt":
+					menu.addAction(self.actionRedoImageChange)
+					break
 			item = self.tableWidgetBilder.currentItem()
 			if item:
 				text = unicode(item.text()).encode("utf-8")
