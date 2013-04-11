@@ -1349,6 +1349,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.start_bilder = 0
 			self.partner = 0
 			self.ausgabe(zu_lesen, zu_lesen)
+			self.letzter_select_komplett = zu_lesen
 		app.restoreOverrideCursor()
 		
 	def onDarsteller(self):
