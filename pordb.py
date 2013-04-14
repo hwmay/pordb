@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.9"
+__version__ = "5.4.10"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -237,6 +237,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		self.aktuelle_ausgabe = " "
 		self.suche_darsteller = self.suche_cd = self.suche_titel = self.suche_original = self.suche_cs = ""
+		self.sucheD_darsteller = self.sucheD_geschlecht = self.sucheD_haar = self.sucheD_nation = self.sucheD_tattoo = self.sucheD_etattoo = self.sucheD_ethnic = ""
+		self.sucheD_ab = ""
+		self.sucheD_bis = ""
+		
 		self.bilddarsteller = ""
 		self.tabWidget.setCurrentIndex(0)
 		self.video = False
@@ -2419,13 +2423,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onDarstellerSuchen(self):
 		self.partner = None
 		suche = DarstellerSuchen()
+		suche.lineEditDarstellerSuche.setText(self.sucheD_darsteller)
+		suche.lineEditDarstellerSuche.setFocus()
+		suche.comboBoxDarstellerSucheGeschlecht.setCurrentIndex(suche.comboBoxDarstellerSucheGeschlecht.findText(self.sucheD_geschlecht))
+		suche.dateEditDarstellerSucheAb.setDate(QtCore.QDate.fromString(self.sucheD_ab, "yyyyMMdd"))
+		suche.dateEditDarstellerSucheBis.setDate(QtCore.QDate.fromString(self.sucheD_bis, "yyyyMMdd"))
+		suche.comboBoxDarstellerSucheHaar.setCurrentIndex(suche.comboBoxDarstellerSucheHaar.findText(self.sucheD_haar))
+		suche.comboBoxDarstellerSucheNation.setCurrentIndex(suche.comboBoxDarstellerSucheNation.findText(self.sucheD_nation))
+		suche.comboBoxDarstellerSucheTattoo.setCurrentIndex(suche.comboBoxDarstellerSucheTattoo.findText(self.sucheD_tattoo))
+		suche.lineEditDarstellerSucheTattoo.setText(self.sucheD_etattoo)
+		suche.comboBoxDarstellerSucheEthnic.setCurrentIndex(suche.comboBoxDarstellerSucheEthnic.findText(self.sucheD_ethnic))
 		
 		if suche.exec_():
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			self.sucheD_darsteller = suche.lineEditDarstellerSuche.text()
 			self.sucheD_geschlecht = suche.comboBoxDarstellerSucheGeschlecht.currentText()
-			self.sucheD_ab = suche.dateEditDarstellerSucheAb.date().toString("yyyy-MM-dd")
-			self.sucheD_bis = suche.dateEditDarstellerSucheBis.date().toString("yyyy-MM-dd")
+			self.sucheD_ab = suche.dateEditDarstellerSucheAb.date().toString("yyyyMMdd")
+			self.sucheD_bis = suche.dateEditDarstellerSucheBis.date().toString("yyyyMMdd")
 			self.sucheD_haar = suche.comboBoxDarstellerSucheHaar.currentText()
 			self.sucheD_nation = suche.comboBoxDarstellerSucheNation.currentText()
 			self.sucheD_tattoo = suche.comboBoxDarstellerSucheTattoo.currentText()
