@@ -1553,7 +1553,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.ausgabe_in_table()
 		befehl = zu_lesen.replace("'", '"')
 		if len(befehl) < 5001:
-			zu_erfassen = "INSERT into pordb_history values ('" +str(befehl).decode('utf-8') +"', DEFAULT)"
+			zu_erfassen = []
+			zu_erfassen.append("DELETE from pordb_history where sql = '" +str(befehl).decode('utf-8') +"'")
+			zu_erfassen.append("INSERT into pordb_history values ('" +str(befehl).decode('utf-8') +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
