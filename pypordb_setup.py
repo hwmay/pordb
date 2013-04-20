@@ -253,7 +253,7 @@ class Dialog(QtGui.QDialog, Dialog):
 		cur.execute("SET default_with_oids = false;")
 		
 		cur.execute('''CREATE TABLE pordb_history (
-    "select" character varying(5000) NOT NULL,
+    "sql" character varying(5000) NOT NULL,
     "time" timestamp without time zone DEFAULT ('now'::text)::timestamp without time zone NOT NULL
 );''')
 		cur.execute("ALTER TABLE public.pordb_history OWNER TO postgres;")

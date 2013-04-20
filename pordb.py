@@ -760,7 +760,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onFilm_zeigen(self):
 		selected = self.listWidgetFilme.selectedItems()
 		if selected:
-			original = unicode(selected[0].text()).strip().rstrip(" Wmv")
+			original = "=" + unicode(selected[0].text()).strip().rstrip(" Wmv")
 			if original[-1] == ")":
 				original = original[0:len(original)-7]
 			self.suchfeld.insertItem(0, original)
