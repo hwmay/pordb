@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.10"
+__version__ = "5.4.11"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -1826,8 +1826,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		self.onStatistik()
-		self.onDarstellerFilme()
-		self.onpaareSuchen()
+		self.onDarstellerFilme(res)
+		self.onpaareSuchen(res)
 		self.suchfeld.setCurrentIndex(-1)
 		self.suchfeld.setFocus()
 		self.listWidgetDarsteller.clearSelection()
@@ -1846,11 +1846,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			self.actionDrucken.setEnabled(True)
 		
-	def onpaareSuchen(self):
-		ein = self.eingabe_auswerten()
-		if not ein:
-			return
-		res = self.darsteller_lesen(ein)
+	def onpaareSuchen(self, res):
 		if not res:
 			return
 		gesucht = res[0][0].strip().replace("'", "''")
@@ -2039,8 +2035,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				aktiv += "-" +str(res[0][13])
 			if res[0][14] != None:
 				aktiv += " (" +str(res[0][14])[0:10] +")"
+				besuch = (str(res[0][14])[0:10]).split("-")
+				jahr = int(besuch[0])
+				monat = int(besuch[1])
+				tag = int(besuch[2])
+				besucht = age((datetime.date(jahr, monat, tag)))
 			if aktiv:
-				self.labelAktiv.setText(self.trUtf8("active : ") +aktiv)
+				if besucht > 0:
+					farbe = "<font color=red>"
+				else:
+					farbe = "<font color=black>"
+				self.labelAktiv.setText(self.trUtf8(farbe +"active : ") +aktiv +"</font>")
 			else:
 				self.labelAktiv.clear()
 		else:
@@ -2861,11 +2866,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onbildAnzeige()
 	# end of onDarstellerBild
 		
-	def onDarstellerFilme(self):
+	def onDarstellerFilme(self, res):
 		ein = self.eingabe_auswerten()
 		if not ein:
 			return
-		res = self.darsteller_lesen(ein)
 		if not res:
 			return
 		geschlecht = res[0][1]
