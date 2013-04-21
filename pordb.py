@@ -2033,6 +2033,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				aktiv = str(res[0][12])
 			if res[0][13] != None and res[0][13] != 0:
 				aktiv += "-" +str(res[0][13])
+			besucht = 0
 			if res[0][14] != None:
 				aktiv += " (" +str(res[0][14])[0:10] +")"
 				besuch = (str(res[0][14])[0:10]).split("-")
@@ -2045,7 +2046,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					farbe = "<font color=red>"
 				else:
 					farbe = "<font color=black>"
-				self.labelAktiv.setText(self.trUtf8(farbe +"active : ") +aktiv +"</font>")
+				self.labelAktiv.setText(farbe +self.trUtf8("active : ") +aktiv +"</font>")
 			else:
 				self.labelAktiv.clear()
 		else:
