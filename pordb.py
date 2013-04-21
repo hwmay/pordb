@@ -3466,7 +3466,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onRestore(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		import tarfile
-		nachricht = ""
+		nachricht = self.trUtf8("No files found for restoring")
 		
 		# Restore the database
 		db_host='localhost'
@@ -3497,7 +3497,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			for i in dateiliste:
 				if i.startswith("pordb_") and i.endswith(".txt"):
 					os.remove(self.verzeichnis +os.sep +i)
-			nachricht = "Database restore was successful"
+			nachricht = self.trUtf8("Database restore was successful")
 
 		# Restore the picture directory
 		parts = os.listdir(self.verzeichnis)
