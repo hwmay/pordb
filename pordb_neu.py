@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Mon Feb  4 21:15:10 2013
+# Created: Sat May  4 23:31:27 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -98,6 +98,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_11.setObjectName(_fromUtf8("horizontalLayout_11"))
         self.groupBox_4 = QtGui.QGroupBox(Dialog)
         self.groupBox_4.setMinimumSize(QtCore.QSize(130, 59))
+        self.groupBox_4.setWhatsThis(_fromUtf8(""))
         self.groupBox_4.setObjectName(_fromUtf8("groupBox_4"))
         self.formLayout_2 = QtGui.QFormLayout(self.groupBox_4)
         self.formLayout_2.setObjectName(_fromUtf8("formLayout_2"))
@@ -128,6 +129,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_11.addWidget(self.groupBox_5)
         self.groupBox_6 = QtGui.QGroupBox(Dialog)
         self.groupBox_6.setMinimumSize(QtCore.QSize(130, 59))
+        self.groupBox_6.setWhatsThis(_fromUtf8(""))
         self.groupBox_6.setObjectName(_fromUtf8("groupBox_6"))
         self.formLayout_4 = QtGui.QFormLayout(self.groupBox_6)
         self.formLayout_4.setObjectName(_fromUtf8("formLayout_4"))
@@ -357,13 +359,19 @@ class Ui_Dialog(object):
         self.pushButtonOriginal.setToolTip(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOriginal.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_4.setTitle(QtGui.QApplication.translate("Dialog", "present", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonVorhandenJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when video is present.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonVorhandenJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonVorhandenNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when video is NOT present.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonVorhandenNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_5.setTitle(QtGui.QApplication.translate("Dialog", "only image", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_5.setTitle(QtGui.QApplication.translate("Dialog", "not seen yet", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonNurbildJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is NOT yet seen.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonNurbildJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonNurbildNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is seen.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonNurbildNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_6.setTitle(QtGui.QApplication.translate("Dialog", "Cover", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonCoverJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when the image to be added in database is NOT a video cover.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonCoverJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonCoverNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when the image to be added in database is a video cover.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonCoverNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("Dialog", "Title in clipboard:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUninteressant.setWhatsThis(QtGui.QApplication.translate("Dialog", "Check this box, if you did not like the movie", None, QtGui.QApplication.UnicodeUTF8))
@@ -386,8 +394,8 @@ class Ui_Dialog(object):
         self.label_16.setText(QtGui.QApplication.translate("Dialog", "None", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDarstelleruebernehmen.setToolTip(QtGui.QApplication.translate("Dialog", "Adopt actor", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Copy the marked actors to the actors field", None, QtGui.QApplication.UnicodeUTF8))
-        self.listWidgetW.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used female actors", None, QtGui.QApplication.UnicodeUTF8))
-        self.listWidgetM.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used male actors", None, QtGui.QApplication.UnicodeUTF8))
+        self.listWidgetW.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used female actors. Adopt marked actors with a doubleclick or click on the button above.", None, QtGui.QApplication.UnicodeUTF8))
+        self.listWidgetM.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used male actors. Adopt marked actors with a doubleclick or click on the button above.", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("Dialog", "Image", None, QtGui.QApplication.UnicodeUTF8))
         self.labelNeuBildanzeige.setWhatsThis(QtGui.QApplication.translate("Dialog", "Preview", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonBildbeschneiden.setWhatsThis(QtGui.QApplication.translate("Dialog", "Crop image.\n"

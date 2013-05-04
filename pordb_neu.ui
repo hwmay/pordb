@@ -186,6 +186,9 @@
            <height>59</height>
           </size>
          </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
          <property name="title">
           <string>present</string>
          </property>
@@ -194,6 +197,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QRadioButton" name="radioButtonVorhandenJa">
+              <property name="whatsThis">
+               <string>Mark here when video is present.</string>
+              </property>
               <property name="text">
                <string>yes</string>
               </property>
@@ -201,6 +207,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="radioButtonVorhandenNein">
+              <property name="whatsThis">
+               <string>Mark here when video is NOT present.</string>
+              </property>
               <property name="text">
                <string>no</string>
               </property>
@@ -220,13 +229,16 @@
           </size>
          </property>
          <property name="title">
-          <string>only image</string>
+          <string>not seen yet</string>
          </property>
          <layout class="QFormLayout" name="formLayout_3">
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QRadioButton" name="radioButtonNurbildJa">
+              <property name="whatsThis">
+               <string>Mark here when this video is NOT yet seen.</string>
+              </property>
               <property name="text">
                <string>yes</string>
               </property>
@@ -234,6 +246,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="radioButtonNurbildNein">
+              <property name="whatsThis">
+               <string>Mark here when this video is seen.</string>
+              </property>
               <property name="text">
                <string>no</string>
               </property>
@@ -252,6 +267,9 @@
            <height>59</height>
           </size>
          </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
          <property name="title">
           <string>Cover</string>
          </property>
@@ -260,6 +278,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
              <widget class="QRadioButton" name="radioButtonCoverJa">
+              <property name="whatsThis">
+               <string>Mark here when the image to be added in database is NOT a video cover.</string>
+              </property>
               <property name="text">
                <string>yes</string>
               </property>
@@ -267,6 +288,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="radioButtonCoverNein">
+              <property name="whatsThis">
+               <string>Mark here when the image to be added in database is a video cover.</string>
+              </property>
               <property name="text">
                <string>no</string>
               </property>
@@ -575,7 +599,7 @@
          <item>
           <widget class="QListWidget" name="listWidgetW">
            <property name="whatsThis">
-            <string>Last used female actors</string>
+            <string>Last used female actors. Adopt marked actors with a doubleclick or click on the button above.</string>
            </property>
            <property name="selectionMode">
             <enum>QAbstractItemView::MultiSelection</enum>
@@ -585,7 +609,7 @@
          <item>
           <widget class="QListWidget" name="listWidgetM">
            <property name="whatsThis">
-            <string>Last used male actors</string>
+            <string>Last used male actors. Adopt marked actors with a doubleclick or click on the button above.</string>
            </property>
            <property name="selectionMode">
             <enum>QAbstractItemView::MultiSelection</enum>

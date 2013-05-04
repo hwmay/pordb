@@ -3065,13 +3065,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 		self.tableWidget1.clearContents()
 		if ein:
-			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''") +"%'"
+			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''").replace(" ", "%") +"%'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			original_erweiterung = ""
 			for i in res:
 				original_erweiterung += " or primkey = " +str(i[2])
-			zu_lesen = "SELECT * FROM pordb_vid where lower(original) like '%" +ein.lower().replace("'", "''") +"%' or lower(titel) like '%" +ein.lower().replace("'", "''") +"%'"
+			zu_lesen = "SELECT * FROM pordb_vid where lower(original) like '%" +ein.lower().replace("'", "''") +"%' or lower(titel) like '%" +ein.lower().replace("'", "''").replace(" ", "%") +"%'"
 			if original_erweiterung:
 				zu_lesen += original_erweiterung
 			lese_func = DBLesen(self, zu_lesen)

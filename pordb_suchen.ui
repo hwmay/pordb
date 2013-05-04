@@ -34,7 +34,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEditDarsteller"/>
+         <widget class="QLineEdit" name="lineEditDarsteller">
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for actors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
@@ -44,7 +48,14 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditCD"/>
+         <widget class="QLineEdit" name="lineEditCD">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for data storage medium&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_3">
@@ -54,7 +65,11 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEditTitel"/>
+         <widget class="QLineEdit" name="lineEditTitel">
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for title&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_4">
@@ -64,17 +79,30 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEditOriginal"/>
+         <widget class="QLineEdit" name="lineEditOriginal">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for original title&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Vid</string>
+           <string>Video present</string>
           </property>
          </widget>
         </item>
         <item row="4" column="1">
          <widget class="QCheckBox" name="checkBoxVid">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter search results only for videos which are present&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -94,6 +122,9 @@
             <width>723</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter search results with cumshots&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <item>
            <property name="text">
@@ -166,6 +197,12 @@
     <layout class="QHBoxLayout">
      <item>
       <widget class="QPushButton" name="pushButtonSuchen">
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="whatsThis">
+        <string>Start search</string>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -176,6 +213,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonRefresh">
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="whatsThis">
+        <string>Clear all fields in search form</string>
+       </property>
        <property name="text">
         <string>Refresh</string>
        </property>
@@ -183,6 +226,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonCancel">
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>
