@@ -19,7 +19,7 @@ size_darsteller = QtCore.QSize(1280, 1024)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, nurbild=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, tablenew = None):
+	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, tablenew = None):
 		
 		QtGui.QDialog.__init__(self)
 		self.setupUi(self)
@@ -28,7 +28,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.darsteller = darsteller
 		self.cd = cd
 		self.bild = bild
-		self.nurbild = nurbild
+		self.gesehen = gesehen
 		self.original = original
 		self.cs = cs
 		self.vorhanden = vorhanden
@@ -122,10 +122,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.lineEditNeuCD.setText(str(self.cd))
 			self.cd_alt = str(self.cd)
 			self.lineEditNeuBild.setText(self.bild.strip())
-			if self.nurbild == "x":
-				self.radioButtonNurbildJa.setChecked(True)
+			if self.gesehen == "x":
+				self.radioButtonGesehenJa.setChecked(True)
 			else:
-				self.radioButtonNurbildNein.setChecked(True)
+				self.radioButtonGesehenNein.setChecked(True)
 			self.lineEditNeuOriginal.setText(self.original.strip())
 			for i in cs:
 				anzahl = i[0]
@@ -343,13 +343,13 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		else:
 			vorhanden = ""
 
-		if not self.radioButtonNurbildJa.isChecked() and not self.radioButtonNurbildNein.isChecked():
+		if not self.radioButtonGesehenNein.isChecked() and not self.radioButtonGesehenJa.isChecked():
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is not available, only image"))
 			return
-		if self.radioButtonNurbildJa.isChecked():
-			nurbild = "x"
+		if self.radioButtonGesehenNein.isChecked():
+			gesehen = " "
 		else:
-			nurbild = ""
+			gesehen = "x"
 
 		try:
 			original = unicode(self.lineEditNeuOriginal.text()).replace("'", "''").title()
@@ -391,7 +391,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 							return
 			zu_erfassen.append("delete from pordb_partner where cd = " +str(cd) + " and bild = '" +bild +"'")
 			cs = ""
-			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild +"', nurbild = '" +nurbild +"', original = '" +original 
+			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild +"', gesehen = '" +gesehen +"', original = '" +original 
 			if self.spinBoxF.value() > 0:
 				cs = str(self.spinBoxF.value())
 				zu_erfassen_zw += "', csf = '" +cs 
@@ -512,7 +512,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 				return
 			cs = ""
-			zu_erfassen_zw = unicode("INSERT into pordb_vid VALUES ('" +titel +"', '" +", ".join(darsteller).replace("'", "''") +"', " +str(cd) +", '" +bild +"', '" +nurbild +"', '" +original +"', ' " +"', '" +vorhanden +"', DEFAULT") 
+			zu_erfassen_zw = unicode("INSERT into pordb_vid VALUES ('" +titel +"', '" +", ".join(darsteller).replace("'", "''") +"', " +str(cd) +", '" +bild +"', '" +gesehen +"', '" +original +"', ' " +"', '" +vorhanden +"', DEFAULT") 
 			if self.spinBoxF.value() > 0:
 				cs = str(self.spinBoxF.value())
 				zu_erfassen_zw += ", " +cs 

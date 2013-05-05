@@ -1240,7 +1240,7 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
     <message>
         <location filename="pordb_neu.py" line="366"/>
         <source>not seen yet</source>
-        <translation>noch nicht gesehen</translation>
+        <translation type="obsolete">noch nicht gesehen</translation>
     </message>
     <message>
         <location filename="pordb_neu.ui" line="259"/>
@@ -1286,6 +1286,11 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <location filename="pordb_neu.py" line="374"/>
         <source>Mark here when the image to be added in database is a video cover.</source>
         <translation>Hier markieren, wenn das in der Datenbank zu erfassende Bild ein Video Cover ist.</translation>
+    </message>
+    <message>
+        <location filename="pordb_neu.py" line="366"/>
+        <source>watched</source>
+        <translation>gesehen</translation>
     </message>
 </context>
 <context>

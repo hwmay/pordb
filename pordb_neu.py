@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Sat May  4 23:31:27 2013
+# Created: Mon May  6 00:09:00 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -119,12 +119,12 @@ class Ui_Dialog(object):
         self.formLayout_3.setObjectName(_fromUtf8("formLayout_3"))
         self.horizontalLayout_4 = QtGui.QHBoxLayout()
         self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
-        self.radioButtonNurbildJa = QtGui.QRadioButton(self.groupBox_5)
-        self.radioButtonNurbildJa.setObjectName(_fromUtf8("radioButtonNurbildJa"))
-        self.horizontalLayout_4.addWidget(self.radioButtonNurbildJa)
-        self.radioButtonNurbildNein = QtGui.QRadioButton(self.groupBox_5)
-        self.radioButtonNurbildNein.setObjectName(_fromUtf8("radioButtonNurbildNein"))
-        self.horizontalLayout_4.addWidget(self.radioButtonNurbildNein)
+        self.radioButtonGesehenJa = QtGui.QRadioButton(self.groupBox_5)
+        self.radioButtonGesehenJa.setObjectName(_fromUtf8("radioButtonGesehenJa"))
+        self.horizontalLayout_4.addWidget(self.radioButtonGesehenJa)
+        self.radioButtonGesehenNein = QtGui.QRadioButton(self.groupBox_5)
+        self.radioButtonGesehenNein.setObjectName(_fromUtf8("radioButtonGesehenNein"))
+        self.horizontalLayout_4.addWidget(self.radioButtonGesehenNein)
         self.formLayout_3.setLayout(0, QtGui.QFormLayout.LabelRole, self.horizontalLayout_4)
         self.horizontalLayout_11.addWidget(self.groupBox_5)
         self.groupBox_6 = QtGui.QGroupBox(Dialog)
@@ -363,11 +363,11 @@ class Ui_Dialog(object):
         self.radioButtonVorhandenJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonVorhandenNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when video is NOT present.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonVorhandenNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_5.setTitle(QtGui.QApplication.translate("Dialog", "not seen yet", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonNurbildJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is NOT yet seen.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonNurbildJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonNurbildNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is seen.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonNurbildNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_5.setTitle(QtGui.QApplication.translate("Dialog", "watched", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonGesehenJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is NOT yet seen.", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonGesehenJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonGesehenNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is seen.", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButtonGesehenNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_6.setTitle(QtGui.QApplication.translate("Dialog", "Cover", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonCoverJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when the image to be added in database is NOT a video cover.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButtonCoverJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))

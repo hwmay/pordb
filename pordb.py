@@ -1515,7 +1515,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if "select * from pordb_vid where lower(original)" in zu_lesen:
 			ende = zu_lesen.find("primkey")
 			if ende < 0:
-				ende = zu_lesen.find("nurbild") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
+				ende = zu_lesen.find("gesehen") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
 			for i in self.suchbegriffe:
 				suchbegriff = i.lower().strip()
 				if suchbegriff and suchbegriff in zu_lesen[0:ende]:
@@ -1660,7 +1660,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if darsteller_ausgabe:
 				text += darsteller_ausgabe +"\n------------------------------\n" 
 			text += "CD=" +ort +" "
-			if i[4] != 'x':
+			if i[4] == 'x':
 				text += self.trUtf8("\nwatched")
 			elif i[7] == 'x':
 				text += self.trUtf8("\nin stock")
@@ -1678,7 +1678,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if len(res2) > 0:
 				text += "\n>>>>>"
 			newitem = QtGui.QTableWidgetItem(bild, text)
-			if i[4] == 'x' and i[7] != 'x':
+			if i[4] == ' ' and i[7] != 'x':
 				newitem.setTextColor(QtGui.QColor("red"))
 			spalte += 1
 			if spalte == self.columns:
@@ -1785,7 +1785,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 			# Vid Button gesetzt
 			if argument == 1 and self.video:
-				zu_lesen += " and (nurbild != 'x' or nurbild is null)"
+				zu_lesen += " and (gesehen != ' ')"
 			
 			zu_lesen += " order by cd, titel"
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -2288,7 +2288,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			darsteller = text[1].strip()
 			cd = text[2].strip()
 			bild = text[3].strip()
-			nurbild = text[4].strip()
+			gesehen = text[4].strip()
 			original = text[5].strip().decode("utf-8")
 			cs = []
 			cs.append(text[9].strip() +'f')
@@ -2312,7 +2312,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				definition = "0"
 			if j != 1:
 				self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image files"), self.verzeichnis_trash, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, "", undo, original_cover=trash_cover, high_definition = definition)
+			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, "", undo, original_cover=trash_cover, high_definition = definition)
 		else:
 			if not cover_anlegen:
 				if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
@@ -2388,7 +2388,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			bild = self.aktuelles_res[0][3]
 			titel = self.aktuelles_res[0][0]
 			darsteller = self.aktuelles_res[0][1]
-			nurbild = self.aktuelles_res[0][4]
+			gesehen = self.aktuelles_res[0][4]
 			if self.aktuelles_res[0][5]:
 				original = self.aktuelles_res[0][5].decode("utf-8")
 			else:
@@ -2421,7 +2421,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			original_weitere = []
 			for i in res2:
 				original_weitere.append(i[1])
-			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, nurbild, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
+			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 			if eingabedialog.exec_():
 				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
 			self.ausgabe("", self.letzter_select_komplett)

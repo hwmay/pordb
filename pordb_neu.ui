@@ -229,13 +229,13 @@
           </size>
          </property>
          <property name="title">
-          <string>not seen yet</string>
+          <string>watched</string>
          </property>
          <layout class="QFormLayout" name="formLayout_3">
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QRadioButton" name="radioButtonNurbildJa">
+             <widget class="QRadioButton" name="radioButtonGesehenJa">
               <property name="whatsThis">
                <string>Mark here when this video is NOT yet seen.</string>
               </property>
@@ -245,7 +245,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButtonNurbildNein">
+             <widget class="QRadioButton" name="radioButtonGesehenNein">
               <property name="whatsThis">
                <string>Mark here when this video is seen.</string>
               </property>
