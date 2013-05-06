@@ -1678,7 +1678,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if len(res2) > 0:
 				text += "\n>>>>>"
 			newitem = QtGui.QTableWidgetItem(bild, text)
-			if i[4] == 'x' or i[7] != 'x':
+			if i[4] == ' ' and (i[7] == ' ' or i[7] == None):
 				newitem.setTextColor(QtGui.QColor("red"))
 			spalte += 1
 			if spalte == self.columns:
