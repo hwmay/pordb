@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.11"
+__version__ = "5.4.12"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -399,6 +399,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.tableWidgetBilderAktuell.resizeColumnsToContents()
 			self.tableWidgetBilderAktuell.resizeRowsToContents()
 			self.tableWidgetBilderAktuell.scrollToTop()
+			self.tableWidgetBilderAktuell.setCurrentCell(0, 0)
 			self.bilderliste = dateiliste_bereinigt[:]
 		if not self.updatetimer.isActive():
 			if len(dateiliste_bereinigt) > 10000:
