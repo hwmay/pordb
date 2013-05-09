@@ -344,12 +344,16 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			vorhanden = ""
 
 		if not self.radioButtonGesehenNein.isChecked() and not self.radioButtonGesehenJa.isChecked():
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is not available, only image"))
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie has been watched"))
 			return
 		if self.radioButtonGesehenNein.isChecked():
 			gesehen = " "
 		else:
 			gesehen = "x"
+			
+		if self.radioButtonVorhandenNein.isChecked() and self.radioButtonGesehenJa.isChecked():
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Movie cannot have status unavailable and watched, please correct"))
+			return
 
 		try:
 			original = unicode(self.lineEditNeuOriginal.text()).replace("'", "''").title()

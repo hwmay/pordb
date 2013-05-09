@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Thu May  9 00:06:47 2013
+# Created: Thu May  9 10:54:52 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.tableWidgetBilderAktuell.setDragEnabled(True)
         self.tableWidgetBilderAktuell.setDragDropMode(QtGui.QAbstractItemView.DragOnly)
         self.tableWidgetBilderAktuell.setDefaultDropAction(QtCore.Qt.CopyAction)
-        self.tableWidgetBilderAktuell.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
+        self.tableWidgetBilderAktuell.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.tableWidgetBilderAktuell.setObjectName(_fromUtf8("tableWidgetBilderAktuell"))
         self.tableWidgetBilderAktuell.setColumnCount(0)
         self.tableWidgetBilderAktuell.setRowCount(0)

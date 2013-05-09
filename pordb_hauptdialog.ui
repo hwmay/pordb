@@ -100,7 +100,7 @@
            <enum>Qt::CopyAction</enum>
           </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
+           <enum>QAbstractItemView::ExtendedSelection</enum>
           </property>
           <attribute name="horizontalHeaderVisible">
            <bool>false</bool>
