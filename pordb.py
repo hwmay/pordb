@@ -2836,6 +2836,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
+				
+				if ein.strip("=") in self.aktuelles_res:
+					self.aktuelles_res.remove(ein.strip("="))
+					self.aktuelles_res.append(neuer_name.title())
+					self.aktuelles_res.sort()
 					
 		try:
 			self.labelDarsteller.setText(neuer_name.replace("''", "'").title())
