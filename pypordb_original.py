@@ -9,16 +9,16 @@ class OriginalErfassen(QtGui.QDialog, pordb_original):
 		self.setupUi(self)
 
 		self.original_weitere = original_weitere
+		row = 0
 		if self.original_weitere:
-			row = 0
 			self.tableWidget.clearContents()
 			for i in self.original_weitere:
 				newitem = QtGui.QTableWidgetItem(i.strip().decode("utf-8"))
 				self.tableWidget.setItem(row, 0, newitem)
 				row += 1
-			newitem = QtGui.QTableWidgetItem("")
-			self.tableWidget.setItem(row, 0, newitem)
-			self.tableWidget.setCurrentItem(newitem)
+		newitem = QtGui.QTableWidgetItem("")
+		self.tableWidget.setItem(row, 0, newitem)
+		self.tableWidget.setCurrentItem(newitem)
 		self.tableWidget.setFocus()
 		self.tableWidget.editItem(self.tableWidget.currentItem())
 
