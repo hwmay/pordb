@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.12"
+__version__ = "5.4.13"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -1679,7 +1679,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if len(res2) > 0:
 				text += "\n>>>>>"
 			newitem = QtGui.QTableWidgetItem(bild, text)
-			if i[4] == ' ' and (i[7] == ' ' or i[7] == None):
+			if i[4] <> " " and i[7] <> " ": # clip is present and watched
+				newitem.setTextColor(QtGui.QColor("green"))
+			elif i[7] == " ":
 				newitem.setTextColor(QtGui.QColor("red"))
 			spalte += 1
 			if spalte == self.columns:
