@@ -1679,9 +1679,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if len(res2) > 0:
 				text += "\n>>>>>"
 			newitem = QtGui.QTableWidgetItem(bild, text)
-			if i[4] <> " " and i[7] <> " ": # clip is present and watched
+			if i[4] <> " " and i[7] <> " " and i[7] <> None: # clip is present and watched
 				newitem.setTextColor(QtGui.QColor("green"))
-			elif i[7] == " ":
+			elif i[7] == " " or i[7] == None:
 				newitem.setTextColor(QtGui.QColor("red"))
 			spalte += 1
 			if spalte == self.columns:
@@ -2792,9 +2792,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					for j in i[2]:
 						k += 1
 						if j == eingabe:
-							res2[l][2][k] = str(eingabe).title().lstrip("=")
+							res2[l][2][k] = str(eingabe).title().lstrip("=").replace("''", "'")
 					darsteller_liste = sortier.darsteller_sortieren(res2[l][2])
-					darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=") else x for x in darsteller_liste]
+					darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=").replace("''", "'") else x for x in darsteller_liste]
 					zu_erfassen.append("update pordb_vid set darsteller = '" +", ".join(darsteller_liste2) +"' where cd = " +str(i[0]) +" and bild = '" +i[1] +"'")
 				if os.path.exists(datei_alt) and os.path.exists(datei_neu) and datei_alt <> datei_neu:
 					messageBox = QtGui.QMessageBox()
