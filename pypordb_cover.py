@@ -12,7 +12,9 @@ class Cover(QtGui.QDialog, pordb_cover):
 		self.cover = cover
 		self.original = original
 		self.verzeichnis_original = verzeichnis_original
-		self.filename = ""
+		self.filename = None
+		self.originaldatei = None
+		self.sonderzeichen = {u"ä": "ae", u"ö": "oe", u"ü": "ue", u"Ä": "ae", u"Ö": "oe", u"Ü": "ue", u"ß": "ss"}
 		
 		self.connect(self.pushButtonCoverOriginalAlt, QtCore.SIGNAL("clicked()"), self.onCoverOriginalAlt)
 		self.connect(self.pushButtonCover, QtCore.SIGNAL("clicked()"), self.accept)
@@ -81,12 +83,22 @@ class Cover(QtGui.QDialog, pordb_cover):
 		p.end()
 		if self.original:
 			self.lineEditDateiname.setText(self.original)
+		dateiname_neu = None
+		self.originaldatei = unicode(self.lineEditDateiname.text())
 		try:
 			dateiname = str(self.lineEditDateiname.text()).strip()
 		except:
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with the file name"))
-			return
-		if not dateiname:
+			dateiname_neu = self.originaldatei
+			for i in self.sonderzeichen.keys():
+				a = self.sonderzeichen.get(i)
+				dateiname_neu = dateiname_neu.replace(i, a)
+		if dateiname_neu:
+			try:
+				dateiname = str(dateiname_neu)
+			except:
+				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with the file name"))
+				return
+		if not dateiname and not dateiname_neu:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please enter a file name"))
 			return
 		if dateiname.find("/") > -1:
@@ -105,4 +117,4 @@ class Cover(QtGui.QDialog, pordb_cover):
 		self.close()
 		
 	def datei(self):
-		return self.filename
+		return self.filename, self.originaldatei

@@ -1011,8 +1011,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if cover:
 			dialog = Cover(cover, self.verzeichnis_original)
 			dialog.exec_()
-			datei = dialog.datei()
-			self.onNeueingabe(dateien = datei, cover_anlegen = 1)
+			datei, originaldatei = dialog.datei()
+			if datei:
+				self.onNeueingabe(dateien = datei, cover_anlegen = 1, original = originaldatei)
+			else:
+				self.file = None
 		self.suchfeld.setFocus()
 		
 	def onDrucken(self):
@@ -2273,7 +2276,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 	# end of onDarstellerloeschen
 	
-	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None, tablenew = None):
+	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None, tablenew = None, original = None):
 		self.suchfeld.setFocus()
 		if undo:
 			dateiliste = os.listdir(self.verzeichnis_trash)
@@ -2329,7 +2332,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					for i in items:
 						dateien.append(str(self.verzeichnis +os.sep +i.text()))
 			if dateien:
-				if type(dateien) == str:
+				if type(dateien) == str or type(dateien) == unicode:
 					self.file = dateien
 				else:
 					self.file = dateien[0]
@@ -2351,8 +2354,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					if self.file:
 						self.verzeichnis = os.path.dirname(str(self.file))
 			# In case we have just stored a cover, this part of program is already done
-			if os.path.exists(self.file):
-				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, tablenew = self.tableWidgetBilderAktuell)
+			if self.file and os.path.exists(self.file):
+				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, tablenew = self.tableWidgetBilderAktuell, original = original)
 		if not self.file:
 			return
 		

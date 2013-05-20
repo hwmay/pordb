@@ -181,7 +181,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.radioButtonCoverJa.setChecked(True)
 				self.radioButtonCoverNein.setChecked(False)
 				anfang = string.rfind((os.path.basename(str(self.bilddatei))), '.')
-				self.lineEditNeuOriginal.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
+				if self.original:
+					self.lineEditNeuOriginal.setText(self.original)
+				else:
+					self.lineEditNeuOriginal.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
 				newfilename = str(self.bilddatei).replace("'", "")
 				if str(self.bilddatei) <> newfilename:
 					os.rename(self.bilddatei, newfilename)
