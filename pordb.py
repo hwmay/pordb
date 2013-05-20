@@ -533,7 +533,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				original = self.aktuelles_res[index][5]
 				dialog = Cover(dateien, self.verzeichnis_original, original)
 				dialog.exec_()
-				datei = dialog.datei()
+				datei, original = dialog.datei()
 				bilddatei = QtGui.QImage(datei)
 				bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
 				if not os.path.exists(bilddatei_alt):
