@@ -48,6 +48,35 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButtonRefresh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Refresh view or working directory</string>
+            </property>
+            <property name="whatsThis">
+             <string>Sometimes it happens that the automatically refresh does not work. With this button you can force a refresh.</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>pypordb/appointment-recurring.png</normaloff>pypordb/appointment-recurring.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButtonDir">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

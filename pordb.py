@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.13"
+__version__ = "5.4.14"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -106,6 +106,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionUndo, QtCore.SIGNAL("triggered()"), self.onUndo)
 		self.connect(self.actionOnHelp, QtCore.SIGNAL("triggered()"), self.onHelp)
 		self.connect(self.pushButtonDir, QtCore.SIGNAL("clicked()"), self.onDirectoryChange)
+		self.connect(self.pushButtonRefresh, QtCore.SIGNAL("clicked()"), self.onDirectoryRefresh)
 		
 		# Slots einrichten für Darsteller
 		self.connect(self.bildAnzeige, QtCore.SIGNAL("clicked()"), self.onbildAnzeige)
@@ -652,6 +653,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.bilder_aktuell()
 			app.restoreOverrideCursor()
 			
+	def onDirectoryRefresh(self):
+		self.bilder_aktuell()
+		
 	def onHistorie(self):
 		historiedialog = Historie()
 		historiedialog.exec_()
