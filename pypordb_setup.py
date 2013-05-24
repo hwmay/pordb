@@ -114,7 +114,7 @@ class Dialog(QtGui.QDialog, Dialog):
 		self.listWidget.addItem("")
 		self.listWidget.addItem(self.trUtf8("How to start?"))
 		self.listWidget.addItem(self.trUtf8("Postgresql database server must be running!"))
-		self.listWidget.addItem(self.trUtf8("Go to install directory ") +self.verzeichnis)
+		self.listWidget.addItem(self.trUtf8("Go to install directory ") +self.verzeichnis +os.sep +"pordb-master")
 		self.listWidget.addItem(self.trUtf8("Start the PorDB with command 'python pordb.py &'"))
 		
 	def create_directory(self, directory):
