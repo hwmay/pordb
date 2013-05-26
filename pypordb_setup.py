@@ -363,7 +363,7 @@ class Dialog(QtGui.QDialog, Dialog):
 		cur.execute("ALTER TABLE ONLY pordb_iso_land ADD CONSTRAINT pordb_iso_land_pkey PRIMARY KEY (iso);")
 		cur.execute("ALTER TABLE ONLY pordb_original ADD CONSTRAINT original_key PRIMARY KEY (pordb_original_key);")
 		cur.execute("ALTER TABLE ONLY pordb_partner ADD CONSTRAINT pordb_partner_pkey PRIMARY KEY (darsteller, partner, cd, bild);")
-		cur.execute('ALTER TABLE ONLY pordb_history ADD CONSTRAINT pordb_history_pkey PRIMARY KEY ("select", "time");')
+		cur.execute('ALTER TABLE ONLY pordb_history ADD CONSTRAINT pordb_history_pkey PRIMARY KEY ("sql", "time");')
 		cur.execute("ALTER TABLE ONLY pordb_mpg_katalog ADD CONSTRAINT prim PRIMARY KEY (device, dir, file);")
 		cur.execute("ALTER TABLE ONLY pordb_suchbegriffe ADD CONSTRAINT primary_key PRIMARY KEY (suchbegriff, alternative);")
 		cur.execute("ALTER TABLE ONLY pordb_pseudo ADD CONSTRAINT pseudodar PRIMARY KEY (pseudo, darsteller);")
