@@ -128,8 +128,14 @@ class Dialog(QtGui.QDialog, Dialog):
 		
 	def init_db(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		import psycopg2
-		import psycopg2.extensions
+		try:
+			import psycopg2
+			import psycopg2.extensions
+		except:
+			app.restoreOverrideCursor()
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Fatal error "), self.trUtf8("Package psycopg2 not found. You have to install this package first."))
+			self.error = True
+			return
 		db_host='localhost'
 		# Create database
 		database = "por"
