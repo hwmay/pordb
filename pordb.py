@@ -703,6 +703,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		menu.exec_(self.listWidgetFilme.mapToGlobal(event))
 		
 	def onContexttableWidgetBilder(self, event):
+		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		menu = QtGui.QMenu(self.tableWidgetBilder)
 		if self.aktuelle_ausgabe == "Darsteller":
 			menu.addAction(self.actionDarstellerUebernehmen)
@@ -720,7 +723,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if os.path.splitext(i)[0] == "pypordb_bildalt":
 					menu.addAction(self.actionRedoImageChange)
 					break
-			item = self.tableWidgetBilder.currentItem()
 			if item:
 				text = unicode(item.text()).encode("utf-8")
 				if "Cover (" in text:
@@ -736,6 +738,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onDarstellerUebernehmen(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		text = str(item.text()).split("\n")
 		if text:
 			self.suchfeld.insertItem(0, "=" + text[0].strip())
@@ -798,6 +802,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onAnzeigenOriginal(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		column = self.tableWidgetBilder.column(item)
 		row = self.tableWidgetBilder.row(item)
 		index = int(row * self.columns + column + self.start_bilder)
@@ -843,6 +849,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onOriginal_umbenennen(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		column = self.tableWidgetBilder.column(item)
 		row = self.tableWidgetBilder.row(item)
 		index = int(row * self.columns + column + self.start_bilder)
@@ -873,6 +881,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onOriginal_weitere(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		column = self.tableWidgetBilder.column(item)
 		row = self.tableWidgetBilder.row(item)
 		index = int(row * self.columns + column + self.start_bilder)
@@ -925,6 +935,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onRedoImageChange(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		column = self.tableWidgetBilder.column(item)
 		row = self.tableWidgetBilder.row(item)
 		index = int(row * self.columns + column + self.start_bilder)
@@ -959,6 +971,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onOriginalIntoClipboard(self):
 		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
 		column = self.tableWidgetBilder.column(item)
 		row = self.tableWidgetBilder.row(item)
 		index = int(row * self.columns + column + self.start_bilder)
@@ -1334,8 +1348,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".png"
 						if not os.path.isfile(self.bilddarsteller):
 							self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
-		bilddialog = DarstellerAnzeigeGross(self.bilddarsteller)
-		bilddialog.exec_()
+			bilddialog = DarstellerAnzeigeGross(self.bilddarsteller)
+			bilddialog.exec_()
 		self.suchfeld.setFocus()
 		
 	def onLand(self):

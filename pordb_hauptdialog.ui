@@ -1344,7 +1344,7 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
-            <widget class="QWebView" name="webView">
+            <widget class="QWebView" name="webView" native="true">
              <property name="contextMenuPolicy">
               <enum>Qt::DefaultContextMenu</enum>
              </property>
@@ -1354,7 +1354,7 @@ Back: Z
 Forward: X
 Stop: S</string>
              </property>
-             <property name="url">
+             <property name="url" stdset="0">
               <url>
                <string>about:blank</string>
               </url>
@@ -1799,6 +1799,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QToolBar" name="toolBar">
    <property name="focusPolicy">
     <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::PreventContextMenu</enum>
    </property>
    <property name="windowTitle">
     <string>toolBar</string>
