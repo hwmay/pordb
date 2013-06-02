@@ -218,6 +218,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setMinimumWidth(250)
 		self.suchfeld.setEditable(True)
 		self.suchfeld.setWhatsThis(self.trUtf8("Searching field. By pressing the escape key it will be cleared and gets the focus."))
+		completer = QtGui.QCompleter()
+		completer.setCompletionMode(0)
+		self.suchfeld.setCompleter(completer)
 		self.toolBar.insertWidget(self.actionSuchfeld, self.suchfeld)
 		self.toolBar.removeAction(self.actionSuchfeld)
 		
@@ -646,7 +649,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.ausgabe(self.letzter_select_komplett, self.letzter_select_komplett)
 				
 	def onDirectoryChange(self):
-		datei = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8(u"Select directory"), self.verzeichnis)
+		datei = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), self.verzeichnis)
 		if datei:
 			self.verzeichnis = str(datei)
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -2876,7 +2879,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 	def onDarstellerBild(self):
 		name = str(self.labelDarsteller.text()).strip().lstrip("=")
-		self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor: " +name +(", please select")), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+		self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor: ") +name +self.trUtf8(", please select"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 		if self.file:
 			bild = QtGui.QImage(self.file)
 			if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():

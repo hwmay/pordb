@@ -309,23 +309,30 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					neuer_darsteller = NeueingabeDarsteller(darsteller[fehler_index])
 					neuer_darsteller.exec_()
 					if message == 0:
-						self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor " +darsteller[fehler_index] +": " +self.trUtf8("please select one")), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-						if self.file:
-							bild = QtGui.QImage(self.file)
-							if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-								message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
-							zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''")  +"'"
-							self.lese_func = DBLesen(self, zu_lesen)
-							res = DBLesen.get_data(self.lese_func)
-							extension = os.path.splitext(str(self.file))[-1].lower()
-							if extension == '.jpeg':
-								extension = '.jpg'
-							try:
-								sex = res[0][0]
-								newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].replace(" ", "_").replace("'", "_apostroph_").strip().lower() + extension.strip()
-								os.rename(self.file, newfilename)
-							except:
-								pass
+						actor_file = False
+						while not actor_file:
+							self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor ") +darsteller[fehler_index] +": " +self.trUtf8("please select one"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+							if self.file:
+								if self.file == self.bilddatei:
+									message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Selected image is the one which should be added to the database. Please select another one."))
+									continue
+								else:
+									bild = QtGui.QImage(self.file)
+									if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
+										message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
+									zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''")  +"'"
+									self.lese_func = DBLesen(self, zu_lesen)
+									res = DBLesen.get_data(self.lese_func)
+									extension = os.path.splitext(str(self.file))[-1].lower()
+									if extension == '.jpeg':
+										extension = '.jpg'
+									try:
+										sex = res[0][0]
+										newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].replace(" ", "_").replace("'", "_apostroph_").strip().lower() + extension.strip()
+										os.rename(self.file, newfilename)
+									except:
+										pass
+									actor_file = True
 		titel = str(self.lineEditNeuTitel.text())
 		if darsteller:
 			darsteller = self.darsteller_sortieren(darsteller)
