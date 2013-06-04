@@ -666,6 +666,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if zu_lesen and not "pordb_history" in zu_lesen:
 			self.start_bilder = 0
 			self.letzter_select_komplett = zu_lesen
+			i = zu_lesen.find("order")
+			if i > -1:
+				self.letzter_select = zu_lesen[: i]
+			else:
+				self.letzter_select = zu_lesen
 			self.ausgabe(zu_lesen, zu_lesen)
 		else:
 			self.suchfeld.setFocus()
