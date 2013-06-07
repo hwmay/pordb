@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Tue May 28 23:07:26 2013
+# Created: Fri Jun  7 16:41:14 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -233,6 +233,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.label_9, 0, 1, 1, 1)
         self.labelFilme = QtGui.QLabel(self.frame_2)
         self.labelFilme.setMaximumSize(QtCore.QSize(41, 16))
+        self.labelFilme.setWhatsThis(_fromUtf8(""))
         self.labelFilme.setText(_fromUtf8(""))
         self.labelFilme.setObjectName(_fromUtf8("labelFilme"))
         self.gridLayout_2.addWidget(self.labelFilme, 0, 2, 1, 1)
@@ -876,7 +877,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -909,7 +910,10 @@ class Ui_MainWindow(object):
         self.pushButtonDarstellerBild.setToolTip(_translate("MainWindow", "Adopt new image of the actor, Ctrl+J", None))
         self.pushButtonDarstellerBild.setWhatsThis(_translate("MainWindow", "Replace existing image of the actor with a new one", None))
         self.pushButtonDarstellerBild.setShortcut(_translate("MainWindow", "Ctrl+J", None))
+        self.labelAktiv.setToolTip(_translate("MainWindow", "<html><head/><body><p>Active from ... to according IAFD and last visit of IAFD with this actor</p></body></html>", None))
+        self.labelAktiv.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", None))
         self.label_9.setText(_translate("MainWindow", "Movies:", None))
+        self.labelFilme.setToolTip(_translate("MainWindow", "<html><head/><body><p>Films according to the IAFD</p></body></html>", None))
         self.label_8.setText(_translate("MainWindow", "Age:", None))
         self.comboBoxEthnicFilter.setToolTip(_translate("MainWindow", "Filter on ethnic", None))
         self.comboBoxEthnicFilter.setWhatsThis(_translate("MainWindow", "Filter partners on ethnic", None))
@@ -949,6 +953,7 @@ class Ui_MainWindow(object):
         self.comboBoxGeschlecht.setItemText(0, _translate("MainWindow", "w", None))
         self.comboBoxGeschlecht.setItemText(1, _translate("MainWindow", "m", None))
         self.label_2.setText(_translate("MainWindow", "Quantity", None))
+        self.lineEditAnzahl.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Quantity of films in the PorDB</p></body></html>", None))
         self.label_7.setText(_translate("MainWindow", "Born", None))
         self.label_3.setText(_translate("MainWindow", "Hair color", None))
         self.comboBoxHaarfarbe.setItemText(0, _translate("MainWindow", "bl", None))
@@ -1053,7 +1058,7 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Scan a file directory for video files. Filenames are entered in the database and can be searched (Tab &quot;Search files&quot;).</p></body></html>", None))
         self.pushButtonDateikatalog.setText(_translate("MainWindow", "File catalogue", None))
-        self.label_12.setText(_translate("MainWindow", "Maintenance of the database: especially free memory and analyze (will be automatically done during backup)", None))
+        self.label_12.setText(_translate("MainWindow", "Maintenance of the database: especially free memory and analyze", None))
         self.checkBoxDatabase.setToolTip(_translate("MainWindow", "<html><head/><body><p>When checked: Backup of the database entries</p></body></html>", None))
         self.checkBoxDatabase.setText(_translate("MainWindow", "Database", None))
         self.label_11.setText(_translate("MainWindow", "Restore database", None))
