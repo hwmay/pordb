@@ -2264,6 +2264,14 @@ p, li { white-space: pre-wrap; }
     <string>Redo image change</string>
    </property>
   </action>
+  <action name="actionGetUrl">
+   <property name="text">
+    <string>Put actors URL into clipboard</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get URL form database and put it into clipboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

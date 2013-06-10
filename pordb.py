@@ -119,6 +119,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.listWidgetDarsteller, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.onbildAnzeige)
 		self.connect(self.actionAnzeigenPaar, QtCore.SIGNAL("triggered()"), self.onAnzeigenPaar)
 		self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
+		self.connect(self.actionGetUrl, QtCore.SIGNAL("triggered()"), self.onGetUrl)
 		self.connect(self.actionBildanzeigegross, QtCore.SIGNAL("triggered()"), self.onDarstellerGross)
 		self.connect(self.listWidgetFilme, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextFilm)
 		self.connect(self.actionFilm_zeigen, QtCore.SIGNAL("triggered()"), self.onFilm_zeigen)
@@ -756,6 +757,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onBildgross(self, event):
 		menu = QtGui.QMenu(self.labelBildanzeige)
 		menu.addAction(self.actionBildanzeigegross)
+		menu.addAction(self.actionGetUrl)
 		menu.exec_(self.labelBildanzeige.mapToGlobal(event))
 		
 	def onAnzeigenPaar(self):
@@ -1342,7 +1344,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onDarstellerGross(self):
 		if self.tabWidget.currentIndex() == 0:
 			self.onDarstellerUebernehmen()
-		ein = self.eingabe_auswerten().lstrip("=")
+			ein = self.eingabe_auswerten().lstrip("=")
+		else:
+			selected = self.listWidgetDarsteller.selectedItems()
+			if selected:
+				ein = str(selected[0].text()).strip()
+			else:
+				ein = str(self.labelDarsteller.text()).strip().title()
 		
 		self.listWidgetDarsteller.clearSelection()
 		if ein:
@@ -1358,6 +1366,17 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
 			bilddialog = DarstellerAnzeigeGross(self.bilddarsteller)
 			bilddialog.exec_()
+		self.suchfeld.setFocus()
+		
+	def onGetUrl(self):
+		ein = str(self.labelDarsteller.text()).strip().title()
+		if ein:
+			zu_lesen = "select url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			if res:
+				clipboard = QtGui.QApplication.clipboard()
+				clipboard.setText(res[0][0], mode=QtGui.QClipboard.Clipboard)
 		self.suchfeld.setFocus()
 		
 	def onLand(self):

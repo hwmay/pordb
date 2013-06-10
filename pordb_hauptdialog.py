@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Fri Jun  7 16:41:14 2013
+# Created: Mon Jun 10 21:56:24 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -847,6 +847,8 @@ class Ui_MainWindow(object):
         self.actionOriginalIntoClipboard.setObjectName(_fromUtf8("actionOriginalIntoClipboard"))
         self.actionRedoImageChange = QtGui.QAction(MainWindow)
         self.actionRedoImageChange.setObjectName(_fromUtf8("actionRedoImageChange"))
+        self.actionGetUrl = QtGui.QAction(MainWindow)
+        self.actionGetUrl.setObjectName(_fromUtf8("actionGetUrl"))
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -1170,5 +1172,7 @@ class Ui_MainWindow(object):
         self.actionOriginalIntoClipboard.setToolTip(_translate("MainWindow", "<html><head/><body><p>Put original title into clipboard of the PorDB</p></body></html>", None))
         self.actionRedoImageChange.setText(_translate("MainWindow", "Redo image change", None))
         self.actionRedoImageChange.setToolTip(_translate("MainWindow", "Redo image change", None))
+        self.actionGetUrl.setText(_translate("MainWindow", "Put actors URL into clipboard", None))
+        self.actionGetUrl.setToolTip(_translate("MainWindow", "<html><head/><body><p>Get URL form database and put it into clipboard</p></body></html>", None))
 
 from PyQt4 import QtWebKit
