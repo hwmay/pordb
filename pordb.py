@@ -2972,7 +2972,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					return 0
 				
 		text = self.pushButtonSort.text()
-		if text == self.trUtf8("Jahr"):
+		if text == self.trUtf8("Year"):
 			items = []
 			for i in xrange(self.listWidgetFilme.count()):
 				items.append(unicode(self.listWidgetFilme.item(i).text()).strip())
