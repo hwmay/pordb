@@ -320,7 +320,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 									bild = QtGui.QImage(self.file)
 									if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
 										message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
-									zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''")  +"'"
+									zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''").strip()  +"'"
 									self.lese_func = DBLesen(self, zu_lesen)
 									res = DBLesen.get_data(self.lese_func)
 									extension = os.path.splitext(str(self.file))[-1].lower()
@@ -328,7 +328,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 										extension = '.jpg'
 									try:
 										sex = res[0][0]
-										newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].replace(" ", "_").replace("'", "_apostroph_").strip().lower() + extension.strip()
+										newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].strip().replace(" ", "_").replace("'", "_apostroph_").lower() + extension.strip()
 										os.rename(self.file, newfilename)
 									except:
 										pass
