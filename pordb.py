@@ -3688,7 +3688,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						a.append(long(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip())))
 						res_alle.append(a)
 				try:
-					zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +str(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(str(self.verzeichnis_tools)) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools +os.sep +i.replace("'", "''"))) +"')")
+					zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +str(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(str(self.verzeichnis_tools)) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools +os.sep +i)) +"')")
 				except:
 					message = QtGui.QMessageBox(self)
 					message.setText(self.trUtf8("Error, filename '") +i +self.trUtf8("' is wrong (special characters)"))
