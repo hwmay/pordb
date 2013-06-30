@@ -1326,6 +1326,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			elif self.tabWidget.currentIndex() == 3:
 				painter.end()
 				self.webView.print_(self.printer)
+				app.restoreOverrideCursor()
 			else:
 				app.restoreOverrideCursor()
 				self.suchfeld.setFocus()
