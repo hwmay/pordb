@@ -185,11 +185,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					self.lineEditNeuOriginal.setText(self.original)
 				else:
 					self.lineEditNeuOriginal.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
-				newfilename = str(self.bilddatei).replace("'", "")
+				newfilename = str(self.bilddatei)
 				if str(self.bilddatei) <> newfilename:
 					os.rename(self.bilddatei, newfilename)
-			anfang = string.rfind((os.path.basename(str(self.bilddatei).replace("'", ""))), '.')
-			self.lineEditNeuTitel.setText((os.path.basename(str(self.bilddatei).replace("'", "")))[0:anfang])
+			anfang = string.rfind((os.path.basename(str(self.bilddatei))), '.')
+			self.lineEditNeuTitel.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
 			dateiliste = os.listdir(self.verzeichnis)
 			videodatei = os.path.splitext(os.path.basename(str(bilddatei)))[0]
 			self.lineEditNeuTitel.setFocus()
@@ -206,7 +206,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			else:
 				self.labelTitel.setText(self.trUtf8("Characters: ") +str(len((os.path.basename(str(self.bilddatei)))[0:anfang])))
 			self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
-			self.lineEditNeuBild.setText(os.path.basename(str(self.bilddatei).replace("'", "")))
+			self.lineEditNeuBild.setText(os.path.basename(str(self.bilddatei)))
 			if len(os.path.basename(str(self.bilddatei))) > 256:
 				self.labelBild.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len(os.path.basename(str(self.bilddatei)))) +"</font>")
 			else:
@@ -399,9 +399,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						else:
 							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 							return
-			zu_erfassen.append("delete from pordb_partner where cd = " +str(cd) + " and bild = '" +bild +"'")
+			zu_erfassen.append("delete from pordb_partner where cd = " +str(cd) + " and bild = '" +bild.replace("'", "''") +"'")
 			cs = ""
-			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild +"', gesehen = '" +gesehen +"', original = '" +original 
+			zu_erfassen_zw = "UPDATE pordb_vid SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", bild = '" +bild.replace("'", "''") +"', gesehen = '" +gesehen +"', original = '" +original 
 			if self.spinBoxF.value() > 0:
 				cs = str(self.spinBoxF.value())
 				zu_erfassen_zw += "', csf = '" +cs 
@@ -477,7 +477,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				zu_erfassen_zw += "', hd = '2'"
 			elif self.comboBoxDefinition.currentIndex() == 4:
 				zu_erfassen_zw += "', hd = '9'"
-			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild +"'"
+			zu_erfassen_zw +=", vorhanden = '" +vorhanden +"'" +" where cd = " +str(self.cd_alt) + " and bild = '" +bild.replace("'", "''") +"'"
 			if self.radioButtonCoverJa.isChecked() and self.cover_austauschen:
 				if os.path.exists(self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()):
 					# Bild war Thumbnail im CD Verzeichnis -> dieses löschen und neues im Cover Verzeichnis anlegen
@@ -497,11 +497,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				else:
 					bilddatei = QtGui.QImage(self.verzeichnis +os.sep +bild).scaled(size, QtCore.Qt.KeepAspectRatio)
 			if self.radioButtonCoverJa.isChecked():
-				newfilename = self.verzeichnis_cover +os.sep +bild.replace("'", "")
+				newfilename = self.verzeichnis_cover +os.sep +bild
 			else:
-				newfilename = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.replace("'", "")
+				newfilename = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild
 			# hier klappt noch etwas nicht richtig mit den Partnern, wenn len>256
-			if len(bild) > 256 or "'" in newfilename or os.path.exists(newfilename):
+			if len(bild) > 256 or os.path.exists(newfilename):
 				neue_bilddatei = BilddateiUmbenennen(newfilename)
 				neue_bilddatei.exec_()
 				try:
@@ -522,7 +522,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 				return
 			cs = ""
-			zu_erfassen_zw = unicode("INSERT into pordb_vid VALUES ('" +titel +"', '" +", ".join(darsteller).replace("'", "''") +"', " +str(cd) +", '" +bild +"', '" +gesehen +"', '" +original +"', ' " +"', '" +vorhanden +"', DEFAULT") 
+			zu_erfassen_zw = unicode("INSERT into pordb_vid VALUES ('" +titel.replace("'", "''") +"', '" +", ".join(darsteller).replace("'", "''") +"', " +str(cd) +", '" +bild.replace("'", "''") +"', '" +gesehen +"', '" +original +"', ' " +"', '" +vorhanden +"', DEFAULT") 
 			if self.spinBoxF.value() > 0:
 				cs = str(self.spinBoxF.value())
 				zu_erfassen_zw += ", " +cs 
@@ -613,7 +613,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			for zaehler in range(anzahl_loeschen):
 				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[zaehler][0]) +"'")
 		if not self.korrektur and original:
-			zu_erfassen.append("UPDATE pordb_vid_neu SET titel = '" +titel +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", original = '" +original +"'")
+			zu_erfassen.append("UPDATE pordb_vid_neu SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", original = '" +original +"'")
 		
 		for i in darsteller:
 			if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
@@ -628,7 +628,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						res2 = DBLesen.get_data(self.lese_func)
 						geschlecht2 = res2[0]
 						if geschlecht != geschlecht2:
-							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild) +"')")
+							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
 
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
@@ -713,7 +713,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if i:
 				zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl - 1 where darsteller = '" + i.replace("'", "''") + "'")
 		# Daten für undo sichern
-		zu_lesen = "select * FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild + "'"
+		zu_lesen = "select * FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild.replace("'", "''") + "'"
 		self.lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(self.lese_func)
 
@@ -745,9 +745,9 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			textdatei.write("COVER" +"\n")
 		textdatei.close()
 
-		zu_erfassen.append("DELETE FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild.strip() +"'")
+		zu_erfassen.append("DELETE FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
 		
-		zu_erfassen.append("delete from pordb_partner where cd = " +str(self.cd) + " and bild = '" +self.bild.strip() +"'")
+		zu_erfassen.append("delete from pordb_partner where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
 		
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)

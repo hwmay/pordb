@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.14"
+__version__ = "5.4.15"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -2409,7 +2409,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.verzeichnis = os.path.dirname(str(self.file))
 		
 		# In case we have just stored a cover, this part of program is already done
-		if os.path.exists(self.file.replace("'", "")):
+		if os.path.exists(self.file):
 			eingabedialog.exec_()
 			self.bilderliste = []
 			self.bilder_aktuell()
@@ -2433,7 +2433,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				return
 			cd = self.aktuelles_res[index][2]
 			bild = self.aktuelles_res[index][3]
-			zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild +"'"
+			zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild.replace("'", "''") +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			self.aktuelles_res = DBLesen.get_data(lese_func)
 			cd = self.aktuelles_res[0][2]
