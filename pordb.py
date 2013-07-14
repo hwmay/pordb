@@ -1375,7 +1375,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen = "select url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
-			if res:
+			if res[0][0]:
 				clipboard = QtGui.QApplication.clipboard()
 				clipboard.setText(res[0][0], mode=QtGui.QClipboard.Clipboard)
 		self.suchfeld.setFocus()
