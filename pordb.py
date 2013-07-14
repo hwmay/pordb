@@ -349,7 +349,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if initial_run: 
 			splash.showMessage("Loading IAFD", color = QtGui.QColor("red"))
 			app.processEvents()
-			while True: # scheint nicht zu funktionieren
+			zaehler = 0
+			while True:
+				zaehler += 1
 				try:
 					seite = urllib2.urlopen("http://www.iafd.com/").read()
 					if seite:
@@ -359,7 +361,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						pass
 				except:
 				    pass
+				if zaehler > 1:
+					break
 			self.webView.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
+			if zaehler > 1:
+				self.statusBar.showMessage(self.trUtf8("Either your computer is not online or the IAFD is not reachable"))
 				
 		if initial_run:
 			splash.showMessage("Ready", color = QtGui.QColor("green"))
