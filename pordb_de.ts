@@ -534,7 +534,7 @@ p, li { white-space: pre-wrap; }
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="55"/>
+        <location filename="pordb_historie.ui" line="43"/>
         <source>Timestamp</source>
         <translation>Timestamp</translation>
     </message>
@@ -760,22 +760,22 @@ p, li { white-space: pre-wrap; }
         <translation>Umbenennen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="51"/>
+        <location filename="pordb_historie.ui" line="14"/>
         <source>History</source>
         <translation>Historie</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="53"/>
+        <location filename="pordb_historie.ui" line="33"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="54"/>
+        <location filename="pordb_historie.ui" line="38"/>
         <source>Command</source>
         <translation>Befehl</translation>
     </message>
     <message>
-        <location filename="pordb_historie.py" line="56"/>
+        <location filename="pordb_historie.ui" line="95"/>
         <source>Execute</source>
         <translation>Ausführen</translation>
     </message>
@@ -1291,6 +1291,21 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <location filename="pordb_neu.py" line="366"/>
         <source>watched</source>
         <translation>gesehen</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.ui" line="26"/>
+        <source>Here you see your last search command. You can repeat one search by marking the line and click on execute.</source>
+        <translation>Hier siehst Du Deine letzten Suchkommandos. Du kannst eine Suche wiederholen, indem Du eine Zeile markierst und auf ausführen klickst.</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.ui" line="63"/>
+        <source>Search in history, Ctrl+S</source>
+        <translation>In Historie suchen, Strg+S</translation>
+    </message>
+    <message>
+        <location filename="pordb_historie.ui" line="92"/>
+        <source>Execute marked line</source>
+        <translation>Markierte Zeile ausführen</translation>
     </message>
 </context>
 <context>
@@ -3149,37 +3164,37 @@ present</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>delete</source>
         <translation>löschen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>File in database</source>
         <translation>Datei in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>Device</source>
         <translation>Gerät</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>Directory</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>Size in database</source>
         <translation>Größe in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>new file</source>
         <translation>neue Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3751"/>
+        <location filename="pordb.py" line="3753"/>
         <source>Size of new file</source>
         <translation>Größe der neuen Datei</translation>
     </message>
@@ -3239,27 +3254,27 @@ present</source>
         <translation> zu lang</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3701"/>
+        <location filename="pordb.py" line="3703"/>
         <source>Error, filename &apos;</source>
         <translation>Fehler, Dateiname &apos;</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3701"/>
+        <location filename="pordb.py" line="3703"/>
         <source>&apos; is wrong (special characters)</source>
         <translation>&apos; ist ungültig (Sonderzeichen)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3760"/>
+        <location filename="pordb.py" line="3762"/>
         <source> Duplicate(s) found</source>
         <translation> Duplikat(e) gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3762"/>
+        <location filename="pordb.py" line="3764"/>
         <source> Duplicate(s) found, but some of them only in relation to file size</source>
         <translation> Duplikat(e) gefunden, aber einige davon nur in Bezug auf die Dateigröße</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3784"/>
+        <location filename="pordb.py" line="3786"/>
         <source> File(s) deleted</source>
         <translation> Datei(en) gelöscht</translation>
     </message>
@@ -3269,7 +3284,7 @@ present</source>
         <translation>Fehler, Dateiname </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3755"/>
+        <location filename="pordb.py" line="3757"/>
         <source> File(s) collected</source>
         <translation> Datei(en) erfasst</translation>
     </message>

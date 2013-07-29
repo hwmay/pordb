@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.16"
+__version__ = "5.4.17"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -172,7 +172,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			bild = QtGui.QPixmap(os.getcwd() +os.sep +"pypordb" +os.sep +"8027068_splash.png").scaled(276, 246, QtCore.Qt.KeepAspectRatio)
 			splash = QtGui.QSplashScreen(bild)
 			splash.show()
-			zu_lesen = "select * from pordb_history order by time DESC LIMIT 50"
+			zu_lesen = "SELECT * from pordb_history order by time DESC LIMIT 50"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res:
@@ -277,7 +277,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.printer = QtGui.QPrinter(QtGui.QPrinter.ScreenResolution)
 		self.printer.setOutputFileName(self.verzeichnis_original + os.sep + "print.pdf")
 		
-		zu_lesen = "select cd, partnerw, partnerm, anzahl_bilder, anzahl_spalten from pordb_vid_neu"
+		zu_lesen = "SELECT cd, partnerw, partnerm, anzahl_bilder, anzahl_spalten from pordb_vid_neu"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		self.spinBoxAktuell.setValue(res[0][0])
@@ -319,7 +319,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			else:
 				return 1
 		
-		zu_lesen = "select * from information_schema.columns where table_name = 'pordb_vid'"
+		zu_lesen = "SELECT * from information_schema.columns where table_name = 'pordb_vid'"
 		lese_func = DBLesen(self, zu_lesen)
 		felder = DBLesen.get_data(lese_func)
 		felder.sort(feldnamen_vergleich)
@@ -328,7 +328,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			x = i[3]
 			self.fieldnames_vid.append(x.title())
 			
-		zu_lesen = "select * from information_schema.columns where table_name = 'pordb_mpg_katalog'"
+		zu_lesen = "SELECT * from information_schema.columns where table_name = 'pordb_mpg_katalog'"
 		lese_func = DBLesen(self, zu_lesen)
 		felder = DBLesen.get_data(lese_func)
 		felder.sort(feldnamen_vergleich)
@@ -431,7 +431,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.updatetimer.stop()
 	
 	def suchbegriffe_lesen(self):
-		zu_lesen = "select * from pordb_suchbegriffe"
+		zu_lesen = "SELECT * from pordb_suchbegriffe"
 		lese_func = DBLesen(self, zu_lesen)
 		self.suchbegriffe = dict(DBLesen.get_data(lese_func))
 		self.suchbegriffe_rekursiv = {}
@@ -441,7 +441,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 
 	def nation_fuellen(self):
 		# Combobox für Nation füllen
-		zu_lesen = "select * from pordb_iso_land where aktiv = 'x' order by land"
+		zu_lesen = "SELECT * from pordb_iso_land where aktiv = 'x' order by land"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		self.nationen = []
@@ -886,7 +886,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_erfassen = "update pordb_vid set original = '" +neuer_name.title().replace("'", "''") +"' where original = '" +original.replace("'", "''") +"'"
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
-				zu_lesen = "select * from pordb_vid where original = '" +unicode(neuer_name).title().encode("utf-8").replace("'", "''") +"' order by original, cd, bild, darsteller"
+				zu_lesen = "SELECT * from pordb_vid where original = '" +unicode(neuer_name).title().encode("utf-8").replace("'", "''") +"' order by original, cd, bild, darsteller"
 				self.letzter_select_komplett = zu_lesen
 				self.start_bilder = 0
 				self.partner = 0
@@ -910,11 +910,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Movie has no original title"))
 			app.restoreOverrideCursor()
 			return
-		zu_lesen = "select primkey from pordb_vid where original = '" +unicode(original).encode("utf-8").replace("'", "''") +"'"
+		zu_lesen = "SELECT primkey from pordb_vid where original = '" +unicode(original).encode("utf-8").replace("'", "''") +"'"
 		lese_func = DBLesen(self, zu_lesen)
 		res_primkey = DBLesen.get_data(lese_func)
 		for i in res_primkey:
-			zu_lesen = "select original from pordb_original where foreign_key_pordb_vid = " +str(i[0])
+			zu_lesen = "SELECT original from pordb_original where foreign_key_pordb_vid = " +str(i[0])
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res:
@@ -1063,7 +1063,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					painter.drawText(x + 300, y, "- " +str(seite) +" -")
 					y += 15
 					darsteller = str(self.labelDarsteller.text()).strip()
-					zu_lesen = "select sex from pordb_darsteller where darsteller = '" + darsteller.replace("'", "''") + "'" 
+					zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" + darsteller.replace("'", "''") + "'" 
 					lese_func = DBLesen(self, zu_lesen)
 					res = DBLesen.get_data(lese_func)
 					if res[0][0] == "w":
@@ -1378,7 +1378,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onGetUrl(self):
 		ein = str(self.labelDarsteller.text()).strip().title()
 		if ein:
-			zu_lesen = "select url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
+			zu_lesen = "SELECT url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res[0][0]:
@@ -1491,15 +1491,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		if ein[0] == "=":
-			zu_lesen = "select * from pordb_original where lower(original) like '" +ein[1:] +"%'" 
+			zu_lesen = "SELECT * from pordb_original where lower(original) like '" +ein[1:] +"%'" 
 		else:
-			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_original where lower(original) like '%" +ein.replace(" ", "%") +"%'"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if ein[0] == "=":
-			zu_lesen = "select * from pordb_vid where lower(original) = '" +ein[1:] +"' or lower(original) like '" +ein[1:] +" (%)'"
+			zu_lesen = "SELECT * from pordb_vid where lower(original) = '" +ein[1:] +"' or lower(original) like '" +ein[1:] +" (%)'"
 		else:
-			zu_lesen = "select * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
 		original_erweiterung = ""
 		for i in res:
 			original_erweiterung += " or primkey = " +str(i[2])
@@ -1568,7 +1568,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		lese_func = DBLesen(self, zu_lesen)
 		self.aktuelles_res = DBLesen.get_data(lese_func)
 		zw_res = []
-		if "select * from pordb_vid where lower(original)" in zu_lesen:
+		if "SELECT * from pordb_vid where lower(original)" in zu_lesen:
 			ende = zu_lesen.find("primkey")
 			if ende < 0:
 				ende = zu_lesen.find("gesehen") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
@@ -1686,7 +1686,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			darsteller_ausgabe = ""
 			for j in darsteller:
 				if j:
-					zu_lesen = "select sex from pordb_darsteller where darsteller = '" +j.replace("'", "''")  +"'"
+					zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" +j.replace("'", "''")  +"'"
 					lese_func = DBLesen(self, zu_lesen)
 					res = DBLesen.get_data(lese_func)
 					if res:
@@ -1728,7 +1728,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				text += " HD 1080p"
 			elif i[20] == '9':
 				text += self.trUtf8(" unknown")
-			zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(i[8])
+			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(i[8])
 			lese_func = DBLesen(self, zu_lesen)
 			res2 = DBLesen.get_data(lese_func)
 			if len(res2) > 0:
@@ -1801,7 +1801,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.video = suche.checkBoxVid.isChecked()
 			self.suche_cs = suche.comboBoxCS.currentText()
 			# select-Anweisung aufbauen
-			zu_lesen = "select * from pordb_vid where "
+			zu_lesen = "SELECT * from pordb_vid where "
 			argument = 0
 			# Darsteller
 			if self.suche_darsteller:
@@ -1918,7 +1918,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			j = -1
 			for i in res:
 				j += 1
-				zu_lesen = "select ethnic from pordb_darsteller where darsteller = '" +i[0].strip().replace("'", "''") +"'"
+				zu_lesen = "SELECT ethnic from pordb_darsteller where darsteller = '" +i[0].strip().replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res1 = DBLesen.get_data(lese_func)
 				if res1[0][0] != ethnic:
@@ -1932,7 +1932,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			j = -1
 			for i in res:
 				j += 1
-				zu_lesen = "select cs" +cs +" from pordb_vid where cd = " +str(i[1]) +" and bild = '" +i[2] +"'"
+				zu_lesen = "SELECT cs" +cs +" from pordb_vid where cd = " +str(i[1]) +" and bild = '" +i[2] +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res1 = DBLesen.get_data(lese_func)
 				try:
@@ -2419,7 +2419,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			eingabedialog.exec_()
 			self.bilderliste = []
 			self.bilder_aktuell()
-			zu_lesen = "select * from pordb_vid_neu"
+			zu_lesen = "SELECT * from pordb_vid_neu"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			self.spinBoxAktuell.setValue(res[0][2])
@@ -2439,7 +2439,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				return
 			cd = self.aktuelles_res[index][2]
 			bild = self.aktuelles_res[index][3]
-			zu_lesen = "select * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild.replace("'", "''") +"'"
+			zu_lesen = "SELECT * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild.replace("'", "''") +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			self.aktuelles_res = DBLesen.get_data(lese_func)
 			cd = self.aktuelles_res[0][2]
@@ -2473,7 +2473,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if not os.path.exists(self.file):
 				self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[0][3]).strip()
 				cover = True
-			zu_lesen = "select * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[0][8])
+			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[0][8])
 			lese_func = DBLesen(self, zu_lesen)
 			res2 = DBLesen.get_data(lese_func)
 			original_weitere = []
@@ -2512,12 +2512,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.sucheD_etattoo = suche.lineEditDarstellerSucheTattoo.text()
 			self.sucheD_ethnic = suche.comboBoxDarstellerSucheEthnic.currentText()
 		# select-Anweisung aufbauen
-			zu_lesen = "select * from pordb_darsteller where "
+			zu_lesen = "SELECT * from pordb_darsteller where "
 			argument = 0
 			#Name
 			if self.sucheD_darsteller:
 				argument = 1
-				zu_lesen2 = "select distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
+				zu_lesen2 = "SELECT distinct on (darsteller) darsteller from pordb_pseudo where pseudo like '%" +self.sucheD_darsteller.replace("'", "''") +"%'"
 				lese_func = DBLesen(self, zu_lesen2)
 				res = DBLesen.get_data(lese_func)
 				if res:
@@ -2611,7 +2611,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		for i in res:
 			if len(i[0]) == 1:
 				bildname = i.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				zu_lesen = "select * from pordb_darsteller where darsteller = '" +i.replace("'", "''") +"'"
+				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +i.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
 				if res2[0][5]: 
@@ -2767,7 +2767,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			neuer_name = umbenennen.lineEditNeuerName.text()
 			if neuer_name:
 				neuer_name = str(neuer_name).strip()
-				zu_lesen = "select * from pordb_pseudo where darsteller = '" +eingabe + "' and pseudo = '" +neuer_name.replace("'", "''") +"'"
+				zu_lesen = "SELECT * from pordb_pseudo where darsteller = '" +eingabe + "' and pseudo = '" +neuer_name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				if res:
@@ -2795,7 +2795,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					if eingabe not in i[2]:
 						del res2[k]
 						k -=1
-				zu_lesen = "select * from pordb_darsteller where darsteller = '" +eingabe +"'"
+				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +eingabe +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				if res[0][3] == None:
@@ -2823,7 +2823,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					
 					
 				zu_erfassen = []
-				zu_lesen = "select darsteller from pordb_darsteller where darsteller = '" +neuer_name.replace("'", "''") +"'"
+				zu_lesen = "SELECT darsteller from pordb_darsteller where darsteller = '" +neuer_name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res3 = DBLesen.get_data(lese_func)
 				if res3:
@@ -2877,14 +2877,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
 				self.statusBar.showMessage(str(len(res2)) + self.trUtf8(" lines changed"))
 				
-				zu_lesen = "select * from pordb_partner where darsteller = '" +eingabe +"'"
+				zu_lesen = "SELECT * from pordb_partner where darsteller = '" +eingabe +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
 					zu_erfassen.append("insert into pordb_partner values ('" +neuer_name.title().replace("'", "''") +"', '" +str(i[1]).replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]) +"')")
 					zu_erfassen.append("delete from pordb_partner where darsteller = '" +eingabe +"'")
 					
-				zu_lesen = "select * from pordb_partner where partner = '" +eingabe +"'"
+				zu_lesen = "SELECT * from pordb_partner where partner = '" +eingabe +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
@@ -2915,7 +2915,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			bild = QtGui.QImage(self.file)
 			if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
 				message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
-			zu_lesen = "select sex from pordb_darsteller where darsteller = '" +name.replace("'", "''")  +"'"
+			zu_lesen = "SELECT sex from pordb_darsteller where darsteller = '" +name.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			extension = os.path.splitext(str(self.file))[-1].lower()
@@ -3010,7 +3010,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		ein = self.eingabe_auswerten()
 		if not ein:
 			return
-		zu_lesen = "select pseudo from pordb_pseudo where darsteller = '" +ein.lstrip('=').replace("'", "''") +"' order by pseudo"
+		zu_lesen = "SELECT pseudo from pordb_pseudo where darsteller = '" +ein.lstrip('=').replace("'", "''") +"' order by pseudo"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		bilddialog = PseudonymeBearbeiten(ein, res)
@@ -3048,9 +3048,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 		self.lineEditSuchen.setText(ein.decode("utf-8"))
 		if ein:
-			zu_lesen = "select * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%'" 
+			zu_lesen = "SELECT * from pordb_mpg_katalog where lower(file) like '%" +ein.replace("'", "''").lower().replace(" ", "%") +"%'" 
 		else:
-			zu_lesen = "select * from pordb_mpg_katalog where "
+			zu_lesen = "SELECT * from pordb_mpg_katalog where "
 		if filesizefrom:
 			if self.comboBoxFilesizeUnit.currentText() == "MB":
 				faktor = 1048576
@@ -3128,7 +3128,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 		self.tableWidget1.clearContents()
 		if ein:
-			zu_lesen = "select * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''").replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_original where lower(original) like '%" +ein.lower().replace("'", "''").replace(" ", "%") +"%'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			original_erweiterung = ""
@@ -3282,7 +3282,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		j = -1
 		gesamt = 0
 		for i in self.cumshots.keys():
-			zu_lesen = "select sum(cs" +i +") from pordb_vid" 
+			zu_lesen = "SELECT sum(cs" +i +") from pordb_vid" 
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res[0][0]:
@@ -3333,7 +3333,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.onStatistikDarsteller("m", anzahl)
 		
 	def onStatistikDarsteller(self, sex, anzahl):
-		zu_lesen = "select darsteller, anzahl, partner, nation, geboren, filme from pordb_darsteller where sex = '" +sex +"' and partner >" +str(anzahl) +"order by partner, darsteller"
+		zu_lesen = "SELECT darsteller, anzahl, partner, nation, geboren, filme from pordb_darsteller where sex = '" +sex +"' and partner >" +str(anzahl) +"order by partner, darsteller"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		self.tableWidgetStatistik.setSortingEnabled(False)
@@ -3388,7 +3388,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 		
 	def onStatistikAnzahlClips(self):
-		zu_lesen = "select count (*) from pordb_vid"
+		zu_lesen = "SELECT count (*) from pordb_vid"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		try:
@@ -3399,7 +3399,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onStatistikAnzahlClipsJahr(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = "select distinct original from pordb_vid"
+		zu_lesen = "SELECT distinct original from pordb_vid"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		
@@ -3481,7 +3481,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		import tarfile
 		# Backup database
 		if self.checkBoxDatabase.isChecked():
-			zu_lesen = "select * from information_schema.tables where table_schema = 'public' and table_name not like 'pga_%' and table_name like 'pordb%' order by table_name"
+			zu_lesen = "SELECT * from information_schema.tables where table_schema = 'public' and table_name not like 'pga_%' and table_name like 'pordb%' order by table_name"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			db_host="localhost"
@@ -3623,7 +3623,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		message.exec_()
 		
 	def device_fuellen(self):
-		zu_lesen = "select * from pordb_mpg_verzeichnisse order by dir"
+		zu_lesen = "SELECT * from pordb_mpg_verzeichnisse order by dir"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		self.comboBoxDevice.clear()
@@ -3671,9 +3671,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		progressbar.show()
 		
 		for i in dateien:
+			print i
 			try:
 				zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
 			except:
+				print zu_lesen
 				message = QtGui.QMessageBox(self)
 				message.setText(self.trUtf8("Error, filename '") +i.decode("utf-8") +self.trUtf8("' is wrong (special characters)"))
 				message.exec_()

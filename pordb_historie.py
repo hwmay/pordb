@@ -2,26 +2,40 @@
 
 # Form implementation generated from reading ui file 'pordb_historie.ui'
 #
-# Created: Tue Mar 13 22:32:22 2012
-#      by: PyQt4 UI code generator 4.7.3
+# Created: Sun Jul 28 23:31:03 2013
+#      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
+        Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(903, 754)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("pypordb/8027068_splash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(Dialog)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.verticalLayout = QtGui.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.tableWidgetHistory = QtGui.QTableWidget(Dialog)
-        self.tableWidgetHistory.setObjectName("tableWidgetHistory")
+        self.tableWidgetHistory.setObjectName(_fromUtf8("tableWidgetHistory"))
         self.tableWidgetHistory.setColumnCount(3)
         self.tableWidgetHistory.setRowCount(0)
         item = QtGui.QTableWidgetItem()
@@ -32,14 +46,23 @@ class Ui_Dialog(object):
         self.tableWidgetHistory.setHorizontalHeaderItem(2, item)
         self.verticalLayout.addWidget(self.tableWidgetHistory)
         self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.lineEditSearch = QtGui.QLineEdit(Dialog)
+        self.lineEditSearch.setMinimumSize(QtCore.QSize(500, 0))
+        self.lineEditSearch.setObjectName(_fromUtf8("lineEditSearch"))
+        self.horizontalLayout.addWidget(self.lineEditSearch)
+        self.pushButtonSearch = QtGui.QPushButton(Dialog)
+        self.pushButtonSearch.setAutoDefault(False)
+        self.pushButtonSearch.setObjectName(_fromUtf8("pushButtonSearch"))
+        self.horizontalLayout.addWidget(self.pushButtonSearch)
         spacerItem = QtGui.QSpacerItem(668, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.pushButtonGo = QtGui.QPushButton(Dialog)
-        self.pushButtonGo.setObjectName("pushButtonGo")
+        self.pushButtonGo.setObjectName(_fromUtf8("pushButtonGo"))
         self.horizontalLayout.addWidget(self.pushButtonGo)
         self.pushButtonAbbrechen = QtGui.QPushButton(Dialog)
-        self.pushButtonAbbrechen.setObjectName("pushButtonAbbrechen")
+        self.pushButtonAbbrechen.setAutoDefault(False)
+        self.pushButtonAbbrechen.setObjectName(_fromUtf8("pushButtonAbbrechen"))
         self.horizontalLayout.addWidget(self.pushButtonAbbrechen)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
@@ -48,11 +71,19 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "History", None, QtGui.QApplication.UnicodeUTF8))
+        Dialog.setWindowTitle(_translate("Dialog", "History", None))
+        self.tableWidgetHistory.setWhatsThis(_translate("Dialog", "Here you see your last search command. You can repeat one search by marking the line and click on execute.", None))
         self.tableWidgetHistory.setSortingEnabled(True)
-        self.tableWidgetHistory.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("Dialog", "Select", None, QtGui.QApplication.UnicodeUTF8))
-        self.tableWidgetHistory.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("Dialog", "Command", None, QtGui.QApplication.UnicodeUTF8))
-        self.tableWidgetHistory.horizontalHeaderItem(2).setText(QtGui.QApplication.translate("Dialog", "Timestamp", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonGo.setText(QtGui.QApplication.translate("Dialog", "Execute", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAbbrechen.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        item = self.tableWidgetHistory.horizontalHeaderItem(0)
+        item.setText(_translate("Dialog", "Select", None))
+        item = self.tableWidgetHistory.horizontalHeaderItem(1)
+        item.setText(_translate("Dialog", "Command", None))
+        item = self.tableWidgetHistory.horizontalHeaderItem(2)
+        item.setText(_translate("Dialog", "Timestamp", None))
+        self.pushButtonSearch.setToolTip(_translate("Dialog", "Search in history, Ctrl+S", None))
+        self.pushButtonSearch.setText(_translate("Dialog", "Search", None))
+        self.pushButtonSearch.setShortcut(_translate("Dialog", "Ctrl+S", None))
+        self.pushButtonGo.setToolTip(_translate("Dialog", "Execute marked line", None))
+        self.pushButtonGo.setText(_translate("Dialog", "Execute", None))
+        self.pushButtonAbbrechen.setText(_translate("Dialog", "Cancel", None))
 
