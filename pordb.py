@@ -1862,6 +1862,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		res = self.darsteller_lesen(ein)
 		if not res: 
+			self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
+			self.bildSetzen()
 			return
 		for i in res:
 			if i[1] == 'm' or i[1] == 'w': # not from pseudo_table
@@ -2650,6 +2652,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"
 				else:
 					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".png"
+			if not os.path.isfile(dateiname):
+				dateiname = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
 			bild = QtGui.QIcon(dateiname)
 			newitem = QtGui.QTableWidgetItem(bild, text)
 			spalte += 1
@@ -3553,7 +3557,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					dateien_gefunden = True
 				except Exception, e:
 					app.restoreOverrideCursor()
-					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy from file " +i +" failed"))
+					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Copy from file " +i +" failed: " +str(e)))
 					return
 		self.conn.commit()
 		
@@ -3671,7 +3675,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		progressbar.show()
 		
 		for i in dateien:
-			print i
 			try:
 				zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
 			except:

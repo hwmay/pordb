@@ -237,8 +237,7 @@ class Dialog(QtGui.QDialog, Dialog):
     darsteller character(50) NOT NULL,
     partner character(50) NOT NULL,
     cd integer NOT NULL,
-    bild character varying(256) NOT NULL,
-    cs character(3)
+    bild character varying(256) NOT NULL
 );''')
 		cur.execute("ALTER TABLE public.pordb_partner OWNER TO postgres;")
 		
