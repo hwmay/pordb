@@ -3545,6 +3545,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		self.cur = self.conn.cursor()
 		dateiliste = os.listdir(self.verzeichnis)
+		# caused by foreign keys, the following tables has to be processed first
+		dateiliste.remove("pordb_vid.txt")
+		dateiliste.remove("pordb_darsteller.txt")
+		dateiliste.insert(0, "pordb_darsteller.txt")
+		dateiliste.insert(0, "pordb_vid.txt")
 		dateien_gefunden = False
 		for i in dateiliste:
 			if i.startswith("pordb_") and i.endswith(".txt"):
