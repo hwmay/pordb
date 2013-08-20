@@ -1934,7 +1934,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			j = -1
 			for i in res:
 				j += 1
-				zu_lesen = "SELECT cs" +cs +" from pordb_vid where cd = " +str(i[1]) +" and bild = '" +i[2] +"'"
+				zu_lesen = "SELECT cs" +cs +" from pordb_vid where cd = " +str(i[1]) +" and bild = '" +i[2].replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res1 = DBLesen.get_data(lese_func)
 				try:
