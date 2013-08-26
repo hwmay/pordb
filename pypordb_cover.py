@@ -90,7 +90,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		try:
 			dateiname = str(self.lineEditDateiname.text()).strip()
 		except:
-			dateiname_neu = self.originaldatei.decode("utf-8")
+			dateiname_neu = unicode(self.originaldatei)
 			for i in self.sonderzeichen.keys():
 				a = self.sonderzeichen.get(i)
 				dateiname_neu = dateiname_neu.replace(i, a)
