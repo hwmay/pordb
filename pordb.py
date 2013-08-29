@@ -3693,7 +3693,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			res = DBLesen.get_data(lese_func)
 			in_datenbank = True
 			for j in res:
-				if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(str(self.verzeichnis_tools)) and j[2].strip() == i.replace("'", "''").strip():
+				if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(str(self.verzeichnis_tools)) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
 					in_datenbank = False
 			
 			if in_datenbank:
