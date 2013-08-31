@@ -1607,7 +1607,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.aktuelles_res[:] = liste_neu
 		
 		self.ausgabe_in_table()
-		befehl = zu_lesen.replace("'", '"')
+		befehl = str(zu_lesen)
+		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []
 			zu_erfassen.append("DELETE from pordb_history where sql = '" +str(befehl).decode('utf-8') +"'")
