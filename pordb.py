@@ -940,7 +940,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 				for j in original_weitere:
 					if j:
-						zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +j.decode('utf-8').title().replace("'", "''") +"', " +str(i[0]) +")")
+						zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +j.decode("utf-8").title().replace("'", "''") +"', " +str(i[0]) +")")
 						
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
@@ -1611,11 +1611,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []
-			zu_erfassen.append("DELETE from pordb_history where sql = '" +str(befehl).decode('utf-8') +"'")
-			zu_erfassen.append("INSERT into pordb_history values ('" +str(befehl).decode('utf-8') +"', DEFAULT)")
+			zu_erfassen.append("DELETE from pordb_history where sql = '" +str(befehl).decode("utf-8") +"'")
+			zu_erfassen.append("INSERT into pordb_history values ('" +str(befehl).decode("utf-8") +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-		self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
+		self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
 		if str(ein).lower().startswith("select "):
 			pass
 		else:
@@ -1755,13 +1755,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen = "SELECT * FROM pordb_suche order by nr"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
-		vergleich = e + (200 - len(e)) * " " # Laenge des Vergleichsfeld auf 200 setzen
+		#vergleich = e + (200 - len(e)) * " " # Laenge des Vergleichsfeld auf 200 setzen
 		zu_erfassen = []
 		for i in res:
-			if i[1] == vergleich:
-				zu_erfassen.append("delete from pordb_suche where suche = '" +vergleich.replace("'", "''") +"'")
+			if i[1].strip() == e.strip():
+				zu_erfassen.append("delete from pordb_suche where suche = '" +e.replace("'", "''") +"'")
 				break
-		zu_erfassen.append("INSERT into pordb_suche (suche) VALUES ('" +e.decode('utf-8').replace("'", "''") +"')")
+		zu_erfassen.append("INSERT into pordb_suche (suche) VALUES ('" +e.decode("utf-8").replace("'", "''") +"')")
 		if len(res) >= 20:
 			zu_erfassen.append("delete from pordb_suche where nr = '" + str(res[0][0]) +"'")
 			

@@ -82,7 +82,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		p.drawPixmap(bild1.width(), 0, bild2)
 		p.end()
 		if self.original:
-			self.lineEditDateiname.setText(self.original)
+			self.lineEditDateiname.setText(self.original.decode("utf-8"))
 			self.originaldatei = self.original
 		else:
 			self.originaldatei = unicode(self.lineEditDateiname.text())
@@ -90,7 +90,7 @@ class Cover(QtGui.QDialog, pordb_cover):
 		try:
 			dateiname = str(self.lineEditDateiname.text()).strip()
 		except:
-			dateiname_neu = unicode(self.originaldatei)
+			dateiname_neu = unicode(self.lineEditDateiname.text).encode("utf-8")
 			for i in self.sonderzeichen.keys():
 				a = self.sonderzeichen.get(i)
 				dateiname_neu = dateiname_neu.replace(i, a)
