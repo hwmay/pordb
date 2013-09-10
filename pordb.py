@@ -2614,7 +2614,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if argument != 0:
 				lese_func = DBLesen(self, zu_lesen)
 				aktuelles_res = DBLesen.get_data(lese_func)
+				self.aktuelles_res = aktuelles_res[:]
 				if suche.lineEditActor1.text() <> "":
+					self.aktuelles_res = []
 					zu_lesen = "select distinct on (partner) partner from pordb_partner where darsteller = '" +str(suche.lineEditActor1.text()).title() +"'"
 					partner_reduzieren()
 				if suche.lineEditActor2.text() <> "":
