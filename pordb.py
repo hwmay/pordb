@@ -553,6 +553,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
 			else:
 				if os.path.exists(bilddatei_alt):
+					try:
+						os.remove(self.verzeichnis_trash +os.sep +"pypordb_bildalt.*")
+					except:
+						pass
 					os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
 					bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
 				else:
