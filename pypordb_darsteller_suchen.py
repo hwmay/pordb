@@ -30,7 +30,10 @@ class DarstellerSuchen(QtGui.QDialog, pordb_darsteller_suchen):
 		
 	def onRefresh(self):
 		self.lineEditDarstellerSuche.setText("")
-		self.comboBoxDarstellerSucheGeschlecht.setCurrentIndex(0)
+		self.comboBoxDarstellerSucheGeschlecht.setCurrentIndex(-1)
+		self.lineEditActor1.setText("")
+		self.lineEditActor2.setText("")
+		self.lineEditActor3.setText("")
 		self.dateEditDarstellerSucheAb.setDate(self.minimum)
 		self.dateEditDarstellerSucheBis.setDate(self.maximum)
 		self.comboBoxDarstellerSucheHaar.setCurrentIndex(-1)

@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.4.19"
+__version__ = "5.5.0"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -243,6 +243,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.aktuelle_ausgabe = " "
 		self.suche_darsteller = self.suche_cd = self.suche_titel = self.suche_original = self.suche_cs = ""
 		self.sucheD_darsteller = self.sucheD_geschlecht = self.sucheD_haar = self.sucheD_nation = self.sucheD_tattoo = self.sucheD_etattoo = self.sucheD_ethnic = ""
+		self.sucheD_actor1 = self.sucheD_actor2 = self.sucheD_actor3 = ""
 		self.sucheD_ab = ""
 		self.sucheD_bis = ""
 		
@@ -2490,11 +2491,24 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onKorrektur
 		
 	def onDarstellerSuchen(self):
+		def partner_reduzieren():
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			darsteller = []
+			for i in res:
+				darsteller.append(i[0])
+			for i in aktuelles_res:
+				if i[0] in darsteller:
+					self.aktuelles_res.append(i)
+
 		self.partner = None
 		suche = DarstellerSuchen()
 		suche.lineEditDarstellerSuche.setText(self.sucheD_darsteller)
 		suche.lineEditDarstellerSuche.setFocus()
 		suche.comboBoxDarstellerSucheGeschlecht.setCurrentIndex(suche.comboBoxDarstellerSucheGeschlecht.findText(self.sucheD_geschlecht))
+		suche.lineEditActor1.setText(self.sucheD_actor1)
+		suche.lineEditActor2.setText(self.sucheD_actor2)
+		suche.lineEditActor3.setText(self.sucheD_actor3)
 		suche.dateEditDarstellerSucheAb.setDate(QtCore.QDate.fromString(self.sucheD_ab, "yyyyMMdd"))
 		suche.dateEditDarstellerSucheBis.setDate(QtCore.QDate.fromString(self.sucheD_bis, "yyyyMMdd"))
 		suche.comboBoxDarstellerSucheHaar.setCurrentIndex(suche.comboBoxDarstellerSucheHaar.findText(self.sucheD_haar))
@@ -2507,6 +2521,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			self.sucheD_darsteller = suche.lineEditDarstellerSuche.text()
 			self.sucheD_geschlecht = suche.comboBoxDarstellerSucheGeschlecht.currentText()
+			self.sucheD_actor1 = suche.lineEditActor1.text()
+			self.sucheD_actor2 = suche.lineEditActor2.text()
+			self.sucheD_actor3 = suche.lineEditActor3.text()
 			self.sucheD_ab = suche.dateEditDarstellerSucheAb.date().toString("yyyyMMdd")
 			self.sucheD_bis = suche.dateEditDarstellerSucheBis.date().toString("yyyyMMdd")
 			self.sucheD_haar = suche.comboBoxDarstellerSucheHaar.currentText()
@@ -2537,7 +2554,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					zu_lesen += " and "
 				argument = 1
 				zu_lesen += "sex = '" +self.sucheD_geschlecht +"'"
-	
+				
 			# Datum >=
 			if argument == 1:
 				zu_lesen += " and "
@@ -2593,12 +2610,29 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.letzter_select_komplett = zu_lesen
 			self.letzter_select = zu_lesen
 	
+			self.aktuelles_res = []
 			if argument != 0:
 				lese_func = DBLesen(self, zu_lesen)
-				self.aktuelles_res = DBLesen.get_data(lese_func)
+				aktuelles_res = DBLesen.get_data(lese_func)
+				if suche.lineEditActor1.text() <> "":
+					zu_lesen = "select distinct on (partner) partner from pordb_partner where darsteller = '" +str(suche.lineEditActor1.text()).title() +"'"
+					partner_reduzieren()
+				if suche.lineEditActor2.text() <> "":
+					aktuelles_res = self.aktuelles_res[:]
+					self.aktuelles_res = []
+					zu_lesen = "select distinct on (partner) partner from pordb_partner where darsteller = '" +str(suche.lineEditActor2.text()).title() +"'"
+					partner_reduzieren()
+				if suche.lineEditActor3.text() <> "":
+					aktuelles_res = self.aktuelles_res[:]
+					self.aktuelles_res = []
+					zu_lesen = "select distinct on (partner) partner from pordb_partner where darsteller = '" +str(suche.lineEditActor3.text()).title() +"'"
+					partner_reduzieren()
+
 				self.start_bilder = 0
 				self.ausgabedarsteller()
 			app.restoreOverrideCursor()
+		else:
+			self.suchfeld.setFocus()
 	# end of onDarstellerSuchen
 
 	def ausgabedarsteller(self):
