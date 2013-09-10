@@ -1092,8 +1092,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					app.restoreOverrideCursor()
 					return
 				else:
-					lese_func = DBLesen(self, self.letzter_select)
-					res = DBLesen.get_data(lese_func)
+					#lese_func = DBLesen(self, self.letzter_select)
+					#res = DBLesen.get_data(lese_func)
+					res = self.aktuelles_res
 					if self.actionCheckBoxDVDCover.isChecked():
 						zw_res = []
 						for i in res:
