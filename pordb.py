@@ -1285,6 +1285,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							painter.drawText(x + 300, y, "- " +str(seite) +" -")
 							y += 15
 						painter.drawText(x, y, unicode(self.listWidgetFilme.item(i).text()).strip())
+					app.restoreOverrideCursor()
 					painter.end()
 			elif self.tabWidget.currentIndex() == 2:
 				painter.drawText(x + 100, y, "- " +str(seite) +" -")
@@ -1621,7 +1622,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_erfassen.append("INSERT into pordb_history values ('" +str(befehl).decode("utf-8") +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-		self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
+		self.statusBar.showMessage(self.trUtf8("Search was: ") +str(ein).decode("utf-8"))
 		if str(ein).lower().startswith("select "):
 			pass
 		else:
