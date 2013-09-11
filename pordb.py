@@ -1972,8 +1972,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if not ein:
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
-				ein = str(selected[0].text()).strip()
-				ein = ein.split("(")[0]
+				ein = str(selected[0].text())
+				ein = ein.split("(")[0].strip()
 				ein = "=" +ein
 		if not ein:
 			ein = "=" +str(self.labelDarsteller.text()).strip().title()
