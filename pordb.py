@@ -476,22 +476,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.changeTab("F2")
 		elif event.key() == QtCore.Qt.Key_F3:
 			self.changeTab("F3")
-		#elif event.key() == QtCore.Qt.Key_F5:
-			#if len(self.tableWidgetBilderAktuell.selectedItems()) == 2:
-				#items = self.tableWidgetBilderAktuell.selectedItems()
-				#dateien = []
-				#for i in items:
-					#dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				#self.onCover(dateien)
-			#elif len(self.tableWidgetBilderAktuell.selectedItems()) == 1:
-				#items = self.tableWidgetBilderAktuell.selectedItems()
-				#dateien = []
-				#for i in items:
-					#dateien.append(str(self.verzeichnis +os.sep +i.text()))
-				#self.onNeueingabe(dateien=dateien)
-			#else:
-				#self.onNeueingabe()
-			#self.bilder_aktuell()
 		elif event.key() == QtCore.Qt.Key_Escape:
 			self.suchfeld.setCurrentIndex(-1)
 			self.suchfeld.setFocus()
@@ -1363,6 +1347,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
 				ein = str(selected[0].text()).strip()
+				ein = ein.split("(")[0]
 			else:
 				ein = str(self.labelDarsteller.text()).strip().title()
 		
@@ -1919,10 +1904,20 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		gesucht = res[0][0].strip().replace("'", "''")
 		geschlecht = res[0][1]
-		zu_lesen = "SELECT partner, cd, bild FROM pordb_partner where darsteller = '" +gesucht +"'"
+		# Get the complete list of partners of the actor
+		zu_lesen = "SELECT partner FROM pordb_partner where darsteller = '" +gesucht +"'order by partner"
+		lese_func = DBLesen(self, zu_lesen)
+		res_komplett = DBLesen.get_data(lese_func)
+		partner_komplett = []
+		for i in res_komplett:
+			partner_komplett.append(i[0])
+		# Get the distinct list of partners of the actor
+		zu_lesen = "SELECT distinct on (partner) partner, cd, bild FROM pordb_partner where darsteller = '" +gesucht +"'order by partner"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		res2 = res[:]
+		ethnic = None
+		cs = None
 		if self.comboBoxEthnicFilter.currentText():
 			ethnic = str(self.comboBoxEthnicFilter.currentText())
 			j = -1
@@ -1956,25 +1951,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		self.paarung = []
 		for i in res2:
-			darsteller_liste = i[0].split(',')
-			for j in darsteller_liste:
-				if j.strip() != gesucht and j.strip() not in self.paarung:
-					zu_lesen = "SELECT * FROM pordb_darsteller where darsteller = '" +j.strip().replace("'", "''") +"' order by darsteller"
-					lese_func = DBLesen(self, zu_lesen)
-					res = DBLesen.get_data(lese_func)
-					try:
-						if geschlecht != res[0][1] and res[0][1] != ' ':
-							self.paarung.append(j.strip())
-					except:
-						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") +j)
-						return
-		self.paarung.sort()
+			anzahl = partner_komplett.count(i[0])
+			self.paarung.append(i[0].strip() +" (" +str(anzahl) +")")
+					
 		self.listWidgetDarsteller.clear()
 		self.listWidgetDarsteller.addItems(self.paarung)
 		self.labelText.setText(self.trUtf8("has acted with: ") +str(len(self.paarung)))
-		zu_erfassen = "update pordb_darsteller set partner = " +str(len(self.paarung)) +" where darsteller = '" +gesucht +"'"
-		update_func = DBUpdate(self, zu_erfassen)
-		DBUpdate.update_data(update_func)
+		if not ethnic and not cs:
+			zu_erfassen = "update pordb_darsteller set partner = " +str(len(self.paarung)) +" where darsteller = '" +gesucht +"'"
+			update_func = DBUpdate(self, zu_erfassen)
+			DBUpdate.update_data(update_func)
 	# end of onpaareSuchen
 		
 	def eingabe_auswerten(self):
@@ -1987,6 +1973,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
 				ein = str(selected[0].text()).strip()
+				ein = ein.split("(")[0]
 				ein = "=" +ein
 		if not ein:
 			ein = "=" +str(self.labelDarsteller.text()).strip().title()
