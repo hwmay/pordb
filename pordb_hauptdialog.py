@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Jun 10 21:56:24 2013
+# Created: Thu Sep 12 15:10:59 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -287,6 +287,9 @@ class Ui_MainWindow(object):
         self.comboBoxCSFilter.addItem(_fromUtf8(""))
         self.comboBoxCSFilter.addItem(_fromUtf8(""))
         self.horizontalLayout_5.addWidget(self.comboBoxCSFilter)
+        self.pushButtonSortPartner = QtGui.QPushButton(self.frame_2)
+        self.pushButtonSortPartner.setObjectName(_fromUtf8("pushButtonSortPartner"))
+        self.horizontalLayout_5.addWidget(self.pushButtonSortPartner)
         self.verticalLayout_4.addLayout(self.horizontalLayout_5)
         self.listWidgetDarsteller = QtGui.QListWidget(self.frame_2)
         self.listWidgetDarsteller.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -543,7 +546,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.addLayout(self.horizontalLayout_14)
         self.webView = QtWebKit.QWebView(self.tab_4)
         self.webView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.webView.setProperty("url", QtCore.QUrl(_fromUtf8("about:blank")))
+        self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.verticalLayout_10.addWidget(self.webView)
         self.gridLayout_10.addLayout(self.verticalLayout_10, 0, 0, 1, 1)
@@ -938,6 +941,8 @@ class Ui_MainWindow(object):
         self.comboBoxCSFilter.setItemText(8, _translate("MainWindow", "b Belly", None))
         self.comboBoxCSFilter.setItemText(9, _translate("MainWindow", "a Ass", None))
         self.comboBoxCSFilter.setItemText(10, _translate("MainWindow", "s Others", None))
+        self.pushButtonSortPartner.setToolTip(_translate("MainWindow", "Sort on ...", None))
+        self.pushButtonSortPartner.setText(_translate("MainWindow", "Quantity", None))
         self.listWidgetDarsteller.setWhatsThis(_translate("MainWindow", "Has fucked with", None))
         self.pushButtonPartnerZeigen.setToolTip(_translate("MainWindow", "Show partners", None))
         self.pushButtonPartnerZeigen.setWhatsThis(_translate("MainWindow", "Show actors in first tab", None))

@@ -128,6 +128,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonDarstellerSuchen, QtCore.SIGNAL("clicked()"), self.onDarstellerSuchen)
 		self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.onDarstellerUmbenennen)
 		self.connect(self.pushButtonDarstellerBild, QtCore.SIGNAL("clicked()"), self.onDarstellerBild)
+		self.connect(self.pushButtonSortPartner, QtCore.SIGNAL("clicked()"), self.onPartnerSortieren)
 		self.connect(self.pushButtonSort, QtCore.SIGNAL("clicked()"), self.onFilmeSortieren)
 		self.connect(self.pushButtonPartnerZeigen, QtCore.SIGNAL("clicked()"), self.onPartnerZeigen)
 		self.connect(self.pushButtonPseudo, QtCore.SIGNAL("clicked()"), self.onPseudo)
@@ -483,7 +484,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onPageUp()
 		elif event.key() == QtCore.Qt.Key_PageDown:
 			self.onPageDown()
-		elif event.key() == (QtCore.Qt.Key_Enter or QtCore.Qt.Key_Return) and self.tabWidget.currentIndex() == 3:
+		elif event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return) and self.tabWidget.currentIndex() == 3:
 			self.GetWebsite()
 		elif event.key() == QtCore.Qt.Key_Z and self.tabWidget.currentIndex() == 3:
 			self.webView.back()
@@ -1956,7 +1957,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					
 		self.listWidgetDarsteller.clear()
 		self.listWidgetDarsteller.addItems(self.paarung)
-		self.labelText.setText(self.trUtf8("has acted with: ") +str(len(self.paarung)))
+		self.labelText.setText(self.trUtf8("Partner: ") +str(len(self.paarung)))
 		if not ethnic and not cs:
 			zu_erfassen = "update pordb_darsteller set partner = " +str(len(self.paarung)) +" where darsteller = '" +gesucht +"'"
 			update_func = DBUpdate(self, zu_erfassen)
@@ -1973,8 +1974,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
 				ein = str(selected[0].text())
-				ein = ein.split("(")[0].strip()
-				ein = "=" +ein
+				ein = "=" +ein[0 : ein.rfind("(")].strip()
 		if not ein:
 			ein = "=" +str(self.labelDarsteller.text()).strip().title()
 		return ein
@@ -2985,6 +2985,28 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.listWidgetFilme.addItems(filme)
 		self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
 	# end of onDarstellerFilme
+	
+	def onPartnerSortieren(self):
+		def vergleich(a, b):
+			wert1 = a[a.rfind("(") + 1 : a.rfind(")")]
+			wert2 = b[b.rfind("(") + 1 : b.rfind(")")]
+			return int(wert1) - int(wert2)
+				
+		text = self.pushButtonSortPartner.text()
+		if text == self.trUtf8("Quantity"):
+			items = []
+			for i in xrange(self.listWidgetDarsteller.count()):
+				items.append(unicode(self.listWidgetDarsteller.item(i).text()).strip())
+			items.sort(vergleich)
+			items.reverse()
+			self.listWidgetDarsteller.clear()
+			self.listWidgetDarsteller.addItems(items)
+			self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Partner", None, QtGui.QApplication.UnicodeUTF8))
+		else:
+			self.listWidgetDarsteller.sortItems()
+			self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Quantity", None, QtGui.QApplication.UnicodeUTF8))
+		self.suchfeld.setFocus()
+	# end of onPartnerSortieren
 		
 	def onFilmeSortieren(self):
 		def vergleich(a, b):
