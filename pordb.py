@@ -142,6 +142,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.webView, QtCore.SIGNAL("loadStarted()"), self.onLoadStarted)
 		self.connect(self.webView, QtCore.SIGNAL("loadFinished (bool)"), self.onLoadFinished)
 		self.connect(self.pushButtonVideo, QtCore.SIGNAL("clicked()"), self.onVideoSuchen)
+		self.connect(self.pushButtonBack, QtCore.SIGNAL("clicked()"), self.webView.back)
+		self.connect(self.pushButtonForward, QtCore.SIGNAL("clicked()"), self.webView.forward)
 		self.connect(self.pushButtonIAFD, QtCore.SIGNAL("clicked()"), self.onIAFDSeite)
 		self.connect(self.pushButtonAbholen, QtCore.SIGNAL("clicked()"), self.onDarstellerdatenAbholen)
 		self.connect(self.pushButtonUrl, QtCore.SIGNAL("clicked()"), self.onUrlVerwalten)
@@ -2642,8 +2644,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		spalte = -1
 		for i in res:
 			if len(i[0]) == 1:
-				bildname = i.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +i.replace("'", "''") +"'"
+				if i.rfind("(") > 0:
+					name = i[0 : i.rfind("(")]
+				else:
+					name = i.strip()
+				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_")
+				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
 				if res2[0][5]: 
@@ -2656,7 +2662,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						active += "-" + str(res2[0][13])
 				else:
 					active = ""
-				text = i + "\n" + nationality + "\n" + active
+				text = name + "\n" + nationality + "\n" + active
 				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"):
 					dateiname = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"
 				elif os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"):

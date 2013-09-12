@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1310,12 +1310,47 @@ p, li { white-space: pre-wrap; }
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
+              <widget class="QPushButton" name="pushButtonBack">
+               <property name="toolTip">
+                <string>back</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/go-previous.svg</normaloff>pypordb/go-previous.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonForward">
+               <property name="toolTip">
+                <string>forward</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/go-next.svg</normaloff>pypordb/go-next.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="pushButtonIAFD">
+               <property name="toolTip">
+                <string>Load IAFD site</string>
+               </property>
                <property name="whatsThis">
                 <string>Load IAFD site</string>
                </property>
                <property name="text">
-                <string>Load IAFD site</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/favicon.ico</normaloff>pypordb/favicon.ico</iconset>
                </property>
               </widget>
              </item>
