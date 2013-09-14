@@ -1887,6 +1887,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setCurrentIndex(-1)
 		self.suchfeld.setFocus()
 		self.listWidgetDarsteller.clearSelection()
+		self.pushButtonSortPartner.setText(QtGui.QApplication.translate("Dialog", "Quantity", None, QtGui.QApplication.UnicodeUTF8))
+		self.pushButtonSort.setText(QtGui.QApplication.translate("Dialog", "Year", None, QtGui.QApplication.UnicodeUTF8))
 		app.restoreOverrideCursor()
 	# end of onbildAnzeige
 	
@@ -2645,7 +2647,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		for i in res:
 			if len(i[0]) == 1:
 				if i.rfind("(") > 0:
-					name = i[0 : i.rfind("(")]
+					name = i[0 : i.rfind("(") - 1]
 				else:
 					name = i.strip()
 				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_")
