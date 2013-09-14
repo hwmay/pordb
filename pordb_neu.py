@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_neu.ui'
 #
-# Created: Mon May  6 00:09:00 2013
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Sat Sep 14 23:20:32 2013
+#      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -342,80 +351,81 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "New / Change / Delete", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_1.setText(QtGui.QApplication.translate("Dialog", "Title", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditNeuTitel.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter file name", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Actor", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditNeuDarsteller.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter the list of actors, separated by comma", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("Dialog", "CD", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditNeuCD.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("Dialog", "Image", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditNeuBild.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter file name of image file", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_6.setText(QtGui.QApplication.translate("Dialog", "Original", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditNeuOriginal.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter original title of the movie. For adding more titles, please press the button on the right side.", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginalAlt.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Reuse last entered original title, Ctrl+Y</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginalAlt.setWhatsThis(QtGui.QApplication.translate("Dialog", "Reuse last entered original title", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginalAlt.setShortcut(QtGui.QApplication.translate("Dialog", "Ctrl+Y", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginal.setToolTip(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOriginal.setWhatsThis(QtGui.QApplication.translate("Dialog", "Enter more movie titles", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_4.setTitle(QtGui.QApplication.translate("Dialog", "present", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonVorhandenJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when video is present.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonVorhandenJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonVorhandenNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when video is NOT present.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonVorhandenNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_5.setTitle(QtGui.QApplication.translate("Dialog", "watched", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonGesehenJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is NOT yet seen.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonGesehenJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonGesehenNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when this video is seen.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonGesehenNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_6.setTitle(QtGui.QApplication.translate("Dialog", "Cover", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonCoverJa.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when the image to be added in database is NOT a video cover.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonCoverJa.setText(QtGui.QApplication.translate("Dialog", "yes", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonCoverNein.setWhatsThis(QtGui.QApplication.translate("Dialog", "Mark here when the image to be added in database is a video cover.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButtonCoverNein.setText(QtGui.QApplication.translate("Dialog", "no", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_8.setText(QtGui.QApplication.translate("Dialog", "Title in clipboard:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxUninteressant.setWhatsThis(QtGui.QApplication.translate("Dialog", "Check this box, if you did not like the movie", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxUninteressant.setText(QtGui.QApplication.translate("Dialog", "Not interesting", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_17.setText(QtGui.QApplication.translate("Dialog", "Resolution:", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxDefinition.setItemText(1, QtGui.QApplication.translate("Dialog", "SD", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxDefinition.setItemText(2, QtGui.QApplication.translate("Dialog", "HD 720p", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxDefinition.setItemText(3, QtGui.QApplication.translate("Dialog", "HD 1080p", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxDefinition.setItemText(4, QtGui.QApplication.translate("Dialog", "Unknown", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Dialog", "Facial", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("Dialog", "Handjob", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_7.setText(QtGui.QApplication.translate("Dialog", "Tits", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_9.setText(QtGui.QApplication.translate("Dialog", "Cmp", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_10.setText(QtGui.QApplication.translate("Dialog", "Analcmp", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_11.setText(QtGui.QApplication.translate("Dialog", "Oralcmp", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_12.setText(QtGui.QApplication.translate("Dialog", "Cunt", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_13.setText(QtGui.QApplication.translate("Dialog", "Belly", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_14.setText(QtGui.QApplication.translate("Dialog", "Ass", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_15.setText(QtGui.QApplication.translate("Dialog", "Others", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_16.setText(QtGui.QApplication.translate("Dialog", "None", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuDarstelleruebernehmen.setToolTip(QtGui.QApplication.translate("Dialog", "Adopt actor", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Copy the marked actors to the actors field", None, QtGui.QApplication.UnicodeUTF8))
-        self.listWidgetW.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used female actors. Adopt marked actors with a doubleclick or click on the button above.", None, QtGui.QApplication.UnicodeUTF8))
-        self.listWidgetM.setWhatsThis(QtGui.QApplication.translate("Dialog", "Last used male actors. Adopt marked actors with a doubleclick or click on the button above.", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("Dialog", "Image", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelNeuBildanzeige.setWhatsThis(QtGui.QApplication.translate("Dialog", "Preview", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonBildbeschneiden.setWhatsThis(QtGui.QApplication.translate("Dialog", "Crop image.\n"
+        Dialog.setWindowTitle(_translate("Dialog", "New / Change / Delete", None))
+        self.label_1.setText(_translate("Dialog", "Title", None))
+        self.lineEditNeuTitel.setWhatsThis(_translate("Dialog", "Enter file name", None))
+        self.label_2.setText(_translate("Dialog", "Actor", None))
+        self.lineEditNeuDarsteller.setWhatsThis(_translate("Dialog", "Enter the list of actors, separated by comma", None))
+        self.label_3.setText(_translate("Dialog", "CD", None))
+        self.lineEditNeuCD.setWhatsThis(_translate("Dialog", "Enter directory", None))
+        self.label_4.setText(_translate("Dialog", "Image", None))
+        self.lineEditNeuBild.setWhatsThis(_translate("Dialog", "Enter file name of image file", None))
+        self.label_6.setText(_translate("Dialog", "Original", None))
+        self.lineEditNeuOriginal.setWhatsThis(_translate("Dialog", "Enter original title of the movie. For adding more titles, please press the button on the right side.", None))
+        self.pushButtonOriginalAlt.setToolTip(_translate("Dialog", "<html><head/><body><p>Reuse last entered original title, Ctrl+Y</p></body></html>", None))
+        self.pushButtonOriginalAlt.setWhatsThis(_translate("Dialog", "Reuse last entered original title", None))
+        self.pushButtonOriginalAlt.setShortcut(_translate("Dialog", "Ctrl+Y", None))
+        self.pushButtonOriginal.setToolTip(_translate("Dialog", "Enter more movie titles", None))
+        self.pushButtonOriginal.setWhatsThis(_translate("Dialog", "Enter more movie titles", None))
+        self.groupBox_4.setTitle(_translate("Dialog", "present", None))
+        self.radioButtonVorhandenJa.setWhatsThis(_translate("Dialog", "Mark here when video is present.", None))
+        self.radioButtonVorhandenJa.setText(_translate("Dialog", "yes", None))
+        self.radioButtonVorhandenNein.setWhatsThis(_translate("Dialog", "Mark here when video is NOT present.", None))
+        self.radioButtonVorhandenNein.setText(_translate("Dialog", "no", None))
+        self.groupBox_5.setTitle(_translate("Dialog", "watched", None))
+        self.radioButtonGesehenJa.setWhatsThis(_translate("Dialog", "Mark here when this video has been watched.", None))
+        self.radioButtonGesehenJa.setText(_translate("Dialog", "yes", None))
+        self.radioButtonGesehenNein.setWhatsThis(_translate("Dialog", "Mark here when this video has NOT yet watched.", None))
+        self.radioButtonGesehenNein.setText(_translate("Dialog", "no", None))
+        self.groupBox_6.setTitle(_translate("Dialog", "Cover", None))
+        self.radioButtonCoverJa.setWhatsThis(_translate("Dialog", "Mark here when the image to be added in database is a video cover.", None))
+        self.radioButtonCoverJa.setText(_translate("Dialog", "yes", None))
+        self.radioButtonCoverNein.setWhatsThis(_translate("Dialog", "Mark here when the image to be added in database is NOT a video cover.", None))
+        self.radioButtonCoverNein.setText(_translate("Dialog", "no", None))
+        self.label_8.setText(_translate("Dialog", "Title in clipboard:", None))
+        self.checkBoxUninteressant.setWhatsThis(_translate("Dialog", "Check this box, if you did not like the movie", None))
+        self.checkBoxUninteressant.setText(_translate("Dialog", "Not interesting", None))
+        self.label_17.setWhatsThis(_translate("Dialog", "Please select the resolution of the clip.", None))
+        self.label_17.setText(_translate("Dialog", "Resolution:", None))
+        self.comboBoxDefinition.setItemText(1, _translate("Dialog", "SD", None))
+        self.comboBoxDefinition.setItemText(2, _translate("Dialog", "HD 720p", None))
+        self.comboBoxDefinition.setItemText(3, _translate("Dialog", "HD 1080p", None))
+        self.comboBoxDefinition.setItemText(4, _translate("Dialog", "Unknown", None))
+        self.label.setText(_translate("Dialog", "Facial", None))
+        self.label_5.setText(_translate("Dialog", "Handjob", None))
+        self.label_7.setText(_translate("Dialog", "Tits", None))
+        self.label_9.setText(_translate("Dialog", "Cmp", None))
+        self.label_10.setText(_translate("Dialog", "Analcmp", None))
+        self.label_11.setText(_translate("Dialog", "Oralcmp", None))
+        self.label_12.setText(_translate("Dialog", "Cunt", None))
+        self.label_13.setText(_translate("Dialog", "Belly", None))
+        self.label_14.setText(_translate("Dialog", "Ass", None))
+        self.label_15.setText(_translate("Dialog", "Others", None))
+        self.label_16.setText(_translate("Dialog", "None", None))
+        self.pushButtonNeuDarstelleruebernehmen.setToolTip(_translate("Dialog", "Adopt actor", None))
+        self.pushButtonNeuDarstelleruebernehmen.setWhatsThis(_translate("Dialog", "Copy the marked actors to the actors field", None))
+        self.listWidgetW.setWhatsThis(_translate("Dialog", "Last used female actors. Adopt marked actors with a doubleclick or click on the button above.", None))
+        self.listWidgetM.setWhatsThis(_translate("Dialog", "Last used male actors. Adopt marked actors with a doubleclick or click on the button above.", None))
+        self.groupBox_2.setTitle(_translate("Dialog", "Image", None))
+        self.labelNeuBildanzeige.setWhatsThis(_translate("Dialog", "Preview", None))
+        self.pushButtonBildbeschneiden.setWhatsThis(_translate("Dialog", "Crop image.\n"
 "\n"
 "How does cropping work?\n"
 "\n"
-"First click with the left mouse button in the left top corner, then click with the right mouse button at the bottom right.", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonBildbeschneiden.setText(QtGui.QApplication.translate("Dialog", "Crop image", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonBildloeschen.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Delete image file from working directory</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonBildloeschen.setWhatsThis(QtGui.QApplication.translate("Dialog", "Delete image file in working directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonBildloeschen.setText(QtGui.QApplication.translate("Dialog", "Delete image file", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonVerz.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Change working directory</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonVerz.setWhatsThis(QtGui.QApplication.translate("Dialog", "Change the working directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonVerz.setText(QtGui.QApplication.translate("Dialog", "Change directory", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuOK.setWhatsThis(QtGui.QApplication.translate("Dialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuOK.setText(QtGui.QApplication.translate("Dialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuOK.setShortcut(QtGui.QApplication.translate("Dialog", "Enter, Return", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuCancel.setWhatsThis(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuCancel.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuDelete.setToolTip(QtGui.QApplication.translate("Dialog", "<html><head/><body><p>Delete from database</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuDelete.setWhatsThis(QtGui.QApplication.translate("Dialog", "Entry in database will be deleted, inclusive image file", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonNeuDelete.setText(QtGui.QApplication.translate("Dialog", "Delete", None, QtGui.QApplication.UnicodeUTF8))
+"First click with the left mouse button in the left top corner, then click with the right mouse button at the bottom right.", None))
+        self.pushButtonBildbeschneiden.setText(_translate("Dialog", "Crop image", None))
+        self.pushButtonBildloeschen.setToolTip(_translate("Dialog", "<html><head/><body><p>Delete image file from working directory</p></body></html>", None))
+        self.pushButtonBildloeschen.setWhatsThis(_translate("Dialog", "Delete image file in working directory", None))
+        self.pushButtonBildloeschen.setText(_translate("Dialog", "Delete image file", None))
+        self.pushButtonVerz.setToolTip(_translate("Dialog", "<html><head/><body><p>Change working directory</p></body></html>", None))
+        self.pushButtonVerz.setWhatsThis(_translate("Dialog", "Change the working directory", None))
+        self.pushButtonVerz.setText(_translate("Dialog", "Change directory", None))
+        self.pushButtonNeuOK.setWhatsThis(_translate("Dialog", "Save", None))
+        self.pushButtonNeuOK.setText(_translate("Dialog", "Save", None))
+        self.pushButtonNeuOK.setShortcut(_translate("Dialog", "Enter, Return", None))
+        self.pushButtonNeuCancel.setWhatsThis(_translate("Dialog", "Cancel", None))
+        self.pushButtonNeuCancel.setText(_translate("Dialog", "Cancel", None))
+        self.pushButtonNeuDelete.setToolTip(_translate("Dialog", "<html><head/><body><p>Delete from database</p></body></html>", None))
+        self.pushButtonNeuDelete.setWhatsThis(_translate("Dialog", "Entry in database will be deleted, inclusive image file", None))
+        self.pushButtonNeuDelete.setText(_translate("Dialog", "Delete", None))
 

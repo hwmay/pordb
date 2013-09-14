@@ -237,7 +237,7 @@
             <item>
              <widget class="QRadioButton" name="radioButtonGesehenJa">
               <property name="whatsThis">
-               <string>Mark here when this video is NOT yet seen.</string>
+               <string>Mark here when this video has been watched.</string>
               </property>
               <property name="text">
                <string>yes</string>
@@ -247,7 +247,7 @@
             <item>
              <widget class="QRadioButton" name="radioButtonGesehenNein">
               <property name="whatsThis">
-               <string>Mark here when this video is seen.</string>
+               <string>Mark here when this video has NOT yet watched.</string>
               </property>
               <property name="text">
                <string>no</string>
@@ -279,7 +279,7 @@
             <item>
              <widget class="QRadioButton" name="radioButtonCoverJa">
               <property name="whatsThis">
-               <string>Mark here when the image to be added in database is NOT a video cover.</string>
+               <string>Mark here when the image to be added in database is a video cover.</string>
               </property>
               <property name="text">
                <string>yes</string>
@@ -289,7 +289,7 @@
             <item>
              <widget class="QRadioButton" name="radioButtonCoverNein">
               <property name="whatsThis">
-               <string>Mark here when the image to be added in database is a video cover.</string>
+               <string>Mark here when the image to be added in database is NOT a video cover.</string>
               </property>
               <property name="text">
                <string>no</string>
@@ -357,6 +357,9 @@
          </item>
          <item>
           <widget class="QLabel" name="label_17">
+           <property name="whatsThis">
+            <string>Please select the resolution of the clip.</string>
+           </property>
            <property name="text">
             <string>Resolution:</string>
            </property>
