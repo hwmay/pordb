@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>3</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -750,7 +750,7 @@ p, li { white-space: pre-wrap; }
                          <enum>Qt::CustomContextMenu</enum>
                         </property>
                         <property name="whatsThis">
-                         <string>Has fucked with</string>
+                         <string>Has acted with</string>
                         </property>
                        </widget>
                       </item>
@@ -837,7 +837,7 @@ p, li { white-space: pre-wrap; }
                          <enum>Qt::CustomContextMenu</enum>
                         </property>
                         <property name="whatsThis">
-                         <string>Movies with this actor</string>
+                         <string>Movies with this actor in the database</string>
                         </property>
                        </widget>
                       </item>

@@ -2065,7 +2065,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pordb_hauptdialog.ui" line="753"/>
         <source>Has fucked with</source>
-        <translation>Hat gefickt mit</translation>
+        <translation type="obsolete">Hat gefickt mit</translation>
     </message>
     <message>
         <location filename="pordb_hauptdialog.ui" line="762"/>
@@ -2115,7 +2115,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pordb_hauptdialog.ui" line="840"/>
         <source>Movies with this actor</source>
-        <translation>Videos mit diesem Darsteller</translation>
+        <translation type="obsolete">Videos mit diesem Darsteller</translation>
     </message>
     <message>
         <location filename="pordb_hauptdialog.py" line="877"/>
@@ -2877,6 +2877,16 @@ p, li { white-space: pre-wrap; }
         <location filename="pordb_hauptdialog.ui" line="1329"/>
         <source>forward</source>
         <translation>vor</translation>
+    </message>
+    <message>
+        <location filename="pordb_hauptdialog.ui" line="753"/>
+        <source>Has acted with</source>
+        <translation>Hat gespielt mit</translation>
+    </message>
+    <message>
+        <location filename="pordb_hauptdialog.ui" line="840"/>
+        <source>Movies with this actor in the database</source>
+        <translation>Filme mit diesem Darsteller in der Datenbank</translation>
     </message>
 </context>
 <context>
