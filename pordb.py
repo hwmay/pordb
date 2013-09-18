@@ -3597,7 +3597,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		nachricht = self.trUtf8("No files found for restoring")
 		
 		# Restore the database
-		db_host='localhost'
+		db_host="localhost"
 		try:
 			self.conn = psycopg2.connect(database=dbname, host=db_host)
 		except Exception, e:
@@ -3606,10 +3606,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.cur = self.conn.cursor()
 		dateiliste = os.listdir(self.verzeichnis)
 		# caused by foreign keys, the following tables has to be processed first
-		dateiliste.remove("pordb_vid.txt")
-		dateiliste.remove("pordb_darsteller.txt")
-		dateiliste.insert(0, "pordb_darsteller.txt")
-		dateiliste.insert(0, "pordb_vid.txt")
+		try:
+			dateiliste.remove("pordb_vid.txt")
+			dateiliste.remove("pordb_darsteller.txt")
+			dateiliste.insert(0, "pordb_darsteller.txt")
+			dateiliste.insert(0, "pordb_vid.txt")
+		except:
+			pass
 		dateien_gefunden = False
 		for i in dateiliste:
 			if i.startswith("pordb_") and i.endswith(".txt"):
