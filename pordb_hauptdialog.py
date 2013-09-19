@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Thu Sep 12 20:33:03 2013
+# Created: Fri Sep 20 00:10:40 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -896,7 +896,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -909,7 +909,7 @@ class Ui_MainWindow(object):
         self.pushButtonDir.setToolTip(_translate("MainWindow", "Change directory", None))
         self.pushButtonDir.setWhatsThis(_translate("MainWindow", "Change actual directory.", None))
         self.tableWidgetBilderAktuell.setWhatsThis(_translate("MainWindow", "Actual image files in working directory. For adding the image file to the database, double click on it or mark it and press F5. If 2 image files are marked, the dialog for adding a cover will appear.", None))
-        self.tableWidgetBilder.setWhatsThis(_translate("MainWindow", "Presentation of the search result. A contextual menu appears when you right click on an item. By double clicking on an item it can be changed or deleted.", None))
+        self.tableWidgetBilder.setWhatsThis(_translate("MainWindow", "Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted. F12 toggles showing complete data (title and image file) or not.", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "Images", None))
         self.labelBildanzeige.setWhatsThis(_translate("MainWindow", "Image of the actor", None))
         self.bildAnzeige.setToolTip(_translate("MainWindow", "Show actor and search for actors\n"
@@ -957,7 +957,7 @@ class Ui_MainWindow(object):
         self.comboBoxCSFilter.setItemText(10, _translate("MainWindow", "s Others", None))
         self.pushButtonSortPartner.setToolTip(_translate("MainWindow", "Sort on ...", None))
         self.pushButtonSortPartner.setText(_translate("MainWindow", "Quantity", None))
-        self.listWidgetDarsteller.setWhatsThis(_translate("MainWindow", "Has fucked with", None))
+        self.listWidgetDarsteller.setWhatsThis(_translate("MainWindow", "Has acted with", None))
         self.pushButtonPartnerZeigen.setToolTip(_translate("MainWindow", "Show partners", None))
         self.pushButtonPartnerZeigen.setWhatsThis(_translate("MainWindow", "Show actors in first tab", None))
         self.pushButtonPartnerZeigen.setText(_translate("MainWindow", "Show actors", None))
@@ -969,7 +969,7 @@ class Ui_MainWindow(object):
         self.pushButtonSort.setToolTip(_translate("MainWindow", "Sort on ...", None))
         self.pushButtonSort.setWhatsThis(_translate("MainWindow", "Sort alphabetically or on year", None))
         self.pushButtonSort.setText(_translate("MainWindow", "Year", None))
-        self.listWidgetFilme.setWhatsThis(_translate("MainWindow", "Movies with this actor", None))
+        self.listWidgetFilme.setWhatsThis(_translate("MainWindow", "Movies with this actor in the database", None))
         self.label.setText(_translate("MainWindow", "Gender", None))
         self.comboBoxGeschlecht.setItemText(0, _translate("MainWindow", "w", None))
         self.comboBoxGeschlecht.setItemText(1, _translate("MainWindow", "m", None))

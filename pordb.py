@@ -41,7 +41,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.0"
+__version__ = "5.5.1"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -266,6 +266,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.bilderliste = []
 		self.tableWidgetBilderAktuell.clear()
 		self.partner = 0
+		self.anzeige_komplett = False
+		self.angezeigt_komplett = False
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -486,6 +488,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onPageUp()
 		elif event.key() == QtCore.Qt.Key_PageDown:
 			self.onPageDown()
+		elif event.key() == QtCore.Qt.Key_F12 and self.tabWidget.currentIndex() == 0:
+			if self.angezeigt_komplett == False:
+				self.anzeige_komplett = True
+			else:
+				self.anzeige_komplett = False
+			self.ausgabe_in_table()
 		elif event.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return) and self.tabWidget.currentIndex() == 3:
 			self.GetWebsite()
 		elif event.key() == QtCore.Qt.Key_Z and self.tabWidget.currentIndex() == 3:
@@ -1470,7 +1478,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.partner = 0
 		self.ausgabe(ein, zu_lesen)
 		app.restoreOverrideCursor()
-		self.suchfeld.setFocus()
 			
 	def onOriginal(self):
 		# nach Originaltitel in pordb_vid suchen und anzeigen
@@ -1674,7 +1681,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			text = ""
 			if cover:
 				text = "Cover (" +str(groesse.width()) +", " +str(groesse.height()) +")\n" 
-			text += "------------------------------\n"
+				text += "------------------------------\n"
 			darsteller = i[1].split(", ")
 			geschlecht_alt = ""
 			darsteller_ausgabe = ""
@@ -1707,6 +1714,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					multiplikator += 1
 			if original:
 				text += original +"\n------------------------------\n"
+			if self.anzeige_komplett:
+				text += self.trUtf8("Title: ") +i[0] +"\n" +self.trUtf8("Image: ") +i[3] +"\n------------------------------\n"
+				self.angezeigt_komplett = True
+			else:
+				self.angezeigt_komplett = False
 			if darsteller_ausgabe:
 				text += darsteller_ausgabe +"\n------------------------------\n" 
 			text += "CD=" +ort +" "
@@ -1739,6 +1751,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.tableWidgetBilder.setItem(zeile, spalte, newitem)
 		self.restarbeiten_bilder()
 		self.aktuelle_ausgabe = "Bilder"
+		self.anzeige_komplett = False
 
 	# end of ausgabe_in_table	
 		
@@ -1763,7 +1776,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 		self.historie()
 		
-# end of suchhistorie
+	# end of suchhistorie
 
 	def historie(self):
 		self.suchfeld.clear()
@@ -2438,41 +2451,36 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				return
 			cd = self.aktuelles_res[index][2]
 			bild = self.aktuelles_res[index][3]
-			zu_lesen = "SELECT * from pordb_vid where cd = " +str(cd) +" and bild = '" +bild.replace("'", "''") +"'"
-			lese_func = DBLesen(self, zu_lesen)
-			self.aktuelles_res = DBLesen.get_data(lese_func)
-			cd = self.aktuelles_res[0][2]
-			bild = self.aktuelles_res[0][3]
-			titel = self.aktuelles_res[0][0]
-			darsteller = self.aktuelles_res[0][1]
-			gesehen = self.aktuelles_res[0][4]
-			if self.aktuelles_res[0][5]:
-				original = self.aktuelles_res[0][5].decode("utf-8")
+			titel = self.aktuelles_res[index][0]
+			darsteller = self.aktuelles_res[index][1]
+			gesehen = self.aktuelles_res[index][4]
+			if self.aktuelles_res[index][5]:
+				original = self.aktuelles_res[index][5].decode("utf-8")
 			else:
 				original = ""
 			cs = []
-			cs.append(str(self.aktuelles_res[0][9]) +'f')
-			cs.append(str(self.aktuelles_res[0][10]) +'h')
-			cs.append(str(self.aktuelles_res[0][11]) +'t')
-			cs.append(str(self.aktuelles_res[0][12]) +'c')
-			cs.append(str(self.aktuelles_res[0][13]) +'x')
-			cs.append(str(self.aktuelles_res[0][14]) +'o')
-			cs.append(str(self.aktuelles_res[0][15]) +'v')
-			cs.append(str(self.aktuelles_res[0][16]) +'b')
-			cs.append(str(self.aktuelles_res[0][17]) +'a')
-			cs.append(str(self.aktuelles_res[0][18]) +'s')
-			cs.append(str(self.aktuelles_res[0][19]) +'k')
-			if self.aktuelles_res[0][7]:
-				vorhanden = self.aktuelles_res[0][7]
+			cs.append(str(self.aktuelles_res[index][9]) +'f')
+			cs.append(str(self.aktuelles_res[index][10]) +'h')
+			cs.append(str(self.aktuelles_res[index][11]) +'t')
+			cs.append(str(self.aktuelles_res[index][12]) +'c')
+			cs.append(str(self.aktuelles_res[index][13]) +'x')
+			cs.append(str(self.aktuelles_res[index][14]) +'o')
+			cs.append(str(self.aktuelles_res[index][15]) +'v')
+			cs.append(str(self.aktuelles_res[index][16]) +'b')
+			cs.append(str(self.aktuelles_res[index][17]) +'a')
+			cs.append(str(self.aktuelles_res[index][18]) +'s')
+			cs.append(str(self.aktuelles_res[index][19]) +'k')
+			if self.aktuelles_res[index][7]:
+				vorhanden = self.aktuelles_res[index][7]
 			else:
 				vorhanden = ""
-			definition = self.aktuelles_res[0][20]
-			self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[0][3]).strip()
+			definition = self.aktuelles_res[index][20]
+			self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3]).strip()
 			cover = False
 			if not os.path.exists(self.file):
-				self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[0][3]).strip()
+				self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3]).strip()
 				cover = True
-			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[0][8])
+			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[index][8])
 			lese_func = DBLesen(self, zu_lesen)
 			res2 = DBLesen.get_data(lese_func)
 			original_weitere = []
@@ -2480,7 +2488,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				original_weitere.append(i[1])
 			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 			if eingabedialog.exec_():
-				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[0][2]) +" Title:" +self.aktuelles_res[0][0].strip() +" Act:" +self.aktuelles_res[0][1].strip())
+				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[index][2]) +" Title:" +self.aktuelles_res[index][0].strip() +" Act:" +self.aktuelles_res[index][1].strip())
 			self.ausgabe("", self.letzter_select_komplett)
 		self.suchfeld.setFocus()
 	# end of onKorrektur

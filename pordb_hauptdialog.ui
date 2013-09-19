@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -161,7 +161,7 @@
             <bool>true</bool>
            </property>
            <property name="whatsThis">
-            <string>Presentation of the search result. A contextual menu appears when you right click on an item. By double clicking on an item it can be changed or deleted.</string>
+            <string>Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted. F12 toggles showing complete data (title and image file) or not.</string>
            </property>
            <property name="editTriggers">
             <set>QAbstractItemView::NoEditTriggers</set>
