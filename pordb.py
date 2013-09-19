@@ -494,8 +494,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.webView.forward()
 		elif event.key() == QtCore.Qt.Key_S and self.tabWidget.currentIndex() == 3:
 			self.webView.stop()
-		elif event.key() == QtCore.Qt.Key_C and self.tabWidget.currentIndex() == 3:
-			self.onCopyintoClipboard()
 		elif event.modifiers() & QtCore.Qt.ControlModifier:
 			if event.key() == QtCore.Qt.Key_B:
 				self.tabWidget.setCurrentIndex(1)
@@ -3304,10 +3302,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onUrlChanged(self, url):
 		self.statusBar.showMessage(str(url).strip("PyQt4.QtCore.QUrl(u'").rstrip("/')"))
-		
-	def onCopyintoClipboard(self):
-		clipboard = QtGui.QApplication.clipboard()
-		clipboard.setText(self.webView.selectedText(), mode=QtGui.QClipboard.Clipboard)
 		
 	def GetWebsite(self):
 		if str(self.lineEditURL.text()).startswith("http://"):
