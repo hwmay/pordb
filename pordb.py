@@ -31,6 +31,8 @@ from pypordb_historie import Historie
 from pypordb_pseudo import PseudonymeBearbeiten
 from pypordb_bookmarks import Bookmarks
 from pypordb_darstellerdaten_anzeigen import DarstellerdatenAnzeigen
+from pypordb_save_movie_data import SaveMovieData
+from pypordb_show_iafd_data import ShowIafdData
 from pypordb_devices import Devices
 
 size = QtCore.QSize(260, 260)
@@ -146,6 +148,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonForward, QtCore.SIGNAL("clicked()"), self.webView.forward)
 		self.connect(self.pushButtonIAFD, QtCore.SIGNAL("clicked()"), self.onIAFDSeite)
 		self.connect(self.pushButtonAbholen, QtCore.SIGNAL("clicked()"), self.onDarstellerdatenAbholen)
+		self.connect(self.pushButtonMovie, QtCore.SIGNAL("clicked()"), self.onMovieData)
 		self.connect(self.pushButtonUrl, QtCore.SIGNAL("clicked()"), self.onUrlVerwalten)
 		self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
 		self.connect(self.webView, QtCore.SIGNAL("urlChanged (const QUrl&)"), self.onUrlChanged)
@@ -2885,9 +2888,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_erfassen.append("delete from pordb_darsteller where darsteller = '" +eingabe +"'")
 				l = -1
 				bildname = eingabe.lower().replace(" ", "_").replace("''", "_apostroph_")
-				datei_alt = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +"/" +bildname +".jpg"
+				datei_alt = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +os.sep +bildname +".jpg"
 				bildname = neuer_name.lower().strip().replace("'", "''").lstrip("=").replace(" ", "_").replace("''", "_apostroph_")
-				datei_neu = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +"/" +bildname +".jpg"
+				datei_neu = self.verzeichnis_thumbs +"/darsteller_" +res[0][1] +os.sep +bildname +".jpg"
 				sortier = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, datei_alt)
 				for i in res2:
 					l += 1
@@ -3303,6 +3306,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			fehler = True
 		if not fehler:
 			bilddialog.exec_()
+		self.suchfeld.setFocus()
+		
+	def onMovieData(self):
+		url = self.webView.url().toString()
+		text = str(self.webView.page().mainFrame().toHtml().toUtf8())
+		movie_data = SaveMovieData(app, url, text)
+		res = SaveMovieData.get_data(movie_data)
+		if res:
+			show_iafd_data = ShowIafdData(self.verzeichnis, res)
+			show_iafd_data.exec_()
 		self.suchfeld.setFocus()
 		
 	def onLinkClicked(self, url):

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Fri Sep 20 00:10:40 2013
+# Created: Tue Sep 24 22:06:03 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -551,6 +551,9 @@ class Ui_MainWindow(object):
         self.pushButtonAbholen = QtGui.QPushButton(self.tab_4)
         self.pushButtonAbholen.setObjectName(_fromUtf8("pushButtonAbholen"))
         self.horizontalLayout_14.addWidget(self.pushButtonAbholen)
+        self.pushButtonMovie = QtGui.QPushButton(self.tab_4)
+        self.pushButtonMovie.setObjectName(_fromUtf8("pushButtonMovie"))
+        self.horizontalLayout_14.addWidget(self.pushButtonMovie)
         self.lineEditURL = QtGui.QLineEdit(self.tab_4)
         self.lineEditURL.setObjectName(_fromUtf8("lineEditURL"))
         self.horizontalLayout_14.addWidget(self.lineEditURL)
@@ -896,7 +899,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1035,6 +1038,10 @@ class Ui_MainWindow(object):
         self.pushButtonVideo.setShortcut(_translate("MainWindow", "Ctrl+E", None))
         self.pushButtonAbholen.setWhatsThis(_translate("MainWindow", "Adopt actors data from the IAFD.", None))
         self.pushButtonAbholen.setText(_translate("MainWindow", "Get actor data", None))
+        self.pushButtonMovie.setWhatsThis(_translate("MainWindow", "Adopt movie data from the IAFD.\n"
+"\n"
+"This is very useful for adding new scenes from the selected movie.", None))
+        self.pushButtonMovie.setText(_translate("MainWindow", "Save movie data for adding new clips", None))
         self.lineEditURL.setWhatsThis(_translate("MainWindow", "Adress bar", None))
         self.pushButtonUrl.setToolTip(_translate("MainWindow", "Bookmarks", None))
         self.pushButtonUrl.setWhatsThis(_translate("MainWindow", "Maintenance of bookmarks", None))

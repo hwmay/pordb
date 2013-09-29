@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1374,6 +1374,18 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="text">
                 <string>Get actor data</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonMovie">
+               <property name="whatsThis">
+                <string>Adopt movie data from the IAFD.
+
+This is very useful for adding new scenes from the selected movie.</string>
+               </property>
+               <property name="text">
+                <string>Save movie data for adding new clips</string>
                </property>
               </widget>
              </item>
