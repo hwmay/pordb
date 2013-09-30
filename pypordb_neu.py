@@ -19,7 +19,7 @@ size_darsteller = QtCore.QSize(1280, 1024)
 videodateien = (".asf", ".avi", ".divx", ".f4v", ".m4v", ".mkv", ".mpg", ".mpeg", ".mp4", ".mov", ".wmv")
 
 class Neueingabe(QtGui.QDialog, pordb_neu):
-	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None, tablenew = None):
+	def __init__(self, verzeichnis, verzeichnis_original, verzeichnis_thumbs, verzeichnis_trash, verzeichnis_cover, bilddatei, titel=None, darsteller=None, cd=None, bild=None, gesehen=None, original=None, cs=None, vorhanden=None, cover=None, undo=None, cover_anlegen=None, original_weitere=None, original_cover = None, high_definition = None):
 		
 		QtGui.QDialog.__init__(self)
 		self.setupUi(self)
@@ -44,7 +44,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.verzeichnis_cover = verzeichnis_cover
 		self.original_cover = original_cover
 		self.high_definition = high_definition
-		self.tableWidgetBilderAktuell = tablenew
 		
 		self.connect(self.pushButtonNeuOK, QtCore.SIGNAL("clicked()"), self.accept)
 		self.connect(self.pushButtonNeuCancel, QtCore.SIGNAL("clicked()"), self.close)
@@ -607,6 +606,25 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if len(res1) != 0:
 				zu_erfassen.append("delete from pordb_darsteller100 where nr = '" + str(res1[0][0]) +"'")
 			zu_erfassen.append("INSERT into pordb_darsteller100 (darsteller) VALUES ('" +i.replace("'", "''") +"')")
+			
+			partner_zaehler = 0
+			if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
+				zu_lesen = "select sex from pordb_darsteller where darsteller = '" +i.replace("'", "''")  +"'"
+				self.lese_func = DBLesen(self, zu_lesen)
+				res = DBLesen.get_data(self.lese_func)
+				geschlecht = res[0][0]
+				for j in darsteller:
+					if j.strip() != "(Uninteressant)" and j.strip() != "Defekt" and i != j:
+						zu_lesen = "select sex from pordb_darsteller where darsteller = '" +j.replace("'", "''")  +"'"
+						self.lese_func = DBLesen(self, zu_lesen)
+						res2 = DBLesen.get_data(self.lese_func)
+						geschlecht2 = res2[0][0]
+						if geschlecht != geschlecht2:
+							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
+							partner_zaehler += 1
+							
+			if partner_zaehler > 0:
+				zu_erfassen.append("UPDATE pordb_darsteller set partner = partner + " +str(partner_zaehler) +" where darsteller = '" + i.replace("'", "''") + "'")
 				
 		zu_lesen = "select * from pordb_darsteller100"
 		self.lese_func = DBLesen(self, zu_lesen)
@@ -619,21 +637,6 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if not self.korrektur and original:
 			zu_erfassen.append("UPDATE pordb_vid_neu SET titel = '" +titel.replace("'", "''") +"', darsteller = '" +", ".join(darsteller).replace("'", "''") +"', cd = " +str(cd) +", original = '" +original +"'")
 		
-		for i in darsteller:
-			if i.strip() != "(Uninteressant)" and i.strip() != "Defekt":
-				zu_lesen = "select sex from pordb_darsteller where darsteller = '" +i.replace("'", "''")  +"'"
-				self.lese_func = DBLesen(self, zu_lesen)
-				res = DBLesen.get_data(self.lese_func)
-				geschlecht = res[0]
-				for j in darsteller:
-					if j.strip() != "(Uninteressant)" and j.strip() != "Defekt" and i != j:
-						zu_lesen = "select sex from pordb_darsteller where darsteller = '" +j.replace("'", "''")  +"'"
-						self.lese_func = DBLesen(self, zu_lesen)
-						res2 = DBLesen.get_data(self.lese_func)
-						geschlecht2 = res2[0]
-						if geschlecht != geschlecht2:
-							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
-
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		
@@ -750,11 +753,21 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		textdatei.close()
 
 		zu_erfassen.append("DELETE FROM pordb_vid where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
-		
 		zu_erfassen.append("delete from pordb_partner where cd = " +str(self.cd) + " and bild = '" +self.bild.strip().replace("'", "''") +"'")
 		
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
+		
+		zu_erfassen = []
+		for i in darsteller_liste:
+			if i:
+				zu_lesen = "select distinct on (partner) partner from pordb_partner where darsteller = '" + i.replace("'", "''") + "'"
+				self.lese_func = DBLesen(self, zu_lesen)
+				res1 = DBLesen.get_data(self.lese_func)
+				zu_erfassen.append("UPDATE pordb_darsteller set partner = " +str(len(res1)) +" where darsteller = '" + i.replace("'", "''") + "'")
+		if zu_erfassen:
+			update_func = DBUpdate(self, zu_erfassen)
+			DBUpdate.update_data(update_func)
 		
 		self.close()
 		

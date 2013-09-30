@@ -2345,7 +2345,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 	# end of onDarstellerloeschen
 	
-	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None, tablenew = None, original = None):
+	def onNeueingabe(self, undo = None, cover_anlegen = None, dateien = None, original = None):
 		self.suchfeld.setFocus()
 		if undo:
 			dateiliste = os.listdir(self.verzeichnis_trash)
@@ -2424,7 +2424,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						self.verzeichnis = os.path.dirname(str(self.file))
 			# In case we have just stored a cover, this part of program is already done
 			if self.file and os.path.exists(self.file):
-				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, tablenew = self.tableWidgetBilderAktuell, original = original)
+				eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, cover_anlegen = cover_anlegen, original = original)
 		if not self.file:
 			return
 		
@@ -2441,7 +2441,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			res = DBLesen.get_data(lese_func)
 			self.spinBoxAktuell.setValue(res[0][2])
 			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
-	# end onNeueingabe
+		
+	# end of onNeueingabe
 		
 	def onKorrektur(self, zeile, spalte):
 		item = self.tableWidgetBilder.currentItem()
