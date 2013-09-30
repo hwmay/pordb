@@ -30,14 +30,10 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 	def accept(self):
 		neuer_dateiname = self.lineEditDateiname.text()
 		if len(neuer_dateiname) > 256:
-			#self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Dateiname länger als 256 Stellen") +"</font>")
-			#message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Dateiname länger als 256 Stellen"))
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have more than 256 characters") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have more than 256 characters"))
 			return
 		if "'" in neuer_dateiname:
-			#self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Dateiname enthält ein Hochkomma") +"</font>")
-			#message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Dateiname enthält ein Hochkomma"))
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have any apostrophe") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have any apostrophe"))
 			return

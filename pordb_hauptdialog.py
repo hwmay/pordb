@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Tue Sep 24 22:06:03 2013
+# Created: Mon Sep 30 16:30:46 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -1041,7 +1041,7 @@ class Ui_MainWindow(object):
         self.pushButtonMovie.setWhatsThis(_translate("MainWindow", "Adopt movie data from the IAFD.\n"
 "\n"
 "This is very useful for adding new scenes from the selected movie.", None))
-        self.pushButtonMovie.setText(_translate("MainWindow", "Save movie data for adding new clips", None))
+        self.pushButtonMovie.setText(_translate("MainWindow", "Enter clips for shown video", None))
         self.lineEditURL.setWhatsThis(_translate("MainWindow", "Adress bar", None))
         self.pushButtonUrl.setToolTip(_translate("MainWindow", "Bookmarks", None))
         self.pushButtonUrl.setWhatsThis(_translate("MainWindow", "Maintenance of bookmarks", None))

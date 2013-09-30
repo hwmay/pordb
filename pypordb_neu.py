@@ -177,6 +177,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				self.comboBoxDefinition.setCurrentIndex(0)
 		else:
 			self.korrektur = False
+			if self.darsteller:
+				self.lineEditNeuDarsteller.setText(self.darsteller)
+			if self.original:
+				self.lineEditNeuOriginal.setText(self.original.strip())
 			if self.cover_anlegen:
 				self.radioButtonCoverJa.setChecked(True)
 				self.radioButtonCoverNein.setChecked(False)
@@ -651,7 +655,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		
-		self.close()
+		QtGui.QDialog.accept(self)
 	# end of accept
 
 	def darsteller_pruefen(self, darsteller_liste):

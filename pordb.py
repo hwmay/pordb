@@ -2490,9 +2490,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			for i in res2:
 				original_weitere.append(i[1])
 			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
+			change_flag = None
 			if eingabedialog.exec_():
-				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[index][2]) +" Title:" +self.aktuelles_res[index][0].strip() +" Act:" +self.aktuelles_res[index][1].strip())
+				change_flag = True
 			self.ausgabe("", self.letzter_select_komplett)
+			if change_flag:
+				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[index][2]) +" Title:" +self.aktuelles_res[index][0].strip() +" Act:" +self.aktuelles_res[index][1].strip())
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		
@@ -3314,7 +3317,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		movie_data = SaveMovieData(app, url, text)
 		res = SaveMovieData.get_data(movie_data)
 		if res:
-			show_iafd_data = ShowIafdData(self.verzeichnis, res)
+			show_iafd_data = ShowIafdData(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, res)
 			show_iafd_data.exec_()
 		self.suchfeld.setFocus()
 		

@@ -1385,7 +1385,7 @@ p, li { white-space: pre-wrap; }
 This is very useful for adding new scenes from the selected movie.</string>
                </property>
                <property name="text">
-                <string>Save movie data for adding new clips</string>
+                <string>Enter clips for shown video</string>
                </property>
               </widget>
              </item>
