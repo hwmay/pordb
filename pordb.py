@@ -2023,6 +2023,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " order by darsteller"
 			lese_func = DBLesen(self, zu_lesen)
 			res1 = DBLesen.get_data(lese_func)
+			if len(res) == 0 and len(res1) == 1:
+				message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Actor has been found as pseudonym only!"))
 			if res1:
 				for i in res1:
 					zu_lesen = "SELECT * FROM pordb_darsteller where darsteller = '" +i[1].replace("'", "''") +"'"
@@ -2035,7 +2037,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					res2 = DBLesen.get_data(lese_func)
 					vorhanden = 0
 					if res2:
-						message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Actor has been found as pseudonym only!"))
 						for j in res:
 							if res2[0][0] == j[0]:
 								vorhanden = 1
