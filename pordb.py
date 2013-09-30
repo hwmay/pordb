@@ -2035,6 +2035,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					res2 = DBLesen.get_data(lese_func)
 					vorhanden = 0
 					if res2:
+						message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Actor has been found as pseudonym only!"))
 						for j in res:
 							if res2[0][0] == j[0]:
 								vorhanden = 1
