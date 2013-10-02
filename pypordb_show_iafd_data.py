@@ -49,8 +49,9 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 		self.y_pos += 40
 		
 		# set alternate titles
-		for i, wert in enumerate(self.video[1]): 
-			textitem = QtGui.QGraphicsTextItem(wert)
+		for i, wert in enumerate(self.video[1]):
+			alt_title = wert
+			textitem = QtGui.QGraphicsTextItem(alt_title.decode("utf-8"))
 			textitem.setPos(self.x_pos, self.y_pos)
 			self.scene.addItem(textitem)
 			self.y_pos += 30
@@ -155,7 +156,10 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 					max_height = pixmap.height()
 				self.pixmapitem_scene = QtGui.QGraphicsPixmapItem(pixmap)
 				self.pixmapitem_scene.setPos(0, 20)
-				self.textitem_scene = QtGui.QGraphicsTextItem(i)
+				datei = i[0:24]
+				if len(i) > 25:
+					datei += "..."
+				self.textitem_scene = QtGui.QGraphicsTextItem(datei)
 				itemgroup = self.scene.createItemGroup([self.textitem_scene, self.pixmapitem_scene])
 				itemgroup.setPos(self.x_pos, self.y_pos)
 				itemgroup.setData(0, QtCore.QVariant(i))
