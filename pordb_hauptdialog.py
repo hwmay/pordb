@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Sep 30 16:30:46 2013
+# Created: Thu Oct  3 22:52:32 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -739,7 +739,7 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName(_fromUtf8("statusBar"))
         MainWindow.setStatusBar(self.statusBar)
         self.toolBar = QtGui.QToolBar(MainWindow)
-        self.toolBar.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.toolBar.setFocusPolicy(QtCore.Qt.NoFocus)
         self.toolBar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
         self.toolBar.setMovable(False)
         self.toolBar.setFloatable(False)
@@ -869,6 +869,8 @@ class Ui_MainWindow(object):
         self.actionRedoImageChange.setObjectName(_fromUtf8("actionRedoImageChange"))
         self.actionGetUrl = QtGui.QAction(MainWindow)
         self.actionGetUrl.setObjectName(_fromUtf8("actionGetUrl"))
+        self.actionGoToUrl = QtGui.QAction(MainWindow)
+        self.actionGoToUrl.setObjectName(_fromUtf8("actionGoToUrl"))
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -899,7 +901,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1143,9 +1145,11 @@ class Ui_MainWindow(object):
         self.actionSucheVideo.setShortcut(_translate("MainWindow", "Ctrl+G", None))
         self.actionSuchfeld.setText(_translate("MainWindow", "search field", None))
         self.actionSuchbegriffe.setText(_translate("MainWindow", "search terms", None))
-        self.actionSuchbegriffe.setToolTip(_translate("MainWindow", "Edit search terms", None))
+        self.actionSuchbegriffe.setToolTip(_translate("MainWindow", "Edit search terms, Ctrl+S", None))
+        self.actionSuchbegriffe.setShortcut(_translate("MainWindow", "Ctrl+S", None))
         self.actionLand.setText(_translate("MainWindow", "country", None))
-        self.actionLand.setToolTip(_translate("MainWindow", "Edit table of countries", None))
+        self.actionLand.setToolTip(_translate("MainWindow", "Edit table of countries, CTRL+L", None))
+        self.actionLand.setShortcut(_translate("MainWindow", "Ctrl+L", None))
         self.actionFirst.setText(_translate("MainWindow", "first", None))
         self.actionFirst.setToolTip(_translate("MainWindow", "go to first page, F6", None))
         self.actionFirst.setShortcut(_translate("MainWindow", "F6", None))
@@ -1202,5 +1206,7 @@ class Ui_MainWindow(object):
         self.actionRedoImageChange.setToolTip(_translate("MainWindow", "Redo image change", None))
         self.actionGetUrl.setText(_translate("MainWindow", "Put actors URL into clipboard", None))
         self.actionGetUrl.setToolTip(_translate("MainWindow", "<html><head/><body><p>Get URL form database and put it into clipboard</p></body></html>", None))
+        self.actionGoToUrl.setText(_translate("MainWindow", "Go to website of this actor", None))
+        self.actionGoToUrl.setToolTip(_translate("MainWindow", "<html><head/><body><p>Go to website of this actor</p></body></html>", None))
 
 from PyQt4 import QtWebKit

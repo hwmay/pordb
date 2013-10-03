@@ -31,6 +31,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QTableWidget" name="tableWidgetSuche">
+          <property name="whatsThis">
+           <string>Here you can enter synomyms for searching, e. g. &quot;18&quot; and &quot;eighteen&quot;. When you enter &quot;18&quot;, search will not only look for &quot;18&quot;, but also for &quot;eighteen&quot;. Be very careful with this function for avoiding long searchs with a lot of results.</string>
+          </property>
           <column>
            <property name="text">
             <string>search item</string>

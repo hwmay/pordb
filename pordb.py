@@ -122,6 +122,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionAnzeigenPaar, QtCore.SIGNAL("triggered()"), self.onAnzeigenPaar)
 		self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
 		self.connect(self.actionGetUrl, QtCore.SIGNAL("triggered()"), self.onGetUrl)
+		self.connect(self.actionGoToUrl, QtCore.SIGNAL("triggered()"), self.onGoToUrl)
 		self.connect(self.actionBildanzeigegross, QtCore.SIGNAL("triggered()"), self.onDarstellerGross)
 		self.connect(self.listWidgetFilme, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextFilm)
 		self.connect(self.actionFilm_zeigen, QtCore.SIGNAL("triggered()"), self.onFilm_zeigen)
@@ -765,6 +766,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		menu = QtGui.QMenu(self.labelBildanzeige)
 		menu.addAction(self.actionBildanzeigegross)
 		menu.addAction(self.actionGetUrl)
+		menu.addAction(self.actionGoToUrl)
 		menu.exec_(self.labelBildanzeige.mapToGlobal(event))
 		
 	def onAnzeigenPaar(self):
@@ -1388,6 +1390,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if res[0][0]:
 				clipboard = QtGui.QApplication.clipboard()
 				clipboard.setText(res[0][0], mode=QtGui.QClipboard.Clipboard)
+		self.suchfeld.setFocus()
+		
+	def onGoToUrl(self):
+		ein = str(self.labelDarsteller.text()).strip().title()
+		if ein:
+			zu_lesen = "SELECT url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
+			lese_func = DBLesen(self, zu_lesen)
+			res = DBLesen.get_data(lese_func)
+			if res[0][0]:
+				self.lineEditURL.setText(res[0][0])
+				self.GetWebsite()
+				self.tabWidget.setCurrentIndex(3)
 		self.suchfeld.setFocus()
 		
 	def onLand(self):
@@ -2314,6 +2328,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onbildAnzeige()
 				
 			app.restoreOverrideCursor()
+			
+	# end of onIAFDBackground
 	
 	def onDarstellerloeschen(self):
 		name = str(self.labelDarsteller.text())
