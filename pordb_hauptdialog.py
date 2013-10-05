@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Thu Oct  3 22:52:32 2013
+# Created: Fri Oct  4 01:46:54 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -1148,8 +1148,8 @@ class Ui_MainWindow(object):
         self.actionSuchbegriffe.setToolTip(_translate("MainWindow", "Edit search terms, Ctrl+S", None))
         self.actionSuchbegriffe.setShortcut(_translate("MainWindow", "Ctrl+S", None))
         self.actionLand.setText(_translate("MainWindow", "country", None))
-        self.actionLand.setToolTip(_translate("MainWindow", "Edit table of countries, CTRL+L", None))
-        self.actionLand.setShortcut(_translate("MainWindow", "Ctrl+L", None))
+        self.actionLand.setToolTip(_translate("MainWindow", "Edit table of countries, Alt+L", None))
+        self.actionLand.setShortcut(_translate("MainWindow", "Alt+L", None))
         self.actionFirst.setText(_translate("MainWindow", "first", None))
         self.actionFirst.setToolTip(_translate("MainWindow", "go to first page, F6", None))
         self.actionFirst.setShortcut(_translate("MainWindow", "F6", None))

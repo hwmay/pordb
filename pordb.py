@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.1"
+__version__ = "5.5.2"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -412,9 +412,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		dateiliste_bereinigt.sort()
 		if self.bilderliste != dateiliste_bereinigt:
 			for i in dateiliste_bereinigt:
-				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i).scaled(size, QtCore.Qt.KeepAspectRatio)
+				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i.decode("utf-8")).scaled(size, QtCore.Qt.KeepAspectRatio)
 				bild = QtGui.QIcon(bild)
-				newitem = QtGui.QTableWidgetItem(bild, i)
+				newitem = QtGui.QTableWidgetItem(bild, i.decode("utf-8"))
 				zeile += 1
 				self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
 			self.tableWidgetBilderAktuell.resizeColumnsToContents()
@@ -773,8 +773,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		ein = self.eingabe_auswerten().lstrip("=")
 		if not ein:
 			return
-		name = str(self.labelDarsteller.text()).strip().lstrip("=")
-		if ein <> name:
+		name = str(self.labelDarsteller.text()).strip().lstrip("=").decode("utf-8")
+		if name and ein <> name:
 			if self.comboBoxGeschlecht.currentText() == 'w':
 				suchtext = name + ", %" + ein
 			else:
@@ -1023,7 +1023,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onBildLoeschen(self):
 		item = self.tableWidgetBilderAktuell.currentItem()
-		text = str(item.text())
+		text = unicode(item.text())
 		bilddatei = self.verzeichnis +os.sep +text 
 		try:
 			os.remove(bilddatei)
@@ -1360,10 +1360,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		else:
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
-				ein = str(selected[0].text()).strip()
+				ein = unicode(selected[0].text()).strip()
 				ein = ein.split("(")[0]
 			else:
-				ein = str(self.labelDarsteller.text()).strip().title()
+				ein = unicode(self.labelDarsteller.text()).strip().title()
 		
 		self.listWidgetDarsteller.clearSelection()
 		if ein:
@@ -1433,14 +1433,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onDarsteller(self):
 		# Darsteller in pordb_vid suchen und anzeigen
 		self.start_bilder = 0
-		ein = str(self.suchfeld.currentText()).strip().title()
+		try:
+			ein = unicode(self.suchfeld.currentText()).strip().title().encode("utf-8")
+		except:
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
+			return
 		if not ein:
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		vorname = False
-		if ein.find('=') == 0:
+		if ein.find("=") == 0:
 			vorname = True
-			eingabe = ein.lstrip('=').title().replace("'", "''")
+			eingabe = ein.lstrip("=").title().replace("'", "''")
 		else:
 			eingabe = ein.title().replace("'", "''")
 		if vorname:
@@ -1886,18 +1890,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		res = self.darsteller_lesen(ein)
 		if not res: 
-			self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
+			self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
 			self.bildSetzen()
 			return
 		for i in res:
 			if i[1] == 'm' or i[1] == 'w': # not from pseudo_table
 				name = i[0]
 				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"
+				self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".jpg"
 				if not os.path.isfile(self.bilddarsteller):
-					self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".png"
+					self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".png"
 					if not os.path.isfile(self.bilddarsteller):
-						self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
+						self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
 				if i[11] and i[11] <> "0": # URL vorhanden
 					self.pushButtonIAFDBackground.setEnabled(True)
 				else:
@@ -1923,7 +1927,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def bildSetzen(self):
 		if self.bilddarsteller:
 			# Multiplikation mit 0.05, da es eine Wechselwirkung mit dem Parent Frame gibt
-			bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+			bild = QtGui.QPixmap(self.bilddarsteller.decode("utf-8")).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 			self.labelBildanzeige.setPixmap(bild)
 			
 	def onTabwechsel(self, tab):
@@ -1998,22 +2002,22 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def eingabe_auswerten(self):
 		try:
-			ein = str(self.suchfeld.currentText()).strip().title()
+			ein = unicode(self.suchfeld.currentText()).strip().title().encode("utf-8")
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Illegal characters in search field"))
 			return
 		if not ein:
 			selected = self.listWidgetDarsteller.selectedItems()
 			if selected:
-				ein = str(selected[0].text())
+				ein = unicode(selected[0].text()).encode("utf-8")
 				ein = "=" +ein[0 : ein.rfind("(")].strip()
 		if not ein:
-			ein = "=" +str(self.labelDarsteller.text()).strip().title()
+			ein = "=" +unicode(self.labelDarsteller.text()).strip().title().encode("utf-8")
 		return ein
 	
 	def darsteller_lesen(self, ein):
 		if ein[0] == '=':
-			eingabe=ein.lstrip('=').replace("'", "''").title()
+			eingabe=ein.lstrip('=').replace("'", "''")
 			zu_lesen = "SELECT * FROM pordb_darsteller where darsteller = '" +eingabe +"'"
 			if self.comboBoxSex.currentText() == "Mann" or self.comboBoxSex.currentText() == "Male":
 				zu_lesen += " and sex = 'm'"
@@ -2023,7 +2027,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 		else:
-			eingabe = ein.replace("'", "''").title()
+			eingabe = ein.replace("'", "''")
 			zu_lesen = "SELECT * FROM pordb_darsteller where darsteller like '%" +eingabe +"%'"
 			if self.comboBoxSex.currentText() == "Mann" or self.comboBoxSex.currentText() == "Male":
 				zu_lesen += " and sex = 'm'"
@@ -2062,12 +2066,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if len(res) > 1:
 			self.listWidgetDarsteller.clear()
 			for i in res:
-				self.listWidgetDarsteller.addItem(i[0])
+				self.listWidgetDarsteller.addItem(i[0].decode("utf-8"))
 			self.labelText.setText("<font color=red>" +self.trUtf8("Please select:") +"</font>")
 			self.suchfeld.setCurrentIndex(-1)
 			return
 		elif len(res) == 1:
-			self.labelDarsteller.setText(res[0][0])
+			self.labelDarsteller.setText(res[0][0].decode("utf-8"))
 			if res[0][1] == "w":
 				self.comboBoxGeschlecht.setCurrentIndex(0)
 			else:
@@ -2332,7 +2336,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of onIAFDBackground
 	
 	def onDarstellerloeschen(self):
-		name = str(self.labelDarsteller.text())
+		name = unicode(self.labelDarsteller.text())
 		if not name:
 			return
 		messageBox = QtGui.QMessageBox()
@@ -2357,6 +2361,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				os.remove(datei_alt)
 			except:
 				pass
+			self.statusBar.showMessage(self.trUtf8("Actor ") +name.strip() +self.trUtf8(" deleted"))
 		self.labelFehler.clear()
 		self.suchfeld.setFocus()
 	# end of onDarstellerloeschen
@@ -3875,6 +3880,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
+	# end of onStartScan
 		
 	def onDeleteDuplicates(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

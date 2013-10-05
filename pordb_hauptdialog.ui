@@ -2083,10 +2083,10 @@ p, li { white-space: pre-wrap; }
     <string>country</string>
    </property>
    <property name="toolTip">
-    <string>Edit table of countries, CTRL+L</string>
+    <string>Edit table of countries, Alt+L</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string>Alt+L</string>
    </property>
   </action>
   <action name="actionFirst">

@@ -18,7 +18,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		
 		self.darstellerseite = darstellerseite
 		self.app = app
-		self.url = url
+		self.url = unicode(url)
 		self.verzeichnis_thumbs = verzeichnis_thumbs
 		
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -26,7 +26,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
 		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
-		self.coding = "iso-8859-1"
+		self.coding = "utf-8"
 		
 		# Darsteller Name
 		anfang = self.darstellerseite.find('<h1>')
@@ -186,9 +186,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Invalid gender"))
 			self.app.restoreOverrideCursor()
 		if self.checkBoxName.isChecked():
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +str(self.lineEditName.text()).replace("'", "''").title() +"'"
+			zu_lesen = "select * from pordb_darsteller where darsteller = '" +unicode(self.lineEditName.text()).replace("'", "''").title().encode("utf-8") +"'"
 		else:
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +self.name.strip().replace("'", "''").title() +"'"
+			zu_lesen = "select * from pordb_darsteller where darsteller = '" +unicode(self.name).strip().replace("'", "''").title().encode("utf-8") +"'"
 		self.lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(self.lese_func)
 		zu_erfassen = []
@@ -208,15 +208,41 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				else:
 					geboren = str(self.labelGeboren.text())
 				datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-				zu_erfassen.append("INSERT into pordb_darsteller VALUES ('" +str(self.lineEditName.text()).title().replace("'", "''") +"', '" +str(self.lineEditGeschlecht.text()) + "', '" +str(0) +"', '" +datum +"', '" +str(self.lineEditHaare.text()).lower() +"', '" +str(self.lineEditLand.text()).upper()[0:2] +"', '" +str(self.lineEditTattos.text().replace("'", "''")) +"', '" +str(self.lineEditEthnic.text()).lower() + "', '" +str(0) +"', '" +geboren +"', '" +str(self.filme) +"', '" +str(self.url).replace("'", "''") +"', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')")
+				name = unicode(self.lineEditName.text())
+				zu_erfassen_zw = "INSERT into pordb_darsteller VALUES ('" 
+				zu_erfassen_zw += name.title().replace("'", "''") 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.lineEditGeschlecht.text()) 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(0) 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += datum 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.lineEditHaare.text()).lower() 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.lineEditLand.text()).upper()[0:2] 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.lineEditTattos.text().replace("'", "''")) 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.lineEditEthnic.text()).lower()
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(0) 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += geboren 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += str(self.filme) 
+				zu_erfassen_zw += "', '" 
+				zu_erfassen_zw += self.url.replace("'", "''")
+				zu_erfassen_zw += "', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')"
+				zu_erfassen.append(zu_erfassen_zw)
 				if self.checkBoxPseudo.isChecked():
-					self.pseudo_uebernehmen(str(self.lineEditName.text()), zu_erfassen)
+					self.pseudo_uebernehmen(name, zu_erfassen)
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
 				if extension == ".jpeg":
 					extension = ".jpg"
 				if extension <> ".gif":
-					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
-					os.rename(self.verz +os.sep +self.bild, newfilename)
+					newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +str(self.lineEditGeschlecht.text()) +os.sep +name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+					os.rename(self.verz +os.sep +self.bild, newfilename.encode("utf-8"))
 			else:
 				self.close()
 		# Darsteller existiert bereits
@@ -227,9 +253,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					extension = ".jpg"
 				if extension <> ".gif":
 					if self.checkBoxName.isChecked():
-						newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +str(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+						newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +unicode(self.lineEditName.text()).strip().replace("'", "_apostroph_").replace(" ", "_").lower().encode("utf-8") + extension
 					else:
-						newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +self.name.strip().replace("'", "_apostroph_").replace(" ", "_").lower() + extension
+						newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.lineEditGeschlecht.text() +os.sep +unicode(self.name).strip().replace("'", "_apostroph_").replace(" ", "_").lower().encode("utf-8") + extension
 					os.rename(self.verz +os.sep +self.bild, newfilename)
 			else:
 				try:

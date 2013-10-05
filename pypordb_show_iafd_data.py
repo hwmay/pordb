@@ -79,7 +79,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 							bilddatei = self.getBilddatei(res[0][0], res[0][1])
 						else:
 							bilddatei = self.getBilddatei(wert2.replace("'", "''").title())
-						pixmap = QtGui.QPixmap(bilddatei).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
+						pixmap = QtGui.QPixmap(bilddatei.decode("utf-8")).scaled(QtCore.QSize(self.complete_size),QtCore.Qt.KeepAspectRatio)
 						if pixmap.height() > max_height:
 							max_height = pixmap.height()
 						pixmapitem = QtGui.QGraphicsPixmapItem(pixmap)

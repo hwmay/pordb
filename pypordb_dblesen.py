@@ -8,7 +8,10 @@ import psycopg2.extensions
 class DBLesen():
 	def __init__(self, fenster, zu_lesen):
 		self.fenster = fenster
-		self.zu_lesen = str(zu_lesen)
+		try:
+			self.zu_lesen = unicode(zu_lesen)
+		except:
+			self.zu_lesen = str(zu_lesen)
 		self.res = []
 		self.conn = None
 		self.cur = None
