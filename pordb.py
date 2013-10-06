@@ -773,12 +773,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		ein = self.eingabe_auswerten().lstrip("=")
 		if not ein:
 			return
-		name = str(self.labelDarsteller.text()).strip().lstrip("=").decode("utf-8")
-		if name and ein <> name:
+		name = unicode(self.labelDarsteller.text()).strip().lstrip("=")
+		if name and ein <> name.encode("utf-8"):
 			if self.comboBoxGeschlecht.currentText() == 'w':
 				suchtext = name + ", %" + ein
 			else:
-				suchtext = ein + ", %" + name
+				suchtext = ein.decode("utf-8") + ", %" + name
 			self.suchfeld.insertItem(0, suchtext)
 			self.suchfeld.setCurrentIndex(0)
 			self.tabWidget.setCurrentIndex(0)
@@ -1444,12 +1444,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		vorname = False
 		if ein.find("=") == 0:
 			vorname = True
-			eingabe = ein.lstrip("=").title().replace("'", "''")
+			eingabe = ein.lstrip("=").replace("'", "''")
 		else:
-			eingabe = ein.title().replace("'", "''")
+			eingabe = ein.replace("'", "''")
 		if vorname:
 			zu_lesen = "SELECT * FROM pordb_vid where (darsteller = '" +eingabe +"' or darsteller like '" +eingabe +",%' or darsteller like '%, " +eingabe +",%' or darsteller like '%, " +eingabe +"')"
-			
 		else:
 			zu_lesen = "SELECT * FROM pordb_vid where darsteller like '%" +eingabe +"%'"
 		if self.actionVid.isChecked():
@@ -1741,7 +1740,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			else:
 				self.angezeigt_komplett = False
 			if darsteller_ausgabe:
-				text += darsteller_ausgabe +"\n------------------------------\n" 
+				text += darsteller_ausgabe.decode("utf-8") +"\n------------------------------\n" 
 			text += "CD=" +ort +" "
 			if i[4] == 'x':
 				text += self.trUtf8("\nwatched")
@@ -1989,7 +1988,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.paarung = []
 		for i in res2:
 			anzahl = partner_komplett.count(i[0])
-			self.paarung.append(i[0].strip() +" (" +str(anzahl) +")")
+			self.paarung.append(i[0].decode("utf-8").strip() +" (" +str(anzahl) +")")
 					
 		self.listWidgetDarsteller.clear()
 		self.listWidgetDarsteller.addItems(self.paarung)

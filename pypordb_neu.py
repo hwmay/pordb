@@ -95,7 +95,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.listWidgetW.clear()
 		initial = ' '
 		for i in darsteller_w:
-			newitem = QtGui.QListWidgetItem(i)
+			newitem = QtGui.QListWidgetItem(i.decode("utf-8"))
 			if i[0] != initial:
 				initial = i[0]
 				newitem.setTextColor(QtGui.QColor('red'))
@@ -104,7 +104,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.listWidgetW.addItem(newitem)
 		initial = ' '
 		for i in darsteller_m:
-			newitem = QtGui.QListWidgetItem(i)
+			newitem = QtGui.QListWidgetItem(i.decode("utf-8"))
 			if i[0] != initial:
 				initial = i[0]
 				newitem.setTextColor(QtGui.QColor('red'))
@@ -117,7 +117,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if self.titel:
 			self.korrektur = True
 			self.lineEditNeuTitel.setText(self.titel.strip())
-			self.lineEditNeuDarsteller.setText(self.darsteller.strip())
+			self.lineEditNeuDarsteller.setText(self.darsteller.decode("utf-8").strip())
 			self.lineEditNeuCD.setText(str(self.cd))
 			self.cd_alt = str(self.cd)
 			self.lineEditNeuBild.setText(self.bild.strip())
@@ -252,7 +252,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		selected.extend(self.listWidgetM.selectedItems())
 		selected_str = []
 		for i in selected:
-			selected_str.append(str(i.text()))
+			ein = unicode(i.text())
+			selected_str.append(ein)
 		text = ", ".join(selected_str)
 		self.lineEditNeuDarsteller.setText(text)
 		self.lineEditNeuDarsteller.setFocus()
@@ -287,7 +288,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 	def accept(self):
 		fehler = 1
 		while fehler:
-			darsteller, fehler, fehler_index = self.darsteller_pruefen(str(self.lineEditNeuDarsteller.text()).title())
+			darsteller, fehler, fehler_index = self.darsteller_pruefen(unicode(self.lineEditNeuDarsteller.text()).title())
 			if fehler:
 				if fehler == 2:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You have entered some actors twice, please correct"))
