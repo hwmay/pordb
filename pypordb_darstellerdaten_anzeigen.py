@@ -18,7 +18,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		
 		self.darstellerseite = darstellerseite
 		self.app = app
-		self.url = unicode(url)
+		self.url = url
 		self.verzeichnis_thumbs = verzeichnis_thumbs
 		
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -194,7 +194,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		zu_erfassen = []
 		
 		# Darsteller existiert noch nicht
-		if len(res) == 0:
+		if not res:
 			messageBox = QtGui.QMessageBox()
 			messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 			messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
@@ -232,7 +232,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen_zw += "', '" 
 				zu_erfassen_zw += str(self.filme) 
 				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += self.url.replace("'", "''")
+				zu_erfassen_zw += unicode(self.url).replace("'", "''")
 				zu_erfassen_zw += "', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')"
 				zu_erfassen.append(zu_erfassen_zw)
 				if self.checkBoxPseudo.isChecked():
@@ -301,11 +301,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	def pseudo_uebernehmen(self, name, zu_erfassen):
 		pseudos = unicode(self.lineEditPseudo.text()).split(", ")
 		for i in pseudos:
-			if i and i.title() != name.title().strip():
+			if i and i.title() != name.decode("utf-8").title().strip():
 				if pseudos.count(i.title()) > 1:
 					pass
 				else:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.title().strip().replace("'", "''") +"', '" +name.title().replace("'", "''") +"')")
+					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.decode("utf-8").replace("'", "''") +"')")
 					
 	def onClose(self):
 		try:
