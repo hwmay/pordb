@@ -2355,7 +2355,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			bildname = name.strip().lower().replace(" ", "_").replace("'", "_apostroph_")
-			datei_alt = self.verzeichnis_thumbs +os.sep +"darsteller_" +self.comboBoxGeschlecht.currentText() +os.sep +bildname +".jpg"
+			datei_alt = self.verzeichnis_thumbs +os.sep +"darsteller_" +unicode(self.comboBoxGeschlecht.currentText()) +os.sep +bildname +".jpg"
 			try:
 				os.remove(datei_alt)
 			except:

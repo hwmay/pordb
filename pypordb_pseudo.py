@@ -13,7 +13,7 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 		self.connect(self.pushButtonSpeichern, QtCore.SIGNAL("clicked()"), self.onSpeichern)
 		self.connect(self.pushButtonAbbrechen, QtCore.SIGNAL("clicked()"), self.close)
 		
-		self.darsteller = darsteller.lstrip('=').replace("'", "''").title()
+		self.darsteller = darsteller.lstrip('=').decode("utf-8").replace("'", "''")
 		self.setWindowTitle(self.trUtf8("Edit aliases for ") +self.darsteller.replace("''", "'"))
 		row = 0
 		column = 0
@@ -49,15 +49,12 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 			for j in range(self.tableWidgetPseudo.columnCount()):
 				tableItem = self.tableWidgetPseudo.item(i, j)
 				try:
-					cellItem = unicode(QtGui.QTableWidgetItem(tableItem).text())
+					cellItem = unicode(QtGui.QTableWidgetItem(tableItem).text()).decode("utf-8")
 					cell.append(cellItem)
 				except:
 					pass
-			try:
-				if cell[0]:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +cell[0].title().replace("'", "''") +"', '" +self.darsteller +"')")
-			except:
-				pass
+			if cell and cell[0]:
+				zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +cell[0].title().replace("'", "''") +"', '" +self.darsteller +"')")
 			    
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)

@@ -287,7 +287,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
 				zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
-				self.pseudo_uebernehmen(res[0][0], zu_erfassen)
+				self.pseudo_uebernehmen(res[0][0].decode("utf-8"), zu_erfassen)
 				
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
@@ -301,11 +301,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	def pseudo_uebernehmen(self, name, zu_erfassen):
 		pseudos = unicode(self.lineEditPseudo.text()).split(", ")
 		for i in pseudos:
-			if i and i.title() != name.decode("utf-8").title().strip():
+			if i and i.title() != name.title().strip():
 				if pseudos.count(i.title()) > 1:
 					pass
 				else:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.decode("utf-8").replace("'", "''") +"')")
+					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.replace("'", "''") +"')")
 					
 	def onClose(self):
 		try:
