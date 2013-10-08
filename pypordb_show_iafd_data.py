@@ -183,7 +183,7 @@ class ShowIafdData(QtGui.QDialog, pordb_show_iafd_data):
 					bilddatei = self.verzeichnis_thumbs +os.sep +"darsteller_" +"m" +os.sep +actor.lower().strip().replace(" ", "_").replace("'", "_apostroph_") +".jpg"
 		if not bilddatei or not os.path.exists(bilddatei):
 			bilddatei = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
-		return bilddatei
+		return bilddatei.decode("utf-8")
 	
 	def closeEvent(self, event):
 		settings = QtCore.QSettings()
