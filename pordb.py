@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.2"
+__version__ = "5.5.3"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -226,9 +226,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setMinimumWidth(250)
 		self.suchfeld.setEditable(True)
 		self.suchfeld.setWhatsThis(self.trUtf8("Searching field. By pressing the escape key it will be cleared and gets the focus."))
-		completer = QtGui.QCompleter()
-		completer.setCompletionMode(0)
-		self.suchfeld.setCompleter(completer)
+		self.completer = QtGui.QCompleter()
+		self.completer.setCompletionMode(0)
+		self.suchfeld.setCompleter(self.completer)
 		self.toolBar.insertWidget(self.actionSuchfeld, self.suchfeld)
 		self.toolBar.removeAction(self.actionSuchfeld)
 		
@@ -1509,17 +1509,19 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		if not ein:
 			return
+		ein2 = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").title().strip()
+		ein3 = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").lower().strip()
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_original where lower(original) like '" +ein[1:] +"%'" 
+			zu_lesen = "SELECT * from pordb_original where lower(original) like '" +ein3[1:] +"%' or original like '" +ein2[1:] +"%'"
 		else:
-			zu_lesen = "SELECT * from pordb_original where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_original where lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%'"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_vid where lower(original) = '" +ein[1:] +"' or lower(original) like '" +ein[1:] +" (%)'"
+			zu_lesen = "SELECT * from pordb_vid where lower(original) = '" +ein3[1:] +"' or original like '" +ein2[1:] +"%'"
 		else:
-			zu_lesen = "SELECT * from pordb_vid where lower(original) like '%" +ein.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_vid where lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%'"
 		original_erweiterung = ""
 		for i in res:
 			original_erweiterung += " or primkey = " +str(i[2])
@@ -1627,12 +1629,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.aktuelles_res[:] = liste_neu
 		
 		self.ausgabe_in_table()
-		befehl = str(zu_lesen)
+		befehl = zu_lesen
 		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []
-			zu_erfassen.append("DELETE from pordb_history where sql = '" +str(befehl).decode("utf-8") +"'")
-			zu_erfassen.append("INSERT into pordb_history values ('" +str(befehl).decode("utf-8") +"', DEFAULT)")
+			zu_erfassen.append("DELETE from pordb_history where sql = '" +befehl +"'")
+			zu_erfassen.append("INSERT into pordb_history values ('" +befehl +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		self.statusBar.showMessage(self.trUtf8("Search was: ") +str(ein).decode("utf-8"))
