@@ -1877,6 +1877,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " order by cd, titel"
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			self.letzter_select_komplett = zu_lesen
+			self.letzter_select = zu_lesen
 			if argument != 0:
 				self.start_bilder = 0
 				self.partner = 0
@@ -1943,7 +1944,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		gesucht = res[0][0].strip().replace("'", "''")
 		geschlecht = res[0][1]
 		# Get the complete list of partners of the actor
-		zu_lesen = "SELECT partner FROM pordb_partner where darsteller = '" +gesucht +"'order by partner"
+		zu_lesen = "SELECT partner, cd, bild FROM pordb_partner where darsteller = '" +gesucht +"'order by partner"
 		lese_func = DBLesen(self, zu_lesen)
 		res_komplett = DBLesen.get_data(lese_func)
 		partner_komplett = []
@@ -1969,7 +1970,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					j -= 1
 			self.comboBoxEthnicFilter.setCurrentIndex(-1)
 			
-		res = res2[:]
+		res = res_komplett[:]
 		if self.comboBoxCSFilter.currentText():
 			cs = str(self.comboBoxCSFilter.currentText())[0:1]
 			j = -1
@@ -1980,11 +1981,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				res1 = DBLesen.get_data(lese_func)
 				try:
 					if res1[0][0] == 0:
-						del res2[j]
+						del res_komplett[j]
 						j -= 1
 				except: 
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") +zu_lesen)
 					return
+			res2 = res_komplett[:]
 			self.comboBoxCSFilter.setCurrentIndex(-1)
 		
 		self.paarung = []
