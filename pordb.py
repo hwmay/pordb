@@ -840,28 +840,32 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 	def onSortieren_nach_Darsteller(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = self.letzter_select + " order by darsteller, cd, bild"
+		finde = self.letzter_select.find("order by")
+		zu_lesen = self.letzter_select[0:finde] + " order by darsteller, cd, bild"
 		self.letzter_select_komplett = zu_lesen
 		self.ausgabe(zu_lesen, zu_lesen)
 		app.restoreOverrideCursor()
 		
 	def onSortieren_nach_CD(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = self.letzter_select + " order by cd, darsteller, bild"
+		finde = self.letzter_select.find("order by")
+		zu_lesen = self.letzter_select[0:finde] + " order by cd, darsteller, bild"
 		self.letzter_select_komplett = zu_lesen
 		self.ausgabe(zu_lesen, zu_lesen)
 		app.restoreOverrideCursor()
 		
 	def onSortieren_nach_Original(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = self.letzter_select + " order by original, cd, darsteller, bild"
+		finde = self.letzter_select.find("order by")
+		zu_lesen = self.letzter_select[0:finde] + " order by original, cd, darsteller, bild"
 		self.letzter_select_komplett = zu_lesen
 		self.ausgabe(zu_lesen, zu_lesen)
 		app.restoreOverrideCursor()
 		
 	def onSortieren_nach_Titel(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		zu_lesen = self.letzter_select + " order by titel, cd, darsteller, bild"
+		finde = self.letzter_select.find("order by")
+		zu_lesen = self.letzter_select[0:finde] + " order by titel, cd, darsteller, bild"
 		self.letzter_select_komplett = zu_lesen
 		self.ausgabe(zu_lesen, zu_lesen)
 		app.restoreOverrideCursor()
