@@ -544,17 +544,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				datei, original = dialog.datei()
 				bilddatei = QtGui.QImage(datei)
 				bilddatei_alt = self.verzeichnis_cover +os.sep +bild.rstrip()
+				ext = os.path.splitext(bilddatei_alt)[-1].lower()
+				if ext == ".jpeg":
+					ext = "jpg"
 				if not os.path.exists(bilddatei_alt):
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image to replace does not exist"))
 					return
-				os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
+				os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +ext)
 			else:
 				if os.path.exists(bilddatei_alt):
 					try:
 						os.remove(self.verzeichnis_trash +os.sep +"pypordb_bildalt.*")
 					except:
 						pass
-					os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +os.path.splitext(bilddatei_alt)[-1].lower())
+					ext = os.path.splitext(bilddatei_alt)[-1].lower()
+					if ext == ".jpeg":
+						ext = "jpg"
+					os.rename(bilddatei_alt, self.verzeichnis_trash +os.sep +"pypordb_bildalt" +ext)
 					bilddatei = QtGui.QImage(dateien[0]).scaled(size, QtCore.Qt.KeepAspectRatio)
 				else:
 					bilddatei = QtGui.QImage(dateien[0])
