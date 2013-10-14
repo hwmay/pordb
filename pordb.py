@@ -1647,8 +1647,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_erfassen.append("INSERT into pordb_history values ('" +befehl +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-		self.statusBar.showMessage(self.trUtf8("Search was: ") +str(ein).decode("utf-8"))
-		if str(ein).lower().startswith("select "):
+		if type(ein) == str:
+			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
+		else:
+			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
+		if ein.lower().startswith("select "):
 			pass
 		else:
 			self.suchhistorie(ein)
