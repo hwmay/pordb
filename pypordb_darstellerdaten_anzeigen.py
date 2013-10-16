@@ -305,7 +305,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				if pseudos.count(i.title()) > 1:
 					pass
 				else:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.replace("'", "''") +"')")
+					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.title().replace("'", "''") +"')")
 					
 	def onClose(self):
 		try:
