@@ -186,11 +186,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_erfassen = "delete from pordb_history where time < '" +str(res[-1][-1]) +"'"
 				update_func = DBUpdate(self, zu_erfassen)
 				DBUpdate.update_data(update_func)
-			self.verzeichnis = os.path.expanduser("~") +os.sep +"mpg"
+			self.verzeichnis = unicode(os.path.expanduser("~") +os.sep +"mpg")
 			self.verzeichnis_original = self.verzeichnis
-			self.verzeichnis_thumbs = os.path.expanduser("~") +os.sep +"thumbs_sammlung"
-			self.verzeichnis_trash = self.verzeichnis_thumbs +os.sep +"trash"
-			self.verzeichnis_cover = self.verzeichnis_thumbs +os.sep +"cover"
+			self.verzeichnis_thumbs = unicode(os.path.expanduser("~") +os.sep +"thumbs_sammlung")
+			self.verzeichnis_trash = unicode(self.verzeichnis_thumbs +os.sep +"trash")
+			self.verzeichnis_cover = unicode(self.verzeichnis_thumbs +os.sep +"cover")
 			self.verzeichnis_tools = None
 			settings = QtCore.QSettings()
 			window_size = settings.value("MeinDialog/Size", QtCore.QVariant(QtCore.QSize(600, 500))).toSize()
@@ -412,9 +412,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		dateiliste_bereinigt.sort()
 		if self.bilderliste != dateiliste_bereinigt:
 			for i in dateiliste_bereinigt:
-				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i.decode("utf-8")).scaled(size, QtCore.Qt.KeepAspectRatio)
+				bild = QtGui.QPixmap(self.verzeichnis +os.sep +i).scaled(size, QtCore.Qt.KeepAspectRatio)
 				bild = QtGui.QIcon(bild)
-				newitem = QtGui.QTableWidgetItem(bild, i.decode("utf-8"))
+				newitem = QtGui.QTableWidgetItem(bild, i)
 				zeile += 1
 				self.tableWidgetBilderAktuell.setItem(zeile, 1, newitem)
 			self.tableWidgetBilderAktuell.resizeColumnsToContents()
@@ -630,7 +630,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		items = self.tableWidgetBilderAktuell.selectedItems()
 		dateien = []
 		for i in items:
-			dateien.append(str(self.verzeichnis +os.sep +i.text()))
+			dateien.append(self.verzeichnis +os.sep +i.text())
 		self.onNeueingabe(dateien=dateien)
 		self.bilder_aktuell()
 				
@@ -1672,9 +1672,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.tableWidgetBilder.setColumnCount(self.columns)
 		for i in res:
 			cover = ""
-			dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip()
+			dateiname = self.verzeichnis_thumbs +"/cd" +str(i[2]) +"/" +i[3].strip().decode("utf-8")
 			if not os.path.exists(dateiname) or self.actionCheckBoxDVDCover.isChecked():
-				dateiname = self.verzeichnis_cover +"/" +i[3].strip()
+				dateiname = self.verzeichnis_cover +"/" +i[3].strip().decode("utf-8")
 				if os.path.exists(dateiname):
 					cover = "x"
 			if os.path.exists(dateiname):
@@ -1750,7 +1750,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if original:
 				text += original +"\n------------------------------\n"
 			if self.anzeige_komplett:
-				text += self.trUtf8("Title: ") +i[0] +"\n" +self.trUtf8("Image: ") +i[3] +"\n------------------------------\n"
+				text += self.trUtf8("Title: ") +i[0].decode("utf-8") +"\n" +self.trUtf8("Image: ") +i[3].decode("utf-8") +"\n------------------------------\n"
 				self.angezeigt_komplett = True
 			else:
 				self.angezeigt_komplett = False
@@ -2395,11 +2395,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					text = datei.readlines()
 				elif (os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png") and os.path.splitext(i)[0] <> "pypordb_bildalt":
 					j += 1
-					self.file = QtCore.QString(self.verzeichnis_trash +os.sep +i)
-			titel = text[0].strip()
+					self.file = unicode(QtCore.QString(self.verzeichnis_trash +os.sep +i))
+			titel = text[0].strip().decode("utf-8")
 			darsteller = text[1].strip()
 			cd = text[2].strip()
-			bild = text[3].strip()
+			bild = text[3].strip().decode("utf-8")
 			gesehen = text[4].strip()
 			original = text[5].strip().decode("utf-8")
 			cs = []
@@ -2436,7 +2436,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					items = self.tableWidgetBilderAktuell.selectedItems()
 					dateien = []
 					for i in items:
-						dateien.append(str(self.verzeichnis +os.sep +i.text()))
+						dateien.append(unicode(self.verzeichnis +os.sep +i.text()))
 			if dateien:
 				if type(dateien) == str or type(dateien) == unicode:
 					self.file = dateien
@@ -2466,10 +2466,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			return
 		
 		if not undo:
-			self.verzeichnis = os.path.dirname(str(self.file))
+			self.verzeichnis = os.path.dirname(unicode(self.file))
 		
 		# In case we have just stored a cover, this part of program is already done
-		if os.path.exists(self.file):
+		datei = self.file
+		if os.path.exists(datei):
 			eingabedialog.exec_()
 			self.bilderliste = []
 			self.bilder_aktuell()
@@ -2493,9 +2494,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.changeTab("F3")
 				return
 			cd = self.aktuelles_res[index][2]
-			bild = self.aktuelles_res[index][3]
-			titel = self.aktuelles_res[index][0]
-			darsteller = self.aktuelles_res[index][1]
+			bild = self.aktuelles_res[index][3].decode("utf-8")
+			titel = self.aktuelles_res[index][0].decode("utf-8")
+			darsteller = self.aktuelles_res[index][1].decode("utf-8")
 			gesehen = self.aktuelles_res[index][4]
 			if self.aktuelles_res[index][5]:
 				original = self.aktuelles_res[index][5].decode("utf-8")
@@ -2518,10 +2519,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			else:
 				vorhanden = ""
 			definition = self.aktuelles_res[index][20]
-			self.file = str(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3]).strip()
+			self.file = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +self.aktuelles_res[index][3].strip().decode("utf-8")
 			cover = False
 			if not os.path.exists(self.file):
-				self.file = str(self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3]).strip()
+				self.file = self.verzeichnis_cover +os.sep +self.aktuelles_res[index][3].strip().decode("utf-8")
 				cover = True
 			zu_lesen = "SELECT * from pordb_original where foreign_key_pordb_vid = " +str(self.aktuelles_res[index][8])
 			lese_func = DBLesen(self, zu_lesen)

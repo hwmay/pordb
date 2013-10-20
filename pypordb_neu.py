@@ -117,7 +117,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if self.titel:
 			self.korrektur = True
 			self.lineEditNeuTitel.setText(self.titel.strip())
-			self.lineEditNeuDarsteller.setText(self.darsteller.decode("utf-8").strip())
+			self.lineEditNeuDarsteller.setText(self.darsteller.strip())
 			self.lineEditNeuCD.setText(str(self.cd))
 			self.cd_alt = str(self.cd)
 			self.lineEditNeuBild.setText(self.bild.strip())
@@ -183,18 +183,15 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if self.cover_anlegen:
 				self.radioButtonCoverJa.setChecked(True)
 				self.radioButtonCoverNein.setChecked(False)
-				anfang = string.rfind((os.path.basename(str(self.bilddatei))), '.')
+				anfang = string.rfind((os.path.basename(self.bilddatei)), '.')
 				if self.original:
 					self.lineEditNeuOriginal.setText(self.original)
 				else:
 					self.lineEditNeuOriginal.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
-				newfilename = str(self.bilddatei)
-				if str(self.bilddatei) <> newfilename:
-					os.rename(self.bilddatei, newfilename)
-			anfang = string.rfind((os.path.basename(str(self.bilddatei))), '.')
-			self.lineEditNeuTitel.setText((os.path.basename(str(self.bilddatei)))[0:anfang])
+			anfang = string.rfind((os.path.basename(unicode(self.bilddatei))), '.')
+			self.lineEditNeuTitel.setText((os.path.basename(unicode(self.bilddatei)))[0:anfang])
 			dateiliste = os.listdir(self.verzeichnis)
-			videodatei = os.path.splitext(os.path.basename(str(bilddatei)))[0]
+			videodatei = os.path.splitext(os.path.basename(unicode(self.bilddatei)))[0]
 			self.lineEditNeuTitel.setFocus()
 			for i in dateiliste:
 				datei = os.path.splitext(i)[0]
@@ -204,16 +201,16 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						self.lineEditNeuTitel.setText(os.path.basename(i))
 						self.lineEditNeuDarsteller.setFocus()
 						break
-			if len((os.path.basename(str(self.bilddatei)))[0:anfang]) > 256:
-				self.labelTitel.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len((os.path.basename(str(self.bilddatei)))[0:anfang])) +"</font>")
+			if len((os.path.basename(unicode(self.bilddatei)))[0:anfang]) > 256:
+				self.labelTitel.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len((os.path.basename(unicode(self.bilddatei)))[0:anfang])) +"</font>")
 			else:
-				self.labelTitel.setText(self.trUtf8("Characters: ") +str(len((os.path.basename(str(self.bilddatei)))[0:anfang])))
+				self.labelTitel.setText(self.trUtf8("Characters: ") +str(len((os.path.basename(unicode(self.bilddatei)))[0:anfang])))
 			self.lineEditNeuCD.setText(str(self.res_vid_neu[0][2]))
-			self.lineEditNeuBild.setText(os.path.basename(str(self.bilddatei)))
-			if len(os.path.basename(str(self.bilddatei))) > 256:
-				self.labelBild.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len(os.path.basename(str(self.bilddatei)))) +"</font>")
+			self.lineEditNeuBild.setText(os.path.basename(unicode(self.bilddatei)))
+			if len(os.path.basename(unicode(self.bilddatei))) > 256:
+				self.labelBild.setText("<font color=red>" +self.trUtf8("Characters: ") +str(len(os.path.basename(unicode(self.bilddatei)))) +"</font>")
 			else:
-				self.labelBild.setText(self.trUtf8("Characters: ") +str(len(os.path.basename(str(self.bilddatei)))))
+				self.labelBild.setText(self.trUtf8("Characters: ") +str(len(os.path.basename(unicode(self.bilddatei)))))
 			self.pushButtonBildloeschen.setEnabled(True)
 			self.pushButtonBildbeschneiden.setEnabled(True)
 			self.pushButtonNeuDelete.setEnabled(False)
@@ -337,7 +334,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 									except:
 										pass
 									actor_file = True
-		titel = str(self.lineEditNeuTitel.text())
+		titel = self.lineEditNeuTitel.text()
 		if darsteller:
 			darsteller = self.darsteller_sortieren(darsteller)
 		if self.checkBoxUninteressant.isChecked():
@@ -347,7 +344,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("CD is not a number"))
 			return
-		bild = str(self.lineEditNeuBild.text())
+		bild = self.lineEditNeuBild.text()
 
 		if not self.radioButtonVorhandenJa.isChecked() and not self.radioButtonVorhandenNein.isChecked():
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Please mark whether movie is available"))
@@ -391,7 +388,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			for i in darsteller_liste:
 				zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl - 1 where darsteller = '" + i.replace("'", "''") + "'")
 			if not self.radioButtonCoverJa.isChecked():
-				bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +bild.rstrip()
+				bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +unicode(bild).rstrip()
 				if str(cd) != self.cd_alt:
 					bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
 					os.renames(bilddatei_alt, bilddatei_neu)
@@ -501,18 +498,20 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				else:
 					bilddatei = QtGui.QImage(self.verzeichnis +os.sep +bild).scaled(size, QtCore.Qt.KeepAspectRatio)
 			if self.radioButtonCoverJa.isChecked():
-				newfilename = self.verzeichnis_cover +os.sep +bild
+				newfilename = unicode(self.verzeichnis_cover +os.sep +bild)
 			else:
-				newfilename = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild
+				newfilename = unicode(self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild)
 			# hier klappt noch etwas nicht richtig mit den Partnern, wenn len>256
 			if len(bild) > 256 or os.path.exists(newfilename):
 				neue_bilddatei = BilddateiUmbenennen(newfilename)
 				neue_bilddatei.exec_()
 				try:
-					os.rename(self.verzeichnis +os.sep +bild, self.verzeichnis +os.sep +neue_bilddatei.lineEditDateiname.text())
+					bild_alt = unicode(self.verzeichnis +os.sep +bild)
+					bild_neu = unicode(self.verzeichnis +os.sep +neue_bilddatei.lineEditDateiname.text())
+					os.rename(bild_alt, bild_neu)
 					newfilename = os.path.dirname(newfilename) +os.sep +neue_bilddatei.lineEditDateiname.text()
 					bild = neue_bilddatei.lineEditDateiname.text()
-					titel = str(bild.split('.')[0])
+					titel = unicode(bild.split('.')[0])
 				except:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error on renaming image file"))
 					return
@@ -521,7 +520,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 					os.mkdir(os.path.dirname(newfilename))
 			if bilddatei.save(newfilename):
 				if not self.undo:
-					os.remove(self.verzeichnis +os.sep +bild)
+					os.remove(self.verzeichnis +os.sep +unicode(bild))
 			else:
 				message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error saving image file"))
 				return
@@ -644,7 +643,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if self.original_weitere:
 			zu_erfassen = []
 			if self.korrektur:
-				zu_lesen = "select primkey from pordb_vid where cd = " +str(self.cd_alt) + " and bild = '" +bild +"'"
+				zu_lesen = "select primkey from pordb_vid where cd = " +unicode(self.cd_alt) + " and bild = '" +unicode(bild) +"'"
 				self.lese_func = DBLesen(self, zu_lesen)
 				curr_key = DBLesen.get_data(self.lese_func)
 				zu_erfassen.append("delete from pordb_original where foreign_key_pordb_vid = " +str(curr_key[0][0]))
@@ -739,7 +738,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		if not os.path.exists(filename):
 			filename = self.verzeichnis_cover +os.sep +self.bild.strip()
 			cover = "x"
-		newfilename = self.verzeichnis_trash +os.sep +self.bild.strip()
+		newfilename = unicode(self.verzeichnis_trash +os.sep +self.bild.strip())
 		if os.path.exists(filename):
 			os.rename(filename, newfilename)
 

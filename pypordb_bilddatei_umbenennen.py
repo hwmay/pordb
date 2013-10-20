@@ -11,7 +11,7 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		
 		self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.accept)
 		
-		self.datei = datei.replace("''", "'")
+		self.datei = unicode(datei).replace("''", "'")
 		
 		dateiname = os.path.basename(self.datei)
 		self.dateiname_basis = dateiname.split(".")[0]
@@ -28,7 +28,7 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		self.listWidgetDateinamen.sortItems()
 				
 	def accept(self):
-		neuer_dateiname = self.lineEditDateiname.text()
+		neuer_dateiname = unicode(self.lineEditDateiname.text())
 		if len(neuer_dateiname) > 256:
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have more than 256 characters") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have more than 256 characters"))
