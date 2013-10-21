@@ -33,9 +33,9 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have more than 256 characters") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have more than 256 characters"))
 			return
-		if "'" in neuer_dateiname:
-			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have any apostrophe") +"</font>")
-			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have any apostrophe"))
+		if "/" in neuer_dateiname:
+			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"Filename must not have any slash") +"</font>")
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Filename must not have any slash"))
 			return
 		if os.path.exists(os.path.dirname(self.datei) +os.sep +neuer_dateiname):
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"File already exists") +"</font>")

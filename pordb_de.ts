@@ -44,33 +44,38 @@
     <message>
         <location filename="pypordb_bilddatei_umbenennen.py" line="38"/>
         <source>Filename must not have any apostrophe</source>
-        <translation>Dateiname darf kein Apostroph enthalten</translation>
+        <translation type="obsolete">Dateiname darf kein Apostroph enthalten</translation>
+    </message>
+    <message>
+        <location filename="pypordb_bilddatei_umbenennen.py" line="38"/>
+        <source>Filename must not have any slash</source>
+        <translation>Dateiname darf keinen Schrägstrich enthalten</translation>
     </message>
 </context>
 <context>
     <name>Cover</name>
     <message>
-        <location filename="pypordb_cover.py" line="107"/>
+        <location filename="pypordb_cover.py" line="93"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="65"/>
+        <location filename="pypordb_cover.py" line="64"/>
         <source>Please mark front side</source>
         <translation>Bitte die Vorderseite markieren</translation>
     </message>
     <message>
         <location filename="pypordb_cover.py" line="101"/>
         <source>There is something wrong with the file name</source>
-        <translation>Da stimmt etwas nicht mit dem Dateinamen</translation>
+        <translation type="obsolete">Da stimmt etwas nicht mit dem Dateinamen</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="104"/>
+        <location filename="pypordb_cover.py" line="90"/>
         <source>Please enter a file name</source>
         <translation>Bitte einen Dateinamen eingeben</translation>
     </message>
     <message>
-        <location filename="pypordb_cover.py" line="107"/>
+        <location filename="pypordb_cover.py" line="93"/>
         <source>Error: Original has a character /</source>
         <translation>Fehler: Original enthält /</translation>
     </message>
@@ -469,7 +474,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.py" line="73"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="95"/>
         <source>Return</source>
         <translation>Return</translation>
     </message>
@@ -604,37 +609,37 @@ p, li { white-space: pre-wrap; }
         <translation>Strg+D</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3092"/>
+        <location filename="pordb.py" line="3109"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3089"/>
+        <location filename="pordb.py" line="3106"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.py" line="68"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="14"/>
         <source>Edit filename</source>
         <translation>Dateiname bearbeiten</translation>
     </message>
     <message>
         <location filename="pordb_bilddatei_umbenennen.py" line="69"/>
         <source>Filename already exists or has more than 50 characters or has an apostrophe</source>
-        <translation>Dateiname existiert schon oder ist länger als 50 Zeichen oder enthält ein Apostroph</translation>
+        <translation type="obsolete">Dateiname existiert schon oder ist länger als 50 Zeichen oder enthält ein Apostroph</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.py" line="70"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="42"/>
         <source>Similar files in directory</source>
         <translation>Ahnliche Dateien im Verzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.py" line="71"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="56"/>
         <source>New filename</source>
         <translation>Neuer Dateiname</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.py" line="72"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="92"/>
         <source>Rename file</source>
         <translation>Datei umbenennen</translation>
     </message>
@@ -1318,12 +1323,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Markierte Zeile ausführen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3051"/>
+        <location filename="pordb.py" line="3068"/>
         <source>Quantity</source>
         <translation>Anzahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3048"/>
+        <location filename="pordb.py" line="3065"/>
         <source>Partner</source>
         <translation>Partner</translation>
     </message>
@@ -1356,6 +1361,11 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <location filename="pordb_show_iafd_data.ui" line="46"/>
         <source>Add scene</source>
         <translation>Scene hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="33"/>
+        <source>Filename already exists or has more than 256 characters</source>
+        <translation>Dateiname existiert schon oder ist länger als 256 Zeichen</translation>
     </message>
 </context>
 <context>
@@ -2981,12 +2991,12 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation type="obsolete">Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3488"/>
+        <location filename="pordb.py" line="3505"/>
         <source>Partner</source>
         <translation>Partner</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3488"/>
+        <location filename="pordb.py" line="3505"/>
         <source>Nation</source>
         <translation>Nation</translation>
     </message>
@@ -3031,72 +3041,72 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation>Sonst</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3670"/>
+        <location filename="pordb.py" line="3687"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="881"/>
+        <location filename="pordb.py" line="891"/>
         <source>There is no original title: cannot be renamed</source>
         <translation>Originaltitel ist leer und kann nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="913"/>
+        <location filename="pordb.py" line="923"/>
         <source>Movie has no original title</source>
         <translation>Film hat keinen Originaltitel</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1739"/>
+        <location filename="pordb.py" line="1753"/>
         <source>Title: </source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1152"/>
+        <location filename="pordb.py" line="1162"/>
         <source>Actor: </source>
         <translation>Darsteller: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1739"/>
+        <location filename="pordb.py" line="1753"/>
         <source>Image: </source>
         <translation>Bild:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1158"/>
+        <location filename="pordb.py" line="1168"/>
         <source>only image: </source>
         <translation>nurBild:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1173"/>
+        <location filename="pordb.py" line="1183"/>
         <source>available: </source>
         <translation>vorhanden:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1209"/>
+        <location filename="pordb.py" line="1219"/>
         <source>Statistics</source>
         <translation>Statistik</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1274"/>
+        <location filename="pordb.py" line="1284"/>
         <source>Movies (</source>
         <translation>Filme (</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1291"/>
+        <location filename="pordb.py" line="1301"/>
         <source>Search term: </source>
         <translation>Suchbegriff:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1844"/>
+        <location filename="pordb.py" line="1858"/>
         <source>CD is not a number</source>
         <translation>CD ist keine Zahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1639"/>
+        <location filename="pordb.py" line="1653"/>
         <source>Search was: </source>
         <translation>Suche war:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1747"/>
+        <location filename="pordb.py" line="1761"/>
         <source>
 watched</source>
         <translation>gesehen</translation>
@@ -3108,7 +3118,7 @@ present</source>
         <translation type="obsolete">vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1985"/>
+        <location filename="pordb.py" line="2000"/>
         <source>There is something wrong with partners: </source>
         <translation>Hier stimmt was nicht mit den Partnern:</translation>
     </message>
@@ -3118,222 +3128,222 @@ present</source>
         <translation type="obsolete">hat gespielt mit: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2142"/>
+        <location filename="pordb.py" line="2158"/>
         <source>active : </source>
         <translation>aktiv: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2147"/>
+        <location filename="pordb.py" line="2163"/>
         <source>Male</source>
         <translation>Mann</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2149"/>
+        <location filename="pordb.py" line="2165"/>
         <source>Female</source>
         <translation>Frau</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3434"/>
+        <location filename="pordb.py" line="3451"/>
         <source>Quantity is not a number</source>
         <translation>Anzahl ist keine Zahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2250"/>
+        <location filename="pordb.py" line="2266"/>
         <source>Site of actor could not be found</source>
         <translation>Darstellerseite wurde nicht gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2262"/>
+        <location filename="pordb.py" line="2278"/>
         <source>not available</source>
         <translation>nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2343"/>
+        <location filename="pordb.py" line="2359"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2344"/>
+        <location filename="pordb.py" line="2360"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2364"/>
+        <location filename="pordb.py" line="2380"/>
         <source>Actor </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2345"/>
+        <location filename="pordb.py" line="2361"/>
         <source> will be deleted now</source>
         <translation> wird jetzt gelöscht</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2347"/>
+        <location filename="pordb.py" line="2363"/>
         <source>Should the actor really be deleted?</source>
         <translation>Soll der Darsteller wirklich gelöscht werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2443"/>
+        <location filename="pordb.py" line="2459"/>
         <source>Image files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2991"/>
+        <location filename="pordb.py" line="3008"/>
         <source>Image files (*.jpg *.jpeg *.png);;all files (*.*)</source>
         <translation>Bilddateien (*.jpg *.jpeg *.png);;all files (*.*)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2618"/>
+        <location filename="pordb.py" line="2635"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2623"/>
+        <location filename="pordb.py" line="2640"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2753"/>
+        <location filename="pordb.py" line="2770"/>
         <source>Quantity: </source>
         <translation>Anzahl:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2756"/>
+        <location filename="pordb.py" line="2773"/>
         <source>Page </source>
         <translation>Seite </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2756"/>
+        <location filename="pordb.py" line="2773"/>
         <source> of </source>
         <translation> von </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2818"/>
+        <location filename="pordb.py" line="2835"/>
         <source>Tits........</source>
         <translation>Titten......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2818"/>
+        <location filename="pordb.py" line="2835"/>
         <source>Cunt........</source>
         <translation>Fotze.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2818"/>
+        <location filename="pordb.py" line="2835"/>
         <source>Belly.......</source>
         <translation>Bauch.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2818"/>
+        <location filename="pordb.py" line="2835"/>
         <source>Ass.........</source>
         <translation>Arsch.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2818"/>
+        <location filename="pordb.py" line="2835"/>
         <source>Others......</source>
         <translation>Sonst.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2820"/>
+        <location filename="pordb.py" line="2837"/>
         <source>Summary.....</source>
         <translation>Gesamt......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2853"/>
+        <location filename="pordb.py" line="2870"/>
         <source>New name already exists as alias, please first edit/delete the aliases</source>
         <translation>Der neue Name existiert bereits als Pseudonym, bitte erst die Pseudonyme bearbeiten/entfernen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2955"/>
+        <location filename="pordb.py" line="2972"/>
         <source>Image file could not be renamed</source>
         <translation>Bilddatei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2991"/>
+        <location filename="pordb.py" line="3008"/>
         <source>Image of the actor: </source>
         <translation>Bild von Darsteller: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2995"/>
+        <location filename="pordb.py" line="3012"/>
         <source>Caution! </source>
         <translation>Achtung!</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2995"/>
+        <location filename="pordb.py" line="3012"/>
         <source>Image of the actor is very big</source>
         <translation>Bilddatei ist sehr groß</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3269"/>
+        <location filename="pordb.py" line="3286"/>
         <source> found</source>
         <translation> gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3406"/>
+        <location filename="pordb.py" line="3423"/>
         <source>Summary</source>
         <translation>Gesamt</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3488"/>
+        <location filename="pordb.py" line="3505"/>
         <source>Actor</source>
         <translation>Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3575"/>
+        <location filename="pordb.py" line="3592"/>
         <source>Quantity</source>
         <translation>Anzahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3488"/>
+        <location filename="pordb.py" line="3505"/>
         <source>Age</source>
         <translation>Alter</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3488"/>
+        <location filename="pordb.py" line="3505"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3501"/>
+        <location filename="pordb.py" line="3518"/>
         <source>Quantity of movies: </source>
         <translation>Anzahl Filme:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3575"/>
+        <location filename="pordb.py" line="3592"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>delete</source>
         <translation>löschen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>File in database</source>
         <translation>Datei in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>Device</source>
         <translation>Gerät</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>Directory</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>Size in database</source>
         <translation>Größe in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>new file</source>
         <translation>neue Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3866"/>
+        <location filename="pordb.py" line="3883"/>
         <source>Size of new file</source>
         <translation>Größe der neuen Datei</translation>
     </message>
@@ -3343,22 +3353,22 @@ present</source>
         <translation>Suchfeld. Mit Drücken der Escape Taste wird es gelöscht und erhält den Focus.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2158"/>
+        <location filename="pordb.py" line="2174"/>
         <source>Actor not available</source>
         <translation>Darsteller nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3736"/>
+        <location filename="pordb.py" line="3753"/>
         <source>Maintenance executed</source>
         <translation>Wartung durchgeführt</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3721"/>
+        <location filename="pordb.py" line="3738"/>
         <source>Backup in directory </source>
         <translation>Backup im Verzeichnis </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3633"/>
+        <location filename="pordb.py" line="3650"/>
         <source> created</source>
         <translation> angelegt</translation>
     </message>
@@ -3373,12 +3383,12 @@ present</source>
         <translation type="obsolete">Keine Dateien für ein Recovery gefunden </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3758"/>
+        <location filename="pordb.py" line="3775"/>
         <source>Select device</source>
         <translation>Bitte Gerät wählen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3762"/>
+        <location filename="pordb.py" line="3779"/>
         <source>Select directory</source>
         <translation>Bitte Verzeichnis wählen</translation>
     </message>
@@ -3388,62 +3398,62 @@ present</source>
         <translation type="obsolete">Fehler, Dateiname) </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3770"/>
+        <location filename="pordb.py" line="3787"/>
         <source> to long</source>
         <translation> zu lang</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3816"/>
+        <location filename="pordb.py" line="3833"/>
         <source>Error, filename &apos;</source>
         <translation>Fehler, Dateiname &apos;</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3816"/>
+        <location filename="pordb.py" line="3833"/>
         <source>&apos; is wrong (special characters)</source>
         <translation>&apos; ist ungültig (Sonderzeichen)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3875"/>
+        <location filename="pordb.py" line="3892"/>
         <source> Duplicate(s) found</source>
         <translation> Duplikat(e) gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3877"/>
+        <location filename="pordb.py" line="3894"/>
         <source> Duplicate(s) found, but some of them only in relation to file size</source>
         <translation> Duplikat(e) gefunden, aber einige davon nur in Bezug auf die Dateigröße</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3900"/>
+        <location filename="pordb.py" line="3917"/>
         <source> File(s) deleted</source>
         <translation> Datei(en) gelöscht</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3770"/>
+        <location filename="pordb.py" line="3787"/>
         <source>Error, filename </source>
         <translation>Fehler, Dateiname </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3870"/>
+        <location filename="pordb.py" line="3887"/>
         <source> File(s) collected</source>
         <translation> Datei(en) erfasst</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2956"/>
+        <location filename="pordb.py" line="2973"/>
         <source> lines changed</source>
         <translation> Zeilen geändert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2070"/>
+        <location filename="pordb.py" line="2086"/>
         <source>Please select:</source>
         <translation>Bitte auswählen:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3646"/>
+        <location filename="pordb.py" line="3663"/>
         <source>Connection to database failed</source>
         <translation>Verbindung zur Datenbank gescheitert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3605"/>
+        <location filename="pordb.py" line="3622"/>
         <source>Copy to file failed</source>
         <translation>Kopie in Datei hat nicht funktioniert</translation>
     </message>
@@ -3453,57 +3463,57 @@ present</source>
         <translation type="obsolete">Kopie aus Datei hat nicht funktioniert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2097"/>
+        <location filename="pordb.py" line="2113"/>
         <source>Data collection of actor seems to be not complete, nation: </source>
         <translation>Daten des Darstellers scheinen nicht komplett zu sein, Nation: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3670"/>
+        <location filename="pordb.py" line="3687"/>
         <source>Copy from file </source>
         <translation>Kopieren aus Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3707"/>
+        <location filename="pordb.py" line="3724"/>
         <source> failed. In most cases there is a file with an invalid creation/change date.</source>
         <translation> fehlgeschlagen. Meistens gibt es eine Datei mit ungültigem Entstehungs/Änderungsdatum.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3721"/>
+        <location filename="pordb.py" line="3738"/>
         <source> restored. You can now copy the complete directory to its origin place.</source>
         <translation> abgelegt. Das gesamte Verzeichnis kann jetzt an den Originalplatz kopiert werden.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1509"/>
+        <location filename="pordb.py" line="1518"/>
         <source>Seems to be an invalid character in the search field</source>
         <translation>Anscheinend gibt es ein ungültiges Zeichen im Suchfeld</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2936"/>
+        <location filename="pordb.py" line="2953"/>
         <source>Select an image of the actor</source>
         <translation>Bild des Darstellers auswählen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2938"/>
+        <location filename="pordb.py" line="2955"/>
         <source>Which image of the actor should be taken?</source>
         <translation>Welches Darstellerbild soll genommen werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2007"/>
+        <location filename="pordb.py" line="2023"/>
         <source>Illegal characters in search field</source>
         <translation>Ungültige Zeichen im Suchfeld</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3716"/>
+        <location filename="pordb.py" line="3733"/>
         <source> failed. No backup files found.</source>
         <translation> gescheitert. Keine Backup Dateien gefunden.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1006"/>
+        <location filename="pordb.py" line="1016"/>
         <source> transferred into clipboard</source>
         <translation> in das Clipboard übertragen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3142"/>
+        <location filename="pordb.py" line="3159"/>
         <source>Only digits allowed as filesize</source>
         <translation>Nur Zahlen erlaubt als Dateigröße</translation>
     </message>
@@ -3513,28 +3523,28 @@ present</source>
         <translation type="obsolete">Bitte mindestens 2 Zeichen im Suchfeld eingeben</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3167"/>
+        <location filename="pordb.py" line="3184"/>
         <source>Filesize to must be bigger than filesize from</source>
         <translation>Dateigröße 2 muss größer als Dateigröße 1 sein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3178"/>
+        <location filename="pordb.py" line="3195"/>
         <source>Please enter at least 3 characters in the searchfield</source>
         <translation>Bitte mindestens 3 Zeichen im Suchfeld eingeben</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3716"/>
+        <location filename="pordb.py" line="3733"/>
         <source>Restore from directory </source>
         <translation>Restore aus Verzeichnis </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1749"/>
+        <location filename="pordb.py" line="1763"/>
         <source>
 in stock</source>
         <translation>vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1757"/>
+        <location filename="pordb.py" line="1771"/>
         <source> unknown</source>
         <translation> unbekannt</translation>
     </message>
@@ -3544,12 +3554,12 @@ in stock</source>
         <translation>Du kannst nur 1 oder 2 Bilder ziehen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="548"/>
+        <location filename="pordb.py" line="551"/>
         <source>Image to replace does not exist</source>
         <translation>Zu ersetzendes Bild existiert nicht</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="569"/>
+        <location filename="pordb.py" line="575"/>
         <source>Error saving image file</source>
         <translation>Fehler beim Speichern der Bilddatei</translation>
     </message>
@@ -3559,42 +3569,42 @@ in stock</source>
         <translation>Du kannst nur 1 Bild verschieben</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1131"/>
+        <location filename="pordb.py" line="1141"/>
         <source>Count: </source>
         <translation>Anzahl: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="978"/>
+        <location filename="pordb.py" line="988"/>
         <source>Image restore</source>
         <translation>Bild wiederherstellen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="979"/>
+        <location filename="pordb.py" line="989"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="980"/>
+        <location filename="pordb.py" line="990"/>
         <source>Image restore </source>
         <translation>Bild wiederherstellen </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="982"/>
+        <location filename="pordb.py" line="992"/>
         <source>Do you want to restore the image?</source>
         <translation>Soll das alte Bild wiederhergestellt werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3639"/>
+        <location filename="pordb.py" line="3656"/>
         <source>No files found for restoring</source>
         <translation>Keine Backup-Dateien gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3678"/>
+        <location filename="pordb.py" line="3695"/>
         <source>Database restore was successful</source>
         <translation>Datenbank wurde erfolgreich zurückgeladen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2991"/>
+        <location filename="pordb.py" line="3008"/>
         <source>, please select</source>
         <translation>, bitte auswählen</translation>
     </message>
@@ -3604,17 +3614,17 @@ in stock</source>
         <translation>Entweder ist Dein Computer offline oder die IAFD ist nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="1996"/>
+        <location filename="pordb.py" line="2012"/>
         <source>Partner: </source>
         <translation>Partner: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2045"/>
+        <location filename="pordb.py" line="2061"/>
         <source>Actor has been found as pseudonym only!</source>
         <translation>Darsteller wurde nur als Pseudonym gefunden!</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2364"/>
+        <location filename="pordb.py" line="2380"/>
         <source> deleted</source>
         <translation> gelöscht</translation>
     </message>
@@ -3622,17 +3632,17 @@ in stock</source>
 <context>
     <name>Neueingabe</name>
     <message>
-        <location filename="pypordb_neu.py" line="216"/>
+        <location filename="pypordb_neu.py" line="213"/>
         <source>Characters: </source>
         <translation>Zeichen:</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="266"/>
+        <location filename="pypordb_neu.py" line="264"/>
         <source>Image files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="317"/>
+        <location filename="pypordb_neu.py" line="315"/>
         <source>Image files (*.jpg *.jpeg *.png);;all files (*.*)</source>
         <translation>Bilddateien (*.jpg *.jpeg *.png);;all files (*.*)</translation>
     </message>
@@ -3642,62 +3652,62 @@ in stock</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="293"/>
+        <location filename="pypordb_neu.py" line="291"/>
         <source>You have entered some actors twice, please correct</source>
         <translation>Es wurden doppelte Darsteller eingegeben, bitte korrigieren</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="296"/>
+        <location filename="pypordb_neu.py" line="294"/>
         <source>Yes, image exists</source>
         <translation>Ja, Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="297"/>
+        <location filename="pypordb_neu.py" line="295"/>
         <source>Yes, no image</source>
         <translation>Ja, kein Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="298"/>
+        <location filename="pypordb_neu.py" line="296"/>
         <source>No, correct entry</source>
         <translation>Nein, Eingabe korrigieren</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="299"/>
+        <location filename="pypordb_neu.py" line="297"/>
         <source>Actors </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="299"/>
+        <location filename="pypordb_neu.py" line="297"/>
         <source> does not exist</source>
         <translation> nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="301"/>
+        <location filename="pypordb_neu.py" line="299"/>
         <source>Do you want to add this actor?</source>
         <translation>Soll der Darsteller neu aufgenommen werden?</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="317"/>
+        <location filename="pypordb_neu.py" line="315"/>
         <source>Image of the actor </source>
         <translation>Bild des Darstellers </translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="325"/>
+        <location filename="pypordb_neu.py" line="323"/>
         <source>Caution! </source>
         <translation>Achtung!</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="325"/>
+        <location filename="pypordb_neu.py" line="323"/>
         <source>Image of the actor is very big</source>
         <translation>Bild des Darstellers ist sehr groß</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="347"/>
+        <location filename="pypordb_neu.py" line="345"/>
         <source>CD is not a number</source>
         <translation>CD ist keine Zahl</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="352"/>
+        <location filename="pypordb_neu.py" line="350"/>
         <source>Please mark whether movie is available</source>
         <translation>Bitte markieren, ob Film vorhanden</translation>
     </message>
@@ -3707,12 +3717,12 @@ in stock</source>
         <translation type="obsolete">Bitte markieren, ob nur als Bild vorhanden</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="374"/>
+        <location filename="pypordb_neu.py" line="372"/>
         <source>Error, original title is longer than 256 characters.</source>
         <translation>Fehler, Originaltitel hat mehr als 256 Zeichen.</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="377"/>
+        <location filename="pypordb_neu.py" line="375"/>
         <source>Please check if image file is a cover</source>
         <translation>Bitte markieren, ob es sich hierbei um ein Cover handelt</translation>
     </message>
@@ -3742,22 +3752,22 @@ in stock</source>
         <translation type="obsolete">Es müssen 1 oder 2 Bilddateien vorhanden sein</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="370"/>
+        <location filename="pypordb_neu.py" line="368"/>
         <source>Error: original title has invalid characters</source>
         <translation>Fehler: Originaltitel enthält ungültige Zeichen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="380"/>
+        <location filename="pypordb_neu.py" line="378"/>
         <source>Please select a resolution</source>
         <translation>Bitte eine Auflösung wählen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="383"/>
+        <location filename="pypordb_neu.py" line="381"/>
         <source>Video is not in stock: resolution is set to unknown</source>
         <translation>Video ist nicht vorhanden: Auflösung wurde auf unbekannt gesetzt</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="493"/>
+        <location filename="pypordb_neu.py" line="491"/>
         <source>When adding a cover you must also enter a movie title</source>
         <translation>Du willst ein Cover erfassen, dann muss auch ein Originaltitel eingegeben werden</translation>
     </message>
@@ -3767,12 +3777,12 @@ in stock</source>
         <translation type="obsolete">: bitte auswählen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="317"/>
+        <location filename="pypordb_neu.py" line="315"/>
         <source>please select one</source>
         <translation>bitte auswählen</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="360"/>
+        <location filename="pypordb_neu.py" line="358"/>
         <source>Please mark whether movie has been watched</source>
         <translation>Bitte markieren ob das Video gesehen wurde</translation>
     </message>
@@ -3782,7 +3792,7 @@ in stock</source>
         <translation type="obsolete">Video kann nicht den Status &quot;nicht vorhanden&quot; haben und gleichzeitig den Status &quot;gesehen&quot;</translation>
     </message>
     <message>
-        <location filename="pypordb_neu.py" line="320"/>
+        <location filename="pypordb_neu.py" line="318"/>
         <source>Selected image is the one which should be added to the database. Please select another one.</source>
         <translation>Ausgewähltes Bild soll in der Datenbank gespeichert werden. Bitte ein anderes auswählen.</translation>
     </message>
