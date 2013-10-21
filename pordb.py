@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.3"
+__version__ = "5.5.4"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -1800,7 +1800,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_erfassen = []
 		for i in res:
 			if i[1].strip() == e.strip():
-				zu_erfassen.append("delete from pordb_suche where suche = '" +e.replace("'", "''") +"'")
+				zu_erfassen.append("delete from pordb_suche where suche = '" +e.decode("utf-8").replace("'", "''") +"'")
 				break
 		zu_erfassen.append("INSERT into pordb_suche (suche) VALUES ('" +e.decode("utf-8").replace("'", "''") +"')")
 		if len(res) >= 20:
