@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="2.0" language="de_DE" sourcelanguage="">
 <context>
     <name>Bildbeschneiden</name>
     <message>
@@ -474,7 +473,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.ui" line="95"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="97"/>
         <source>Return</source>
         <translation>Return</translation>
     </message>
@@ -639,7 +638,7 @@ p, li { white-space: pre-wrap; }
         <translation>Neuer Dateiname</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.ui" line="92"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="94"/>
         <source>Rename file</source>
         <translation>Datei umbenennen</translation>
     </message>
@@ -1363,7 +1362,7 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Scene hinzufügen</translation>
     </message>
     <message>
-        <location filename="pordb_bilddatei_umbenennen.ui" line="33"/>
+        <location filename="pordb_bilddatei_umbenennen.ui" line="31"/>
         <source>Filename already exists or has more than 256 characters</source>
         <translation>Dateiname existiert schon oder ist länger als 256 Zeichen</translation>
     </message>

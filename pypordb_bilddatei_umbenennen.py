@@ -10,6 +10,7 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		self.setupUi(self)
 		
 		self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.accept)
+		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
 		
 		self.datei = unicode(datei).replace("''", "'")
 		

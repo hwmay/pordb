@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_bilddatei_umbenennen.ui'
 #
-# Created: Mon Oct 21 23:24:55 2013
+# Created: Mon Oct 21 23:52:55 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,14 +26,12 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(1035, 299)
+        Dialog.resize(1035, 307)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.formLayout = QtGui.QFormLayout(Dialog)
         self.formLayout.setObjectName(_fromUtf8("formLayout"))
-        self.gridLayout_3 = QtGui.QGridLayout()
-        self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
         self.label = QtGui.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -41,7 +39,9 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
+        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label)
+        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.groupBox = QtGui.QGroupBox(Dialog)
@@ -69,13 +69,19 @@ class Ui_Dialog(object):
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.horizontalLayout.addLayout(self.verticalLayout)
-        self.gridLayout_3.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.pushButtonUmbenennen = QtGui.QPushButton(Dialog)
         self.pushButtonUmbenennen.setDefault(True)
         self.pushButtonUmbenennen.setFlat(False)
         self.pushButtonUmbenennen.setObjectName(_fromUtf8("pushButtonUmbenennen"))
-        self.gridLayout_3.addWidget(self.pushButtonUmbenennen, 2, 0, 1, 1)
-        self.formLayout.setLayout(0, QtGui.QFormLayout.SpanningRole, self.gridLayout_3)
+        self.horizontalLayout_2.addWidget(self.pushButtonUmbenennen)
+        self.pushButtonCancel = QtGui.QPushButton(Dialog)
+        self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
+        self.horizontalLayout_2.addWidget(self.pushButtonCancel)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        self.formLayout.setLayout(1, QtGui.QFormLayout.SpanningRole, self.verticalLayout_2)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -87,4 +93,5 @@ class Ui_Dialog(object):
         self.groupBox_2.setTitle(_translate("Dialog", "New filename", None))
         self.pushButtonUmbenennen.setText(_translate("Dialog", "Rename file", None))
         self.pushButtonUmbenennen.setShortcut(_translate("Dialog", "Return", None))
+        self.pushButtonCancel.setText(_translate("Dialog", "Cancel", None))
 

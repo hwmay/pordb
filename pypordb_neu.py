@@ -504,16 +504,18 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			# hier klappt noch etwas nicht richtig mit den Partnern, wenn len>256
 			if len(bild) > 256 or os.path.exists(newfilename):
 				neue_bilddatei = BilddateiUmbenennen(newfilename)
-				neue_bilddatei.exec_()
-				try:
-					bild_alt = unicode(self.verzeichnis +os.sep +bild)
-					bild_neu = unicode(self.verzeichnis +os.sep +neue_bilddatei.lineEditDateiname.text())
-					os.rename(bild_alt, bild_neu)
-					newfilename = os.path.dirname(newfilename) +os.sep +neue_bilddatei.lineEditDateiname.text()
-					bild = neue_bilddatei.lineEditDateiname.text()
-					titel = unicode(bild.split('.')[0])
-				except:
-					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error on renaming image file"))
+				if neue_bilddatei.exec_():
+					try:
+						bild_alt = unicode(self.verzeichnis +os.sep +bild)
+						bild_neu = unicode(self.verzeichnis +os.sep +neue_bilddatei.lineEditDateiname.text())
+						os.rename(bild_alt, bild_neu)
+						newfilename = os.path.dirname(newfilename) +os.sep +neue_bilddatei.lineEditDateiname.text()
+						bild = neue_bilddatei.lineEditDateiname.text()
+						titel = unicode(bild.split('.')[0])
+					except:
+						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Error on renaming image file"))
+						return
+				else:
 					return
 			else:
 				if not os.path.exists(os.path.dirname(newfilename)):
