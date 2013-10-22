@@ -1439,6 +1439,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.ausgabe(zu_lesen, zu_lesen)
 			self.letzter_select_komplett = zu_lesen
 		app.restoreOverrideCursor()
+		self.suchfeld.setFocus()
 		
 	def onDarsteller(self):
 		# Darsteller in pordb_vid suchen und anzeigen

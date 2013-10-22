@@ -42,4 +42,4 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"File already exists") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("File already exists"))
 			return
-		self.close()
+		QtGui.QDialog.accept(self)
