@@ -492,7 +492,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.onPageUp()
 		elif event.key() == QtCore.Qt.Key_PageDown:
 			self.onPageDown()
-		elif event.key() == QtCore.Qt.Key_F12 and self.tabWidget.currentIndex() == 0:
+		elif event.key() == QtCore.Qt.Key_F12 and self.tabWidget.currentIndex() == 0 and self.aktuelle_ausgabe == "Bilder":
 			if self.angezeigt_komplett == False:
 				self.anzeige_komplett = True
 			else:
