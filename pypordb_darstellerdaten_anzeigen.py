@@ -299,13 +299,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 	# end of onUebernehmen
 		
 	def pseudo_uebernehmen(self, name, zu_erfassen):
-		pseudos = unicode(self.lineEditPseudo.text()).split(", ")
+		pseudos = unicode(self.lineEditPseudo.text()).title().split(", ")
+		pseudos = (set(pseudos))
 		for i in pseudos:
-			if i and i.title() != name.title().strip():
-				if pseudos.count(i.title()) > 1:
-					pass
-				else:
-					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.title().replace("'", "''") +"')")
+			if i and i != name.title().strip():
+				zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
 					
 	def onClose(self):
 		try:
