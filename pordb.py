@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.4"
+__version__ = "5.5.5"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -2479,7 +2479,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			self.spinBoxAktuell.setValue(res[0][2])
-			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
+			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].decode("utf-8").strip() +" Act:" +res[0][1].strip())
 		
 	# end of onNeueingabe
 		
