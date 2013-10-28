@@ -25,7 +25,10 @@ class DBUpdate():
 			update_db.append(self.update)
 		else:
 			for i in self.update:
-				update_db.append(unicode(i))
+				try:
+					update_db.append(unicode(i))
+				except:
+					update_db.append(i)
 		for i in update_db:
 			try:
 				self.cur.execute(i)
