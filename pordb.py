@@ -272,6 +272,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.partner = 0
 		self.anzeige_komplett = False
 		self.angezeigt_komplett = False
+		self.url = ""
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -3367,7 +3368,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.webView.load(QtCore.QUrl(url))
 		
 	def onUrlChanged(self, url):
-		self.statusBar.showMessage(str(url).strip("PyQt4.QtCore.QUrl(u'").rstrip("/')"))
+		self.url = str(url).strip("PyQt4.QtCore.QUrl(u'").rstrip("/')")
+		self.statusBar.showMessage(self.url)
 		
 	def GetWebsite(self):
 		if str(self.lineEditURL.text()).startswith("http://"):
@@ -3378,11 +3380,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.statusBar.showMessage(url)
 		
 	def onUrlVerwalten(self):
-		if str(self.lineEditURL.text()):
-			if str(self.lineEditURL.text()).startswith("http://"):
-				url = self.lineEditURL.text()
+		if self.url:
+			if self.url.startswith("http://"):
+				url = self.url
 			else:
-				url = "http://" + self.lineEditURL.text()
+				url = "http://" + self.url
 		else:
 			url = "http://www.iafd.com/"
 		bookmarks = Bookmarks(url)
