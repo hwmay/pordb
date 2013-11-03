@@ -1525,15 +1525,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		ein3 = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").lower().strip()
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_original where lower(original) like '" +ein3[1:] +"%' or original like '" +ein2[1:] +"%'"
+			zu_lesen = "SELECT * from pordb_original where (lower(original) like '" +ein3[1:] +"%' or original like '" +ein2[1:] +"%')"
 		else:
-			zu_lesen = "SELECT * from pordb_original where lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_original where (lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%')"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		if ein[0] == "=":
-			zu_lesen = "SELECT * from pordb_vid where lower(original) = '" +ein3[1:] +"' or original like '" +ein2[1:] +"%'"
+			zu_lesen = "SELECT * from pordb_vid where (lower(original) = '" +ein3[1:] +"' or original like '" +ein2[1:] +"%')"
 		else:
-			zu_lesen = "SELECT * from pordb_vid where lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%'"
+			zu_lesen = "SELECT * from pordb_vid where (lower(original) like '%" +ein3.replace(" ", "%") +"%' or original like '%" +ein2.replace(" ", "%") +"%')"
 		original_erweiterung = ""
 		for i in res:
 			original_erweiterung += " or primkey = " +str(i[2])
@@ -1602,10 +1602,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		lese_func = DBLesen(self, zu_lesen)
 		self.aktuelles_res = DBLesen.get_data(lese_func)
 		zw_res = []
-		if "SELECT * from pordb_vid where lower(original)" in zu_lesen:
+		if "SELECT * from pordb_vid where (lower(original)" in zu_lesen:
 			ende = zu_lesen.find("primkey")
 			if ende < 0:
-				ende = zu_lesen.find("gesehen") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
+				ende1 = zu_lesen.find("gesehen") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
+				ende2 = zu_lesen.find("vorhanden") - 6 # damit das "and" nicht in der where-Bedingung durch "&" ersetzt wird
+				if ende1 > 0 and ende2 > 0:
+					ende = min(ende1, ende2)
+				else:
+					ende = max(ende1, ende2)
 			for i in self.suchbegriffe:
 				suchbegriff = i.lower().strip()
 				if suchbegriff and suchbegriff in zu_lesen[0:ende]:
