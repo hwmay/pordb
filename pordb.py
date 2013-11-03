@@ -2214,6 +2214,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if os.path.exists(newfilename):
 				os.rename(newfilename, filename)
 		
+		self.onbildAnzeige()
 		self.labelFehler.clear()
 		self.suchfeld.setFocus()
 	# end of onDarstellerspeichern
