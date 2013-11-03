@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Fri Oct  4 01:46:54 2013
+# Created: Sun Nov  3 21:50:44 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -469,7 +469,7 @@ class Ui_MainWindow(object):
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
         self.horizontalLayout_20.addWidget(self.pushButtonSuchen)
         self.pushButtonUebernehmen = QtGui.QPushButton(self.tab_3)
-        self.pushButtonUebernehmen.setToolTip(_fromUtf8(""))
+        self.pushButtonUebernehmen.setWhatsThis(_fromUtf8(""))
         self.pushButtonUebernehmen.setText(_fromUtf8(""))
         icon7 = QtGui.QIcon()
         icon7.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/go-up.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
@@ -901,7 +901,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1022,7 +1022,7 @@ class Ui_MainWindow(object):
         self.pushButtonSuchen.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Execute search, Enter</p></body></html>", None))
         self.pushButtonSuchen.setText(_translate("MainWindow", "Search", None))
         self.pushButtonSuchen.setShortcut(_translate("MainWindow", "Return", None))
-        self.pushButtonUebernehmen.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Copy content from this search field to the main search field, Ctrl+PageUp</p></body></html>", None))
+        self.pushButtonUebernehmen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Copy content from this search field to the main search field, Ctrl+PageUp</p></body></html>", None))
         self.pushButtonUebernehmen.setShortcut(_translate("MainWindow", "Ctrl+PgUp", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "mpg_katalog", None))
         self.labelMpgGefunden.setText(_translate("MainWindow", "0 found", None))
