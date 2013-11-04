@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1202,7 +1202,11 @@ p, li { white-space: pre-wrap; }
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Execute search, Enter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Search</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
                </property>
                <property name="shortcut">
                 <string>Return</string>
@@ -1351,6 +1355,36 @@ p, li { white-space: pre-wrap; }
                <property name="icon">
                 <iconset>
                  <normaloff>pypordb/favicon.ico</normaloff>pypordb/favicon.ico</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditSearchWebsite">
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="whatsThis">
+                <string>Enter text to search in website</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonSearchWebsite">
+               <property name="toolTip">
+                <string>Search in website, Ctrl+shift+F</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+Shift+F</string>
                </property>
               </widget>
              </item>

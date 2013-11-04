@@ -151,8 +151,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonAbholen, QtCore.SIGNAL("clicked()"), self.onDarstellerdatenAbholen)
 		self.connect(self.pushButtonMovie, QtCore.SIGNAL("clicked()"), self.onMovieData)
 		self.connect(self.pushButtonUrl, QtCore.SIGNAL("clicked()"), self.onUrlVerwalten)
+		self.connect(self.pushButtonSearchWebsite, QtCore.SIGNAL("clicked()"), self.onSearchWebsite)
 		self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
 		self.connect(self.webView, QtCore.SIGNAL("urlChanged (const QUrl&)"), self.onUrlChanged)
+		
+		
 		
 		# Slots einrichten für Statistiken
 		self.connect(self.pushButtonCS, QtCore.SIGNAL("clicked()"), self.onStatistikCS)
@@ -3346,6 +3349,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 	def onIAFDSeite(self):
 		self.webView.load(QtCore.QUrl("http://www.iafd.com/"))
+		
+	def onSearchWebsite(self):
+		searchstring = self.lineEditSearchWebsite.text()
+		self.webView.page().findText(searchstring)
 		
 	def onDarstellerdatenAbholen(self):
 		url = self.webView.url().toString()

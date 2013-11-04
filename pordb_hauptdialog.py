@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Nov  3 21:50:44 2013
+# Created: Mon Nov  4 20:53:11 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -466,6 +466,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.addWidget(self.comboBoxFilesizeUnit)
         self.horizontalLayout_20.addLayout(self.horizontalLayout_11)
         self.pushButtonSuchen = QtGui.QPushButton(self.tab_3)
+        self.pushButtonSuchen.setText(_fromUtf8(""))
+        self.pushButtonSuchen.setIcon(icon4)
         self.pushButtonSuchen.setObjectName(_fromUtf8("pushButtonSuchen"))
         self.horizontalLayout_20.addWidget(self.pushButtonSuchen)
         self.pushButtonUebernehmen = QtGui.QPushButton(self.tab_3)
@@ -545,6 +547,15 @@ class Ui_MainWindow(object):
         self.pushButtonIAFD.setIcon(icon10)
         self.pushButtonIAFD.setObjectName(_fromUtf8("pushButtonIAFD"))
         self.horizontalLayout_14.addWidget(self.pushButtonIAFD)
+        self.lineEditSearchWebsite = QtGui.QLineEdit(self.tab_4)
+        self.lineEditSearchWebsite.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.lineEditSearchWebsite.setObjectName(_fromUtf8("lineEditSearchWebsite"))
+        self.horizontalLayout_14.addWidget(self.lineEditSearchWebsite)
+        self.pushButtonSearchWebsite = QtGui.QPushButton(self.tab_4)
+        self.pushButtonSearchWebsite.setText(_fromUtf8(""))
+        self.pushButtonSearchWebsite.setIcon(icon4)
+        self.pushButtonSearchWebsite.setObjectName(_fromUtf8("pushButtonSearchWebsite"))
+        self.horizontalLayout_14.addWidget(self.pushButtonSearchWebsite)
         self.pushButtonVideo = QtGui.QPushButton(self.tab_4)
         self.pushButtonVideo.setObjectName(_fromUtf8("pushButtonVideo"))
         self.horizontalLayout_14.addWidget(self.pushButtonVideo)
@@ -901,7 +912,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1020,7 +1031,6 @@ class Ui_MainWindow(object):
         self.comboBoxFilesizeUnit.setItemText(1, _translate("MainWindow", "GB", None))
         self.comboBoxFilesizeUnit.setItemText(2, _translate("MainWindow", "Bytes", None))
         self.pushButtonSuchen.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>Execute search, Enter</p></body></html>", None))
-        self.pushButtonSuchen.setText(_translate("MainWindow", "Search", None))
         self.pushButtonSuchen.setShortcut(_translate("MainWindow", "Return", None))
         self.pushButtonUebernehmen.setToolTip(_translate("MainWindow", "<html><head/><body><p>Copy content from this search field to the main search field, Ctrl+PageUp</p></body></html>", None))
         self.pushButtonUebernehmen.setShortcut(_translate("MainWindow", "Ctrl+PgUp", None))
@@ -1035,6 +1045,9 @@ class Ui_MainWindow(object):
         self.pushButtonForward.setToolTip(_translate("MainWindow", "forward", None))
         self.pushButtonIAFD.setToolTip(_translate("MainWindow", "Load IAFD site", None))
         self.pushButtonIAFD.setWhatsThis(_translate("MainWindow", "Load IAFD site", None))
+        self.lineEditSearchWebsite.setWhatsThis(_translate("MainWindow", "Enter text to search in website", None))
+        self.pushButtonSearchWebsite.setToolTip(_translate("MainWindow", "Search in website, Ctrl+shift+F", None))
+        self.pushButtonSearchWebsite.setShortcut(_translate("MainWindow", "Ctrl+Shift+F", None))
         self.pushButtonVideo.setWhatsThis(_translate("MainWindow", "Check which movies are in database.", None))
         self.pushButtonVideo.setText(_translate("MainWindow", "Movies available?", None))
         self.pushButtonVideo.setShortcut(_translate("MainWindow", "Ctrl+E", None))
