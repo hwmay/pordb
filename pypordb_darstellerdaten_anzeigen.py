@@ -35,7 +35,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
 		ende = self.darstellerseite.find('</h1>', anfang)
-		self.name = self.darstellerseite[anfang+4:ende].decode(self.coding).strip()
+		self.name = self.darstellerseite[anfang+4:ende].strip()
 		self.labelName.setText(self.name)
 		self.lineEditName.setText(self.name)
 			
@@ -46,7 +46,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
 		ende = self.darstellerseite.find('"></div>', anfang)
-		self.bild = (self.darstellerseite[anfang+20:ende].decode(self.coding)) 
+		self.bild = (self.darstellerseite[anfang+20:ende]) 
 		url =  'http://www.iafd.com/graphics/headshots/' + self.bild
 		self.verz = os.path.expanduser("~") +os.sep +"tmp"
 		urllib._urlopener=urllib.URLopener()
@@ -64,7 +64,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		# Darsteller Geschlecht
 		anfang = self.darstellerseite.find('&amp;gender=')
 		ende = self.darstellerseite.find('"', anfang)
-		self.geschlecht = self.darstellerseite[anfang+12:ende].decode(self.coding)
+		self.geschlecht = self.darstellerseite[anfang+12:ende]
 		if self.geschlecht == "f":
 			self.geschlecht = "w"
 		elif self.geschlecht != "m":
@@ -77,14 +77,14 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		anfang = self.darstellerseite.find('AKA</b>')
 		anfang = self.darstellerseite.find('</td><td>', anfang)
 		ende = self.darstellerseite.find('</td>', anfang+1)
-		self.pseudonyme = self.darstellerseite[anfang+9:ende]#.decode(self.coding)
+		self.pseudonyme = self.darstellerseite[anfang+9:ende]
 		if self.pseudonyme != "No known aliases":
 			self.lineEditPseudo.setText(self.pseudonyme)
 	
 		# Darsteller Land
 		anfang = self.darstellerseite.find('Nationality/Heritage</b></td><td>')
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.land = self.darstellerseite[anfang+33:ende].decode(self.coding)
+		self.land = self.darstellerseite[anfang+33:ende]
 		if self.land == "No data":
 			self.lineEditLand.setText("")
 		else:
@@ -98,7 +98,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		# Darsteller Ethnic
 		anfang = self.darstellerseite.find('Ethnicity</b></td><td>')
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.ethnic = self.darstellerseite[anfang+22:ende].decode(self.coding)
+		self.ethnic = self.darstellerseite[anfang+22:ende]
 		ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
 		if ethnic != self.trUtf8("nicht vorhanden"):
 			self.ethnic = ethnic
@@ -111,7 +111,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			anfang = self.darstellerseite.find('Hair Color</b></td><td>')
 			offset = 23
 		ende = self.darstellerseite.find('</td></tr>', anfang)
-		self.haare = self.darstellerseite[anfang+offset:ende].decode(self.coding)
+		self.haare = self.darstellerseite[anfang+offset:ende]
 		haarfarbe = haarfarben.get(self.haare, self.trUtf8("nicht vorhanden"))
 		if haarfarbe != self.trUtf8("nicht vorhanden"):
 			self.haare = haarfarbe
@@ -120,7 +120,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		# Darsteller Tattoos
 		anfang = self.darstellerseite.find('Tattoos</b></td><td>')
 		ende = self.darstellerseite.find('</td>', anfang+20)
-		self.tattoos = self.darstellerseite[anfang+20:ende].decode(self.coding)
+		self.tattoos = self.darstellerseite[anfang+20:ende]
 		if self.tattoos == "None" or self.tattoos == "none":
 			self.lineEditTattos.setText("-")
 		elif self.tattoos == "No data" or self.tattoos == "No Data":
@@ -132,7 +132,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		anfang = self.darstellerseite.find('<b>Birthday')
 		anfang = self.darstellerseite.find('">', anfang)
 		ende = self.darstellerseite.find('</a>', anfang)
-		self.geboren = self.darstellerseite[anfang+2:ende].decode(self.coding)
+		self.geboren = self.darstellerseite[anfang+2:ende]
 		monat = monate.get(self.geboren[0:self.geboren.find(" ")], self.trUtf8("not available"))
 		if monat != self.trUtf8("not available"):
 			tag = self.geboren[self.geboren.find(" ")+1:self.geboren.find(",")]
@@ -147,7 +147,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		anfang = self.darstellerseite.find('moviecount">')
 		if anfang > 0:
 			ende = self.darstellerseite.find(' Title', anfang+1)
-			self.filme = self.darstellerseite[anfang+12:ende].decode(self.coding)
+			self.filme = self.darstellerseite[anfang+12:ende]
 		else:
 			self.filme = 0
 		
@@ -161,12 +161,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				anfang += 38
 		else:
 			anfang += 25
-		aktiv_von = self.darstellerseite[anfang:anfang + 4].decode(self.coding)
+		aktiv_von = self.darstellerseite[anfang:anfang + 4]
 		try:
 			self.aktiv_von_int = int(aktiv_von)
 		except:
 			self.aktiv_von_int = 0
-		aktiv_bis = self.darstellerseite[anfang + 5:anfang + 9].decode(self.coding)
+		aktiv_bis = self.darstellerseite[anfang + 5:anfang + 9]
 		try:
 			self.aktiv_bis_int = int(aktiv_bis)
 		except:
