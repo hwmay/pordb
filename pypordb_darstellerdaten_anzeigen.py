@@ -287,7 +287,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
 				zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
-				self.pseudo_uebernehmen(res[0][0].decode("utf-8"), zu_erfassen)
+				action = self.pseudo_uebernehmen(res[0][0].decode("utf-8"), zu_erfassen)
+				if not action: 
+					return
 				
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
 			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
@@ -303,7 +305,23 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		pseudos = (set(pseudos))
 		for i in pseudos:
 			if i and i != name.title().strip():
-				zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
+				res = []
+				zu_lesen = "select pseudo from pordb_pseudo where pseudo = '" +i.strip().replace("'", "''").title() +"'"
+				self.lese_func = DBLesen(self, zu_lesen)
+				res = DBLesen.get_data(self.lese_func)
+				if res:
+					messageBox = QtGui.QMessageBox()
+					messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
+					messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
+					messageBox.setWindowTitle(self.trUtf8("There is always an actor with this name as alias."))
+					messageBox.setIcon(QtGui.QMessageBox.Question)
+					messageBox.setText(self.trUtf8("Do you want to add this actor anyway?"))
+					message = messageBox.exec_()
+					if message == 0:
+						zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
+						return True
+					else:
+						return False
 					
 	def onClose(self):
 		try:
