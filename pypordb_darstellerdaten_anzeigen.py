@@ -236,7 +236,9 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen_zw += "', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')"
 				zu_erfassen.append(zu_erfassen_zw)
 				if self.checkBoxPseudo.isChecked():
-					self.pseudo_uebernehmen(name, zu_erfassen)
+					action = self.pseudo_uebernehmen(name, zu_erfassen)
+				if not action: 
+					return
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
 				if extension == ".jpeg":
 					extension = ".jpg"
@@ -306,14 +308,14 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		for i in pseudos:
 			if i and i != name.title().strip():
 				res = []
-				zu_lesen = "select pseudo from pordb_pseudo where pseudo = '" +i.strip().replace("'", "''").title() +"'"
+				zu_lesen = "select darsteller from pordb_darsteller where darsteller = '" +i.strip().replace("'", "''").title() +"'"
 				self.lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(self.lese_func)
 				if res:
 					messageBox = QtGui.QMessageBox()
-					messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
-					messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
-					messageBox.setWindowTitle(self.trUtf8("There is always an actor with this name as alias."))
+					messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
+					messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
+					messageBox.setWindowTitle(self.trUtf8("There is always an actor in the database with alias ") +i.strip().replace("'", "''").title())
 					messageBox.setIcon(QtGui.QMessageBox.Question)
 					messageBox.setText(self.trUtf8("Do you want to add this actor anyway?"))
 					message = messageBox.exec_()
@@ -322,6 +324,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 						return True
 					else:
 						return False
+			if not i:
+				return True
 					
 	def onClose(self):
 		try:
