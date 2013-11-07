@@ -324,8 +324,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 						return True
 					else:
 						return False
-			if not i:
-				return True
+		return True
 					
 	def onClose(self):
 		try:
