@@ -315,15 +315,16 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					messageBox = QtGui.QMessageBox()
 					messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 					messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-					messageBox.setWindowTitle(self.trUtf8("There is always an actor in the database with alias ") +i.strip().replace("'", "''").title())
+					messageBox.setWindowTitle(i.strip().replace("'", "''").title() +self.trUtf8(": There is another actor in the database with this name."))
 					messageBox.setIcon(QtGui.QMessageBox.Question)
-					messageBox.setText(self.trUtf8("Do you want to add this actor anyway?"))
+					messageBox.setText(self.trUtf8("Do you want to add/change the actor anyway?"))
 					message = messageBox.exec_()
 					if message == 0:
 						zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
-						return True
 					else:
 						return False
+				else:
+					zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +i.strip().title().replace("'", "''") +"', '" +name.strip().title().replace("'", "''") +"')")
 		return True
 					
 	def onClose(self):
