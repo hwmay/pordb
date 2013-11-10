@@ -600,7 +600,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if i.lstrip() == "" or i.lstrip() == "?":
 				continue
 			zu_erfassen.append("UPDATE pordb_darsteller set anzahl = anzahl + 1 where darsteller = '" + i.replace("'", "''") + "'")
-			if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Creampie)" or i == "(Analcreampie)" or i == "(Oralcreampie)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)" or i == "(Top)":
+			if i == "" or i == "?" or i == "(Uninteressant)" or i == "(Komplett)" or i == "(Schlechte Qualitaet)":
 				continue
 			zu_lesen = "SELECT * FROM pordb_darsteller100 where darsteller = '" + i.replace("'", "''") + "'"
 			self.lese_func = DBLesen(self, zu_lesen)
@@ -623,7 +623,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						geschlecht2 = res2[0][0]
 						if geschlecht != geschlecht2:
 							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild).replace("'", "''") +"')")
-							partner_zaehler += 1
+							zu_lesen = "select darsteller from pordb_partner where darsteller = '" +i.replace("'", "''") +"' and partner = '" +j.replace("'", "''") +"'"
+							self.lese_func = DBLesen(self, zu_lesen)
+							res3 = DBLesen.get_data(self.lese_func)
+							if not res3:
+								partner_zaehler += 1
 							
 			if partner_zaehler > 0:
 				zu_erfassen.append("UPDATE pordb_darsteller set partner = partner + " +str(partner_zaehler) +" where darsteller = '" + i.replace("'", "''") + "'")

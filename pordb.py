@@ -2543,11 +2543,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				original_weitere.append(i[1])
 			eingabedialog = Neueingabe(self.verzeichnis, self.verzeichnis_original, self.verzeichnis_thumbs, self.verzeichnis_trash, self.verzeichnis_cover, self.file, titel, darsteller, cd, bild, gesehen, original, cs, vorhanden, cover, None, None, original_weitere, high_definition = definition)
 			change_flag = None
+			res_alt = self.aktuelles_res
 			if eingabedialog.exec_():
 				change_flag = True
 			self.ausgabe("", self.letzter_select_komplett)
 			if change_flag:
-				self.statusBar.showMessage("upd:CD" +str(self.aktuelles_res[index][2]) +" Title:" +self.aktuelles_res[index][0].strip() +" Act:" +self.aktuelles_res[index][1].strip())
+				self.statusBar.showMessage("upd:CD" +str(res_alt[index][2]) +" Title:" +res_alt[index][0].strip() +" Act:" +res_alt[index][1].strip())
 		self.suchfeld.setFocus()
 	# end of onKorrektur
 		
