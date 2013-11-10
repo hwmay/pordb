@@ -1974,49 +1974,53 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		for i in res_komplett:
 			partner_komplett.append(i[0])
 		# Get the distinct list of partners of the actor
-		zu_lesen = "SELECT distinct on (partner) partner, cd, bild FROM pordb_partner where darsteller = '" +gesucht +"'order by partner"
+		zu_lesen = "SELECT distinct on (partner) partner, cd, bild FROM pordb_partner where darsteller = '" +gesucht +"' order by partner"
 		lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(lese_func)
 		res2 = res[:]
 		ethnic = None
 		cs = None
+		mengeEthnic = set()
+		menge = set()
+		for i in res2:
+			menge.add(i[0])
 		if self.comboBoxEthnicFilter.currentText():
 			ethnic = str(self.comboBoxEthnicFilter.currentText())
-			j = -1
 			for i in res:
-				j += 1
 				zu_lesen = "SELECT ethnic from pordb_darsteller where darsteller = '" +i[0].strip().replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res1 = DBLesen.get_data(lese_func)
-				if res1[0][0] != ethnic:
-					del res2[j]
-					j -= 1
+				if res1[0][0] == ethnic:
+					mengeEthnic.add(i[0])
 			self.comboBoxEthnicFilter.setCurrentIndex(-1)
+			menge = mengeEthnic
 			
 		res = res_komplett[:]
+		mengeCs = set()
 		if self.comboBoxCSFilter.currentText():
 			cs = str(self.comboBoxCSFilter.currentText())[0:1]
-			j = -1
 			for i in res:
-				j += 1
 				zu_lesen = "SELECT cs" +cs +" from pordb_vid where cd = " +str(i[1]) +" and bild = '" +i[2].replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res1 = DBLesen.get_data(lese_func)
 				try:
-					if res1[0][0] == 0:
-						del res_komplett[j]
-						j -= 1
+					if res1[0][0] <> 0:
+						mengeCs.add(i[0])
 				except: 
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("There is something wrong with partners: ") +zu_lesen)
 					return
-			res2 = res_komplett[:]
+			if ethnic:
+				menge = mengeEthnic & mengeCs
+			else:
+				menge = mengeCs
 			self.comboBoxCSFilter.setCurrentIndex(-1)
 		
 		self.paarung = []
-		for i in res2:
-			anzahl = partner_komplett.count(i[0])
-			self.paarung.append(i[0].decode("utf-8").strip() +" (" +str(anzahl) +")")
+		for i in menge:
+			anzahl = partner_komplett.count(i)
+			self.paarung.append(i.decode("utf-8").strip() +" (" +str(anzahl) +")")
 					
+		self.paarung.sort()
 		self.listWidgetDarsteller.clear()
 		self.listWidgetDarsteller.addItems(self.paarung)
 		self.labelText.setText(self.trUtf8("Partner: ") +str(len(self.paarung)))
