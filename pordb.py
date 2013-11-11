@@ -2965,7 +2965,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 							res2[l][2][k] = str(eingabe).title().lstrip("=").replace("''", "'")
 					darsteller_liste = sortier.darsteller_sortieren(res2[l][2])
 					darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=").replace("''", "'") else x for x in darsteller_liste]
-					zu_erfassen.append("update pordb_vid set darsteller = '" +", ".join(darsteller_liste2) +"' where cd = " +str(i[0]) +" and bild = '" +i[1] +"'")
+					zu_erfassen.append("update pordb_vid set darsteller = '" +", ".join(darsteller_liste2) +"' where cd = " +str(i[0]) +" and bild = '" +i[1].replace("'", "''") +"'")
 				if os.path.exists(datei_alt) and os.path.exists(datei_neu) and datei_alt <> datei_neu:
 					messageBox = QtGui.QMessageBox()
 					messageBox.addButton(datei_alt, QtGui.QMessageBox.AcceptRole)
@@ -2996,14 +2996,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
-					zu_erfassen.append("insert into pordb_partner values ('" +neuer_name.title().replace("'", "''") +"', '" +str(i[1]).replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]) +"')")
+					zu_erfassen.append("insert into pordb_partner values ('" +neuer_name.title().replace("'", "''") +"', '" +str(i[1]).replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
 					zu_erfassen.append("delete from pordb_partner where darsteller = '" +eingabe +"'")
 					
 				zu_lesen = "SELECT * from pordb_partner where partner = '" +eingabe +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				for i in res:
-					zu_erfassen.append("insert into pordb_partner values ('" +str(i[0]).replace("'", "''") +"', '" +neuer_name.title().replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]) +"')")
+					zu_erfassen.append("insert into pordb_partner values ('" +str(i[0]).replace("'", "''") +"', '" +neuer_name.title().replace("'", "''") +"'," +str(i[2]) +",'" +str(i[3]).replace("'", "''") +"')")
 					zu_erfassen.append("delete from pordb_partner where partner = '" +eingabe +"'")
 					
 				update_func = DBUpdate(self, zu_erfassen)
