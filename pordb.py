@@ -3459,6 +3459,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.lineEditURL.setText(neue_url)
 			self.lineEditURL.setFocus()
 			self.webView.load(QtCore.QUrl(self.lineEditURL.text()))
+		
+		self.suchfeld.setFocus()
 		    
 	def onStatistikCS(self):
 		self.tableWidgetStatistik.setSortingEnabled(False)
