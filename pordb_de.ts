@@ -619,12 +619,12 @@ p, li { white-space: pre-wrap; }
         <translation>Strg+D</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3120"/>
+        <location filename="pordb.py" line="3125"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3117"/>
+        <location filename="pordb.py" line="3122"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -1333,12 +1333,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Markierte Zeile ausführen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3079"/>
+        <location filename="pordb.py" line="3084"/>
         <source>Quantity</source>
         <translation>Anzahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3076"/>
+        <location filename="pordb.py" line="3081"/>
         <source>Partner</source>
         <translation>Partner</translation>
     </message>
@@ -1640,7 +1640,7 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>MainWindow</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1387"/>
+        <location filename="pordb_hauptdialog.ui" line="1461"/>
         <source>Ctrl+Shift+F</source>
         <translation>Ctrl+Shift+F</translation>
     </message>
@@ -1735,12 +1735,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1858"/>
+        <location filename="pordb_hauptdialog.ui" line="1932"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2108"/>
+        <location filename="pordb_hauptdialog.ui" line="2182"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
@@ -1765,167 +1765,167 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation>Ctrl+PgUp</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1244"/>
+        <location filename="pordb_hauptdialog.ui" line="1242"/>
         <source>mpg_katalog</source>
         <translation>mpg_katalog</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1274"/>
+        <location filename="pordb_hauptdialog.ui" line="1308"/>
         <source>Vid</source>
         <translation>Vid</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1400"/>
+        <location filename="pordb_hauptdialog.ui" line="1474"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1436"/>
+        <location filename="pordb_hauptdialog.ui" line="1510"/>
         <source>Bookmarks</source>
         <translation>Bookmarks</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1465"/>
+        <location filename="pordb_hauptdialog.ui" line="1539"/>
         <source>about:blank</source>
         <translation>about:blank</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1499"/>
+        <location filename="pordb_hauptdialog.ui" line="1573"/>
         <source>CumShots</source>
         <translation>CumShots</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1622"/>
+        <location filename="pordb_hauptdialog.ui" line="1696"/>
         <source>Tools</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1660"/>
+        <location filename="pordb_hauptdialog.ui" line="1734"/>
         <source>Backup</source>
         <translation>Backup</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1674"/>
+        <location filename="pordb_hauptdialog.ui" line="1748"/>
         <source>Restore</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1803"/>
+        <location filename="pordb_hauptdialog.ui" line="1877"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1871"/>
+        <location filename="pordb_hauptdialog.ui" line="1945"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1913"/>
+        <location filename="pordb_hauptdialog.ui" line="1987"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1968"/>
+        <location filename="pordb_hauptdialog.ui" line="2042"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1977"/>
+        <location filename="pordb_hauptdialog.ui" line="2051"/>
         <source>cd</source>
         <translation>cd</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1983"/>
+        <location filename="pordb_hauptdialog.ui" line="2057"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1998"/>
+        <location filename="pordb_hauptdialog.ui" line="2072"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2007"/>
+        <location filename="pordb_hauptdialog.ui" line="2081"/>
         <source>original</source>
         <translation>original</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2013"/>
+        <location filename="pordb_hauptdialog.ui" line="2087"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2025"/>
+        <location filename="pordb_hauptdialog.ui" line="2099"/>
         <source>vid</source>
         <translation>vid</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2040"/>
+        <location filename="pordb_hauptdialog.ui" line="2114"/>
         <source>checkBoxDVDCover</source>
         <translation>checkBoxDVDCover</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2058"/>
+        <location filename="pordb_hauptdialog.ui" line="2132"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2073"/>
+        <location filename="pordb_hauptdialog.ui" line="2147"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2088"/>
+        <location filename="pordb_hauptdialog.ui" line="2162"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2132"/>
+        <location filename="pordb_hauptdialog.ui" line="2206"/>
         <source>first</source>
         <translation>erste Seite</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2138"/>
+        <location filename="pordb_hauptdialog.ui" line="2212"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2147"/>
+        <location filename="pordb_hauptdialog.ui" line="2221"/>
         <source>Prev</source>
         <translation>vorherige Seite</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2153"/>
+        <location filename="pordb_hauptdialog.ui" line="2227"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2162"/>
+        <location filename="pordb_hauptdialog.ui" line="2236"/>
         <source>Next</source>
         <translation>nächste Seite</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2168"/>
+        <location filename="pordb_hauptdialog.ui" line="2242"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2177"/>
+        <location filename="pordb_hauptdialog.ui" line="2251"/>
         <source>Last</source>
         <translation>letzte Seite</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2183"/>
+        <location filename="pordb_hauptdialog.ui" line="2257"/>
         <source>F9</source>
         <translation>F9</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2197"/>
+        <location filename="pordb_hauptdialog.ui" line="2271"/>
         <source>undo</source>
         <translation>rückgängig</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2203"/>
+        <location filename="pordb_hauptdialog.ui" line="2277"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
@@ -2138,7 +2138,7 @@ p, li { white-space: pre-wrap; }
         <translation>Alias</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1496"/>
+        <location filename="pordb_hauptdialog.ui" line="1570"/>
         <source>Cumshot statistic</source>
         <translation>Cumshot Statistik</translation>
     </message>
@@ -2263,7 +2263,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Dateinamen in Suche übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1282"/>
+        <location filename="pordb_hauptdialog.ui" line="1328"/>
         <source>0 found</source>
         <translation>0 gefunden</translation>
     </message>
@@ -2278,47 +2278,47 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ergebnis der Suche aus der Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1309"/>
+        <location filename="pordb_hauptdialog.ui" line="1383"/>
         <source>Search on IAFD</source>
         <translation>Auf IAFD suchen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1350"/>
+        <location filename="pordb_hauptdialog.ui" line="1424"/>
         <source>Load IAFD site</source>
         <translation>IAFD Seite laden</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1394"/>
+        <location filename="pordb_hauptdialog.ui" line="1468"/>
         <source>Check which movies are in database.</source>
         <translation>Über diesen Button kann nachgeprüft werden, welche Videos in der Datenbank vorhanden sind.</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1397"/>
+        <location filename="pordb_hauptdialog.ui" line="1471"/>
         <source>Movies available?</source>
         <translation>Videos vorhanden?</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1407"/>
+        <location filename="pordb_hauptdialog.ui" line="1481"/>
         <source>Adopt actors data from the IAFD.</source>
         <translation>Über diesen Button werden die Darstellerdaten aus der IAFD in die Datenbank übernommen.</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1410"/>
+        <location filename="pordb_hauptdialog.ui" line="1484"/>
         <source>Get actor data</source>
         <translation>Darstellerdaten abholen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1429"/>
+        <location filename="pordb_hauptdialog.ui" line="1503"/>
         <source>Adress bar</source>
         <translation>Adressleiste</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1439"/>
+        <location filename="pordb_hauptdialog.ui" line="1513"/>
         <source>Maintenance of bookmarks</source>
         <translation>Verwaltung der Bookmarks</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1458"/>
+        <location filename="pordb_hauptdialog.ui" line="1532"/>
         <source>Web content, controls:
 Back: Z
 Forward: X
@@ -2329,67 +2329,67 @@ Vor: X
 Stopp: S</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1484"/>
+        <location filename="pordb_hauptdialog.ui" line="1558"/>
         <source>Statistics</source>
         <translation>Statistiken</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1508"/>
+        <location filename="pordb_hauptdialog.ui" line="1582"/>
         <source>Female actors statistics </source>
         <translation>Statistik weibliche Darsteller </translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1511"/>
+        <location filename="pordb_hauptdialog.ui" line="1585"/>
         <source>Actors female</source>
         <translation>Darsteller W</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1569"/>
+        <location filename="pordb_hauptdialog.ui" line="1643"/>
         <source>Filter on quantity partners</source>
         <translation>Einschränkung auf Anzahl Partner</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1533"/>
+        <location filename="pordb_hauptdialog.ui" line="1607"/>
         <source>Show female actors with more than ... partners</source>
         <translation>Darstellerinnen ausgeben mit Anzahl Partner größer als diese Zahl</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1547"/>
+        <location filename="pordb_hauptdialog.ui" line="1621"/>
         <source>Male actors statistics </source>
         <translation>Statistik männliche Darsteller </translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1550"/>
+        <location filename="pordb_hauptdialog.ui" line="1624"/>
         <source>Actors male</source>
         <translation>Darsteller M</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1572"/>
+        <location filename="pordb_hauptdialog.ui" line="1646"/>
         <source>Show male actors with more than ... partners</source>
         <translation>Darsteller ausgeben mit Anzahl Partner größer als diese Zahl</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1584"/>
+        <location filename="pordb_hauptdialog.ui" line="1658"/>
         <source>Show quantity of movies</source>
         <translation>Anzeige Anzahl Filme</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1587"/>
+        <location filename="pordb_hauptdialog.ui" line="1661"/>
         <source>Quantity of movies</source>
         <translation>Anzahl Filme</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1594"/>
+        <location filename="pordb_hauptdialog.ui" line="1668"/>
         <source>Show quantity of movies per year</source>
         <translation>Statistik Anzahl Filme pro Jahr</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1597"/>
+        <location filename="pordb_hauptdialog.ui" line="1671"/>
         <source>Movies / year</source>
         <translation>Filme / Jahr</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1653"/>
+        <location filename="pordb_hauptdialog.ui" line="1727"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2402,12 +2402,12 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Die Datenbank wird entladen und in eine Datei im Arbeitsverzeichnis abgelegt, ebenso das komplette Bild Verzeichnis. Diese Dateien können dann z. B. auf externe Medien gesichert werden. Das ist auch hilfreich, wenn man auf einen anderen Rechner umziehen möchte. Mit dem Restore Button kann dann die Datenbank wieder komplett geladen werden. Wenn die Dateien eine Größe von mehr als 100 MB überschreiten, werden diese gesplittet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1745"/>
+        <location filename="pordb_hauptdialog.ui" line="1819"/>
         <source>Backup of the database into the working directory</source>
         <translation>Backup von Datenbank und Bilddateien in das Arbeitsverzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1667"/>
+        <location filename="pordb_hauptdialog.ui" line="1741"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2420,12 +2420,12 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Datenbank wiederherstellen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1731"/>
+        <location filename="pordb_hauptdialog.ui" line="1805"/>
         <source>Restore database</source>
         <translation>Datenbank wiederherstellen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1681"/>
+        <location filename="pordb_hauptdialog.ui" line="1755"/>
         <source>Maintenance</source>
         <translation>Wartung</translation>
     </message>
@@ -2435,7 +2435,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Verwaltung der Datenbank: insbesondere Speicherplatz freigeben und analysieren (wird automatisch während eines Backups mitgemacht)</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1688"/>
+        <location filename="pordb_hauptdialog.ui" line="1762"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2448,22 +2448,22 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hierüber kann ein komplettes Verzeichnis mit Videodateien gescannt werden. Die Dateien werden in die Datenbank übertragen und stehen anschließend für eine Suche zur Verfügung (Tab &amp;quot;Dateien suchen&amp;quot;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1695"/>
+        <location filename="pordb_hauptdialog.ui" line="1769"/>
         <source>File catalogue</source>
         <translation>Dateikatalog</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1738"/>
+        <location filename="pordb_hauptdialog.ui" line="1812"/>
         <source>Collect video files from a directory</source>
         <translation>Videodateien aus einem Verzeichnis erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1775"/>
+        <location filename="pordb_hauptdialog.ui" line="1849"/>
         <source>Devicename:</source>
         <translation>Gerätename:</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1782"/>
+        <location filename="pordb_hauptdialog.ui" line="1856"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2476,12 +2476,12 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hierüber kann ein zuvor erfasster Gerätenamen (über den Button Gerätenamen verwalten) ausgewählt werden. Die Gerätenamen müssen eindeutig sein.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1796"/>
+        <location filename="pordb_hauptdialog.ui" line="1870"/>
         <source>Maintain device names</source>
         <translation>Gerätenamen verwalten</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1832"/>
+        <location filename="pordb_hauptdialog.ui" line="1906"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2494,72 +2494,72 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#800080;&quot;&gt;In dieser Tabelle finden sich evtl. aufgefundene Duplikate aus anderen Verzeichnissen:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1852"/>
+        <location filename="pordb_hauptdialog.ui" line="1926"/>
         <source>All checked files and entries in database will be deleted, Ctrl+L</source>
         <translation>Alle markierten Dateien und die zugehörigen Einträge in der Datenbank werden gelöscht, Strg+L</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1855"/>
+        <location filename="pordb_hauptdialog.ui" line="1929"/>
         <source>Delete duplicates</source>
         <translation>Duplikate löschen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1865"/>
+        <location filename="pordb_hauptdialog.ui" line="1939"/>
         <source>Deselect all marked lines, Ctrl+A</source>
         <translation>Alle Selektionen der Checkboxen in der Tabelle entfernen, Strg+A</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1868"/>
+        <location filename="pordb_hauptdialog.ui" line="1942"/>
         <source>Deselect all</source>
         <translation>Alles Entmarkieren</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1962"/>
+        <location filename="pordb_hauptdialog.ui" line="2036"/>
         <source>Actor</source>
         <translation>Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1965"/>
+        <location filename="pordb_hauptdialog.ui" line="2039"/>
         <source>Search for actor, Ctrl+D</source>
         <translation>Darsteller suchen, Strg+D</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1980"/>
+        <location filename="pordb_hauptdialog.ui" line="2054"/>
         <source>Search for storage medium, Ctrl+M</source>
         <translation>Suchen nach Speichermedium, Strg+M</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1992"/>
+        <location filename="pordb_hauptdialog.ui" line="2066"/>
         <source>title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1995"/>
+        <location filename="pordb_hauptdialog.ui" line="2069"/>
         <source>Search for title, Ctrl+T</source>
         <translation>Suchen nach Titel, Strg+T</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2010"/>
+        <location filename="pordb_hauptdialog.ui" line="2084"/>
         <source>Search for original, Ctrl+O</source>
         <translation>Suchen nach Original, Strg+O</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2028"/>
+        <location filename="pordb_hauptdialog.ui" line="2102"/>
         <source>Filter on movies available</source>
         <translation>Filtern nach Video vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2043"/>
+        <location filename="pordb_hauptdialog.ui" line="2117"/>
         <source>Show only DVD covers</source>
         <translation>nur DVD Cover anzeigen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2052"/>
+        <location filename="pordb_hauptdialog.ui" line="2126"/>
         <source>search</source>
         <translation>suche</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2055"/>
+        <location filename="pordb_hauptdialog.ui" line="2129"/>
         <source>Extended search, Ctrl+F</source>
         <translation>Erweiterte Suche, Strg+F</translation>
     </message>
@@ -2574,32 +2574,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Cover erstellen, Strg+E</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2067"/>
+        <location filename="pordb_hauptdialog.ui" line="2141"/>
         <source>print</source>
         <translation>drucken</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2070"/>
+        <location filename="pordb_hauptdialog.ui" line="2144"/>
         <source>Print, Ctrl+P</source>
         <translation>Drucken, Strg+P</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2082"/>
+        <location filename="pordb_hauptdialog.ui" line="2156"/>
         <source>SearchMovie</source>
         <translation>SucheVideo</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2085"/>
+        <location filename="pordb_hauptdialog.ui" line="2159"/>
         <source>Search for multiple movies, Ctrl+G</source>
         <translation>Nach mehreren Videos suchen, Strg+G</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2093"/>
+        <location filename="pordb_hauptdialog.ui" line="2167"/>
         <source>search field</source>
         <translation>suchfeld</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2102"/>
+        <location filename="pordb_hauptdialog.ui" line="2176"/>
         <source>search terms</source>
         <translation>suchbegriffe</translation>
     </message>
@@ -2609,7 +2609,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Suchbegriffe bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2117"/>
+        <location filename="pordb_hauptdialog.ui" line="2191"/>
         <source>country</source>
         <translation>land</translation>
     </message>
@@ -2619,132 +2619,132 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ländertabelle bearbeiten</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2135"/>
+        <location filename="pordb_hauptdialog.ui" line="2209"/>
         <source>go to first page, F6</source>
         <translation>zur ersten Seite, F6</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2150"/>
+        <location filename="pordb_hauptdialog.ui" line="2224"/>
         <source>1 page back, F7</source>
         <translation>1 Seite zurück, F7</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2165"/>
+        <location filename="pordb_hauptdialog.ui" line="2239"/>
         <source>Next page, F8</source>
         <translation>1 Seite vor, F8</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2180"/>
+        <location filename="pordb_hauptdialog.ui" line="2254"/>
         <source>Go to last page, F9</source>
         <translation>zur letzten Seite, F9</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2188"/>
+        <location filename="pordb_hauptdialog.ui" line="2262"/>
         <source>quantityofImages</source>
         <translation>anzahlBilder</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2200"/>
+        <location filename="pordb_hauptdialog.ui" line="2274"/>
         <source>recover, Ctrl+W</source>
         <translation>wiederherstellen, Strg+W</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2211"/>
+        <location filename="pordb_hauptdialog.ui" line="2285"/>
         <source>Adopt actor</source>
         <translation>Darsteller übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2219"/>
+        <location filename="pordb_hauptdialog.ui" line="2293"/>
         <source>Show all scenes of the movie</source>
         <translation>Alle Scenen des Films zeigen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2227"/>
+        <location filename="pordb_hauptdialog.ui" line="2301"/>
         <source>Sort on actors</source>
         <translation>Sortieren nach Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2235"/>
+        <location filename="pordb_hauptdialog.ui" line="2309"/>
         <source>Sort on CD</source>
         <translation>Sortieren nach CD</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2243"/>
+        <location filename="pordb_hauptdialog.ui" line="2317"/>
         <source>Sort on title</source>
         <translation>Sortieren nach Titel</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2251"/>
+        <location filename="pordb_hauptdialog.ui" line="2325"/>
         <source>Rename original title</source>
         <translation>Original umbenennen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2259"/>
+        <location filename="pordb_hauptdialog.ui" line="2333"/>
         <source>Add more titles</source>
         <translation>Weitere Titel erfassen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2267"/>
+        <location filename="pordb_hauptdialog.ui" line="2341"/>
         <source>Sort on original title</source>
         <translation>Sortieren nach Original</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2275"/>
+        <location filename="pordb_hauptdialog.ui" line="2349"/>
         <source>Show cover fullscale</source>
         <translation>Cover in Originalgröße</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2283"/>
+        <location filename="pordb_hauptdialog.ui" line="2357"/>
         <source>Delete image file</source>
         <translation>Bild löschen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2291"/>
+        <location filename="pordb_hauptdialog.ui" line="2365"/>
         <source>Show pairing</source>
         <translation>Anzeigen Paar</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2299"/>
+        <location filename="pordb_hauptdialog.ui" line="2373"/>
         <source>Show image fullscale</source>
         <translation>Bildanzeige originale Größe</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2307"/>
+        <location filename="pordb_hauptdialog.ui" line="2381"/>
         <source>Show movie</source>
         <translation>Film zeigen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2315"/>
+        <location filename="pordb_hauptdialog.ui" line="2389"/>
         <source>show</source>
         <translation>zeigen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2324"/>
+        <location filename="pordb_hauptdialog.ui" line="2398"/>
         <source>new</source>
         <translation>neueingabe</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2327"/>
+        <location filename="pordb_hauptdialog.ui" line="2401"/>
         <source>Add new movie, F5</source>
         <translation>Neuen Film erfassen, F5</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2330"/>
+        <location filename="pordb_hauptdialog.ui" line="2404"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2339"/>
+        <location filename="pordb_hauptdialog.ui" line="2413"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2342"/>
+        <location filename="pordb_hauptdialog.ui" line="2416"/>
         <source>Help, F1</source>
         <translation>Hilfe, F1</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2345"/>
+        <location filename="pordb_hauptdialog.ui" line="2419"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
@@ -2764,12 +2764,12 @@ p, li { white-space: pre-wrap; }
         <translation>Filme:</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2350"/>
+        <location filename="pordb_hauptdialog.ui" line="2424"/>
         <source>Put original title into clipboard</source>
         <translation>Originaltitel in Clipboard übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2353"/>
+        <location filename="pordb_hauptdialog.ui" line="2427"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Put original title into clipboard of the PorDB&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Originaltitel in Clipboard der PorDB übernehmen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -2779,22 +2779,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Strg+C</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1643"/>
+        <location filename="pordb_hauptdialog.ui" line="1717"/>
         <source>Pictures</source>
         <translation>Bilder</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1721"/>
+        <location filename="pordb_hauptdialog.ui" line="1795"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1640"/>
+        <location filename="pordb_hauptdialog.ui" line="1714"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked: Backup of the picture directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn ausgewählt: Backup des Bildverzeichnisses&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1718"/>
+        <location filename="pordb_hauptdialog.ui" line="1792"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked: Backup of the database entries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn ausgewählt: Backup aller Datenbanksätze&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -2849,17 +2849,17 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inhalt von diesem Suchfeld in das Hauptsuchfeld kopieren, Ctrl+PageUp&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1262"/>
+        <location filename="pordb_hauptdialog.ui" line="1298"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search result from file catalog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suchergebnis aus dem Dateikatalog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1292"/>
+        <location filename="pordb_hauptdialog.ui" line="1370"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search result from database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suchergebnis aus der Datenbank&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2361"/>
+        <location filename="pordb_hauptdialog.ui" line="2435"/>
         <source>Redo image change</source>
         <translation>Bild ersetzen rückgängig</translation>
     </message>
@@ -2874,7 +2874,7 @@ p, li { white-space: pre-wrap; }
         <translation>Manchmal kann es passieren, dass die Ansicht des Arbeitsverzeichnisses nicht automatisch aufgefrischt wird. Mit diesem Knopf wird das Auffrischen erzwungen.</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1705"/>
+        <location filename="pordb_hauptdialog.ui" line="1779"/>
         <source>Maintenance of the database: especially free memory and analyze</source>
         <translation>Verwaltung der Datenbank: insbesondere Speicherplatz freigeben und analysieren</translation>
     </message>
@@ -2899,12 +2899,12 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2366"/>
+        <location filename="pordb_hauptdialog.ui" line="2440"/>
         <source>Put actors URL into clipboard</source>
         <translation>Url des Darstellers in das Clipboard übernehmen</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2369"/>
+        <location filename="pordb_hauptdialog.ui" line="2443"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get URL form database and put it into clipboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Url des Darstellers aus der Datenbank holen und in das Clipboard übernehmen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -2914,12 +2914,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Partner</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1319"/>
+        <location filename="pordb_hauptdialog.ui" line="1393"/>
         <source>back</source>
         <translation>zurück</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1333"/>
+        <location filename="pordb_hauptdialog.ui" line="1407"/>
         <source>forward</source>
         <translation>vor</translation>
     </message>
@@ -2944,7 +2944,7 @@ p, li { white-space: pre-wrap; }
         <translation>Hier erscheinen die Bilder des Suchergebnisses. Durch Rechtsklick auf einen Eintrag öffnet sich ein Kontextmenü für diverse Funktionen. Durch Doppelklick kann der Eintrag verändert oder gelöscht werden. F12 schaltet um zur Anzeige der kompletten Daten (Titel und Bilddatei) und zurück.</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1417"/>
+        <location filename="pordb_hauptdialog.ui" line="1491"/>
         <source>Adopt movie data from the IAFD.
 
 This is very useful for adding new scenes from the selected movie.</source>
@@ -2958,12 +2958,12 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation type="obsolete">Filmdaten speichern zur Erfassung neuer Clips</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1422"/>
+        <location filename="pordb_hauptdialog.ui" line="1496"/>
         <source>Enter clips for shown video</source>
         <translation>Erfassen Clips für das angezeigte Video</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2105"/>
+        <location filename="pordb_hauptdialog.ui" line="2179"/>
         <source>Edit search terms, Ctrl+S</source>
         <translation>Suchbegriffe bearbeiten, Strg+S</translation>
     </message>
@@ -2973,34 +2973,39 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation type="obsolete">Ländertabelle bearbeiten, Strg+L</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2374"/>
+        <location filename="pordb_hauptdialog.ui" line="2448"/>
         <source>Go to website of this actor</source>
         <translation>Gehe zur Weseite dieses Darstellers</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2377"/>
+        <location filename="pordb_hauptdialog.ui" line="2451"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Go to website of this actor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Gehe zur Webseite dieses Darstellers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2120"/>
+        <location filename="pordb_hauptdialog.ui" line="2194"/>
         <source>Edit table of countries, Alt+L</source>
         <translation>Ländertabelle bearbeiten, Alt+L</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="2123"/>
+        <location filename="pordb_hauptdialog.ui" line="2197"/>
         <source>Alt+L</source>
         <translation>Alt+L</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1370"/>
+        <location filename="pordb_hauptdialog.ui" line="1444"/>
         <source>Enter text to search in website</source>
         <translation>Text zum Suchen in der Webseite eingeben</translation>
     </message>
     <message>
-        <location filename="pordb_hauptdialog.ui" line="1377"/>
+        <location filename="pordb_hauptdialog.ui" line="1451"/>
         <source>Search in website, Ctrl+shift+F</source>
         <translation>Suche in Webseite, Strg+Umschalt+F</translation>
+    </message>
+    <message>
+        <location filename="pordb_hauptdialog.ui" line="1338"/>
+        <source>Search in results</source>
+        <translation>Im Ergebnis suchen</translation>
     </message>
 </context>
 <context>
@@ -3016,12 +3021,12 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation type="obsolete">Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3521"/>
+        <location filename="pordb.py" line="3526"/>
         <source>Partner</source>
         <translation>Partner</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3521"/>
+        <location filename="pordb.py" line="3526"/>
         <source>Nation</source>
         <translation>Nation</translation>
     </message>
@@ -3066,7 +3071,7 @@ Das ist sehr nützlich zum Erfassen neuer Scenen.</translation>
         <translation>Sonst</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3703"/>
+        <location filename="pordb.py" line="3708"/>
         <source>Error </source>
         <translation>Fehler</translation>
     </message>
@@ -3153,222 +3158,222 @@ present</source>
         <translation type="obsolete">hat gespielt mit: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2168"/>
+        <location filename="pordb.py" line="2172"/>
         <source>active : </source>
         <translation>aktiv: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2173"/>
+        <location filename="pordb.py" line="2177"/>
         <source>Male</source>
         <translation>Mann</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2175"/>
+        <location filename="pordb.py" line="2179"/>
         <source>Female</source>
         <translation>Frau</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3467"/>
+        <location filename="pordb.py" line="3472"/>
         <source>Quantity is not a number</source>
         <translation>Anzahl ist keine Zahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2277"/>
+        <location filename="pordb.py" line="2281"/>
         <source>Site of actor could not be found</source>
         <translation>Darstellerseite wurde nicht gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2289"/>
+        <location filename="pordb.py" line="2293"/>
         <source>not available</source>
         <translation>nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2370"/>
+        <location filename="pordb.py" line="2374"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2371"/>
+        <location filename="pordb.py" line="2375"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2391"/>
+        <location filename="pordb.py" line="2395"/>
         <source>Actor </source>
         <translation>Darsteller </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2372"/>
+        <location filename="pordb.py" line="2376"/>
         <source> will be deleted now</source>
         <translation> wird jetzt gelöscht</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2374"/>
+        <location filename="pordb.py" line="2378"/>
         <source>Should the actor really be deleted?</source>
         <translation>Soll der Darsteller wirklich gelöscht werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2470"/>
+        <location filename="pordb.py" line="2474"/>
         <source>Image files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3019"/>
+        <location filename="pordb.py" line="3024"/>
         <source>Image files (*.jpg *.jpeg *.png);;all files (*.*)</source>
         <translation>Bilddateien (*.jpg *.jpeg *.png);;all files (*.*)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2646"/>
+        <location filename="pordb.py" line="2651"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2651"/>
+        <location filename="pordb.py" line="2656"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2781"/>
+        <location filename="pordb.py" line="2786"/>
         <source>Quantity: </source>
         <translation>Anzahl:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2784"/>
+        <location filename="pordb.py" line="2789"/>
         <source>Page </source>
         <translation>Seite </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2784"/>
+        <location filename="pordb.py" line="2789"/>
         <source> of </source>
         <translation> von </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2846"/>
+        <location filename="pordb.py" line="2851"/>
         <source>Tits........</source>
         <translation>Titten......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2846"/>
+        <location filename="pordb.py" line="2851"/>
         <source>Cunt........</source>
         <translation>Fotze.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2846"/>
+        <location filename="pordb.py" line="2851"/>
         <source>Belly.......</source>
         <translation>Bauch.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2846"/>
+        <location filename="pordb.py" line="2851"/>
         <source>Ass.........</source>
         <translation>Arsch.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2846"/>
+        <location filename="pordb.py" line="2851"/>
         <source>Others......</source>
         <translation>Sonst.......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2848"/>
+        <location filename="pordb.py" line="2853"/>
         <source>Summary.....</source>
         <translation>Gesamt......</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2881"/>
+        <location filename="pordb.py" line="2886"/>
         <source>New name already exists as alias, please first edit/delete the aliases</source>
         <translation>Der neue Name existiert bereits als Pseudonym, bitte erst die Pseudonyme bearbeiten/entfernen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2983"/>
+        <location filename="pordb.py" line="2988"/>
         <source>Image file could not be renamed</source>
         <translation>Bilddatei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3019"/>
+        <location filename="pordb.py" line="3024"/>
         <source>Image of the actor: </source>
         <translation>Bild von Darsteller: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3023"/>
+        <location filename="pordb.py" line="3028"/>
         <source>Caution! </source>
         <translation>Achtung!</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3023"/>
+        <location filename="pordb.py" line="3028"/>
         <source>Image of the actor is very big</source>
         <translation>Bilddatei ist sehr groß</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3297"/>
+        <location filename="pordb.py" line="3302"/>
         <source> found</source>
         <translation> gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3439"/>
+        <location filename="pordb.py" line="3444"/>
         <source>Summary</source>
         <translation>Gesamt</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3521"/>
+        <location filename="pordb.py" line="3526"/>
         <source>Actor</source>
         <translation>Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3608"/>
+        <location filename="pordb.py" line="3613"/>
         <source>Quantity</source>
         <translation>Anzahl</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3521"/>
+        <location filename="pordb.py" line="3526"/>
         <source>Age</source>
         <translation>Alter</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3521"/>
+        <location filename="pordb.py" line="3526"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3534"/>
+        <location filename="pordb.py" line="3539"/>
         <source>Quantity of movies: </source>
         <translation>Anzahl Filme:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3608"/>
+        <location filename="pordb.py" line="3613"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>delete</source>
         <translation>löschen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>File in database</source>
         <translation>Datei in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>Device</source>
         <translation>Gerät</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>Directory</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>Size in database</source>
         <translation>Größe in Datenbank</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>new file</source>
         <translation>neue Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3899"/>
+        <location filename="pordb.py" line="3904"/>
         <source>Size of new file</source>
         <translation>Größe der neuen Datei</translation>
     </message>
@@ -3378,22 +3383,22 @@ present</source>
         <translation>Suchfeld. Mit Drücken der Escape Taste wird es gelöscht und erhält den Focus.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2184"/>
+        <location filename="pordb.py" line="2188"/>
         <source>Actor not available</source>
         <translation>Darsteller nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3769"/>
+        <location filename="pordb.py" line="3774"/>
         <source>Maintenance executed</source>
         <translation>Wartung durchgeführt</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3754"/>
+        <location filename="pordb.py" line="3759"/>
         <source>Backup in directory </source>
         <translation>Backup im Verzeichnis </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3666"/>
+        <location filename="pordb.py" line="3671"/>
         <source> created</source>
         <translation> angelegt</translation>
     </message>
@@ -3408,12 +3413,12 @@ present</source>
         <translation type="obsolete">Keine Dateien für ein Recovery gefunden </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3791"/>
+        <location filename="pordb.py" line="3796"/>
         <source>Select device</source>
         <translation>Bitte Gerät wählen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3795"/>
+        <location filename="pordb.py" line="3800"/>
         <source>Select directory</source>
         <translation>Bitte Verzeichnis wählen</translation>
     </message>
@@ -3423,62 +3428,62 @@ present</source>
         <translation type="obsolete">Fehler, Dateiname) </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3803"/>
+        <location filename="pordb.py" line="3808"/>
         <source> to long</source>
         <translation> zu lang</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3849"/>
+        <location filename="pordb.py" line="3854"/>
         <source>Error, filename &apos;</source>
         <translation>Fehler, Dateiname &apos;</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3849"/>
+        <location filename="pordb.py" line="3854"/>
         <source>&apos; is wrong (special characters)</source>
         <translation>&apos; ist ungültig (Sonderzeichen)</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3908"/>
+        <location filename="pordb.py" line="3913"/>
         <source> Duplicate(s) found</source>
         <translation> Duplikat(e) gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3910"/>
+        <location filename="pordb.py" line="3915"/>
         <source> Duplicate(s) found, but some of them only in relation to file size</source>
         <translation> Duplikat(e) gefunden, aber einige davon nur in Bezug auf die Dateigröße</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3933"/>
+        <location filename="pordb.py" line="3938"/>
         <source> File(s) deleted</source>
         <translation> Datei(en) gelöscht</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3803"/>
+        <location filename="pordb.py" line="3808"/>
         <source>Error, filename </source>
         <translation>Fehler, Dateiname </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3903"/>
+        <location filename="pordb.py" line="3908"/>
         <source> File(s) collected</source>
         <translation> Datei(en) erfasst</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2984"/>
+        <location filename="pordb.py" line="2989"/>
         <source> lines changed</source>
         <translation> Zeilen geändert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2096"/>
+        <location filename="pordb.py" line="2100"/>
         <source>Please select:</source>
         <translation>Bitte auswählen:</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3679"/>
+        <location filename="pordb.py" line="3684"/>
         <source>Connection to database failed</source>
         <translation>Verbindung zur Datenbank gescheitert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3638"/>
+        <location filename="pordb.py" line="3643"/>
         <source>Copy to file failed</source>
         <translation>Kopie in Datei hat nicht funktioniert</translation>
     </message>
@@ -3488,22 +3493,22 @@ present</source>
         <translation type="obsolete">Kopie aus Datei hat nicht funktioniert</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2123"/>
+        <location filename="pordb.py" line="2127"/>
         <source>Data collection of actor seems to be not complete, nation: </source>
         <translation>Daten des Darstellers scheinen nicht komplett zu sein, Nation: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3703"/>
+        <location filename="pordb.py" line="3708"/>
         <source>Copy from file </source>
         <translation>Kopieren aus Datei</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3740"/>
+        <location filename="pordb.py" line="3745"/>
         <source> failed. In most cases there is a file with an invalid creation/change date.</source>
         <translation> fehlgeschlagen. Meistens gibt es eine Datei mit ungültigem Entstehungs/Änderungsdatum.</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3754"/>
+        <location filename="pordb.py" line="3759"/>
         <source> restored. You can now copy the complete directory to its origin place.</source>
         <translation> abgelegt. Das gesamte Verzeichnis kann jetzt an den Originalplatz kopiert werden.</translation>
     </message>
@@ -3513,22 +3518,22 @@ present</source>
         <translation>Anscheinend gibt es ein ungültiges Zeichen im Suchfeld</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2964"/>
+        <location filename="pordb.py" line="2969"/>
         <source>Select an image of the actor</source>
         <translation>Bild des Darstellers auswählen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2966"/>
+        <location filename="pordb.py" line="2971"/>
         <source>Which image of the actor should be taken?</source>
         <translation>Welches Darstellerbild soll genommen werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2033"/>
+        <location filename="pordb.py" line="2037"/>
         <source>Illegal characters in search field</source>
         <translation>Ungültige Zeichen im Suchfeld</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3749"/>
+        <location filename="pordb.py" line="3754"/>
         <source> failed. No backup files found.</source>
         <translation> gescheitert. Keine Backup Dateien gefunden.</translation>
     </message>
@@ -3538,7 +3543,7 @@ present</source>
         <translation> in das Clipboard übertragen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3170"/>
+        <location filename="pordb.py" line="3175"/>
         <source>Only digits allowed as filesize</source>
         <translation>Nur Zahlen erlaubt als Dateigröße</translation>
     </message>
@@ -3548,17 +3553,17 @@ present</source>
         <translation type="obsolete">Bitte mindestens 2 Zeichen im Suchfeld eingeben</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3195"/>
+        <location filename="pordb.py" line="3200"/>
         <source>Filesize to must be bigger than filesize from</source>
         <translation>Dateigröße 2 muss größer als Dateigröße 1 sein</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3206"/>
+        <location filename="pordb.py" line="3211"/>
         <source>Please enter at least 3 characters in the searchfield</source>
         <translation>Bitte mindestens 3 Zeichen im Suchfeld eingeben</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3749"/>
+        <location filename="pordb.py" line="3754"/>
         <source>Restore from directory </source>
         <translation>Restore aus Verzeichnis </translation>
     </message>
@@ -3619,17 +3624,17 @@ in stock</source>
         <translation>Soll das alte Bild wiederhergestellt werden?</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3672"/>
+        <location filename="pordb.py" line="3677"/>
         <source>No files found for restoring</source>
         <translation>Keine Backup-Dateien gefunden</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3711"/>
+        <location filename="pordb.py" line="3716"/>
         <source>Database restore was successful</source>
         <translation>Datenbank wurde erfolgreich zurückgeladen</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="3019"/>
+        <location filename="pordb.py" line="3024"/>
         <source>, please select</source>
         <translation>, bitte auswählen</translation>
     </message>
@@ -3639,17 +3644,17 @@ in stock</source>
         <translation>Entweder ist Dein Computer offline oder die IAFD ist nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2022"/>
+        <location filename="pordb.py" line="2026"/>
         <source>Partner: </source>
         <translation>Partner: </translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2071"/>
+        <location filename="pordb.py" line="2075"/>
         <source>Actor has been found as pseudonym only!</source>
         <translation>Darsteller wurde nur als Pseudonym gefunden!</translation>
     </message>
     <message>
-        <location filename="pordb.py" line="2391"/>
+        <location filename="pordb.py" line="2395"/>
         <source> deleted</source>
         <translation> gelöscht</translation>
     </message>

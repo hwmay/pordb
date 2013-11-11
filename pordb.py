@@ -140,6 +140,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonSuchen, QtCore.SIGNAL("clicked()"), self.onSuchen)
 		self.connect(self.pushButtonClear, QtCore.SIGNAL("clicked()"), self.onClear)
 		self.connect(self.pushButtonUebernehmen, QtCore.SIGNAL("clicked()"), self.onDateinamenUebernehmen)
+		self.connect(self.pushButtonSearchMpg, QtCore.SIGNAL("clicked()"), self.onSearchMpg)
+		self.connect(self.pushButtonSearchVid, QtCore.SIGNAL("clicked()"), self.onSearchVid)
 		
 		# Slots einrichten für Web
 		self.connect(self.webView, QtCore.SIGNAL("loadStarted()"), self.onLoadStarted)
@@ -276,6 +278,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.anzeige_komplett = False
 		self.angezeigt_komplett = False
 		self.url = ""
+		self.searchResultsMpg = None
+		self.searchResultsVid = None
 		
 		self.pushButtonIAFDBackground.setEnabled(False)
 		
@@ -3214,6 +3218,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		lese_func = DBLesen(self, zu_lesen)
 		rows = DBLesen.get_data(lese_func)
+		self.searchResultsMpg = rows
 		self.tableWidget.setSortingEnabled(False)
 		self.tableWidget.clear()
 		self.tableWidget.setRowCount(len(rows))
@@ -3272,6 +3277,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				zu_lesen += original_erweiterung
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
+			self.searchResultsVid = res
 			
 			self.tableWidget1.setSortingEnabled(False)
 			self.tableWidget1.setRowCount(len(res))
@@ -3306,12 +3312,49 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 	# end of onSuchen
 	
+	def onSearchMpg(self):
+		if self.searchResultsMpg:
+			self.searchResults(self.lineEditSearchMpg, self.tableWidget, self.searchResultsMpg, (2,))
+		
+	def onSearchVid(self):
+		if self.searchResultsVid:
+			self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
+		
+	def searchResults(self, lineEdit, tableWidget, rows, column):
+		tableWidget.clearSelection()
+		tableWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+		suchbegriff = str(lineEdit.text()).lower()
+		item_scroll = None
+		row_scroll = 0
+		selected_items = []
+		for j in column:
+			zaehler = 0
+			row_zaehler = 0
+			for i in range(len(rows)):
+				row_zaehler += 1
+				item = tableWidget.item(i, j)
+				text = unicode(item.text()).encode("utf-8").lower()
+				if suchbegriff in text:
+					zaehler += 1
+					if zaehler == 1:
+						if row_scroll == 0 or row_zaehler < row_scroll:
+							item_scroll = item
+							row_scroll = row_zaehler
+					if not i in selected_items:
+						tableWidget.selectRow(i)
+						selected_items.append(i)
+		if item_scroll:
+			tableWidget.scrollToItem(item_scroll)
+		tableWidget.setFocus()
+	
 	def onClear(self):
 		self.lineEditSuchen.clear()
 		self.lineEditFilesizeFrom.clear()
 		self.lineEditFilesizeTo.clear()
 		self.lineEditSuchen.setFocus()
 		self.comboBoxFilesizeUnit.setCurrentIndex(0)
+		self.lineEditSearchMpg.clear()
+		self.lineEditSearchVid.clear()
 		
 	def onDateinamenUebernehmen(self):
 		self.suchfeld.insertItem(0, self.lineEditSuchen.text())

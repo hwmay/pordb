@@ -59,6 +59,7 @@ class Historie(QtGui.QDialog, pordb_historie):
 				self.tableWidgetHistory.selectRow(i)
 		if item_scroll:
 			self.tableWidgetHistory.scrollToItem(item_scroll)
+		self.tableWidgetHistory.setFocus()
 	
 	def onGo(self):
 		for i in range(len(self.res)):
