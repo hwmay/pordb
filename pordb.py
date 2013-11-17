@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.5"
+__version__ = "5.5.6"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"

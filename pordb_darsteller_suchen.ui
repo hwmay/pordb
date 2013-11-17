@@ -49,6 +49,9 @@
         </item>
         <item row="3" column="1" colspan="2">
          <widget class="QDateEdit" name="dateEditDarstellerSucheAb">
+          <property name="whatsThis">
+           <string>Date when the actor has been added to the PorDB database</string>
+          </property>
           <property name="minimumDate">
            <date>
             <year>1752</year>
@@ -273,6 +276,9 @@
         </item>
         <item row="4" column="1" colspan="2">
          <widget class="QDateEdit" name="dateEditDarstellerSucheBis">
+          <property name="whatsThis">
+           <string>Date when the actor has been added to the PorDB database</string>
+          </property>
           <property name="date">
            <date>
             <year>2000</year>
@@ -333,7 +339,10 @@
        <item>
         <widget class="QPushButton" name="pushButtonRefresh">
          <property name="text">
-          <string>Refresh</string>
+          <string>Clear all search fields</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+L</string>
          </property>
         </widget>
        </item>

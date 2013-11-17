@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_suchen.ui'
 #
-# Created: Mon Sep  9 22:56:56 2013
+# Created: Mon Nov 18 00:26:01 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -170,6 +170,7 @@ class Ui_DarstellerSuche(object):
         self.label_2.setText(_translate("DarstellerSuche", "Gender", None))
         self.comboBoxDarstellerSucheGeschlecht.setItemText(0, _translate("DarstellerSuche", "w", None))
         self.comboBoxDarstellerSucheGeschlecht.setItemText(1, _translate("DarstellerSuche", "m", None))
+        self.dateEditDarstellerSucheAb.setWhatsThis(_translate("DarstellerSuche", "Date when the actor has been added to the PorDB database", None))
         self.dateEditDarstellerSucheAb.setDisplayFormat(_translate("DarstellerSuche", "dd.MM.yyyy", None))
         self.label_9.setText(_translate("DarstellerSuche", "Has acted with", None))
         self.label_3.setText(_translate("DarstellerSuche", "Date from", None))
@@ -189,11 +190,13 @@ class Ui_DarstellerSuche(object):
         self.comboBoxDarstellerSucheHaar.setItemText(3, _translate("DarstellerSuche", "r", None))
         self.comboBoxDarstellerSucheHaar.setItemText(4, _translate("DarstellerSuche", "s", None))
         self.label.setText(_translate("DarstellerSuche", "Name", None))
+        self.dateEditDarstellerSucheBis.setWhatsThis(_translate("DarstellerSuche", "Date when the actor has been added to the PorDB database", None))
         self.dateEditDarstellerSucheBis.setDisplayFormat(_translate("DarstellerSuche", "dd.MM.yyyy", None))
         self.label_10.setText(_translate("DarstellerSuche", "and", None))
         self.label_11.setText(_translate("DarstellerSuche", "and", None))
         self.pushButtonSuchen.setText(_translate("DarstellerSuche", "Search", None))
         self.pushButtonSuchen.setShortcut(_translate("DarstellerSuche", "Enter", None))
-        self.pushButtonRefresh.setText(_translate("DarstellerSuche", "Refresh", None))
+        self.pushButtonRefresh.setText(_translate("DarstellerSuche", "Clear all search fields", None))
+        self.pushButtonRefresh.setShortcut(_translate("DarstellerSuche", "Ctrl+L", None))
         self.pushButtonCancel.setText(_translate("DarstellerSuche", "Cancel", None))
 
