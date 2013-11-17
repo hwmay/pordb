@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_bilddatei_umbenennen.ui'
 #
-# Created: Mon Oct 21 23:52:55 2013
+# Created: Mon Nov 18 00:33:46 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,8 +30,8 @@ class Ui_Dialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
-        self.formLayout = QtGui.QFormLayout(Dialog)
-        self.formLayout.setObjectName(_fromUtf8("formLayout"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout(Dialog)
+        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
         self.label = QtGui.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -39,7 +39,7 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setObjectName(_fromUtf8("label"))
-        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label)
+        self.verticalLayout_3.addWidget(self.label)
         self.verticalLayout_2 = QtGui.QVBoxLayout()
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -81,7 +81,7 @@ class Ui_Dialog(object):
         self.pushButtonCancel.setObjectName(_fromUtf8("pushButtonCancel"))
         self.horizontalLayout_2.addWidget(self.pushButtonCancel)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
-        self.formLayout.setLayout(1, QtGui.QFormLayout.SpanningRole, self.verticalLayout_2)
+        self.verticalLayout_3.addLayout(self.verticalLayout_2)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

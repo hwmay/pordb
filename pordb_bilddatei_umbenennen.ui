@@ -17,8 +17,8 @@
    <iconset>
     <normaloff>pypordb/8027068_splash.png</normaloff>pypordb/8027068_splash.png</iconset>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
@@ -32,7 +32,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
