@@ -339,10 +339,10 @@
        <item>
         <widget class="QPushButton" name="pushButtonRefresh">
          <property name="text">
-          <string>Clear all search fields</string>
+          <string>Clear all search fields, alt+L</string>
          </property>
          <property name="shortcut">
-          <string>Ctrl+L</string>
+          <string>Alt+L</string>
          </property>
         </widget>
        </item>

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_suchen.ui'
 #
-# Created: Sat May  4 23:31:14 2013
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Mon Nov 18 23:36:38 2013
+#      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,16 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    _fromUtf8 = lambda s: s
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_ErweiterteSuche(object):
     def setupUi(self, ErweiterteSuche):
@@ -110,38 +119,38 @@ class Ui_ErweiterteSuche(object):
         ErweiterteSuche.setTabOrder(self.pushButtonRefresh, self.pushButtonCancel)
 
     def retranslateUi(self, ErweiterteSuche):
-        ErweiterteSuche.setWindowTitle(QtGui.QApplication.translate("ErweiterteSuche", "Extended search", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("ErweiterteSuche", "Search criteria", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("ErweiterteSuche", "Actor", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditDarsteller.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Search for actors</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("ErweiterteSuche", "CD", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditCD.setToolTip(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p><br/></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditCD.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Search for data storage medium</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("ErweiterteSuche", "Title", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditTitel.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Search for title</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("ErweiterteSuche", "Original", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditOriginal.setToolTip(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p><br/></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditOriginal.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Search for original title</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("ErweiterteSuche", "Video present", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxVid.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Filter search results only for videos which are present</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_6.setText(QtGui.QApplication.translate("ErweiterteSuche", "CS", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Filter search results with cumshots</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(1, QtGui.QApplication.translate("ErweiterteSuche", "f Facial", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(2, QtGui.QApplication.translate("ErweiterteSuche", "h Handjob", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(3, QtGui.QApplication.translate("ErweiterteSuche", "t Tits", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(4, QtGui.QApplication.translate("ErweiterteSuche", "c Creampie", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(5, QtGui.QApplication.translate("ErweiterteSuche", "x Analcreampie", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(6, QtGui.QApplication.translate("ErweiterteSuche", "o Oralcreampie", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(7, QtGui.QApplication.translate("ErweiterteSuche", "v Cunt", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(8, QtGui.QApplication.translate("ErweiterteSuche", "b Belly", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(9, QtGui.QApplication.translate("ErweiterteSuche", "a Ass", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(10, QtGui.QApplication.translate("ErweiterteSuche", "s Others", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxCS.setItemText(11, QtGui.QApplication.translate("ErweiterteSuche", "k No", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSuchen.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "Start search", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSuchen.setText(QtGui.QApplication.translate("ErweiterteSuche", "Search", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSuchen.setShortcut(QtGui.QApplication.translate("ErweiterteSuche", "Enter", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonRefresh.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "Clear all fields in search form", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonRefresh.setText(QtGui.QApplication.translate("ErweiterteSuche", "Refresh", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCancel.setWhatsThis(QtGui.QApplication.translate("ErweiterteSuche", "<html><head/><body><p>Cancel search</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCancel.setText(QtGui.QApplication.translate("ErweiterteSuche", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        ErweiterteSuche.setWindowTitle(_translate("ErweiterteSuche", "Extended search", None))
+        self.groupBox.setTitle(_translate("ErweiterteSuche", "Search criteria", None))
+        self.label.setText(_translate("ErweiterteSuche", "Actor", None))
+        self.lineEditDarsteller.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Search for actors</p></body></html>", None))
+        self.label_2.setText(_translate("ErweiterteSuche", "CD", None))
+        self.lineEditCD.setToolTip(_translate("ErweiterteSuche", "<html><head/><body><p><br/></p></body></html>", None))
+        self.lineEditCD.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Search for data storage medium</p></body></html>", None))
+        self.label_3.setText(_translate("ErweiterteSuche", "Title", None))
+        self.lineEditTitel.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Search for title</p></body></html>", None))
+        self.label_4.setText(_translate("ErweiterteSuche", "Original", None))
+        self.lineEditOriginal.setToolTip(_translate("ErweiterteSuche", "<html><head/><body><p><br/></p></body></html>", None))
+        self.lineEditOriginal.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Search for original title</p></body></html>", None))
+        self.label_5.setText(_translate("ErweiterteSuche", "Video present", None))
+        self.checkBoxVid.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Filter search results only for videos which are present</p></body></html>", None))
+        self.label_6.setText(_translate("ErweiterteSuche", "CS", None))
+        self.comboBoxCS.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Filter search results with cumshots</p></body></html>", None))
+        self.comboBoxCS.setItemText(1, _translate("ErweiterteSuche", "f Facial", None))
+        self.comboBoxCS.setItemText(2, _translate("ErweiterteSuche", "h Handjob", None))
+        self.comboBoxCS.setItemText(3, _translate("ErweiterteSuche", "t Tits", None))
+        self.comboBoxCS.setItemText(4, _translate("ErweiterteSuche", "c Creampie", None))
+        self.comboBoxCS.setItemText(5, _translate("ErweiterteSuche", "x Analcreampie", None))
+        self.comboBoxCS.setItemText(6, _translate("ErweiterteSuche", "o Oralcreampie", None))
+        self.comboBoxCS.setItemText(7, _translate("ErweiterteSuche", "v Cunt", None))
+        self.comboBoxCS.setItemText(8, _translate("ErweiterteSuche", "b Belly", None))
+        self.comboBoxCS.setItemText(9, _translate("ErweiterteSuche", "a Ass", None))
+        self.comboBoxCS.setItemText(10, _translate("ErweiterteSuche", "s Others", None))
+        self.comboBoxCS.setItemText(11, _translate("ErweiterteSuche", "k No", None))
+        self.pushButtonSuchen.setWhatsThis(_translate("ErweiterteSuche", "Start search", None))
+        self.pushButtonSuchen.setText(_translate("ErweiterteSuche", "Search", None))
+        self.pushButtonSuchen.setShortcut(_translate("ErweiterteSuche", "Enter", None))
+        self.pushButtonRefresh.setWhatsThis(_translate("ErweiterteSuche", "Clear all fields in search form", None))
+        self.pushButtonRefresh.setText(_translate("ErweiterteSuche", "Refresh", None))
+        self.pushButtonCancel.setWhatsThis(_translate("ErweiterteSuche", "<html><head/><body><p>Cancel search</p></body></html>", None))
+        self.pushButtonCancel.setText(_translate("ErweiterteSuche", "Cancel", None))
 

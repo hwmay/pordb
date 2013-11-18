@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_darsteller_suchen.ui'
 #
-# Created: Mon Nov 18 00:26:01 2013
+# Created: Mon Nov 18 23:39:00 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -196,7 +196,7 @@ class Ui_DarstellerSuche(object):
         self.label_11.setText(_translate("DarstellerSuche", "and", None))
         self.pushButtonSuchen.setText(_translate("DarstellerSuche", "Search", None))
         self.pushButtonSuchen.setShortcut(_translate("DarstellerSuche", "Enter", None))
-        self.pushButtonRefresh.setText(_translate("DarstellerSuche", "Clear all search fields", None))
-        self.pushButtonRefresh.setShortcut(_translate("DarstellerSuche", "Ctrl+L", None))
+        self.pushButtonRefresh.setText(_translate("DarstellerSuche", "Clear all search fields, alt+L", None))
+        self.pushButtonRefresh.setShortcut(_translate("DarstellerSuche", "Alt+L", None))
         self.pushButtonCancel.setText(_translate("DarstellerSuche", "Cancel", None))
 

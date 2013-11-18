@@ -253,7 +253,7 @@
     <message>
         <location filename="pordb_darsteller_suchen.ui" line="345"/>
         <source>Ctrl+L</source>
-        <translation>Strg+L</translation>
+        <translation type="obsolete">Strg+L</translation>
     </message>
     <message>
         <location filename="pordb_darsteller_suchen.ui" line="345"/>
@@ -283,7 +283,17 @@
     <message>
         <location filename="pordb_darsteller_suchen.ui" line="342"/>
         <source>Clear all search fields</source>
-        <translation>Alle Suchfelder löschen</translation>
+        <translation type="obsolete">Alle Suchfelder löschen</translation>
+    </message>
+    <message>
+        <location filename="pordb_darsteller_suchen.ui" line="342"/>
+        <source>Clear all search fields, alt+L</source>
+        <translation>Alle Suchfelder löschen, Alt+L</translation>
+    </message>
+    <message>
+        <location filename="pordb_darsteller_suchen.ui" line="345"/>
+        <source>Alt+L</source>
+        <translation>Alt+L</translation>
     </message>
 </context>
 <context>
@@ -1431,12 +1441,12 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
 <context>
     <name>ErweiterteSuche</name>
     <message>
-        <location filename="pordb_suchen.py" line="117"/>
+        <location filename="pordb_suchen.ui" line="46"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="122"/>
+        <location filename="pordb_suchen.ui" line="77"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
@@ -1446,102 +1456,102 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">Vid</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="127"/>
+        <location filename="pordb_suchen.ui" line="114"/>
         <source>CS</source>
         <translation>CS</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="129"/>
+        <location filename="pordb_suchen.ui" line="136"/>
         <source>f Facial</source>
         <translation>f Facial</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="130"/>
+        <location filename="pordb_suchen.ui" line="141"/>
         <source>h Handjob</source>
         <translation>h Handjob</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="132"/>
+        <location filename="pordb_suchen.ui" line="151"/>
         <source>c Creampie</source>
         <translation>c Creampie</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="133"/>
+        <location filename="pordb_suchen.ui" line="156"/>
         <source>x Analcreampie</source>
         <translation>x Analcreampie</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="134"/>
+        <location filename="pordb_suchen.ui" line="161"/>
         <source>o Oralcreampie</source>
         <translation>o Oralcreampie</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="142"/>
+        <location filename="pordb_suchen.ui" line="210"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="144"/>
+        <location filename="pordb_suchen.ui" line="223"/>
         <source>Refresh</source>
         <translation>Refresh</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="146"/>
+        <location filename="pordb_suchen.ui" line="233"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="113"/>
+        <location filename="pordb_suchen.ui" line="14"/>
         <source>Extended search</source>
         <translation>Erweiterte Suche</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="114"/>
+        <location filename="pordb_suchen.ui" line="24"/>
         <source>Search criteria</source>
         <translation>Suchkriterien</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="115"/>
+        <location filename="pordb_suchen.ui" line="32"/>
         <source>Actor</source>
         <translation>Darsteller</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="120"/>
+        <location filename="pordb_suchen.ui" line="63"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="131"/>
+        <location filename="pordb_suchen.ui" line="146"/>
         <source>t Tits</source>
         <translation>t Titten</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="135"/>
+        <location filename="pordb_suchen.ui" line="166"/>
         <source>v Cunt</source>
         <translation>v Fotze</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="136"/>
+        <location filename="pordb_suchen.ui" line="171"/>
         <source>b Belly</source>
         <translation>b Bauch</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="137"/>
+        <location filename="pordb_suchen.ui" line="176"/>
         <source>a Ass</source>
         <translation>a Arsch</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="138"/>
+        <location filename="pordb_suchen.ui" line="181"/>
         <source>s Others</source>
         <translation>s Sonst</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="139"/>
+        <location filename="pordb_suchen.ui" line="186"/>
         <source>k No</source>
         <translation>k kein</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="141"/>
+        <location filename="pordb_suchen.ui" line="207"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -1551,42 +1561,42 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">Video present</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="125"/>
+        <location filename="pordb_suchen.ui" line="94"/>
         <source>Video present</source>
         <translation>Video vorhanden</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="116"/>
+        <location filename="pordb_suchen.ui" line="39"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for actors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suche nach Darstellern&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="123"/>
+        <location filename="pordb_suchen.ui" line="84"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="119"/>
+        <location filename="pordb_suchen.ui" line="56"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for data storage medium&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suche nach Datenträger&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="121"/>
+        <location filename="pordb_suchen.ui" line="70"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for title&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suche nach Dateiname&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="124"/>
+        <location filename="pordb_suchen.ui" line="87"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Search for original title&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suche nach Originaltitel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="126"/>
+        <location filename="pordb_suchen.ui" line="104"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter search results only for videos which are present&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zeige nur vorhandene Videos an&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="128"/>
+        <location filename="pordb_suchen.ui" line="127"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filter search results with cumshots&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suchergebnis nach cumshots filtern&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1601,17 +1611,17 @@ Zuerst mit der linken Maustaste in die linke obere Ecke klicken, dann mit der re
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Alle Felder in der Suchmaske löschen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="145"/>
+        <location filename="pordb_suchen.ui" line="230"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cancel search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Suche abbrechen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="140"/>
+        <location filename="pordb_suchen.ui" line="204"/>
         <source>Start search</source>
         <translation>Suche starten</translation>
     </message>
     <message>
-        <location filename="pordb_suchen.py" line="143"/>
+        <location filename="pordb_suchen.ui" line="220"/>
         <source>Clear all fields in search form</source>
         <translation>Alle Felder in der Suchmaske löschen</translation>
     </message>
