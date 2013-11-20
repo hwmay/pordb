@@ -51,7 +51,7 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 				if tableItem:
 					cellItem = unicode(QtGui.QTableWidgetItem(tableItem).text())
 					cell.append(cellItem)
-			if cell and cell[0]:
+			if cell and cell[0] and cell[0].title().replace("'", "''") <> self.darsteller:
 				zu_erfassen.append("insert into pordb_pseudo (pseudo, darsteller) values ('" +cell[0].title().replace("'", "''") +"', '" +self.darsteller +"')")
 			    
 		update_func = DBUpdate(self, zu_erfassen)
