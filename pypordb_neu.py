@@ -664,6 +664,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 		
+		self.close()
 		QtGui.QDialog.accept(self)
 	# end of accept
 

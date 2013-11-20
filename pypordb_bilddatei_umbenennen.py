@@ -12,6 +12,12 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 		self.connect(self.pushButtonUmbenennen, QtCore.SIGNAL("clicked()"), self.accept)
 		self.connect(self.pushButtonCancel, QtCore.SIGNAL("clicked()"), self.close)
 		
+		settings = QtCore.QSettings()
+		window_size = settings.value("Bilddatei_Umbenennen/Size", QtCore.QVariant(QtCore.QSize(600, 500))).toSize()
+		self.resize(window_size)
+		window_position = settings.value("Bilddatei_Umbenennen/Position", QtCore.QVariant(QtCore.QPoint(0, 0))).toPoint()
+		self.move(window_position)
+		
 		self.datei = unicode(datei).replace("''", "'")
 		
 		dateiname = os.path.basename(self.datei)
@@ -42,4 +48,12 @@ class BilddateiUmbenennen(QtGui.QDialog, pordb_bilddatei_umbenennen):
 			self.labelDateiname.setText("<font color=red>" +self.trUtf8(u"File already exists") +"</font>")
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("File already exists"))
 			return
+		
+		self.close()
 		QtGui.QDialog.accept(self)
+		
+		
+	def closeEvent(self, event):
+		settings = QtCore.QSettings()
+		settings.setValue("Bilddatei_Umbenennen/Size", QtCore.QVariant(self.size()))
+		settings.setValue("Bilddatei_Umbenennen/Position", QtCore.QVariant(self.pos()))
