@@ -219,6 +219,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 		self.pushButtonHistorie = QtGui.QPushButton()
 		self.pushButtonHistorie.setText(QtGui.QApplication.translate("Dialog", "Historie", None, QtGui.QApplication.UnicodeUTF8))
+		self.pushButtonHistorie.setToolTip(self.trUtf8("Open search history"))
 		self.statusBar.addPermanentWidget(self.pushButtonHistorie)
 		self.connect(self.pushButtonHistorie, QtCore.SIGNAL("clicked()"), self.onHistorie)
 		
