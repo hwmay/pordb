@@ -87,6 +87,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.tableWidgetBilder.__class__.dropEvent = self.tableWidgetBilderdropEvent
 		self.connect(self.actionDarstellerUebernehmen, QtCore.SIGNAL("triggered()"), self.onDarstellerUebernehmen)
 		self.connect(self.actionAnzeigenOriginal, QtCore.SIGNAL("triggered()"), self.onAnzeigenOriginal)
+		self.connect(self.actionAnzeigenTitle, QtCore.SIGNAL("triggered()"), self.onAnzeigenTitle)
 		self.connect(self.actionSortieren_nach_Darsteller, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Darsteller)
 		self.connect(self.actionSortieren_nach_CD, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_CD)
 		self.connect(self.actionSortieren_nach_Titel, QtCore.SIGNAL("triggered()"), self.onSortieren_nach_Titel)
@@ -156,8 +157,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.pushButtonSearchWebsite, QtCore.SIGNAL("clicked()"), self.onSearchWebsite)
 		self.connect(self.webView, QtCore.SIGNAL("linkClicked (const QUrl&)"), self.onLinkClicked)
 		self.connect(self.webView, QtCore.SIGNAL("urlChanged (const QUrl&)"), self.onUrlChanged)
-		
-		
 		
 		# Slots einrichten für Statistiken
 		self.connect(self.pushButtonCS, QtCore.SIGNAL("clicked()"), self.onStatistikCS)
@@ -743,6 +742,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			menu.addAction(self.actionBildanzeigegross)
 		else:
 			menu.addAction(self.actionAnzeigenOriginal)
+			menu.addAction(self.actionAnzeigenTitle)
 			menu.addAction(self.actionSortieren_nach_Darsteller)
 			menu.addAction(self.actionSortieren_nach_CD)
 			menu.addAction(self.actionSortieren_nach_Original)
@@ -851,6 +851,18 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.suchfeld.insertItem(0, original)
 			self.suchfeld.setCurrentIndex(0)
 			self.onOriginal()
+			
+	def onAnzeigenTitle(self):
+		item = self.tableWidgetBilder.currentItem()
+		if not item:
+			return
+		column = self.tableWidgetBilder.column(item)
+		row = self.tableWidgetBilder.row(item)
+		index = int(row * self.columns + column + self.start_bilder)
+		titel = self.aktuelles_res[index][0].decode("utf-8")
+		self.suchfeld.insertItem(0, titel)
+		self.suchfeld.setCurrentIndex(0)
+		self.onTitel()
 			
 	def onSortieren_nach_Darsteller(self):
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))

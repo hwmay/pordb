@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Nov 11 21:03:44 2013
+# Created: Sun Nov 24 22:20:12 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -902,6 +902,8 @@ class Ui_MainWindow(object):
         self.actionGetUrl.setObjectName(_fromUtf8("actionGetUrl"))
         self.actionGoToUrl = QtGui.QAction(MainWindow)
         self.actionGoToUrl.setObjectName(_fromUtf8("actionGoToUrl"))
+        self.actionAnzeigenTitle = QtGui.QAction(MainWindow)
+        self.actionAnzeigenTitle.setObjectName(_fromUtf8("actionAnzeigenTitle"))
         self.toolBar.addAction(self.actionNeueingabe)
         self.toolBar.addAction(self.actionSuchfeld)
         self.toolBar.addSeparator()
@@ -932,7 +934,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1243,5 +1245,7 @@ class Ui_MainWindow(object):
         self.actionGetUrl.setToolTip(_translate("MainWindow", "<html><head/><body><p>Get URL form database and put it into clipboard</p></body></html>", None))
         self.actionGoToUrl.setText(_translate("MainWindow", "Go to website of this actor", None))
         self.actionGoToUrl.setToolTip(_translate("MainWindow", "<html><head/><body><p>Go to website of this actor</p></body></html>", None))
+        self.actionAnzeigenTitle.setText(_translate("MainWindow", "Show all scenes with similar title", None))
+        self.actionAnzeigenTitle.setToolTip(_translate("MainWindow", "Show all scenes with similar title", None))
 
 from PyQt4 import QtWebKit
