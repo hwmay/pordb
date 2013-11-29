@@ -1666,7 +1666,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.aktuelles_res[:] = liste_neu
 		
 		self.ausgabe_in_table()
-		befehl = zu_lesen
+		befehl = zu_lesen[:]
 		befehl = befehl.replace("'", "''")
 		if len(befehl) < 5001:
 			zu_erfassen = []
@@ -1678,7 +1678,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
 		else:
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
-		if ein.lower().startswith("select "):
+		if unicode(ein).lower().startswith("select "):
 			pass
 		else:
 			self.suchhistorie(ein)
