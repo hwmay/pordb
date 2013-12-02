@@ -1678,7 +1678,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
 		else:
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
-		if unicode(ein).lower().startswith("select "):
+		if unicode(str(ein).decode("utf-8")).lower().startswith("select "):
 			pass
 		else:
 			self.suchhistorie(ein)
@@ -1875,7 +1875,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			# Darsteller
 			if self.suche_darsteller:
 				argument = 1
-				zu_lesen += "darsteller like '%" +str(self.suche_darsteller).title() +"%'"
+				zu_lesen += "darsteller like '%" +unicode(self.suche_darsteller).encode("utf-8").title() +"%'"
 		
 			# CD
 			if self.suche_cd:
@@ -1901,7 +1901,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "	
 				argument = 1
-				zu_lesen += "original like '%" +str(self.suche_original).title() +"%'"
+				zu_lesen += "original like '%" +unicode(self.suche_original).encode("utf-8").title() +"%'"
 				
 			# CS
 			if self.suche_cs:
