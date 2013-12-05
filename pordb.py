@@ -1516,7 +1516,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onTitel(self):
 		# nach Titel in pordb_vid suchen und anzeigen
 		self.start_bilder = 0
-		ein = str(self.suchfeld.currentText()).replace("'", "''").lower()
+		ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().encode("utf-8")
 		if not ein:
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
