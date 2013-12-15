@@ -1777,7 +1777,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if original:
 				text += original +"\n------------------------------\n"
 			if self.anzeige_komplett:
-				text += self.trUtf8("Title: ") +i[0].decode("utf-8") +"\n" +self.trUtf8("Image: ") +i[3].decode("utf-8") +"\n------------------------------\n"
+				titel_liste = []
+				titel = i[0].decode("utf-8")
+				if len(titel) > 30:
+					for j in range(len(titel) / 30 + 1):
+						titel_liste.append(titel[j * 30 : (j + 1) * 30])
+				else:
+					titel_liste.append(titel)
+				titel = "\n".join(titel_liste)
+				bild_liste = []
+				bild_element = i[3].decode("utf-8")
+				if len(bild_element) > 30:
+					for j in range(len(bild_element) / 30 + 1):
+						bild_liste.append(bild_element[j * 30 : (j + 1) * 30])
+				else:
+					bild_liste.append(bild_element)
+				bild_element = "\n".join(bild_liste)
+				text += self.trUtf8("Title: ") +"\n" +titel +"\n" +self.trUtf8("Image: ") +"\n" +bild_element +"\n------------------------------\n"
 				self.angezeigt_komplett = True
 			else:
 				self.angezeigt_komplett = False
