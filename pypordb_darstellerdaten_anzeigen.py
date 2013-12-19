@@ -235,6 +235,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen_zw += unicode(self.url).replace("'", "''")
 				zu_erfassen_zw += "', '" +str(self.aktiv_von_int) +"', '" +str(self.aktiv_bis_int) +"', '" +datum +"')"
 				zu_erfassen.append(zu_erfassen_zw)
+				action = None
 				if self.checkBoxPseudo.isChecked():
 					action = self.pseudo_uebernehmen(name, zu_erfassen)
 				if not action: 
