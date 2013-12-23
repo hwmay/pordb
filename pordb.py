@@ -43,7 +43,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.6"
+__version__ = "5.5.7"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -1570,7 +1570,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		app.restoreOverrideCursor()
 		
 	def onHelp(self):
-		QtGui.QMessageBox.about(self, "About PorDB", """<b>PorDB</b> v %s <p>Copyright &copy; 2012 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
+		QtGui.QMessageBox.about(self, "About PorDB", """<b>PorDB</b> v %s <p>Copyright &copy; 2012-2014 HWM</p> <p>GNU GENERAL PUBLIC LICENSE Version 3</p> <p>This is PorDB.</p> <p>Python %s - Qt %s - PyQt %s on %s""" % (__version__, platform.python_version(), QtCore.QT_VERSION_STR, QtCore.PYQT_VERSION_STR, platform.system()))
 		
 	def ausgabe(self, ein, zu_lesen):
 		def vergleich(a, b):
@@ -2266,6 +2266,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 	def onIAFD(self):
 		ein = self.eingabe_auswerten()
+		if ein == "=":
+			return
 		res = self.darsteller_lesen(ein)
 		if res and res[0][11] and res[0][11] <> "0":
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -2897,6 +2899,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		
 	def onDarstellerUmbenennen(self):
 		ein = self.eingabe_auswerten()
+		if ein == "=":
+			return
 		vorname = ""
 		if ein.find('=') == 0:
 			vorname = "X"
@@ -3054,6 +3058,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 	def onDarstellerBild(self):
 		name = str(self.labelDarsteller.text()).strip().lstrip("=")
+		if not name:
+			return
 		self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor: ") +name +self.trUtf8(", please select"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
 		if self.file:
 			bild = QtGui.QImage(self.file)
@@ -3166,6 +3172,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		for i in xrange(self.listWidgetDarsteller.count()):
 			self.aktuelles_res.append(str(self.listWidgetDarsteller.item(i).text()).strip())
 		
+		if not self.aktuelles_res:
+			app.restoreOverrideCursor()
+			return
 		self.ausgabedarsteller()
 		app.restoreOverrideCursor()
 		self.suchfeld.setFocus()
@@ -3174,7 +3183,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 	def onPseudo(self):
 		ein = self.eingabe_auswerten()
-		if not ein:
+		if ein == "=":
 			return
 		zu_lesen = "SELECT pseudo from pordb_pseudo where darsteller = '" +ein.lstrip('=').replace("'", "''") +"' order by pseudo"
 		lese_func = DBLesen(self, zu_lesen)

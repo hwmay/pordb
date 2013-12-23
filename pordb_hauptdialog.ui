@@ -161,7 +161,7 @@
             <bool>true</bool>
            </property>
            <property name="whatsThis">
-            <string>Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted. F12 toggles showing complete data (title and image file) or not.</string>
+            <string>Presentation of the search result. A contextual menu appears when you right click on any item. By double clicking on an item it can be changed or deleted in mode of viewing clips or the actors data will be shown in mode of viewing actors. In mode of viewing clips F12 toggles showing complete data (title and image file) or not.</string>
            </property>
            <property name="editTriggers">
             <set>QAbstractItemView::NoEditTriggers</set>
