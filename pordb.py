@@ -1046,7 +1046,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			original = self.aktuelles_res[index][5].decode("utf-8")
 		else:
 			original = ""
-		cover = self.verzeichnis_cover + os.sep + self.aktuelles_res[index][3].strip()
+		cover = self.verzeichnis_cover + os.sep + self.aktuelles_res[index][3].decode("utf-8").strip()
 		if os.path.exists(cover):
 			bilddialog = DarstellerAnzeigeGross(cover)
 			bilddialog.exec_()
