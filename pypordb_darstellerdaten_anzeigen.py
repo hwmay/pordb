@@ -238,8 +238,8 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				action = None
 				if self.checkBoxPseudo.isChecked():
 					action = self.pseudo_uebernehmen(name, zu_erfassen)
-				if not action: 
-					return
+					if not action: 
+						return
 				extension = os.path.splitext(str(self.verz +os.sep +self.bild))[-1].lower()
 				if extension == ".jpeg":
 					extension = ".jpg"
