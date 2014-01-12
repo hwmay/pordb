@@ -1470,7 +1470,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
 			return
-		if not ein:
+		if not ein or ein == "=":
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		vorname = False
@@ -1516,7 +1516,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onTitel(self):
 		# nach Titel in pordb_vid suchen und anzeigen
 		self.start_bilder = 0
-		ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().encode("utf-8")
+		try:
+			ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().encode("utf-8")
+		except:
+			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
+			return
 		if not ein:
 			return
 		app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
@@ -1539,7 +1543,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
 			return
-		if not ein:
+		if not ein or ein == "=":
 			return
 		ein2 = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").title().strip()
 		ein3 = unicode(self.suchfeld.currentText()).replace("'", "''").replace("#","").lower().strip()
