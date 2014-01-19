@@ -36,8 +36,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			return
 		ende = self.darstellerseite.find('</h1>', anfang)
 		self.name = self.darstellerseite[anfang+4:ende].strip()
-		self.labelName.setText(self.name)
-		self.lineEditName.setText(self.name)
+		try:
+			self.labelName.setText(self.name.decode("utf-8"))
+			self.lineEditName.setText(self.name.decode("utf-8"))
+		except:
+			self.labelName.setText(self.name)
+			self.lineEditName.setText(self.name)
 			
 		# Darsteller Bild
 		anfang = self.darstellerseite.find('/graphics/headshots/')
@@ -188,7 +192,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if self.checkBoxName.isChecked():
 			zu_lesen = "select * from pordb_darsteller where darsteller = '" +unicode(self.lineEditName.text()).replace("'", "''").title().encode("utf-8") +"'"
 		else:
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +unicode(self.name).strip().replace("'", "''").title().encode("utf-8") +"'"
+			zu_lesen = "select * from pordb_darsteller where darsteller = '" +self.name.strip().replace("'", "''") +"'"
 		self.lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(self.lese_func)
 		zu_erfassen = []
@@ -198,7 +202,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			messageBox = QtGui.QMessageBox()
 			messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 			messageBox.addButton(self.trUtf8("No"), QtGui.QMessageBox.RejectRole)
-			messageBox.setWindowTitle(self.trUtf8("Actor ") +self.name.strip() +self.trUtf8(" not yet in database"))
+			messageBox.setWindowTitle(self.trUtf8("Actor ") +self.name.decode("utf-8").strip() +self.trUtf8(" not yet in database"))
 			messageBox.setIcon(QtGui.QMessageBox.Question)
 			messageBox.setText(self.trUtf8("Should the actor be created?"))
 			message = messageBox.exec_()

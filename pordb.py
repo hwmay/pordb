@@ -772,9 +772,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		item = self.tableWidgetBilder.currentItem()
 		if not item:
 			return
-		text = str(item.text()).split("\n")
+		text = unicode(item.text()).encode("utf-8").split("\n")
 		if text:
-			self.suchfeld.insertItem(0, "=" + text[0].strip())
+			self.suchfeld.insertItem(0, "=" + text[0].decode("utf-8").strip())
 			self.suchfeld.setCurrentIndex(0)
 	
 	def onBildgross(self, event):
@@ -1413,7 +1413,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 		
 	def onGetUrl(self):
-		ein = str(self.labelDarsteller.text()).strip().title()
+		ein = unicode(self.labelDarsteller.text()).strip().title()
 		if ein:
 			zu_lesen = "SELECT url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
@@ -1424,13 +1424,13 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 		
 	def onGoToUrl(self):
-		ein = str(self.labelDarsteller.text()).strip().title()
+		ein = unicode(self.labelDarsteller.text()).strip().title()
 		if ein:
 			zu_lesen = "SELECT url from pordb_darsteller where darsteller = '" +ein.replace("'", "''")  +"'"
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			if res[0][0]:
-				self.lineEditURL.setText(res[0][0])
+				self.lineEditURL.setText(res[0][0].decode("utf-8"))
 				self.GetWebsite()
 				self.tabWidget.setCurrentIndex(3)
 		self.suchfeld.setFocus()
@@ -1959,9 +1959,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			if i[1] == 'm' or i[1] == 'w': # not from pseudo_table
 				name = i[0]
 				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-				self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".jpg"
+				self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname.decode("utf-8") +".jpg"
 				if not os.path.isfile(self.bilddarsteller):
-					self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname +".png"
+					self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"darsteller_" +i[1] +os.sep +bildname.decode("utf-8") +".png"
 					if not os.path.isfile(self.bilddarsteller):
 						self.bilddarsteller = self.verzeichnis_thumbs +os.sep +"nichtvorhanden" +os.sep +"nicht_vorhanden.jpg"
 				if i[11] and i[11] <> "0": # URL vorhanden
@@ -1989,7 +1989,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def bildSetzen(self):
 		if self.bilddarsteller:
 			# Multiplikation mit 0.05, da es eine Wechselwirkung mit dem Parent Frame gibt
-			bild = QtGui.QPixmap(self.bilddarsteller.decode("utf-8")).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+			bild = QtGui.QPixmap(self.bilddarsteller).scaled(self.labelBildanzeige.parentWidget().width() - self.labelBildanzeige.parentWidget().width() * 0.05, self.labelBildanzeige.parentWidget().height() - self.labelBildanzeige.parentWidget().height() * 0.05, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 			self.labelBildanzeige.setPixmap(bild)
 			
 	def onTabwechsel(self, tab):
@@ -2232,7 +2232,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	# end of darsteller_lesen
 	
 	def onDarstellerspeichern(self):
-		name = str(self.labelDarsteller.text()).replace("'", "''")
+		name = unicode(self.labelDarsteller.text()).replace("'", "''")
 		if not name:
 			return
 		try:
@@ -2377,9 +2377,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				self.aktiv_bis_int = 0
 
 			if self.aktiv_von_int <> 0:
-				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +aktiv_von +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set aktivvon = '" +aktiv_von +"' where darsteller = '" +res[0][0].decode("utf-8").replace("'", "''") +"'")
 			if self.aktiv_bis_int <> 0:
-				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +aktiv_bis +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set aktivbis = '" +aktiv_bis +"' where darsteller = '" +res[0][0].decode("utf-8").replace("'", "''") +"'")
 				
 			# Darsteller Tattoos
 			anfang = seite.find('Tattoos</b></td><td>')
@@ -2392,10 +2392,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			else:
 				tats = tattoos.replace("'", "''")
 			if tats:
-				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set tattoo = '" +tats +"' where darsteller = '" +res[0][0].decode("utf-8").replace("'", "''") +"'")
 					
 			datum = str(time.localtime()[0]) + '-' + str(time.localtime()[1]) + '-' + str(time.localtime()[2])
-			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			zu_erfassen.append("update pordb_darsteller set besuch = '" +datum +"' where darsteller = '" +res[0][0].decode("utf-8").replace("'", "''") +"'")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 				
@@ -2772,15 +2772,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						active += "-" + str(res2[0][13])
 				else:
 					active = ""
-				text = name + "\n" + nationality + "\n" + active
-				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"):
-					dateiname = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"
-				elif os.path.exists(self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"):
-					dateiname = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"
-				elif os.path.exists(self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".jpg"):
-					dateiname = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".jpg"
+				text = name.decode("utf-8") + "\n" + nationality + "\n" + active
+				if os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname.decode("utf-8") +".jpg"):
+					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname.decode("utf-8") +".jpg"
+				elif os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname.decode("utf-8") +".png"):
+					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname.decode("utf-8") +".png"
+				elif os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname.decode("utf-8") +".jpg"):
+					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname.decode("utf-8") +".jpg"
 				else:
-					dateiname = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".png"
+					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname.decode("utf-8") +".png"
 			else:
 				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
 				if i[5]: 
@@ -2794,10 +2794,10 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				else:
 					active = ""
 				text = i[0] + "\n" + nationality + "\n" + active
-				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"):
-					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".jpg"
+				if os.path.exists(self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname.decode("utf-8") +".jpg"):
+					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname.decode("utf-8") +".jpg"
 				else:
-					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] +"/" +bildname +".png"
+					dateiname = self.verzeichnis_thumbs +"/darsteller_" +i[1] + os.sep +bildname.decode("utf-8") +".png"
 			if not os.path.isfile(dateiname):
 				dateiname = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
 			bild = QtGui.QIcon(dateiname)
@@ -3174,7 +3174,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.start_bilder = 0
 		self.aktuelles_res = []
 		for i in xrange(self.listWidgetDarsteller.count()):
-			self.aktuelles_res.append(str(self.listWidgetDarsteller.item(i).text()).strip())
+			self.aktuelles_res.append(unicode(self.listWidgetDarsteller.item(i).text()).encode("utf-8").strip())
 		
 		if not self.aktuelles_res:
 			app.restoreOverrideCursor()
@@ -3475,7 +3475,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.statusBar.showMessage(self.url)
 		
 	def GetWebsite(self):
-		if str(self.lineEditURL.text()).startswith("http://"):
+		if unicode(self.lineEditURL.text()).startswith("http://"):
 			url = self.lineEditURL.text()
 		else:
 			url = "http://" + self.lineEditURL.text()
