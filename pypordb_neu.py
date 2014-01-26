@@ -287,14 +287,35 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		while fehler:
 			darsteller, fehler, fehler_index = self.darsteller_pruefen(unicode(self.lineEditNeuDarsteller.text()).title())
 			if fehler:
-				if fehler == 2:
+				if fehler == 1:
+					zu_lesen = "select darsteller from pordb_pseudo where pseudo = '" +darsteller[fehler_index].title().replace("'", "''").strip()  +"'"
+					self.lese_func = DBLesen(self, zu_lesen)
+					res = DBLesen.get_data(self.lese_func)
+					if res:
+						messageBox = QtGui.QMessageBox()
+						messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
+						messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
+						messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias."))
+						messageBox.setIcon(QtGui.QMessageBox.Question)
+						messageBox.setText(self.trUtf8("Do you want to take this actor instead?"))
+						messageBox.setDetailedText(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias. If you want to take this actor, click on yes, else change your entry."))
+						message = messageBox.exec_()
+						if message == 0:
+							darsteller_alt = unicode(self.lineEditNeuDarsteller.text()).title().strip()
+							darsteller_neu = darsteller_alt.replace(darsteller[fehler_index].strip(), unicode(res[0][0]).strip())
+							try:
+								self.lineEditNeuDarsteller.setText(darsteller_neu)
+							except:
+								pass
+						return
+				elif fehler == 2:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You have entered some actors twice, please correct"))
 					return
 				messageBox = QtGui.QMessageBox()
 				messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
 				messageBox.addButton(self.trUtf8("Yes, no image"), QtGui.QMessageBox.YesRole)
 				messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
-				messageBox.setWindowTitle(self.trUtf8("Actors ") +darsteller[fehler_index] +self.trUtf8(" does not exist"))
+				messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist"))
 				messageBox.setIcon(QtGui.QMessageBox.Question)
 				messageBox.setText(self.trUtf8("Do you want to add this actor?"))
 				message = messageBox.exec_()
