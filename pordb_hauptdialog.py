@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Mon Dec 23 22:21:32 2013
+# Created: Mon Jan 27 18:45:49 2014
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -1221,8 +1221,8 @@ class Ui_MainWindow(object):
         self.actionSortieren_nach_Original.setToolTip(_translate("MainWindow", "Sort on original title", None))
         self.actionCovergross.setText(_translate("MainWindow", "Show cover fullscale", None))
         self.actionCovergross.setToolTip(_translate("MainWindow", "Show cover fullscale", None))
-        self.actionBildLoeschen.setText(_translate("MainWindow", "Delete image file", None))
-        self.actionBildLoeschen.setToolTip(_translate("MainWindow", "Delete image file", None))
+        self.actionBildLoeschen.setText(_translate("MainWindow", "Delete image file(s)", None))
+        self.actionBildLoeschen.setToolTip(_translate("MainWindow", "Delete image file(s)", None))
         self.actionAnzeigenPaar.setText(_translate("MainWindow", "Show pairing", None))
         self.actionAnzeigenPaar.setToolTip(_translate("MainWindow", "Show pairing", None))
         self.actionBildanzeigegross.setText(_translate("MainWindow", "Show image fullscale", None))

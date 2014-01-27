@@ -2351,10 +2351,10 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionBildLoeschen">
    <property name="text">
-    <string>Delete image file</string>
+    <string>Delete image file(s)</string>
    </property>
    <property name="toolTip">
-    <string>Delete image file</string>
+    <string>Delete image file(s)</string>
    </property>
   </action>
   <action name="actionAnzeigenPaar">

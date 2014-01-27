@@ -1054,13 +1054,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setFocus()
 		
 	def onBildLoeschen(self):
-		item = self.tableWidgetBilderAktuell.currentItem()
-		text = unicode(item.text())
-		bilddatei = self.verzeichnis +os.sep +text 
-		try:
-			os.remove(bilddatei)
-		except:
-			pass
+		items = self.tableWidgetBilderAktuell.selectedItems()
+		for i in items:
+			text = unicode(i.text())
+			bilddatei = self.verzeichnis +os.sep +text 
+			try:
+				os.remove(bilddatei)
+			except:
+				pass
 		self.bilder_aktuell()
 		self.suchfeld.setFocus()
 		
