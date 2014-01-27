@@ -17,6 +17,7 @@ from pordb_hauptdialog import Ui_MainWindow as MainWindow
 
 from pypordb_suchen import Suchen
 from pypordb_cover import Cover
+from pypordb_show_two_images import ShowTwoImages
 from pypordb_neu import Neueingabe
 from pypordb_dblesen import DBLesen
 from pypordb_dbupdate import DBUpdate
@@ -2918,7 +2919,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 			neuer_name = umbenennen.lineEditNeuerName.text()
 			if neuer_name:
-				neuer_name = str(neuer_name).strip()
+				neuer_name = str(neuer_name).strip().title()
 				zu_lesen = "SELECT * from pordb_pseudo where darsteller = '" +eingabe + "' and pseudo = '" +neuer_name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
@@ -3003,30 +3004,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					darsteller_liste = sortier.darsteller_sortieren(res2[l][2])
 					darsteller_liste2 = [neuer_name.title().replace("'", "''") if x==eingabe.title().lstrip("=").replace("''", "'") else x for x in darsteller_liste]
 					zu_erfassen.append("update pordb_vid set darsteller = '" +", ".join(darsteller_liste2) +"' where cd = " +str(i[0]) +" and bild = '" +i[1].replace("'", "''") +"'")
-				if os.path.exists(datei_alt) and os.path.exists(datei_neu) and datei_alt <> datei_neu:
-					messageBox = QtGui.QMessageBox()
-					messageBox.addButton(datei_alt, QtGui.QMessageBox.AcceptRole)
-					messageBox.addButton(datei_neu, QtGui.QMessageBox.AcceptRole)
-					messageBox.setWindowTitle(self.trUtf8("Select an image of the actor"))
-					messageBox.setIcon(QtGui.QMessageBox.Question)
-					messageBox.setText(self.trUtf8("Which image of the actor should be taken?"))
-					message = messageBox.exec_()
-					if message == 0:
-						try:
-							os.remove(datei_neu)
-							os.rename(datei_alt, datei_neu)
-						except:
-							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
-					else:
-						try:
-							os.remove(datei_alt)
-						except:
-							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
-				else:
-					try:
-						os.rename(datei_alt, datei_neu)
-					except:
-						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+
 				self.statusBar.showMessage(str(len(res2)) + self.trUtf8(" lines changed"))
 				
 				zu_lesen = "SELECT * from pordb_partner where darsteller = '" +eingabe +"'"
@@ -3050,6 +3028,33 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					self.aktuelles_res.remove(ein.strip("="))
 					self.aktuelles_res.append(neuer_name.title())
 					self.aktuelles_res.sort()
+					
+				if os.path.exists(datei_alt) and os.path.exists(datei_neu) and datei_alt <> datei_neu:
+					dialog = ShowTwoImages(datei_alt, datei_neu)
+					app.restoreOverrideCursor()
+					dialog.exec_()
+					datei = dialog.datei()
+					if datei == 1:
+						try:
+							os.remove(datei_neu)
+							os.rename(datei_alt, datei_neu)
+						except:
+							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+					elif datei == 2:
+						try:
+							os.remove(datei_alt)
+						except:
+							message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
+					else:
+						message = QtGui.QMessageBox.information(self, self.trUtf8("Information "), self.trUtf8("Renaming canceled"))
+						self.suchfeld.setCurrentIndex(-1)
+						self.suchfeld.setFocus()
+						return
+				else:
+					try:
+						os.rename(datei_alt, datei_neu)
+					except:
+						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Image file could not be renamed"))
 					
 		try:
 			self.labelDarsteller.setText(neuer_name.replace("''", "'").title())
