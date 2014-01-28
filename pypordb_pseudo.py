@@ -21,7 +21,7 @@ class PseudonymeBearbeiten(QtGui.QDialog, pordb_pseudo):
 		self.tableWidgetPseudo.clearContents()
 		for i in pseudonyme:
 			for j in i:
-				newitem = QtGui.QTableWidgetItem(j.decode("utf-8").strip())
+				newitem = QtGui.QTableWidgetItem(j.strip())
 				self.tableWidgetPseudo.setItem(row, column, newitem)
 				row += 1
 		self.tableWidgetPseudo.setAlternatingRowColors(True)

@@ -33,7 +33,7 @@ class Historie(QtGui.QDialog, pordb_historie):
 			self.tableWidgetHistory.setItem(self.row, self.column, newitem)
 			# Befehl
 			self.column += 1
-			newitem = QtGui.QTableWidgetItem(i[0].decode("utf-8"))
+			newitem = QtGui.QTableWidgetItem(i[0])
 			self.tableWidgetHistory.setItem(self.row, self.column, newitem)
 			# Time
 			self.column += 1

@@ -13,7 +13,7 @@ class OriginalErfassen(QtGui.QDialog, pordb_original):
 		if self.original_weitere:
 			self.tableWidget.clearContents()
 			for i in self.original_weitere:
-				newitem = QtGui.QTableWidgetItem(i.strip().decode("utf-8"))
+				newitem = QtGui.QTableWidgetItem(i.title().strip())
 				self.tableWidget.setItem(row, 0, newitem)
 				row += 1
 		newitem = QtGui.QTableWidgetItem("")

@@ -3,6 +3,7 @@
 from PyQt4 import QtGui, QtCore
 import psycopg2
 import psycopg2.extensions
+psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 class DBUpdate():
 	def __init__(self, fenster, update):
@@ -36,6 +37,7 @@ class DBUpdate():
 				print "Error:", e
 				print i
 				message = QtGui.QMessageBox.critical(self.fenster, self.fenster.trUtf8("Error "), str(e))
+				self.cur.close()
 				return 
 		self.commit()
 		

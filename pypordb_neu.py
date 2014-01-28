@@ -69,7 +69,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.lese_func = DBLesen(self, zu_lesen)
 		self.res_vid_neu = DBLesen.get_data(self.lese_func)
 		if self.res_vid_neu[0][3]:
-			self.labelOriginal.setText(self.res_vid_neu[0][3].decode("utf-8"))
+			self.labelOriginal.setText(self.res_vid_neu[0][3])
 		
 		zu_lesen = "SELECT * FROM pordb_darsteller100 order by darsteller"
 		self.lese_func = DBLesen(self, zu_lesen)
@@ -95,7 +95,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.listWidgetW.clear()
 		initial = ' '
 		for i in darsteller_w:
-			newitem = QtGui.QListWidgetItem(i.decode("utf-8"))
+			newitem = QtGui.QListWidgetItem(i)
 			if i[0] != initial:
 				initial = i[0]
 				newitem.setTextColor(QtGui.QColor('red'))
@@ -104,7 +104,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			self.listWidgetW.addItem(newitem)
 		initial = ' '
 		for i in darsteller_m:
-			newitem = QtGui.QListWidgetItem(i.decode("utf-8"))
+			newitem = QtGui.QListWidgetItem(i)
 			if i[0] != initial:
 				initial = i[0]
 				newitem.setTextColor(QtGui.QColor('red'))
@@ -241,7 +241,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		      
 	def onOriginalAlt(self):
 		if self.res_vid_neu[0][3]:
-			self.lineEditNeuOriginal.setText(self.res_vid_neu[0][3].decode("utf-8"))
+			self.lineEditNeuOriginal.setText(self.res_vid_neu[0][3])
 		self.pushButtonNeuOK.setFocus()
 	
 	def onDarstelleruebernehmen(self):
@@ -680,7 +680,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				curr_key = DBLesen.get_data(self.lese_func)
 			for i in self.original_weitere:
 				if i:
-					zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.decode('utf-8').replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
+					zu_erfassen.append("insert into pordb_original (original, foreign_key_pordb_vid) values ('" +i.replace("'", "''").title() +"', " +str(curr_key[0][0]) +")")
 					
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)

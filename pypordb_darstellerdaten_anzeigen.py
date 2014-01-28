@@ -26,7 +26,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		monate = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10", "November":"11", "December":"12", }
 		haarfarben = {"Brown":"br", "Brown/Light Brown":"br", "Dark Brown":"br", "Light Brown":"br", "Black":"s", "Red":"r", "Blond":"bl", "Honey Blond":"bl", "Dark Blond":"bl", "Dirty Blond":"bl", "Sandy Blond":"bl", "Strawberry Blond":"bl", "Auburn":"r"}
 		ethniticies = {"Caucasian": "w", "Black": "s", "Asian": "a", "Latin": "l"}
-		self.coding = "utf-8"
 		
 		# Darsteller Name
 		anfang = self.darstellerseite.find('<h1>')
@@ -35,7 +34,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("This site seams not to be an actor site of the IAFD"))
 			return
 		ende = self.darstellerseite.find('</h1>', anfang)
-		self.name = self.darstellerseite[anfang+4:ende].strip()
+		name = self.darstellerseite[anfang+4:ende].strip()
+		try:
+			self.name = name.decode("utf-8")
+		except:
+			self.name = name.decode("iso-8859-1")
 		try:
 			self.labelName.setText(self.name.decode("utf-8"))
 			self.lineEditName.setText(self.name.decode("utf-8"))
@@ -289,12 +292,12 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 					return
 				zu_erfassen.append("update pordb_darsteller set tattoo = '" +str(self.lineEditTattos.text()).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set filme = '" +str(self.filme) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			zu_erfassen.append("update pordb_darsteller set url = '" +unicode(self.url).encode(self.coding).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+			zu_erfassen.append("update pordb_darsteller set url = '" +self.url.replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set aktivbis = '" +str(self.aktiv_bis_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxPseudo.isChecked():
 				zu_erfassen.append("delete from pordb_pseudo where darsteller = '" +res[0][0].replace("'", "''") + "'")
-				action = self.pseudo_uebernehmen(res[0][0].decode("utf-8"), zu_erfassen)
+				action = self.pseudo_uebernehmen(res[0][0], zu_erfassen)
 				if not action: 
 					return
 				

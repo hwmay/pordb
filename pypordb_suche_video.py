@@ -23,26 +23,20 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 			self.pushButtonSuchen.setEnabled(False)
 			j = ""
 			for i in self.titel:
-				j += i + "\n"
-			self.textEditVideo.setPlainText(j)
+				j += i.decode("utf-8") + "\n"
+			self.textEditVideo.setText(j)
 			self.onSuchen()
 		else:
 			self.pushButtonSuchen.setEnabled(True)
 		
 	def onSuchen(self):
 		self.listWidgetVideo.clear()
-		lines = unicode(self.textEditVideo.toPlainText()).strip().split('\n')
-		j = ""
-		for i in lines:
-			j += i.split("\t")[0] +"\n"
-		self.textEditVideo.setPlainText(j)
-		k = unicode(j).encode("utf-8").split("\n")
 		vorhanden = []
 		self.res_alle = []
 		self.app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-		for i in k:
+		for i in self.titel:
 			if i:
-				zu_lesen = "select distinct on (original) * from pordb_vid where original like '" +i.replace("'", "''").title() +"  %' or original like '" +i.replace("'", "''").title() +" (%'"
+				zu_lesen = "select distinct on (original) * from pordb_vid where original like '" +i.decode("utf-8").replace("'", "''").title() +"  %' or original like '" +i.decode("utf-8").replace("'", "''").title() +" (%'"
 				lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(lese_func)
 				if res:
@@ -50,9 +44,9 @@ class SucheVideo(QtGui.QDialog, pordb_suche_video):
 					self.res_alle.extend(res)
 				else:
 					vorhanden.append(" ")
-		self.label_insgesamt.setText(str(len(lines)))
+		self.label_insgesamt.setText(str(len(self.titel)))
 		self.label_vorhanden.setText(str(len(self.res_alle)))
-		self.listWidgetVideo.setMinimumHeight(len(k) * 20)
+		self.listWidgetVideo.setMinimumHeight(len(self.titel) * 20)
 		self.listWidgetVideo.addItems(vorhanden)
 		self.app.restoreOverrideCursor()
 		

@@ -26,7 +26,7 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		for i in res:
 			column = 0
 			for j in i:
-				newitem = QtGui.QTableWidgetItem(str(j))
+				newitem = QtGui.QTableWidgetItem(unicode(j))
 				self.tableWidgetBookmarks.setItem(row, column, newitem)
 				column += 1
 			row += 1
@@ -35,7 +35,7 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		self.tableWidgetBookmarks.resizeRowsToContents()
 		
 	def accept(self):
-		zu_erfassen = "insert into pordb_bookmarks (url) values ('" +str(self.url) +"')"
+		zu_erfassen = "insert into pordb_bookmarks (url) values ('" +self.url +"')"
 		update_func = DBUpdate(self, zu_erfassen)
 		DBUpdate.update_data(update_func)
 		
@@ -48,9 +48,11 @@ class Bookmarks(QtGui.QDialog, pordb_bookmarks):
 		return self.neue_url
 		
 	def loeschen(self):
-		items = self.tableWidgetBookmarks.selectedItems()
+		row = self.tableWidgetBookmarks.currentRow()
+		item = self.tableWidgetBookmarks.item(row, 1)
+		a = item.text()
 		try:
-			zu_erfassen = "delete from pordb_bookmarks where z = " +unicode(items[1].text())
+			zu_erfassen = "delete from pordb_bookmarks where z = " +str(item.text())
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
 			self.close()
