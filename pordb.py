@@ -102,7 +102,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.actionBildLoeschen, QtCore.SIGNAL("triggered()"), self.onBildLoeschen)
 		self.connect(self.actionLand, QtCore.SIGNAL("triggered()"), self.onLand)
 		self.connect(self.actionSuchbegriffe, QtCore.SIGNAL("triggered()"), self.onSuchbegriffe)
-		self.connect(self.actionSucheVideo, QtCore.SIGNAL("triggered()"), self.onSucheVideo)
 		self.connect(self.actionFirst, QtCore.SIGNAL("triggered()"), self.onPageFirst)
 		self.connect(self.actionPrev, QtCore.SIGNAL("triggered()"), self.onPageUp)
 		self.connect(self.actionNext, QtCore.SIGNAL("triggered()"), self.onPageDown)
@@ -1447,9 +1446,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		bilddialog.exec_()
 		self.suchbegriffe_lesen()
 		self.suchfeld.setFocus()
-		
-	def onSucheVideo(self):
-		self.video_anzeigen([])
 		
 	def video_anzeigen(self, titel):
 		suchendialog = SucheVideo(app, titel)

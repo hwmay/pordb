@@ -2011,7 +2011,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="separator"/>
    <addaction name="actionSuche"/>
    <addaction name="actionDrucken"/>
-   <addaction name="actionSucheVideo"/>
    <addaction name="separator"/>
    <addaction name="actionFirst"/>
    <addaction name="actionPrev"/>
@@ -2145,21 +2144,6 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionSucheVideo">
-   <property name="icon">
-    <iconset>
-     <normaloff>pypordb/zoom-in.svg</normaloff>pypordb/zoom-in.svg</iconset>
-   </property>
-   <property name="text">
-    <string>SearchMovie</string>
-   </property>
-   <property name="toolTip">
-    <string>Search for multiple movies, Ctrl+G</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+G</string>
    </property>
   </action>
   <action name="actionSuchfeld">
