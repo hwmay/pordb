@@ -284,6 +284,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		
 	def accept(self):
 		fehler = 1
+		actor_added = False
 		while fehler:
 			darsteller, fehler, fehler_index = self.darsteller_pruefen(unicode(self.lineEditNeuDarsteller.text()).title())
 			if fehler:
@@ -295,10 +296,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						messageBox = QtGui.QMessageBox()
 						messageBox.addButton(self.trUtf8("Yes"), QtGui.QMessageBox.AcceptRole)
 						messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
+						messageBox.addButton(self.trUtf8("No, add new actor"), QtGui.QMessageBox.ActionRole)
 						messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias."))
 						messageBox.setIcon(QtGui.QMessageBox.Question)
 						messageBox.setText(self.trUtf8("Do you want to take this actor instead?"))
-						messageBox.setDetailedText(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias. If you want to take this actor, click on yes, else change your entry."))
+						messageBox.setDetailedText(darsteller[fehler_index] +self.trUtf8(" does not exist") +self.trUtf8(", but I have found ") +res[0][0].strip() +self.trUtf8(" as alias. If you want to take this actor, click on yes, else change your entry or add a new actor to the database."))
 						message = messageBox.exec_()
 						if message == 0:
 							darsteller_alt = unicode(self.lineEditNeuDarsteller.text()).title().strip()
@@ -307,54 +309,15 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 								self.lineEditNeuDarsteller.setText(darsteller_neu)
 							except:
 								pass
-						return
+							return
+						elif message == 2:
+							self.darsteller_addieren(darsteller, fehler_index)
+							actor_added = True
 				elif fehler == 2:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You have entered some actors twice, please correct"))
 					return
-				messageBox = QtGui.QMessageBox()
-				messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
-				messageBox.addButton(self.trUtf8("Yes, no image"), QtGui.QMessageBox.YesRole)
-				messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
-				messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist"))
-				messageBox.setIcon(QtGui.QMessageBox.Question)
-				messageBox.setText(self.trUtf8("Do you want to add this actor?"))
-				message = messageBox.exec_()
-				if message == 2:
-					korrekt = DarstellerKorrigieren(self.lineEditNeuDarsteller.text())
-					korrekt.exec_()
-					try:
-						self.lineEditNeuDarsteller.setText(korrekt.darsteller)
-					except:
-						pass
-					return
-				else:
-					neuer_darsteller = NeueingabeDarsteller(darsteller[fehler_index])
-					neuer_darsteller.exec_()
-					if message == 0:
-						actor_file = False
-						while not actor_file:
-							self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor ") +darsteller[fehler_index] +": " +self.trUtf8("please select one"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
-							if self.file:
-								if self.file == self.bilddatei:
-									message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Selected image is the one which should be added to the database. Please select another one."))
-									continue
-								else:
-									bild = QtGui.QImage(self.file)
-									if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
-										message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
-									zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''").strip()  +"'"
-									self.lese_func = DBLesen(self, zu_lesen)
-									res = DBLesen.get_data(self.lese_func)
-									extension = os.path.splitext(str(self.file))[-1].lower()
-									if extension == '.jpeg':
-										extension = '.jpg'
-									try:
-										sex = res[0][0]
-										newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].strip().replace(" ", "_").replace("'", "_apostroph_").lower() + extension.strip()
-										os.rename(self.file, newfilename)
-									except:
-										pass
-									actor_file = True
+				if not actor_added:
+					self.darsteller_addieren(darsteller, fehler_index)
 		titel = self.lineEditNeuTitel.text()
 		if darsteller:
 			darsteller = self.darsteller_sortieren(darsteller)
@@ -688,6 +651,54 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		self.close()
 		QtGui.QDialog.accept(self)
 	# end of accept
+	
+	def darsteller_addieren (self, darsteller, fehler_index):
+		messageBox = QtGui.QMessageBox()
+		messageBox.addButton(self.trUtf8("Yes, image exists"), QtGui.QMessageBox.AcceptRole)
+		messageBox.addButton(self.trUtf8("Yes, no image"), QtGui.QMessageBox.YesRole)
+		messageBox.addButton(self.trUtf8("No, correct entry"), QtGui.QMessageBox.RejectRole)
+		messageBox.setWindowTitle(darsteller[fehler_index] +self.trUtf8(" does not exist"))
+		messageBox.setIcon(QtGui.QMessageBox.Question)
+		messageBox.setText(self.trUtf8("Do you want to add this actor?"))
+		message = messageBox.exec_()
+		if message == 2:
+			korrekt = DarstellerKorrigieren(self.lineEditNeuDarsteller.text())
+			korrekt.exec_()
+			try:
+				self.lineEditNeuDarsteller.setText(korrekt.darsteller)
+			except:
+				pass
+			return
+
+		neuer_darsteller = NeueingabeDarsteller(darsteller[fehler_index])
+		neuer_darsteller.exec_()
+		if message == 0:
+			actor_file = False
+			while not actor_file:
+				self.file = QtGui.QFileDialog.getOpenFileName(self, self.trUtf8("Image of the actor ") +darsteller[fehler_index] +": " +self.trUtf8("please select one"), self.verzeichnis, self.trUtf8("Image files (*.jpg *.jpeg *.png);;all files (*.*)"))
+				if self.file:
+					if self.file == self.bilddatei:
+						message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Selected image is the one which should be added to the database. Please select another one."))
+						continue
+					else:
+						bild = QtGui.QImage(self.file)
+						if bild.width() > size_darsteller.width() or bild.height() > size_darsteller.height():
+							message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Image of the actor is very big"))
+						zu_lesen = "select sex from pordb_darsteller where darsteller = '" +darsteller[fehler_index].replace("'", "''").strip()  +"'"
+						self.lese_func = DBLesen(self, zu_lesen)
+						res = DBLesen.get_data(self.lese_func)
+						extension = os.path.splitext(str(self.file))[-1].lower()
+						if extension == '.jpeg':
+							extension = '.jpg'
+						try:
+							sex = res[0][0]
+							newfilename = self.verzeichnis_thumbs +os.sep +"darsteller_" +sex +os.sep +darsteller[fehler_index].strip().replace(" ", "_").replace("'", "_apostroph_").lower() + extension.strip()
+							os.rename(self.file, newfilename)
+						except:
+							pass
+						actor_file = True
+						
+	# end of darsteller_addieren
 
 	def darsteller_pruefen(self, darsteller_liste):
 		darsteller = darsteller_liste.split(", ")
