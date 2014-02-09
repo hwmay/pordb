@@ -374,7 +374,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 			if not self.radioButtonCoverJa.isChecked():
 				bilddatei_alt = self.verzeichnis_thumbs +os.sep +"cd" +str(self.cd_alt) +os.sep +unicode(bild).rstrip()
 				if str(cd) != self.cd_alt:
-					bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +bild.rstrip()
+					bilddatei_neu = self.verzeichnis_thumbs +os.sep +"cd" +str(cd) +os.sep +unicode(bild).rstrip()
 					os.renames(bilddatei_alt, bilddatei_neu)
 				else:
 					if self.bilddatei != bilddatei_alt:
