@@ -3360,11 +3360,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	
 	def onSearchMpg(self):
 		if self.searchResultsMpg:
-			self.searchResults(self.lineEditSearchMpg, self.tableWidget, self.searchResultsMpg, (2,))
+			anzahl = 0
+			anzahl = self.searchResults(self.lineEditSearchMpg, self.tableWidget, self.searchResultsMpg, (2,))
+			self.labelMpgFound.setText(self.trUtf8("found: ") + str(anzahl))
 		
 	def onSearchVid(self):
 		if self.searchResultsVid:
-			self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
+			anzahl = 0
+			anzahl = self.searchResults(self.lineEditSearchVid, self.tableWidget1, self.searchResultsVid, (0, 5))
+			self.labelVidFound.setText(self.trUtf8("found: ") + str(anzahl))
 		
 	def searchResults(self, lineEdit, tableWidget, rows, column):
 		tableWidget.clearSelection()
@@ -3392,6 +3396,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		if item_scroll:
 			tableWidget.scrollToItem(item_scroll)
 		tableWidget.setFocus()
+		return zaehler
 	
 	def onClear(self):
 		self.lineEditSuchen.clear()

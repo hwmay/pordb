@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>1020</height>
+    <height>1015</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -1275,6 +1275,13 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
+                 <widget class="QLabel" name="labelMpgFound">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -1343,6 +1350,13 @@ p, li { white-space: pre-wrap; }
                   <property name="icon">
                    <iconset>
                     <normaloff>pypordb/suchen.gif</normaloff>pypordb/suchen.gif</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelVidFound">
+                  <property name="text">
+                   <string/>
                   </property>
                  </widget>
                 </item>

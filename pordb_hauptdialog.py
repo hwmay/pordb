@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'pordb_hauptdialog.ui'
 #
-# Created: Sun Feb  2 15:35:40 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Tue Feb 18 16:11:59 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(1920, 1020)
+        MainWindow.resize(1920, 1015)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pypordb/8027068_splash.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -497,6 +497,10 @@ class Ui_MainWindow(object):
         self.pushButtonSearchMpg.setIcon(icon4)
         self.pushButtonSearchMpg.setObjectName(_fromUtf8("pushButtonSearchMpg"))
         self.horizontalLayout_21.addWidget(self.pushButtonSearchMpg)
+        self.labelMpgFound = QtGui.QLabel(self.groupBox_2)
+        self.labelMpgFound.setText(_fromUtf8(""))
+        self.labelMpgFound.setObjectName(_fromUtf8("labelMpgFound"))
+        self.horizontalLayout_21.addWidget(self.labelMpgFound)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_21.addItem(spacerItem)
         self.gridLayout_7.addLayout(self.horizontalLayout_21, 0, 0, 1, 1)
@@ -526,6 +530,10 @@ class Ui_MainWindow(object):
         self.pushButtonSearchVid.setIcon(icon4)
         self.pushButtonSearchVid.setObjectName(_fromUtf8("pushButtonSearchVid"))
         self.horizontalLayout_22.addWidget(self.pushButtonSearchVid)
+        self.labelVidFound = QtGui.QLabel(self.groupBox_3)
+        self.labelVidFound.setText(_fromUtf8(""))
+        self.labelVidFound.setObjectName(_fromUtf8("labelVidFound"))
+        self.horizontalLayout_22.addWidget(self.labelVidFound)
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_22.addItem(spacerItem1)
         self.gridLayout_8.addLayout(self.horizontalLayout_22, 0, 0, 1, 1)
@@ -928,7 +936,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionOnHelp)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
