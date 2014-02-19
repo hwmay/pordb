@@ -130,10 +130,13 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.tattoos = self.darstellerseite[anfang+20:ende]
 		if self.tattoos == "None" or self.tattoos == "none":
 			self.lineEditTattos.setText("-")
+			self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
 		elif self.tattoos == "No data" or self.tattoos == "No Data":
 			self.lineEditTattos.setText(" ")
+			self.checkBoxTattos.setCheckState(QtCore.Qt.Unchecked)
 		else:
 			self.lineEditTattos.setText(self.tattoos)
+			self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
 			
 		# Darsteller Geboren
 		anfang = self.darstellerseite.find('<b>Birthday')
@@ -184,7 +187,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
-		self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
 		
 		self.app.restoreOverrideCursor()
 		
