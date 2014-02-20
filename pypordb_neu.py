@@ -786,7 +786,10 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 		zaehler = 0
 		for i in res:
 			for j in i:
-				textdatei.write(str(j).rstrip() +"\n")
+				try:
+					textdatei.write(j.encode("utf-8").rstrip() +"\n")
+				except:
+					textdatei.write(str(j).rstrip() +"\n")
 		if cover:
 			textdatei.write("COVER" +"\n")
 		textdatei.close()

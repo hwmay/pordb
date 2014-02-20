@@ -772,9 +772,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		item = self.tableWidgetBilder.currentItem()
 		if not item:
 			return
-		text = unicode(item.text()).encode("utf-8").split("\n")
+		text = item.text().split("\n")
 		if text:
-			self.suchfeld.insertItem(0, "=" + text[0].strip())
+			self.suchfeld.insertItem(0, "=" + text[0])
 			self.suchfeld.setCurrentIndex(0)
 	
 	def onBildgross(self, event):
@@ -2451,12 +2451,12 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				elif (os.path.splitext(i)[-1].lower() == ".jpg" or os.path.splitext(i)[-1].lower() == ".jpeg" or os.path.splitext(i)[-1].lower() == ".png") and os.path.splitext(i)[0] <> "pypordb_bildalt":
 					j += 1
 					self.file = unicode(QtCore.QString(self.verzeichnis_trash +os.sep +i))
-			titel = text[0].strip()
-			darsteller = text[1].strip()
+			titel = text[0].decode("utf-8").strip()
+			darsteller = text[1].decode("utf-8").strip()
 			cd = text[2].strip()
-			bild = text[3].strip()
+			bild = text[3].decode("utf-8").strip()
 			gesehen = text[4].strip()
-			original = text[5].strip()
+			original = text[5].decode("utf-8").strip()
 			cs = []
 			cs.append(text[9].strip() +'f')
 			cs.append(text[10].strip() +'h')
@@ -2759,7 +2759,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					name = i[0 : i.rfind("(") - 1]
 				else:
 					name = i.strip()
-				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_")
+				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_").decode("utf-8")
 				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
@@ -2773,6 +2773,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 						active += "-" + str(res2[0][13])
 				else:
 					active = ""
+				name = name.decode("utf-8")
 				text = name + "\n" + nationality + "\n" + active
 				if os.path.exists(self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".jpg"):
 					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_w" + os.sep + bildname +".jpg"
@@ -2783,7 +2784,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				else:
 					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname +".png"
 			else:
-				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
+				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_").decode("utf-8")
 				if i[5]: 
 					nationality = i[5]
 				else:
