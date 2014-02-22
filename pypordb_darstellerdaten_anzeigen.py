@@ -197,7 +197,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		if self.checkBoxName.isChecked():
 			zu_lesen = "select * from pordb_darsteller where darsteller = '" +unicode(self.lineEditName.text()).replace("'", "''").title().encode("utf-8") +"'"
 		else:
-			zu_lesen = "select * from pordb_darsteller where darsteller = '" +self.name.strip().replace("'", "''") +"'"
+			zu_lesen = "select * from pordb_darsteller where darsteller = '" +self.name.strip().title().replace("'", "''") +"'"
 		self.lese_func = DBLesen(self, zu_lesen)
 		res = DBLesen.get_data(self.lese_func)
 		zu_erfassen = []
