@@ -140,7 +140,7 @@
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_1">
         <attribute name="title">
@@ -2455,6 +2455,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>Show all scenes with similar title</string>
+   </property>
+  </action>
+  <action name="actionShowDetails">
+   <property name="text">
+    <string>Show actors details</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show actors details&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
  </widget>

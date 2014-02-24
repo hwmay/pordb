@@ -24,6 +24,7 @@ from pypordb_dbupdate import DBUpdate
 from pypordb_original import OriginalErfassen
 from pypordb_darsteller_suchen import DarstellerSuchen
 from pypordb_darsteller_anzeige_gross import DarstellerAnzeigeGross
+from pypordb_actor_details import ActorDetails
 from pypordb_darsteller_umbenennen import DarstellerUmbenennen
 from pypordb_land import LandBearbeiten
 from pypordb_suchbegriffe import SuchbegriffeBearbeiten
@@ -44,7 +45,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "5.5.9"
+__version__ = "5.5.10"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -124,6 +125,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.connect(self.labelBildanzeige, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onBildgross)
 		self.connect(self.actionGetUrl, QtCore.SIGNAL("triggered()"), self.onGetUrl)
 		self.connect(self.actionGoToUrl, QtCore.SIGNAL("triggered()"), self.onGoToUrl)
+		self.connect(self.actionShowDetails, QtCore.SIGNAL("triggered()"), self.onShowDetails)
 		self.connect(self.actionBildanzeigegross, QtCore.SIGNAL("triggered()"), self.onDarstellerGross)
 		self.connect(self.listWidgetFilme, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.onContextFilm)
 		self.connect(self.actionFilm_zeigen, QtCore.SIGNAL("triggered()"), self.onFilm_zeigen)
@@ -231,9 +233,6 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setMinimumWidth(250)
 		self.suchfeld.setEditable(True)
 		self.suchfeld.setWhatsThis(self.trUtf8("Searching field. By pressing the escape key it will be cleared and gets the focus."))
-		self.completer = QtGui.QCompleter()
-		self.completer.setCompletionMode(0)
-		self.suchfeld.setCompleter(self.completer)
 		self.toolBar.insertWidget(self.actionSuchfeld, self.suchfeld)
 		self.toolBar.removeAction(self.actionSuchfeld)
 		
@@ -780,6 +779,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 	def onBildgross(self, event):
 		menu = QtGui.QMenu(self.labelBildanzeige)
 		menu.addAction(self.actionBildanzeigegross)
+		menu.addAction(self.actionShowDetails)
 		menu.addAction(self.actionGetUrl)
 		menu.addAction(self.actionGoToUrl)
 		menu.exec_(self.labelBildanzeige.mapToGlobal(event))
@@ -1400,17 +1400,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.listWidgetDarsteller.clearSelection()
 		if ein:
 			bildname = ein.lower().strip().replace(" ", "_").replace("'", "_apostroph_")
-			self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".jpg"
+			self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_w" + os.sep + bildname + ".jpg"
 			if not os.path.isfile(self.bilddarsteller):
-				self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_w/" +bildname +".png"
+				self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_w" + os.sep + bildname + ".png"
 				if not os.path.isfile(self.bilddarsteller):
-					self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".jpg"
+					self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_m" + os.sep + bildname + ".jpg"
 					if not os.path.isfile(self.bilddarsteller):
-						self.bilddarsteller = self.verzeichnis_thumbs +"/darsteller_m/" +bildname +".png"
+						self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "darsteller_m" + os.sep + bildname + ".png"
 						if not os.path.isfile(self.bilddarsteller):
-							self.bilddarsteller = self.verzeichnis_thumbs +"/nichtvorhanden/nicht_vorhanden.jpg"
+							self.bilddarsteller = self.verzeichnis_thumbs + os.sep + "nichtvorhanden" + os.sep + "nicht_vorhanden.jpg"
 			bilddialog = DarstellerAnzeigeGross(self.bilddarsteller)
 			bilddialog.exec_()
+		self.suchfeld.setFocus()
+		
+	def onShowDetails(self):
+		ein = unicode(self.labelDarsteller.text()).strip().title()
+		dialog = ActorDetails(ein, self.verzeichnis_thumbs)
+		dialog.exec_()
 		self.suchfeld.setFocus()
 		
 	def onGetUrl(self):
