@@ -2114,7 +2114,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_lesen += " order by darsteller"
 			lese_func = DBLesen(self, zu_lesen)
 			res1 = DBLesen.get_data(lese_func)
-			if len(res) == 0 and len(res1) == 1:
+			if len(res) == 0 and len(res1) > 0:
 				message = QtGui.QMessageBox.warning(self, self.trUtf8("Caution! "), self.trUtf8("Actor has been found as pseudonym only!"))
 			if res1:
 				for i in res1:
