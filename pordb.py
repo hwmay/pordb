@@ -1646,13 +1646,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				suchbegriff = i.lower().strip()
 				if suchbegriff and suchbegriff in zu_lesen[0:ende]:
 					if ende > 0:
-						zu_lesen2 = zu_lesen[0:ende - 3]
+						zu_lesen2 = zu_lesen[0:ende - 2]
+						zu_lesen3 = zu_lesen[ende - 2 :]
 					else:
 						zu_lesen2 = zu_lesen
+						zu_lesen3 = ""
 					if suchbegriff == "-":
 						zu_lesen2.replace(suchbegriff, " ")
 					else:
-						zu_lesen2 = zu_lesen2.replace(suchbegriff, self.suchbegriffe[i].lower().strip())
+						zu_lesen2 = zu_lesen2.replace(suchbegriff, self.suchbegriffe[i].lower().strip()) + zu_lesen3
 					if zu_lesen <> zu_lesen2:
 						lese_func = DBLesen(self, zu_lesen2)
 						res2 = DBLesen.get_data(lese_func)
