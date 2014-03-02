@@ -3902,7 +3902,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			message.exec_()
 			return
 			
-		self.verzeichnis_tools = QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), "/")
+		self.verzeichnis_tools = unicode(QtGui.QFileDialog.getExistingDirectory(self, self.trUtf8("Select directory"), "/"))
 		if self.verzeichnis_tools:
 			dateien = os.listdir(self.verzeichnis_tools)
 		else:
@@ -3928,38 +3928,23 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		progressbar.show()
 		
 		for i in dateien:
-			try:
-				zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
-			except:
-				print zu_lesen
-				message = QtGui.QMessageBox(self)
-				message.setText(self.trUtf8("Error, filename '") +i +self.trUtf8("' is wrong (special characters)"))
-				message.exec_()
-				app.restoreOverrideCursor()
-				return
+			zu_lesen = "SELECT * from pordb_mpg_katalog where file = '" + i.replace("'", "''") + "' or groesse = " + str(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip()))
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			in_datenbank = True
 			for j in res:
-				if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(str(self.verzeichnis_tools)) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
+				if j[0].strip() == str(self.comboBoxDevice.currentText()).strip() and j[1].strip() == os.path.basename(self.verzeichnis_tools) and j[2].replace("'", "''").strip() == i.replace("'", "''").strip():
 					in_datenbank = False
 			
 			if in_datenbank:
 				for j in res:
 					# put only in duplicate list, when actual directory is another one than that in database
-					if j[1].strip() <> os.path.basename(str(self.verzeichnis_tools).strip()): 
+					if j[1].strip() <> os.path.basename(self.verzeichnis_tools).strip(): 
 						a = list(j)
 						a.append(i)
 						a.append(long(os.path.getsize(self.verzeichnis_tools +os.sep +i.strip())))
 						res_alle.append(a)
-				try:
-					zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +str(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(str(self.verzeichnis_tools)) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools +os.sep +i)) +"')")
-				except:
-					message = QtGui.QMessageBox(self)
-					message.setText(self.trUtf8("Error, filename '") +i +self.trUtf8("' is wrong (special characters)"))
-					message.exec_()
-					app.restoreOverrideCursor()
-					return
+				zu_erfassen.append("INSERT into pordb_mpg_katalog VALUES ('" +unicode(self.comboBoxDevice.currentText()) +"', '" +os.path.basename(self.verzeichnis_tools) +"', '" +i.replace("'", "''") +"', '" +" " +"', '" +str(os.path.getsize(self.verzeichnis_tools + os.sep + i)) +"')")
 					
 			progress += 1
 			progressbar.setValue(progress)
@@ -4031,9 +4016,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		counter = 0
 		for i in xrange(self.tableWidgetDubletten.rowCount()):
 			if self.tableWidgetDubletten.item(i, 0).checkState():
-				zu_erfassen.append("delete from pordb_mpg_katalog where device = '" +str(self.comboBoxDevice.currentText()).strip() +"' and dir = '" +os.path.basename(str(self.verzeichnis_tools)) +"' and file = '" +str(self.tableWidgetDubletten.item(i, 5).text()).strip() +"'")
+				zu_erfassen.append("delete from pordb_mpg_katalog where device = '" +unicode(self.comboBoxDevice.currentText()).strip() +"' and dir = '" +os.path.basename(self.verzeichnis_tools) +"' and file = '" +unicode(self.tableWidgetDubletten.item(i, 5).text()).strip() +"'")
 				try:
-					os.remove(self.verzeichnis_tools +os.sep +str(self.tableWidgetDubletten.item(i, 5).text()).strip())
+					os.remove(self.verzeichnis_tools +os.sep +unicode(self.tableWidgetDubletten.item(i, 5).text()).strip())
 					counter += 1
 				except:
 					pass
