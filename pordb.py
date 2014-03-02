@@ -827,6 +827,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				eingabe = ein.title().replace("'", "''")
 				zu_lesen = "SELECT * FROM pordb_vid where (darsteller = '" +eingabe +"' or darsteller like '" +eingabe +",%' or darsteller like '%, " +eingabe +",%' or darsteller like '%, " +eingabe +"')"
 				zu_lesen += " and cs" +cs_found +" <> 0" 
+				if self.actionVid.isChecked():
+					zu_lesen += " and vorhanden = 'x'"
+					self.actionVid.toggle()
 				self.letzter_select = zu_lesen
 				zu_lesen += " order by cd, bild, darsteller"
 				self.letzter_select_komplett = zu_lesen
