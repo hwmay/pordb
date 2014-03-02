@@ -46,6 +46,7 @@ dbname = "por"
 initial_run = True
 
 __version__ = "6.0.0"
+file_version = "https://github.com/hwmay/pordb/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
 db_host = "localhost"
@@ -388,9 +389,27 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			splash.showMessage("Ready", color = QtGui.QColor("green"))
 			app.processEvents()
 			splash.finish(self)
-			initial_run = False
 			
 		self.suchfeld.setCurrentIndex(-1)
+		
+		# Get version file from github
+		if initial_run: 
+			zaehler = 0
+			while True:
+				zaehler += 1
+				try:
+					seite = urllib2.urlopen(file_version).read()
+					print seite
+					if seite:
+						break
+					else:
+						pass
+				except:
+				    pass
+				if zaehler > 1:
+					break
+		
+			initial_run = False
 		
 	def setFocus(self, i):
 		self.suchfeld.setFocus()
