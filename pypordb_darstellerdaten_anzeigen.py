@@ -94,6 +94,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		self.land = self.darstellerseite[anfang+33:ende]
 		if self.land == "No data":
 			self.lineEditLand.setText("")
+			self.checkBoxLand.setCheckState(QtCore.Qt.Unchecked)
 		else:
 			self.lineEditLand.setText(self.land)
 			zu_lesen = "select iso from pordb_iso_land where national = '" +self.land + "'"
@@ -101,14 +102,20 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			res = DBLesen.get_data(self.lese_func)
 			if len(res) > 0:
 				self.lineEditLand.setText(res[0][0])
+				self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
 		
 		# Darsteller Ethnic
 		anfang = self.darstellerseite.find('Ethnicity</b></td><td>')
 		ende = self.darstellerseite.find('</td></tr>', anfang)
 		self.ethnic = self.darstellerseite[anfang+22:ende]
-		ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
-		if ethnic != self.trUtf8("nicht vorhanden"):
-			self.ethnic = ethnic
+		if self.ethnic == "No data":
+			self.ethnic = ""
+			self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
+		else:
+			ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
+			if ethnic != self.trUtf8("nicht vorhanden"):
+				self.ethnic = ethnic
+				self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
 		self.lineEditEthnic.setText(self.ethnic)
 		
 		# Darsteller Haarfarbe
@@ -119,9 +126,14 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			offset = 23
 		ende = self.darstellerseite.find('</td></tr>', anfang)
 		self.haare = self.darstellerseite[anfang+offset:ende]
-		haarfarbe = haarfarben.get(self.haare, self.trUtf8("nicht vorhanden"))
-		if haarfarbe != self.trUtf8("nicht vorhanden"):
-			self.haare = haarfarbe
+		if self.haare == "No data":
+			self.haare = ""
+			self.checkBoxHaare.setCheckState(QtCore.Qt.Unchecked)
+		else:
+			haarfarbe = haarfarben.get(self.haare, self.trUtf8("nicht vorhanden"))
+			if haarfarbe != self.trUtf8("nicht vorhanden"):
+				self.haare = haarfarbe
+				self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
 		self.lineEditHaare.setText(self.haare)
 		
 		# Darsteller Tattoos
@@ -132,7 +144,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			self.lineEditTattos.setText("-")
 			self.checkBoxTattos.setCheckState(QtCore.Qt.Checked)
 		elif self.tattoos == "No data" or self.tattoos == "No Data":
-			self.lineEditTattos.setText(" ")
+			self.lineEditTattos.setText("")
 			self.checkBoxTattos.setCheckState(QtCore.Qt.Unchecked)
 		else:
 			self.lineEditTattos.setText(self.tattoos)
@@ -184,9 +196,6 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		
 		self.checkBoxPseudo.setCheckState(QtCore.Qt.Checked)
 		self.checkBoxGeboren.setCheckState(QtCore.Qt.Checked)
-		self.checkBoxLand.setCheckState(QtCore.Qt.Checked)
-		self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
-		self.checkBoxHaare.setCheckState(QtCore.Qt.Checked)
 		
 		self.app.restoreOverrideCursor()
 		
