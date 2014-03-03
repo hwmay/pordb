@@ -30,6 +30,7 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
 		self.plainTextEditWhatsnew.setPlainText(self.version + "\n" + "\n" +self.whatsnew)
 		
 	def accept(self):
+		self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 		zaehler = 0
 		seite = None
 		while True:
@@ -55,11 +56,12 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
 				data = datei.read(i)
 				df = i.replace("pordb-master/", "")
 				if df:
-					writefile = open(df, "wb")
-					writefile.write(data)
-					writefile.close()
-			#zipfile.ZipFile.extractall(datei, os.getcwd())
+					if df <> "pypordb/":
+						writefile = open(df, "wb")
+						writefile.write(data)
+						writefile.close()
 			
+		self.unsetCursor()
 		self.close
 		QtGui.QDialog.accept(self)
 	
