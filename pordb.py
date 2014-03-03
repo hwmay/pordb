@@ -422,8 +422,8 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					whatsnew = seite[begin + 17 : begin + 17 + seite[begin + 17 :].find("&")]
 					dialog = UpdateVersion(version, whatsnew)
 					if dialog.exec_():
-						x = os.getcwdu()
-						print "SUCCESS"
+						python = sys.executable
+						os.execl(python, python, * sys.argv)
 		
 	def setFocus(self, i):
 		self.suchfeld.setFocus()
