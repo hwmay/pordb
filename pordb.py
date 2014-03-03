@@ -36,6 +36,7 @@ from pypordb_darstellerdaten_anzeigen import DarstellerdatenAnzeigen
 from pypordb_save_movie_data import SaveMovieData
 from pypordb_show_iafd_data import ShowIafdData
 from pypordb_devices import Devices
+from pypordb_update_version import UpdateVersion
 
 size = QtCore.QSize(260, 260)
 sizeneu = QtCore.QSize(500, 400)
@@ -393,13 +394,15 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.suchfeld.setCurrentIndex(-1)
 		
 		# Get version file from github
+		version = None
+		whatsnew = None
+		seite = None
 		if initial_run: 
 			zaehler = 0
 			while True:
 				zaehler += 1
 				try:
 					seite = urllib2.urlopen(file_version).read()
-					print seite
 					if seite:
 						break
 					else:
@@ -410,6 +413,16 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					break
 		
 			initial_run = False
+			
+			if seite:
+				begin = seite.find("pordbversion")
+				version = "Version: " + seite[begin + 21 : begin + 21 + seite[begin + 21 :].find("&")]
+				if version <> __version__:
+					begin = seite.find("whatsnew")
+					whatsnew = seite[begin + 17 : begin + 17 + seite[begin + 17 :].find("&")]
+					dialog = UpdateVersion(version, whatsnew)
+					if dialog.exec_():
+						print "SUCCESS"
 		
 	def setFocus(self, i):
 		self.suchfeld.setFocus()
