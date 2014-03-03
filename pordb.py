@@ -46,7 +46,7 @@ size_darsteller = QtCore.QSize(1920, 1080)
 dbname = "por"
 initial_run = True
 
-__version__ = "6.0.1"
+__version__ = "6.0.0"
 file_version = "https://github.com/hwmay/pordb/blob/master/version"
 
 # Make a connection to the database and check to see if it succeeded.
@@ -416,7 +416,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			
 			if seite:
 				begin = seite.find("pordbversion")
-				version = "Version: " + seite[begin + 21 : begin + 21 + seite[begin + 21 :].find("&")]
+				version = seite[begin + 21 : begin + 21 + seite[begin + 21 :].find("&")]
 				if version <> __version__:
 					begin = seite.find("whatsnew")
 					whatsnew = seite[begin + 17 : begin + 17 + seite[begin + 17 :].find("&")]
