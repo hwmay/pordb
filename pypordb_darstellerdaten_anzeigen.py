@@ -115,7 +115,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 			ethnic = ethniticies.get(self.ethnic, self.trUtf8("nicht vorhanden"))
 			if ethnic != self.trUtf8("nicht vorhanden"):
 				self.ethnic = ethnic
-				self.checkBoxEthnic.setCheckState(QtCore.Qt.Unchecked)
+				self.checkBoxEthnic.setCheckState(QtCore.Qt.Checked)
 		self.lineEditEthnic.setText(self.ethnic)
 		
 		# Darsteller Haarfarbe
