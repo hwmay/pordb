@@ -84,7 +84,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 		anfang = self.darstellerseite.find('AKA</b>')
 		anfang = self.darstellerseite.find('</td><td>', anfang)
 		ende = self.darstellerseite.find('</td>', anfang+1)
-		self.pseudonyme = self.darstellerseite[anfang+9:ende].decode("utf-8")
+		self.pseudonyme = self.darstellerseite[anfang+9:ende]
 		if self.pseudonyme != "No known aliases":
 			self.lineEditPseudo.setText(self.pseudonyme)
 	

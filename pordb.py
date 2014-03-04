@@ -2803,7 +2803,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 					name = i[0 : i.rfind("(") - 1]
 				else:
 					name = i.strip()
-				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_").decode("utf-8")
+				bildname = name.lower().replace(" ", "_").replace("'", "_apostroph_")
 				zu_lesen = "SELECT * from pordb_darsteller where darsteller = '" +name.replace("'", "''") +"'"
 				lese_func = DBLesen(self, zu_lesen)
 				res2 = DBLesen.get_data(lese_func)
@@ -2828,7 +2828,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				else:
 					dateiname = self.verzeichnis_thumbs + os.sep +"darsteller_m" + os.sep + bildname +".png"
 			else:
-				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_").decode("utf-8")
+				bildname = i[0].lower().strip().replace(" ", "_").replace("'", "_apostroph_")
 				if i[5]: 
 					nationality = i[5]
 				else:
