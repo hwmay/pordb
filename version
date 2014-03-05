@@ -1,2 +1,2 @@
-pordbversion = "6.0.1"
-whatsnew = "Only testing"
+pordbversion = "6.0.0"
+whatsnew = "Autoupdate function"
