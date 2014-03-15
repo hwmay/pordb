@@ -1724,7 +1724,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
 		else:
 			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
-		if ein.lower().startswith("select "):
+		if unicode(ein).lower().startswith("select "):
 			pass
 		else:
 			self.suchhistorie(ein)
