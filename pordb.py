@@ -1506,7 +1506,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		# Darsteller in pordb_vid suchen und anzeigen
 		self.start_bilder = 0
 		try:
-			ein = unicode(self.suchfeld.currentText()).strip().title().encode("utf-8")
+			ein = unicode(self.suchfeld.currentText()).replace("'", "''").title().strip()
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
 			return
@@ -1516,9 +1516,9 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		vorname = False
 		if ein.find("=") == 0:
 			vorname = True
-			eingabe = ein.lstrip("=").replace("'", "''")
+			eingabe = ein.lstrip("=")
 		else:
-			eingabe = ein.replace("'", "''")
+			eingabe = ein
 		if vorname:
 			zu_lesen = "SELECT * FROM pordb_vid where (darsteller = '" +eingabe +"' or darsteller like '" +eingabe +",%' or darsteller like '%, " +eingabe +",%' or darsteller like '%, " +eingabe +"')"
 		else:
@@ -1558,6 +1558,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		self.start_bilder = 0
 		try:
 			ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().encode("utf-8")
+			ein = unicode(self.suchfeld.currentText()).replace("'", "''").lower().strip()
 		except:
 			message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8(u"Seems to be an invalid character in the search field"))
 			return
@@ -1610,7 +1611,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 		zu_lesen += " order by original, cd, bild, darsteller"
 		self.letzter_select_komplett = zu_lesen
 		self.partner = 0
-		self.ausgabe(ein, zu_lesen)
+		self.ausgabe(ein3, zu_lesen)
 		app.restoreOverrideCursor()
 		
 	def onHelp(self):
@@ -1720,13 +1721,11 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			zu_erfassen.append("INSERT into pordb_history values ('" +befehl +"', DEFAULT)")
 			update_func = DBUpdate(self, zu_erfassen)
 			DBUpdate.update_data(update_func)
-		if type(ein) == str:
-			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein.decode("utf-8"))
-		else:
-			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
-		if unicode(ein).lower().startswith("select "):
+		
+		if ein.lower().startswith("select "):
 			pass
 		else:
+			self.statusBar.showMessage(self.trUtf8("Search was: ") +ein)
 			self.suchhistorie(ein)
 		self.suchfeld.setCurrentIndex(-1)
 		self.tabWidget.setCurrentIndex(0)
@@ -1939,7 +1938,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			# Darsteller
 			if self.suche_darsteller:
 				argument = 1
-				zu_lesen += "darsteller like '%" +unicode(self.suche_darsteller).encode("utf-8").title() +"%'"
+				zu_lesen += "darsteller like '%" +unicode(self.suche_darsteller).encode("utf-8") +"%'"
 		
 			# CD
 			if self.suche_cd:
@@ -1958,14 +1957,14 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 				if argument == 1:
 					zu_lesen += " and "
 				argument = 1
-				zu_lesen += "titel like '%" +self.suche_titel +"%'"
+				zu_lesen += "titel like '%" +unicode(self.suche_titel).encode("utf-8") +"%'"
 	
 			# Original 
 			if self.suche_original:
 				if argument == 1:
 					zu_lesen += " and "	
 				argument = 1
-				zu_lesen += "original like '%" +unicode(self.suche_original).encode("utf-8").title() +"%'"
+				zu_lesen += "original like '%" +unicode(self.suche_original).encode("utf-8") +"%'"
 				
 			# CS
 			if self.suche_cs:
