@@ -27,7 +27,11 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
 		
 		self.pushButtonYes.setFocus()
 		
-		self.plainTextEditWhatsnew.setPlainText("Version: " + self.version + "\n" + "\n" +self.whatsnew)
+		self.plainTextEditWhatsnew.setPlainText("Version: " + self.version + "\n" + "\n")
+		
+		whatsnew_list = self.whatsnew.split("\n")
+		for i in whatsnew_list:
+			self.plainTextEditWhatsnew.append(i)
 		
 	def accept(self):
 		self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
