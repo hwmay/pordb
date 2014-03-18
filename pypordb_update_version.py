@@ -29,7 +29,7 @@ class UpdateVersion(QtGui.QDialog, pordb_update_version):
 		
 		self.plainTextEditWhatsnew.setPlainText("Version: " + self.version + "\n" + "\n")
 		
-		whatsnew_list = self.whatsnew.split("\n")
+		whatsnew_list = self.whatsnew.split("\\")
 		for i in whatsnew_list:
 			self.plainTextEditWhatsnew.appendPlainText(i)
 		
