@@ -1,2 +1,3 @@
 pordbversion = "6.0.1"
-whatsnew = "Bugfix: Search function unicode enabled\nBugfix: Better handling for correcting actors name"
+whatsnew = "- Bugfix: Search function unicode enabled"
+whatsnew = "- Bugfix: Better handling for correcting actors name"
