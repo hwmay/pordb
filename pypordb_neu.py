@@ -285,6 +285,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 	def accept(self):
 		fehler = 1
 		actor_added = False
+		actor_adding_asked = False
 		while fehler:
 			darsteller, fehler, fehler_index = self.darsteller_pruefen(unicode(self.lineEditNeuDarsteller.text()).title())
 			if fehler:
@@ -316,8 +317,11 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				elif fehler == 2:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("You have entered some actors twice, please correct"))
 					return
+				if actor_adding_asked:
+					return
 				if not actor_added:
 					self.darsteller_addieren(darsteller, fehler_index)
+					actor_adding_asked = True
 		titel = self.lineEditNeuTitel.text()
 		if darsteller:
 			darsteller = self.darsteller_sortieren(darsteller)
