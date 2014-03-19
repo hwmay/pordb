@@ -733,6 +733,8 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 				if i == "Defekt":
 					defekt_schalter = True
 				zu_lesen = "select sex from pordb_darsteller where darsteller = '" + i.strip().replace("'", "''").title() + "'"
+				# When coming from actor renaming function
+				zu_lesen = zu_lesen.replace("''''", "''")
 				self.lese_func = DBLesen(self, zu_lesen)
 				res = DBLesen.get_data(self.lese_func)
 				try:

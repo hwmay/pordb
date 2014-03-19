@@ -1,2 +1,2 @@
-pordbversion = "6.0.1"
-whatsnew = "Bugfix: Search function unicode enabled\Bugfix: Better handling for correcting actors name"
+pordbversion = "6.0.2"
+whatsnew = "Bugfix: Renaming actors with apostroph in name"
