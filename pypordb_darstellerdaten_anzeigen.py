@@ -240,7 +240,7 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen_zw += "', '" 
 				zu_erfassen_zw += str(self.lineEditLand.text()).upper()[0:2] 
 				zu_erfassen_zw += "', '" 
-				zu_erfassen_zw += str(self.lineEditTattos.text().replace("'", "''")) 
+				zu_erfassen_zw += unicode(self.lineEditTattos.text()).replace("'", "''") 
 				zu_erfassen_zw += "', '" 
 				zu_erfassen_zw += str(self.lineEditEthnic.text()).lower()
 				zu_erfassen_zw += "', '" 
@@ -297,11 +297,11 @@ class DarstellerdatenAnzeigen(QtGui.QDialog, pordb_iafd):
 				zu_erfassen.append("update pordb_darsteller set ethnic = '" +str(self.lineEditEthnic.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			if self.checkBoxHaare.isChecked():
 				zu_erfassen.append("update pordb_darsteller set haarfarbe = '" +str(self.lineEditHaare.text()).lower() +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
-			if self.checkBoxTattos.isChecked() and str(self.lineEditTattos.text()):
+			if self.checkBoxTattos.isChecked() and unicode(self.lineEditTattos.text()):
 				if len((self.lineEditTattos.text())) > 500:
 					message = QtGui.QMessageBox.critical(self, self.trUtf8("Error "), self.trUtf8("Too many characters in tattos (") +str(len((self.lineEditTattos.text()))) +")")
 					return
-				zu_erfassen.append("update pordb_darsteller set tattoo = '" +str(self.lineEditTattos.text()).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
+				zu_erfassen.append("update pordb_darsteller set tattoo = '" +unicode(self.lineEditTattos.text()).replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set filme = '" +str(self.filme) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set url = '" +self.url.replace("'", "''") +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
 			zu_erfassen.append("update pordb_darsteller set aktivvon = '" +str(self.aktiv_von_int) +"' where darsteller = '" +res[0][0].replace("'", "''") +"'")
