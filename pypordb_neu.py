@@ -610,7 +610,7 @@ class Neueingabe(QtGui.QDialog, pordb_neu):
 						res2 = DBLesen.get_data(self.lese_func)
 						geschlecht2 = res2[0][0]
 						if geschlecht != geschlecht2:
-							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +str(bild) +"')")
+							zu_erfassen.append("insert into pordb_partner values ('" +i.replace("'", "''") +"', '" +j.replace("'", "''") +"', " +str(cd) +", '" +unicode(bild) +"')")
 							zu_lesen = "select darsteller from pordb_partner where darsteller = '" +i.replace("'", "''") +"' and partner = '" +j.replace("'", "''") +"'"
 							self.lese_func = DBLesen(self, zu_lesen)
 							res3 = DBLesen.get_data(self.lese_func)
