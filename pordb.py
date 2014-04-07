@@ -2576,7 +2576,7 @@ class MeinDialog(QtGui.QMainWindow, MainWindow):
 			lese_func = DBLesen(self, zu_lesen)
 			res = DBLesen.get_data(lese_func)
 			self.spinBoxAktuell.setValue(res[0][2])
-			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].decode("utf-8").strip() +" Act:" +res[0][1].strip())
+			self.statusBar.showMessage("ins:CD" +str(res[0][2]) +" Title:" +res[0][0].strip() +" Act:" +res[0][1].strip())
 		
 	# end of onNeueingabe
 		
